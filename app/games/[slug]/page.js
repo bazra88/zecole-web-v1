@@ -32,7 +32,7 @@ export default async function GameDetailPage({ params }) {
   if (!game) notFound();
 
   const videos = await getGameVideos(game.id).catch(() => []);
-  const image = gameImageUrl(game.image_path);
+  const image = gameImageUrl(game.image_path || game.source_image_url);
   const price = formatGamePrice(game);
   const free = isFreeGame(game);
   const discount = effectiveAffiliateDiscount(game);

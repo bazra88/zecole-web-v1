@@ -34,7 +34,7 @@ async function safeHorizonPlus() {
 function HorizonTile({ href, number, title, description, games, monthly = false }) {
   const availableGames = games
     .map((row) => row.game)
-    .filter((game) => game?.image_path);
+    .filter((game) => game?.image_path || game?.source_image_url);
   const collageColumns = monthly
     ? 2
     : Math.max(1, Math.ceil(Math.sqrt(availableGames.length * 1.5)));
@@ -57,7 +57,7 @@ function HorizonTile({ href, number, title, description, games, monthly = false 
         aria-hidden="true"
       >
         {collage.map((game, index) => (
-          <img key={`${game.id}-${index}`} src={gameImageUrl(game.image_path)} alt="" />
+          <img key={`${game.id}-${index}`} src={gameImageUrl(game.image_path || game.source_image_url)} alt="" />
         ))}
       </div>
       {monthly ? (

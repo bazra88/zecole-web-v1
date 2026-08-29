@@ -9,7 +9,7 @@ import {
 } from "@/lib/game-format";
 
 export default function GameCard({ game }) {
-  const image = gameImageUrl(game.image_path);
+  const image = gameImageUrl(game.image_path || game.source_image_url);
   const price = formatGamePrice(game);
   const free = isFreeGame(game);
   const discount = effectiveAffiliateDiscount(game);

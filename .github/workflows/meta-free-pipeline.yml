@@ -1,4 +1,4 @@
-name: Refresh Meta free-game candidates
+name: Refresh and sync Meta free games
 
 on:
   workflow_dispatch:
@@ -31,10 +31,18 @@ jobs:
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
         run: npm run data:free:update
 
+      - name: Apply validated changes
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run data:free:sync -- --apply
+
       - name: Write run summary
+        if: always()
         run: node scripts/write-meta-free-summary.mjs
 
       - name: Upload reports
+        if: always()
         uses: actions/upload-artifact@v6
         with:
           name: meta-free-report-${{ github.run_id }}
@@ -43,4 +51,5 @@ jobs:
             data/meta-free/parsed.*
             data/meta-free/diff-report.json
             data/meta-free/parse-report.json
+            data/meta-free/sync-report.json
           if-no-files-found: error

@@ -1,0 +1,271 @@
+{
+  "generated_at": "2026-08-29T11:31:39.281Z",
+  "mode": "apply",
+  "attempted": 17,
+  "succeeded": 0,
+  "failed": [
+    {
+      "id": "61e58380-a817-4be1-9bc0-c008987755d0",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "dc1c889a-54e7-4243-9c29-a1494af03674",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "094c7414-5a03-4cb0-9ea9-f6652532ce91",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "8a8a8044-79e9-40c2-bffb-ad2f59e91c12",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "6b5f5f34-b5ce-49ac-947a-24ce58247bfd",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "0ddfff86-3a08-4bf5-b82b-231ac2da8b26",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "36eda989-74a8-47da-baf0-55a999f78636",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "53e44dd9-3c96-4811-9cd4-cdcfe56eb314",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "d3beeb0b-de7c-49fa-9e26-e53c5b20cf9b",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "4bc92e39-b49d-48e5-a75b-fc7c034122f2",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "c38e701f-0cad-49fc-b844-9c8353f768d6",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "b3313cdf-75f4-4aa1-976c-c106cf71f0a1",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "1dea5cfd-57c9-44e5-a82c-ec60a9b7e1bc",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "4291d7d2-cde0-4815-875d-cc7301d4654f",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "2460a564-c310-497b-8384-caa7b27c4143",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "cd53f233-9832-4275-85d5-988f5e324be0",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    },
+    {
+      "id": "60e8d331-60fb-40b6-a87e-4bd6450caa94",
+      "status": 200,
+      "body": "수정된 행이 없습니다 (RLS 또는 조건 확인 필요)"
+    }
+  ],
+  "updates": [
+    {
+      "id": "61e58380-a817-4be1-9bc0-c008987755d0",
+      "name": "UG",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 391799
+      }
+    },
+    {
+      "id": "dc1c889a-54e7-4243-9c29-a1494af03674",
+      "name": "Animal Company",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 215251
+      }
+    },
+    {
+      "id": "094c7414-5a03-4cb0-9ea9-f6652532ce91",
+      "name": "Gorilla Tag",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 174603
+      }
+    },
+    {
+      "id": "8a8a8044-79e9-40c2-bffb-ad2f59e91c12",
+      "name": "Airport Security Guard",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 87634
+      }
+    },
+    {
+      "id": "6b5f5f34-b5ce-49ac-947a-24ce58247bfd",
+      "name": "Yeeps",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 86728
+      }
+    },
+    {
+      "id": "0ddfff86-3a08-4bf5-b82b-231ac2da8b26",
+      "name": "VAIL",
+      "changes": [
+        "rating",
+        "review_count"
+      ],
+      "payload": {
+        "rating": 4.8,
+        "review_count": 85718
+      }
+    },
+    {
+      "id": "36eda989-74a8-47da-baf0-55a999f78636",
+      "name": "Devil's Roulette  -The Pit-",
+      "changes": [
+        "name",
+        "review_count"
+      ],
+      "payload": {
+        "name": "Devil's Roulette  -The Pit-",
+        "review_count": 75439
+      }
+    },
+    {
+      "id": "53e44dd9-3c96-4811-9cd4-cdcfe56eb314",
+      "name": "Gym Class",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 54722
+      }
+    },
+    {
+      "id": "d3beeb0b-de7c-49fa-9e26-e53c5b20cf9b",
+      "name": "VRChat",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 38510
+      }
+    },
+    {
+      "id": "4bc92e39-b49d-48e5-a75b-fc7c034122f2",
+      "name": "BIG BALLERS '26",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 34019
+      }
+    },
+    {
+      "id": "c38e701f-0cad-49fc-b844-9c8353f768d6",
+      "name": "GRAB",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 19154
+      }
+    },
+    {
+      "id": "b3313cdf-75f4-4aa1-976c-c106cf71f0a1",
+      "name": "Roblox",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 11934
+      }
+    },
+    {
+      "id": "1dea5cfd-57c9-44e5-a82c-ec60a9b7e1bc",
+      "name": "DOWNSHOT",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 11492
+      }
+    },
+    {
+      "id": "4291d7d2-cde0-4815-875d-cc7301d4654f",
+      "name": "Sail",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 10777
+      }
+    },
+    {
+      "id": "2460a564-c310-497b-8384-caa7b27c4143",
+      "name": "Gun Raiders",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 6191
+      }
+    },
+    {
+      "id": "cd53f233-9832-4275-85d5-988f5e324be0",
+      "name": "에픽 롤러 코스터",
+      "changes": [
+        "name",
+        "review_count"
+      ],
+      "payload": {
+        "name": "에픽 롤러 코스터",
+        "review_count": 5405
+      }
+    },
+    {
+      "id": "60e8d331-60fb-40b6-a87e-4bd6450caa94",
+      "name": "Battle Talent Demo",
+      "changes": [
+        "review_count"
+      ],
+      "payload": {
+        "review_count": 4363
+      }
+    }
+  ]
+}

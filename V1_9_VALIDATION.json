@@ -1,0 +1,8 @@
+{
+  "product_occlusion_reduced": true,
+  "hero_click_regions_follow_diagonal": true,
+  "horizon_ultrawide_full_bleed": true,
+  "business_ultrawide_full_bleed": true,
+  "quest_cash_message_restored": true,
+  "errors": []
+}

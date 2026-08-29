@@ -1,0 +1,14 @@
+{
+  "version": "2.3",
+  "hero": {
+    "quest_asset": "/hero/quest3-cutout-v3.png",
+    "rayban_asset": "/hero/rayban-meta-cutout-v3.png",
+    "rayban_source": "user-provided Ray-Ban Meta product reference",
+    "rayban_dimensions": "1536x1024",
+    "rayban_pixel_format": "Format32bppArgb",
+    "transparent_corner_alpha": 0,
+    "quest_scaled_up": true,
+    "rayban_title_single_line_desktop": true
+  },
+  "preview": "http://localhost:3001/"
+}

@@ -1,0 +1,10 @@
+node_modules
+.next
+.env.local
+.DS_Store
+.vercel
+.vercel-cli-state
+.npm-cache
+.meta-cache
+
+.vercel

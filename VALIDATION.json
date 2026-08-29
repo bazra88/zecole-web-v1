@@ -1,0 +1,13 @@
+{
+  "import_path_errors": [],
+  "home_section_order": [
+    3716,
+    4368,
+    5023,
+    5953
+  ],
+  "home_order_ok": true,
+  "project_created_from_scratch": true,
+  "uses_supabase_sdk_dependency": false,
+  "game_card_has_title_price_button": true
+}

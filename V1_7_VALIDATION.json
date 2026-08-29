@@ -1,0 +1,8 @@
+{
+  "desktop_hero_max_width": 1500,
+  "approved_composition_preserved": true,
+  "hero_height_reduced_proportionally": true,
+  "mobile_fallback_preserved": true,
+  "ultrawide_outer_gutters_preserved": true,
+  "errors": []
+}

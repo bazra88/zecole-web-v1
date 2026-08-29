@@ -1,0 +1,166 @@
+{
+  "generated_at": "2026-08-29T12:36:14.390Z",
+  "filters": {
+    "pricing_type": [
+      "free",
+      "free_to_play"
+    ],
+    "min_reviews": 500
+  },
+  "count": 17,
+  "games": [
+    {
+      "id": "61e58380-a817-4be1-9bc0-c008987755d0",
+      "name": "UG",
+      "slug": "ug",
+      "review_count": 391799,
+      "rating": 4.9,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/8485526434899813/"
+    },
+    {
+      "id": "dc1c889a-54e7-4243-9c29-a1494af03674",
+      "name": "Animal Company",
+      "slug": "animal-company",
+      "review_count": 215251,
+      "rating": 4.8,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/7190422614401072/"
+    },
+    {
+      "id": "094c7414-5a03-4cb0-9ea9-f6652532ce91",
+      "name": "Gorilla Tag",
+      "slug": "gorilla-tag",
+      "review_count": 174603,
+      "rating": 4.4,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/4979055762136823/"
+    },
+    {
+      "id": "8a8a8044-79e9-40c2-bffb-ad2f59e91c12",
+      "name": "Airport Security Guard",
+      "slug": "airport-security-guard",
+      "review_count": 87634,
+      "rating": 4.8,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/8868593096600061/"
+    },
+    {
+      "id": "6b5f5f34-b5ce-49ac-947a-24ce58247bfd",
+      "name": "Yeeps",
+      "slug": "yeeps",
+      "review_count": 86728,
+      "rating": 4.8,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/7276525889052788/"
+    },
+    {
+      "id": "0ddfff86-3a08-4bf5-b82b-231ac2da8b26",
+      "name": "VAIL",
+      "slug": "vail",
+      "review_count": 85718,
+      "rating": 4.8,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/6625826934127580/"
+    },
+    {
+      "id": "36eda989-74a8-47da-baf0-55a999f78636",
+      "name": "Devil's Roulette  -The Pit-",
+      "slug": "devils-roulette-the-pit",
+      "review_count": 75439,
+      "rating": 4.8,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/9731954420159984/"
+    },
+    {
+      "id": "53e44dd9-3c96-4811-9cd4-cdcfe56eb314",
+      "name": "Gym Class",
+      "slug": "gym-class",
+      "review_count": 54722,
+      "rating": 4.8,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/3661420607275144/"
+    },
+    {
+      "id": "d3beeb0b-de7c-49fa-9e26-e53c5b20cf9b",
+      "name": "VRChat",
+      "slug": "vrchat",
+      "review_count": 38510,
+      "rating": 3.6,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/1856672347794301/"
+    },
+    {
+      "id": "4bc92e39-b49d-48e5-a75b-fc7c034122f2",
+      "name": "BIG BALLERS '26",
+      "slug": "big-ballers-26",
+      "review_count": 34019,
+      "rating": 4.8,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/3947713001963656/"
+    },
+    {
+      "id": "c38e701f-0cad-49fc-b844-9c8353f768d6",
+      "name": "GRAB",
+      "slug": "grab",
+      "review_count": 19154,
+      "rating": 4.8,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/4104088956355944/"
+    },
+    {
+      "id": "b3313cdf-75f4-4aa1-976c-c106cf71f0a1",
+      "name": "Roblox",
+      "slug": "roblox",
+      "review_count": 11934,
+      "rating": 3.4,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/5804350719675181/"
+    },
+    {
+      "id": "1dea5cfd-57c9-44e5-a82c-ec60a9b7e1bc",
+      "name": "DOWNSHOT",
+      "slug": "downshot",
+      "review_count": 11492,
+      "rating": 4.4,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/9166521666722742/"
+    },
+    {
+      "id": "4291d7d2-cde0-4815-875d-cc7301d4654f",
+      "name": "Sail",
+      "slug": "sail",
+      "review_count": 10777,
+      "rating": 4.5,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/4861702420530349/"
+    },
+    {
+      "id": "2460a564-c310-497b-8384-caa7b27c4143",
+      "name": "Gun Raiders",
+      "slug": "gun-raiders",
+      "review_count": 6191,
+      "rating": 4.2,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/3982869578392875/"
+    },
+    {
+      "id": "cd53f233-9832-4275-85d5-988f5e324be0",
+      "name": "에픽 롤러 코스터",
+      "slug": "epic-roller-coasters",
+      "review_count": 5405,
+      "rating": 3.4,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/2299465166734471/"
+    },
+    {
+      "id": "60e8d331-60fb-40b6-a87e-4bd6450caa94",
+      "name": "Battle Talent Demo",
+      "slug": "battle-talent-demo",
+      "review_count": 4363,
+      "rating": 4.5,
+      "pricing_type": "free",
+      "meta_store_url": "https://www.meta.com/experiences/4410602018966965/"
+    }
+  ]
+}

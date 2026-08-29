@@ -1,0 +1,9 @@
+{
+  "approved_reference_locked": true,
+  "desktop_hero_uses_local_asset": true,
+  "desktop_click_regions_preserved": true,
+  "mobile_composed_fallback_preserved": true,
+  "ultrawide_clamp_preserved": true,
+  "production_build": "passed",
+  "errors": []
+}

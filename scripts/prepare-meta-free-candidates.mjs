@@ -30,12 +30,14 @@ try {
 } catch (error) {
   if (error.code !== "ENOENT") throw error;
 }
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || localEnv.NEXT_PUBLIC_SUPABASE_URL;
+const rawSupabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || localEnv.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || localEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
+if (!rawSupabaseUrl || !supabaseKey) {
   throw new Error("NEXT_PUBLIC_SUPABASE_URL과 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY가 필요합니다.");
 }
+
+const supabaseUrl = rawSupabaseUrl.trim().replace(/\/+$/, "").replace(/\/rest\/v1$/i, "");
 
 const fields = ["id", "name", "slug", "review_count", "rating", "pricing_type", "meta_store_url"];
 const endpoint = new URL(`${supabaseUrl}/rest/v1/games`);

@@ -31,6 +31,9 @@ jobs:
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
         run: npm run data:free:update
 
+      - name: Write run summary
+        run: node scripts/write-meta-free-summary.mjs
+
       - name: Upload reports
         uses: actions/upload-artifact@v6
         with:

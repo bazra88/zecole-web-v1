@@ -45,6 +45,10 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: npm run data:free:sync -- --apply
 
+      - name: Write apply summary
+        if: always()
+        run: node scripts/write-meta-free-summary.mjs
+
       - name: Upload apply reports
         if: always()
         uses: actions/upload-artifact@v6

@@ -3,12 +3,18 @@ import { resolve } from "node:path";
 
 const root = process.cwd();
 const parsed = JSON.parse(await readFile(resolve(root, "data", "meta-free", "parsed.json"), "utf8"));
-const localEnv = Object.fromEntries((await readFile(resolve(root, ".env.local"), "utf8"))
-  .split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#") && line.includes("="))
-  .map((line) => { const index = line.indexOf("="); return [line.slice(0, index).trim(), line.slice(index + 1).trim().replace(/^['"]|['"]$/g, "")]; }));
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || localEnv.NEXT_PUBLIC_SUPABASE_URL;
+let localEnv = {};
+try {
+  localEnv = Object.fromEntries((await readFile(resolve(root, ".env.local"), "utf8"))
+    .split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#") && line.includes("="))
+    .map((line) => { const index = line.indexOf("="); return [line.slice(0, index).trim(), line.slice(index + 1).trim().replace(/^['"]|['"]$/g, "")]; }));
+} catch (error) {
+  if (error.code !== "ENOENT") throw error;
+}
+const rawSupabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || localEnv.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || localEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-if (!supabaseUrl || !supabaseKey) throw new Error("Supabase 공개 환경변수가 필요합니다.");
+if (!rawSupabaseUrl || !supabaseKey) throw new Error("Supabase 공개 환경변수가 필요합니다.");
+const supabaseUrl = rawSupabaseUrl.trim().replace(/\/+$/, "").replace(/\/rest\/v1$/i, "");
 
 const ids = parsed.games.map((game) => game.id);
 const endpoint = new URL(`${supabaseUrl}/rest/v1/games`);

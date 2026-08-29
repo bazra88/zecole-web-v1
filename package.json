@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "data:free:candidates": "node scripts/prepare-meta-free-candidates.mjs",
+    "data:free:discover": "node scripts/discover-meta-free-games.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",
     "data:free:parse": "node scripts/parse-meta-free-pages.mjs",
     "data:free:validate": "node scripts/validate-meta-free-pages.mjs",

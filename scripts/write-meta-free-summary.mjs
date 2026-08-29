@@ -15,6 +15,7 @@ async function readJson(name) {
 }
 
 const candidates = await readJson("candidates.json");
+const discovery = await readJson("discovery.json");
 const parsed = await readJson("parse-report.json");
 const diff = await readJson("diff-report.json");
 const sync = await readJson("sync-report.json");
@@ -25,6 +26,7 @@ const lines = [
   "| 항목 | 결과 |",
   "| --- | ---: |",
   `| 리뷰 500개 이상 후보 | ${candidates?.count ?? "-"}개 |`,
+  `| 신규 발견·Meta 검증 완료 | ${discovery?.discovered_count ?? "-"}개 |`,
   `| 파싱 성공 | ${parsed?.parsed ?? "-"}/${parsed?.count ?? "-"}개 |`,
   `| DB와 일치 | ${diff?.in_sync ?? "-"}개 |`,
   `| 검토 필요 | ${diff?.review_required ?? "-"}개 |`,

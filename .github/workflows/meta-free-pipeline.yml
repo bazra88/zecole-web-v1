@@ -25,6 +25,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Discover new free games
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run data:free:discover
+
       - name: Refresh candidates, cache and parse
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
@@ -48,6 +54,7 @@ jobs:
           name: meta-free-report-${{ github.run_id }}
           path: |
             data/meta-free/candidates.*
+            data/meta-free/discovery.*
             data/meta-free/parsed.*
             data/meta-free/diff-report.json
             data/meta-free/parse-report.json

@@ -10,6 +10,7 @@
     "data:free:discover": "node scripts/discover-meta-free-games.mjs",
     "data:free:thumbnails": "node scripts/enrich-meta-free-thumbnails.mjs",
     "data:free:clones": "node scripts/detect-meta-free-clones.mjs",
+    "data:free:insert": "node scripts/insert-meta-free-games.mjs",
     "data:free:prepare-inserts": "node scripts/prepare-meta-free-inserts.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",
     "data:free:parse": "node scripts/parse-meta-free-pages.mjs",

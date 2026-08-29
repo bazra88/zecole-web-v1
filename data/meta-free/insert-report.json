@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-08-29T20:00:14.888Z",
+  "mode": "dry_run",
+  "candidates": 80,
+  "existing_rows_scanned": 3814,
+  "conflicts": [],
+  "unknown_genres": [],
+  "inserted_games": 0,
+  "linked_genres": 0,
+  "status": "ready"
+}

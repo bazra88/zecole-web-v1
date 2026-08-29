@@ -1,0 +1,42 @@
+name: Insert reviewed Meta free games
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type INSERT_FREE_GAMES to insert reviewed candidates
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  insert:
+    if: ${{ inputs.confirmation == 'INSERT_FREE_GAMES' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Recheck candidates
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run data:free:prepare-inserts
+      - name: Insert games and genre links
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run data:free:insert -- --apply --confirm=INSERT_FREE_GAMES
+      - if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: meta-free-insert-${{ github.run_id }}
+          path: data/meta-free/insert-report.json
+          if-no-files-found: warn
+

@@ -24,7 +24,12 @@ function csvCell(value) {
   return `"${text.replaceAll('"', '""')}"`;
 }
 
-const localEnv = parseEnv(await readFile(resolve(root, ".env.local"), "utf8"));
+let localEnv = {};
+try {
+  localEnv = parseEnv(await readFile(resolve(root, ".env.local"), "utf8"));
+} catch (error) {
+  if (error.code !== "ENOENT") throw error;
+}
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || localEnv.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || localEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 

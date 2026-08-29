@@ -26,6 +26,9 @@ jobs:
         run: npm ci
 
       - name: Refresh candidates, cache and parse
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
         run: npm run data:free:update
 
       - name: Upload reports

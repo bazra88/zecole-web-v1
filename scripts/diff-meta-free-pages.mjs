@@ -25,6 +25,16 @@ if (!response.ok) throw new Error(`현재 DB 조회 실패 (${response.status}):
 const current = await response.json();
 const byId = new Map(current.map((game) => [game.id, game]));
 
+function stableImageUrl(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    return url.pathname;
+  } catch {
+    return String(value).split(/[?#]/, 1)[0];
+  }
+}
+
 const rows = parsed.games.map((meta) => {
   const db = byId.get(meta.id);
   const changes = [];
@@ -34,7 +44,7 @@ const rows = parsed.games.map((meta) => {
     if (meta.rating != null && Number(meta.rating) !== Number(db.rating)) changes.push("rating");
     if (meta.review_count != null && Number(meta.review_count) !== Number(db.review_count)) changes.push("review_count");
     if (meta.description && meta.description !== db.description) changes.push("description");
-    if (meta.thumbnail_url && meta.thumbnail_url !== db.source_image_url) changes.push("source_image_url");
+    if (meta.thumbnail_url && stableImageUrl(meta.thumbnail_url) !== stableImageUrl(db.source_image_url)) changes.push("source_image_url");
     const devices = (meta.supported_devices || []).map(String);
     const supports = (needle) => devices.some((device) => device.toLowerCase().includes(needle));
     if (supports("quest 2") !== Boolean(db.supports_quest_2)) changes.push("supports_quest_2");

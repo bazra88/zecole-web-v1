@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-29T12:36:14.682Z",
+  "generated_at": "2026-08-29T19:24:34.596Z",
   "source_count": 17,
   "db_rows_found": 17,
-  "review_required": 0,
-  "in_sync": 17,
+  "review_required": 8,
+  "in_sync": 9,
   "rows": [
     {
       "id": "61e58380-a817-4be1-9bc0-c008987755d0",
@@ -11,8 +11,8 @@
       "meta_store_url": "https://www.meta.com/experiences/8485526434899813/",
       "db_rating": 4.9,
       "meta_rating": 4.9,
-      "db_review_count": 391799,
-      "meta_review_count": 391799,
+      "db_review_count": 391971,
+      "meta_review_count": 391977,
       "parsed_description": "HATCH, RAISE, RIDE DINOSAUR. HELP FRIEND TRADE, FIGHT BOSS. FRIEND DIE. NO LAUGH. NOT FUNNY... OKAY MAYBE SMALL LAUGH. ",
       "parsed_genre": "플랫폼 게임",
       "parsed_supported_devices": [
@@ -21,9 +21,11 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619751_1040644481928603_5249390945389853916_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=v8Q7_FnZIM0Q7kNvwEvVTC7&_nc_oc=AdoqqmVBhoBZA_hIzgV0UkD_Yj1tunGs3Kjrw_nUuS-4C4xWQE7utRhE1dQjjT00Z0M&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQKBty5a6BnlsKBj5mqLZxLd6sKs-qkSzR6MbwCCPxtsIQ&oe=6A9872C4",
-      "changes": [],
-      "status": "in_sync"
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619751_1040644481928603_5249390945389853916_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=v8Q7_FnZIM0Q7kNvwEvVTC7&_nc_oc=AdoqqmVBhoBZA_hIzgV0UkD_Yj1tunGs3Kjrw_nUuS-4C4xWQE7utRhE1dQjjT00Z0M&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQIIXlgLiud_ZroXF1y87VFO9VElDsTqcIgi7TtxmZ0uGA&oe=6A991B84",
+      "changes": [
+        "review_count"
+      ],
+      "status": "review_required"
     },
     {
       "id": "dc1c889a-54e7-4243-9c29-a1494af03674",
@@ -31,8 +33,8 @@
       "meta_store_url": "https://www.meta.com/experiences/7190422614401072/",
       "db_rating": 4.8,
       "meta_rating": 4.8,
-      "db_review_count": 215251,
-      "meta_review_count": 215251,
+      "db_review_count": 215330,
+      "meta_review_count": 215316,
       "parsed_description": "Animal Company is a FREE multiplayer social VR survival game on Meta Quest, where monsters, gadgets, and chaos with friends collide. With weekly updates, there’s always something new to explore, unlock, or break.",
       "parsed_genre": "어드벤처",
       "parsed_supported_devices": [
@@ -41,9 +43,11 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/593849888_919238247348228_6977730837109002294_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=61f0dCzNRNwQ7kNvwE82lrD&_nc_oc=AdqcU2uZ4TsupqcGDXf3wsAZkeVD3CLRCAOOxypmpteK1Cj8HEsT1Zfbb3_yDFxzy7c&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLNSYN3S-KVrlc6bXknDC0TFwvwnh7fqrodF9C4U8vC0w&oe=6A987653",
-      "changes": [],
-      "status": "in_sync"
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/593849888_919238247348228_6977730837109002294_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=61f0dCzNRNwQ7kNvwE82lrD&_nc_oc=AdqcU2uZ4TsupqcGDXf3wsAZkeVD3CLRCAOOxypmpteK1Cj8HEsT1Zfbb3_yDFxzy7c&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQIOJ1dgrezrQjdBYvIAENh5y5mnpxpHM-U547XUrRKACw&oe=6A991F13",
+      "changes": [
+        "review_count"
+      ],
+      "status": "review_required"
     },
     {
       "id": "094c7414-5a03-4cb0-9ea9-f6652532ce91",
@@ -51,8 +55,8 @@
       "meta_store_url": "https://www.meta.com/experiences/4979055762136823/",
       "db_rating": 4.4,
       "meta_rating": 4.4,
-      "db_review_count": 174603,
-      "meta_review_count": 174603,
+      "db_review_count": 174624,
+      "meta_review_count": 174622,
       "parsed_description": "Run, climb, and jump with other gorillas using only your hands. No buttons, no teleportation. Push off of surfaces to jump and squeeze them with both hands to climb.\n\nExplore the OG maps (Forest, Canyon, Mountain, Beach, and more) as well as new experiments (Ghost Reactor, Hoverboard Racing, Monke Ball, Prop Hunt) and player-created maps in virtual VR.\n\nExpress yourself with flair.  A rotating inventory of Cosmetic items are available at the shop in the City.\n\nReject humanity, become monke.",
       "parsed_genre": "플랫폼 게임",
       "parsed_supported_devices": [
@@ -61,9 +65,11 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/673689288_1736492900727032_4280176938851378442_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=9hCRggjzRRQQ7kNvwFzYh3z&_nc_oc=Adps9bwUMANbC9MAOth0YXMx1-_1lTieCVD-eITo4MDgdy3ADrJikduxY9BDPuQkkuI&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQKKFMWPss85NKuZN_wjIbvibbtQJTfETUTxkpzUbcFQQQ&oe=6A98A5C3",
-      "changes": [],
-      "status": "in_sync"
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/673689288_1736492900727032_4280176938851378442_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=9hCRggjzRRQQ7kNvwFzYh3z&_nc_oc=Adps9bwUMANbC9MAOth0YXMx1-_1lTieCVD-eITo4MDgdy3ADrJikduxY9BDPuQkkuI&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQL4SNAhSTjcMbP9ybfMyiwEmIwgFkR7M6FNG9ouJ4W1Tg&oe=6A991643",
+      "changes": [
+        "review_count"
+      ],
+      "status": "review_required"
     },
     {
       "id": "8a8a8044-79e9-40c2-bffb-ad2f59e91c12",
@@ -71,8 +77,8 @@
       "meta_store_url": "https://www.meta.com/experiences/8868593096600061/",
       "db_rating": 4.8,
       "meta_rating": 4.8,
-      "db_review_count": 87634,
-      "meta_review_count": 87634,
+      "db_review_count": 87668,
+      "meta_review_count": 87669,
       "parsed_description": "\"BECOME A FEARLESS SECURITY GUARD AND CONTROL THE CHAOS! 😈✈️\n\nThe airport just got bigger! Explore the new Baggage Claim area, recover suspicious luggage, stop smugglers, and keep passengers moving. \n\nTeam up with your Patrol Partner 🐶🐾, use powerful sabotage tools to outsmart rival guards, and turn every chaotic shift into your chance to climb the ranks. 💥\"",
       "parsed_genre": "샌드박스",
       "parsed_supported_devices": [
@@ -81,9 +87,11 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/507818746_1593526079027786_4680630457771420665_n.webp?stp=dst-webp&_nc_cat=103&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=aDNy1k9-Dx8Q7kNvwFsI-wI&_nc_oc=Adp8_l3CFyv6V4QIvUQJR9iNG8gztoP2GVtY03Yv2Ey__HdGzU37aWUALXcjyogNI1s&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLr6bDO4A0eMSfHbrt-fYY0t2q7RIGhypjokoopQgtBCg&oe=6A9889F4",
-      "changes": [],
-      "status": "in_sync"
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/507818746_1593526079027786_4680630457771420665_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=aDNy1k9-Dx8Q7kNvwFsI-wI&_nc_oc=Adp8_l3CFyv6V4QIvUQJR9iNG8gztoP2GVtY03Yv2Ey__HdGzU37aWUALXcjyogNI1s&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJJcrS61gu1Cwc-JgKZbPqtTf34ba3B68BLBsKiaAZ0DA&oe=6A98FA74",
+      "changes": [
+        "review_count"
+      ],
+      "status": "review_required"
     },
     {
       "id": "6b5f5f34-b5ce-49ac-947a-24ce58247bfd",
@@ -91,8 +99,8 @@
       "meta_store_url": "https://www.meta.com/experiences/7276525889052788/",
       "db_rating": 4.8,
       "meta_rating": 4.8,
-      "db_review_count": 86728,
-      "meta_review_count": 86728,
+      "db_review_count": 86740,
+      "meta_review_count": 86739,
       "parsed_description": "Unlimited VR action and creation awaits in Yeeps! Master 8+ modes like Hide & Seek, Prop Hunt, and PvP. Wield powerful gadgets like grappling hooks and guided missiles, or share them with friends! Build tactically mid-match or create entire dynamic worlds from the ground up. Dive into an endless universe of player-created content in Community Worlds! Non-stop bi-weekly updates add new ways to build and play.",
       "parsed_genre": "아케이드",
       "parsed_supported_devices": [
@@ -101,9 +109,11 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499298543_1701947124364104_3320612050101070287_n.webp?stp=dst-webp&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=nfLPAQ6KOpQQ7kNvwHVxNXK&_nc_oc=AdpByoGCO4eN0yYEBPZMLKUMMo97XUywyvkdnSSQx3dAi8q3YK27KjxJR8yfu9_hCW8&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQL9sHOF25ZxvG-Tb2KJb0fF3V8wrr4i5TBQU567cfYogQ&oe=6A989435",
-      "changes": [],
-      "status": "in_sync"
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499298543_1701947124364104_3320612050101070287_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=nfLPAQ6KOpQQ7kNvwHVxNXK&_nc_oc=AdpByoGCO4eN0yYEBPZMLKUMMo97XUywyvkdnSSQx3dAi8q3YK27KjxJR8yfu9_hCW8&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJdb7ZnSPS6Tu9yMEJ0FA7UJfhH7t60zwiJoK5pFas_fw&oe=6A9904B5",
+      "changes": [
+        "review_count"
+      ],
+      "status": "review_required"
     },
     {
       "id": "0ddfff86-3a08-4bf5-b82b-231ac2da8b26",
@@ -111,8 +121,8 @@
       "meta_store_url": "https://www.meta.com/experiences/6625826934127580/",
       "db_rating": 4.8,
       "meta_rating": 4.8,
-      "db_review_count": 85718,
-      "meta_review_count": 85718,
+      "db_review_count": 85801,
+      "meta_review_count": 85793,
       "parsed_description": "The highest-rated VR shooter is FREE. VAIL delivers precision-crafted gunplay, 10+ competitive modes, and a massive free Extraction island. \nCustomize your gear, squad up, and see why VAIL has 4.8 stars across 67K reviews.",
       "parsed_genre": "슈팅 게임",
       "parsed_supported_devices": [
@@ -121,9 +131,11 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/593877129_1483480583399193_1314660686786304831_n.webp?stp=dst-webp&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=t9fGXsTbXX8Q7kNvwE6ms_I&_nc_oc=AdrNUd8NjrQ2QdyliWZ6dn1oeL7ijcorcm3HIzU9uR1O-6QOGq64o5sQm-0P79onb7Q&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLBmz_Ak373TZUGZ6XYwAytzp5IHj9Zz2zwl-hboOejLg&oe=6A988B60",
-      "changes": [],
-      "status": "in_sync"
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/593877129_1483480583399193_1314660686786304831_n.webp?stp=dst-webp&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=t9fGXsTbXX8Q7kNvwE6ms_I&_nc_oc=AdrNUd8NjrQ2QdyliWZ6dn1oeL7ijcorcm3HIzU9uR1O-6QOGq64o5sQm-0P79onb7Q&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJ-SzFddOlo6fpmjLV46wAnV4Riff3MKKRBTO0TuqJAww&oe=6A98FBE0",
+      "changes": [
+        "review_count"
+      ],
+      "status": "review_required"
     },
     {
       "id": "36eda989-74a8-47da-baf0-55a999f78636",
@@ -131,8 +143,8 @@
       "meta_store_url": "https://www.meta.com/experiences/9731954420159984/",
       "db_rating": 4.8,
       "meta_rating": 4.8,
-      "db_review_count": 75439,
-      "meta_review_count": 75439,
+      "db_review_count": 75464,
+      "meta_review_count": 75476,
       "parsed_description": "Devil's Roulette -The Pit- is a thrilling VR party game for 1 to 8 players, featuring a variety of high-stakes game modes including the new mode 'Devil's Spoons', where the player who collects four matching cards gets to pull the trigger Russian Roulette, Spin the Bottle, card-based bluffing, and more. Ready to go feral?\n",
       "parsed_genre": "슈팅 게임",
       "parsed_supported_devices": [
@@ -141,9 +153,11 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620504_1292657962787310_7208345393451184711_n.webp?stp=dst-webp&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=XaBexOcFF9kQ7kNvwF2ohfk&_nc_oc=Adq5bSXszv9hlTr5Ija9HzrgPMkjSmlabxLJzBsJ6V42D-MMS2Gt_zvkywlCv4L-nC0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQKTe71H6qx7MshcD2UnpAu0hGrcmurQRWTnOPby0_8Zjg&oe=6A988D64",
-      "changes": [],
-      "status": "in_sync"
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620504_1292657962787310_7208345393451184711_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=XaBexOcFF9kQ7kNvwF2ohfk&_nc_oc=Adq5bSXszv9hlTr5Ija9HzrgPMkjSmlabxLJzBsJ6V42D-MMS2Gt_zvkywlCv4L-nC0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQKRA7rbcqa9bgScNiJ1YXUE44lFH4-lfdScNhKPBDo95A&oe=6A98FDE4",
+      "changes": [
+        "review_count"
+      ],
+      "status": "review_required"
     },
     {
       "id": "53e44dd9-3c96-4811-9cd4-cdcfe56eb314",
@@ -151,8 +165,8 @@
       "meta_store_url": "https://www.meta.com/experiences/3661420607275144/",
       "db_rating": 4.8,
       "meta_rating": 4.8,
-      "db_review_count": 54722,
-      "meta_review_count": 54722,
+      "db_review_count": 54728,
+      "meta_review_count": 54730,
       "parsed_description": "GYM CLASS is the top VR sports (🏀 basketball, 🥊 boxing, 🏈 football, ⚽soccer, ⚾ baseball, 🎨 paintball) game. Experience NBA licensed team courts & jerseys, MLB licensed ballparks & uniforms, multiplayer games, simulation physics, and massive worlds. Rated best on Quest - make friends or level-up to be the best among millions in the top VR sports community.",
       "parsed_genre": "스포츠",
       "parsed_supported_devices": [
@@ -162,9 +176,11 @@
         "Quest 3S",
         "Quest"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499622211_1356432869953384_667822509519761565_n.webp?stp=dst-webp&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=EYRAGitIrYYQ7kNvwGXw6A6&_nc_oc=AdrXeflnXfkTFiNRCXpvb7Ut1qRSafaN9XBZzcNkTFm5nctL6aTXwyNSzSs4i6r565s&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLOtbFFERFBzj228ar2XPWiO7o2Rg__TSvx0uckLTtYjQ&oe=6A98712C",
-      "changes": [],
-      "status": "in_sync"
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499622211_1356432869953384_667822509519761565_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=EYRAGitIrYYQ7kNvwGXw6A6&_nc_oc=AdrXeflnXfkTFiNRCXpvb7Ut1qRSafaN9XBZzcNkTFm5nctL6aTXwyNSzSs4i6r565s&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLdfbSRLcJ9pVPCVAvpi08AByQkDjo3cyijhPjeNFZT_Q&oe=6A9919EC",
+      "changes": [
+        "review_count"
+      ],
+      "status": "review_required"
     },
     {
       "id": "d3beeb0b-de7c-49fa-9e26-e53c5b20cf9b",
@@ -172,8 +188,8 @@
       "meta_store_url": "https://www.meta.com/experiences/1856672347794301/",
       "db_rating": 3.6,
       "meta_rating": 3.6,
-      "db_review_count": 38510,
-      "meta_review_count": 38510,
+      "db_review_count": 38520,
+      "meta_review_count": 38520,
       "parsed_description": "Make Friends and Explore an Endless Stream of Community Made Worlds and Avatars",
       "parsed_genre": "소셜",
       "parsed_supported_devices": [
@@ -183,7 +199,7 @@
         "Quest 3S",
         "Quest"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499626636_1309927617615907_3873999283237782780_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=-6C_TRDhJgcQ7kNvwFqtY8_&_nc_oc=Adqd24a0kx_GdjdGXpPP2ut09UBmL4Nvw4eji2uVDLaGLFTRksMqLkUT0eKBR2KNLwY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJRtdpGaBKwg3QO8PQRaniW9rVQwUtN-NZPOBfwuWuq4Q&oe=6A989B5D",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499626636_1309927617615907_3873999283237782780_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=-6C_TRDhJgcQ7kNvwFqtY8_&_nc_oc=Adqd24a0kx_GdjdGXpPP2ut09UBmL4Nvw4eji2uVDLaGLFTRksMqLkUT0eKBR2KNLwY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLQW3uevYQrNEJCed3fLnGhegowgsgizr58x22i9uEsow&oe=6A990BDD",
       "changes": [],
       "status": "in_sync"
     },
@@ -203,7 +219,7 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499299093_4696267820699426_5905903230645464070_n.webp?stp=dst-webp&_nc_cat=103&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=RLesui_yH28Q7kNvwG5EmZu&_nc_oc=Adprl8-ybJR1P6YBxQW2rJu21ZDDPsW3Rm5BqCskaoB0ip-wp9HfGa_CQzhTUXaI3jg&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJpd_8IyVCoZsxPwIZhmvfVOJgb9oicNX5R5z-xygrneA&oe=6A98818E",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499299093_4696267820699426_5905903230645464070_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=RLesui_yH28Q7kNvwG5EmZu&_nc_oc=Adprl8-ybJR1P6YBxQW2rJu21ZDDPsW3Rm5BqCskaoB0ip-wp9HfGa_CQzhTUXaI3jg&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQKBBKKb0rD8qsngjoAAgeqW-A0jleARrRE11np9_uVbJQ&oe=6A98F20E",
       "changes": [],
       "status": "in_sync"
     },
@@ -213,8 +229,8 @@
       "meta_store_url": "https://www.meta.com/experiences/4104088956355944/",
       "db_rating": 4.8,
       "meta_rating": 4.8,
-      "db_review_count": 19154,
-      "meta_review_count": 19154,
+      "db_review_count": 19159,
+      "meta_review_count": 19159,
       "parsed_description": "Experience the thrill of VR platforming in GRAB, where you can parkour through user-created levels with friends and build your own.",
       "parsed_genre": "플랫폼 게임",
       "parsed_supported_devices": [
@@ -224,7 +240,7 @@
         "Quest 3S",
         "Quest"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823296_2320437532100560_1223971555328366423_n.webp?stp=dst-webp&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=_fip1oSbMO8Q7kNvwEwI2Nk&_nc_oc=AdrhFfubg10bkTJV0Q7YIHM_z0tdoRDZCsmuJkfBGtIJprviaUPxpZAYp0KecoyTfcE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLGnL23OOPVhIP_0_OxL4IKm-Wd0xXyEzdaIeveKkA6wA&oe=6A98785E",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823296_2320437532100560_1223971555328366423_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=_fip1oSbMO8Q7kNvwEwI2Nk&_nc_oc=AdrhFfubg10bkTJV0Q7YIHM_z0tdoRDZCsmuJkfBGtIJprviaUPxpZAYp0KecoyTfcE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJ8TZ9wJMDe6JCaIIZEotH0_FaLGD6mvkpqNm6y_xx93g&oe=6A98E8DE",
       "changes": [],
       "status": "in_sync"
     },
@@ -234,8 +250,8 @@
       "meta_store_url": "https://www.meta.com/experiences/5804350719675181/",
       "db_rating": 3.4,
       "meta_rating": 3.4,
-      "db_review_count": 11934,
-      "meta_review_count": 11934,
+      "db_review_count": 11936,
+      "meta_review_count": 11936,
       "parsed_description": "Roblox lets you explore and share experiences with friends. With over 66 million daily active users and a huge variety of 3D immersive experiences created by a global community, there’s always something new to discover.",
       "parsed_genre": "월드 만들기",
       "parsed_supported_devices": [
@@ -244,7 +260,7 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/473392127_1845871419579024_5281375231664089077_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=KaIepmW_Rd0Q7kNvwGjwM9-&_nc_oc=AdojlrErXylNX9mvT2DD8rCgTPkjSQSlDOPM7mdx29MD5sCVpcj0D0QNhjzC7-lFa0w&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQKX7lFUNt9rC6xn_Kx1iDdvP67Jg1S52vCCigrUDq_5YQ&oe=6A989256",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/473392127_1845871419579024_5281375231664089077_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=KaIepmW_Rd0Q7kNvwGjwM9-&_nc_oc=AdojlrErXylNX9mvT2DD8rCgTPkjSQSlDOPM7mdx29MD5sCVpcj0D0QNhjzC7-lFa0w&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJrbFYGNHcRJeau7x8Bf3ilalcV3sId01yvBst_LGOzLg&oe=6A9902D6",
       "changes": [],
       "status": "in_sync"
     },
@@ -254,8 +270,8 @@
       "meta_store_url": "https://www.meta.com/experiences/9166521666722742/",
       "db_rating": 4.4,
       "meta_rating": 4.4,
-      "db_review_count": 11492,
-      "meta_review_count": 11492,
+      "db_review_count": 11501,
+      "meta_review_count": 11501,
       "parsed_description": "VR’s Most Popular Multiplayer Physics Sandbox (with Mod Support!). Let your imagination run wild in our experimental physics playground of 200+ items and endless mod maps, all playable in multiplayer! Best part? It’s FREE!",
       "parsed_genre": "슈팅 게임",
       "parsed_supported_devices": [
@@ -264,7 +280,7 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499307931_980918541449325_2477664324048518279_n.webp?stp=dst-webp&_nc_cat=107&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=IBZvsBRJnjkQ7kNvwFmXaUM&_nc_oc=AdoQnBxI784S9qGTgce5_FJ5kLmQZ9DjLIeoKNvYiP4dT9T1R5VYUWuaJliNwdavFMU&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQK5UMgaGNceFU-AlNZT1t_fl2fsG1qdwvXI4TA8shT8cA&oe=6A9898E6",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499307931_980918541449325_2477664324048518279_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=iXM7nfW4yOcQ7kNvwFb9DSz&_nc_oc=AdpEmxxo6MiHJKB4ZXhoZZbmp0_5Za-HvMiFH43IQ8eAtP08zLc5ugISY0aJs3WXQok&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJiuuWN1k4__hq8KYmZCByeULdc89w7LyTeI7Rcy44l9Q&oe=6A990966",
       "changes": [],
       "status": "in_sync"
     },
@@ -274,8 +290,8 @@
       "meta_store_url": "https://www.meta.com/experiences/4861702420530349/",
       "db_rating": 4.5,
       "meta_rating": 4.5,
-      "db_review_count": 10777,
-      "meta_review_count": 10777,
+      "db_review_count": 10780,
+      "meta_review_count": 10780,
       "parsed_description": "Sail the seas with friends in this FREE multiplayer VR Pirate Game! 🏴‍☠️\n\nBattle enemy ships, board vessels, loot cargo, and claim the ocean as your own. VR ship physics let you man the sails, fire cannons, and feel the waves all with your hands. \n\nGather your crew, set a course, and become the most feared pirates in VR ⚓🏴‍☠️",
       "parsed_genre": "격투",
       "parsed_supported_devices": [
@@ -285,7 +301,7 @@
         "Quest 3S",
         "Quest"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619485_2842084992799763_6452517891205858972_n.webp?stp=dst-webp&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=NdorCtkMZv8Q7kNvwHkKljT&_nc_oc=AdrOiMQHqUNHYAoggcp1OYR7BEOI4TSL01sOsICArWjrNsEa5x8EnTD_H_bqTsYBx8w&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJvuBBjAQWkC_q6rOMmz4vwc8j6z2hc-tdEx4W3t_ZlHw&oe=6A987C17",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619485_2842084992799763_6452517891205858972_n.webp?stp=dst-webp&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=NdorCtkMZv8Q7kNvwHkKljT&_nc_oc=AdrOiMQHqUNHYAoggcp1OYR7BEOI4TSL01sOsICArWjrNsEa5x8EnTD_H_bqTsYBx8w&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQKJRPMW4I6x9IOBkBrUVRK0N4iuZ10vlWo4H6I9H6NU3A&oe=6A98EC97",
       "changes": [],
       "status": "in_sync"
     },
@@ -306,7 +322,7 @@
         "Quest 3S",
         "Quest"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619805_2275090373020127_3274152127476929205_n.webp?stp=dst-webp&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=h5of9Ek2hyQQ7kNvwFOpZYm&_nc_oc=AdrnljCHwNq6rnx0ulK8MyTYUaGx4jCKSQdquw3TUYBy-2YI5rOGeF6YiutWHd3Sz_k&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLK5VmIxUE8W_97TejbTkqGWLIYx_-SAGgqoIrD3i_x6A&oe=6A987808",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619805_2275090373020127_3274152127476929205_n.webp?stp=dst-webp&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=h5of9Ek2hyQQ7kNvwFOpZYm&_nc_oc=AdrnljCHwNq6rnx0ulK8MyTYUaGx4jCKSQdquw3TUYBy-2YI5rOGeF6YiutWHd3Sz_k&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJYtDI3zf6AMYX4inQIrNUygz9SdSHwbrID0HwWTPAzBQ&oe=6A98E888",
       "changes": [],
       "status": "in_sync"
     },
@@ -316,8 +332,8 @@
       "meta_store_url": "https://www.meta.com/experiences/2299465166734471/",
       "db_rating": 3.4,
       "meta_rating": 3.4,
-      "db_review_count": 5405,
-      "meta_review_count": 5405,
+      "db_review_count": 5407,
+      "meta_review_count": 5407,
       "parsed_description": "Epic Roller Coasters는 세계에서 가장 독특한 롤러코스터를 찾을 수 있는 곳입니다. 공룡 시대, 중세 시대, 공상 과학 도시 등과 같이 이전에는 롤러 코스터를 타는 것을 상상할 수 없었던 곳에서 고공을 휘저으며 빠르게 질주하는 아드레날린을 느껴보세요. 클래식, 슈팅, 레이스의 세 가지 모드가 있습니다.",
       "parsed_genre": "슈팅 게임",
       "parsed_supported_devices": [
@@ -326,7 +342,7 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499308090_764638999882215_6772237238091997482_n.webp?stp=dst-webp&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=N2JB32qaVXoQ7kNvwE0Mi7m&_nc_oc=AdpO3px4a9l6PBPi-Giich0ACTQwIq_9rXmAhRwmdFQb3uF7BtiYo6I58y7bUZruWxY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQJtj2A7dgFXgS9Bss2XrFWSbR1oWzy1weo7vwaWSWIVBg&oe=6A9872E7",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499308090_764638999882215_6772237238091997482_n.webp?stp=dst-webp&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=N2JB32qaVXoQ7kNvwE0Mi7m&_nc_oc=AdpO3px4a9l6PBPi-Giich0ACTQwIq_9rXmAhRwmdFQb3uF7BtiYo6I58y7bUZruWxY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQLFoPiHeSQY-WrSOy6pxnAbyoLYhsv3hzZOZG8S5l6IJw&oe=6A991BA7",
       "changes": [],
       "status": "in_sync"
     },
@@ -336,8 +352,8 @@
       "meta_store_url": "https://www.meta.com/experiences/4410602018966965/",
       "db_rating": 4.5,
       "meta_rating": 4.5,
-      "db_review_count": 4363,
-      "meta_review_count": 4363,
+      "db_review_count": 4364,
+      "meta_review_count": 4364,
       "parsed_description": "Battle Talent is a challenging physics-based roguelite sword-fighting game.\n\nTired of fighting boring enemies? Battle Talent has created for you a mega seamless procedural dungeon. The full version with over 80 enemy variants, 100 weapons, 60 perks, and multiple landscapes that change each time.",
       "parsed_genre": "슈팅 게임",
       "parsed_supported_devices": [
@@ -347,7 +363,7 @@
         "Quest 3",
         "Quest 3S"
       ],
-      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/38974530_298538884979996_4518657510082941092_n.webp?stp=dst-webp&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=HbKjIU9itfIQ7kNvwFNxafN&_nc_oc=Adq6hTuyMXjLfZmLdbGNYEZrEun8iFtxFcM_qmv9L31rNJVBC-syGt7sJZPfpfgDUN0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQICC0AbIgxURiuN4oWnn-7yQT_OyWniCxgY4Tj2-HXRbw&oe=6A98A59C",
+      "parsed_thumbnail_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/38974530_298538884979996_4518657510082941092_n.webp?stp=dst-webp&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=HbKjIU9itfIQ7kNvwFNxafN&_nc_oc=Adq6hTuyMXjLfZmLdbGNYEZrEun8iFtxFcM_qmv9L31rNJVBC-syGt7sJZPfpfgDUN0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7f289&oh=00_AQK5HRFCR0C_ZXG9ZSCYlce5MQGmYrRoctKr5Ia4dm9jgw&oe=6A99161C",
       "changes": [],
       "status": "in_sync"
     }

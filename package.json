@@ -8,6 +8,7 @@
     "start": "next start",
     "data:free:candidates": "node scripts/prepare-meta-free-candidates.mjs",
     "data:free:discover": "node scripts/discover-meta-free-games.mjs",
+    "data:free:thumbnails": "node scripts/enrich-meta-free-thumbnails.mjs",
     "data:free:prepare-inserts": "node scripts/prepare-meta-free-inserts.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",
     "data:free:parse": "node scripts/parse-meta-free-pages.mjs",

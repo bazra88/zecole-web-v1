@@ -1,28 +1,24 @@
 {
-  "generated_at": "2026-08-29T19:47:40.605Z",
+  "generated_at": "2026-08-29T19:51:55.793Z",
   "source_generated_at": "2026-08-29T19:43:00.888Z",
   "min_reviews": 500,
   "existing_rows_scanned": 3814,
   "total_candidates": 82,
   "counts": {
-    "ready": 0,
-    "blocked": 80,
+    "ready": 80,
+    "blocked": 0,
     "duplicate": 2
   },
   "insertion_performed": false,
-  "blocking_issue_counts": {
-    "missing_thumbnail": 82
-  },
+  "blocking_issue_counts": {},
   "warning_counts": {
     "slug_adjusted": 2
   },
   "rows": [
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -34,7 +30,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/6288107037945749/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499303790_1380504823537236_4294079390939079262_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=UkCISmz1SYoQ7kNvwF36hOW&_nc_oc=AdqWQkSlfGM6Ioq8RYuVkbSP579QOFew0OInGkmmg9FNvh-R51E5K1Juh3iRK_8Fe9M&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQL1Fm5FOShvfwkIgzHuFB9xe5dvfefS6Q9KTX_3D34O8g&oe=6A9901CF",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -53,11 +49,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -69,7 +63,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/6458628580871969/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499622285_1060052089844981_748976379304268059_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=bc-Ycs_SjmoQ7kNvwHA7v73&_nc_oc=Ado6-Q_HnMe7OrXIMi-dTnWkP8t0Md41Lgb8S-6OB9k7KFxQBPBm0D6TdDKCJMWM7Qc&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKqEkY2DLuWVLDzs9fEd0JQ4ctTJZFQ3b9Zx1IYdz47aA&oe=6A98F63F",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -88,11 +82,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -104,7 +96,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8369406983071517/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499617729_4272089113106246_6240147889208878264_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=Mul-ocxQXrQQ7kNvwHGLVmh&_nc_oc=AdqUhsPQm542HaQtqLgiL9oF-6QZ0B5Rx0lxiHwdaZ8Lk3cLXT9HHjAApru_7L3W1Hg&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJPLq63JjX6DgxadSm1_aSBvbA_jO6cfiSCXDzbB8HkVA&oe=6A990D50",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -123,11 +115,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -139,7 +129,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25607678688824431/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619672_1552303126907266_653726335112507969_n.webp?stp=dst-webp_s720x720&_nc_cat=101&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=mMMYh4dIFmUQ7kNvwE8LfQ_&_nc_oc=AdoMWU7x1aBOHgMAMVJU4E8NzpLJc1UJHHMHDUrgAXdIPvzOhT3FeJ3ztaUXf6IVHRE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLb3u0B-DpY_Y2myu5RyKNYouiXc5gyruYiX0S2ouZsLA&oe=6A991A94",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -158,11 +148,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "스포츠",
       "payload": {
@@ -174,7 +162,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8464137310294097/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/593862973_2213790852795376_2452538246767683003_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=S97mvZ1vjgcQ7kNvwFV9Eqk&_nc_oc=AdrrF8J0bPcBe6v-8gPI3I1YJGzhAiFabE_uOLmanO2vuNOPBnj3PS8cISL2mAAeV_4&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLZYHj9i15v2ovQ6yDKTsw53-Rh9peMNb69WRpWPeZk5g&oe=6A990D2A",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -193,11 +181,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -209,7 +195,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25431670133092051/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499622153_28412414751686806_1844842261842441078_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=adlSLJCz_O4Q7kNvwGkGbi7&_nc_oc=AdrP2h9n-FFagK7TfN0GNwMR4EPnA_g7L8N49balj3Nfbl-8OK3OO1P_wLdmFSrfz18&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJe2OPwdjwVa68S332918IZug0yCNefKY0o3sAXrfTwVw&oe=6A98F152",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -228,11 +214,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -244,7 +228,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8936648093086115/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499300619_888867297443838_4929555111629074523_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=eqB6tm0HrWkQ7kNvwFlA51a&_nc_oc=AdqjsoyrIQFB-6_LD7YQY8XtyT5xLfW-asuQzE0bjpyiis1cJgeYZ_sEYR8Jjll-LbM&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJv4qNmfEpqHv5-TAHocnKx4RR_oCvpxnVAuVoQx9DBnA&oe=6A98F964",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -263,11 +247,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "격투",
       "payload": {
@@ -279,7 +261,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24417313747915126/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491825481_1061747293374302_2500536113909999210_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=6owctnCgyXUQ7kNvwFPgMcF&_nc_oc=AdoZFVXOsasGT31CT0CJrbf5WbnDCFTZL4aNl1emSwVoW8M5gOPlDrztV9jRkOTxhFc&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKNDWC-SSOz4iC-JVGYTo9fkc6jiTkZj0a74wo5_teZQw&oe=6A991766",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -298,11 +280,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "스포츠",
       "payload": {
@@ -314,7 +294,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/5981971501867491/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/39036604_804865348128943_6099239720149729285_n.webp?stp=dst-webp_s720x720&_nc_cat=102&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=kaIgydUCzgYQ7kNvwHhtJ73&_nc_oc=AdqMDJJNyOumXOE_c_dCgCzgGsIXz0pMUMuA_uGNtWMMrrNvZ5C1sKdJHqeCK7A91Ao&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIMHS0hx5SOKwgroysuAJLTSV4sFolY22O3XuVB8ddYKg&oe=6A990263",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -333,11 +313,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "액션",
       "payload": {
@@ -349,7 +327,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/6859397944122034/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491820382_2005048423610307_1514960901073854834_n.webp?stp=dst-webp_s720x720&_nc_cat=102&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=H3p_G3PNDdoQ7kNvwFmroxd&_nc_oc=AdqcabjQuSulQzmLVs0ziOEQAVxUBHuNU6xQ2jHWpVvgrrsJNYzddvVwSc4K00tLVx0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLYRpVmmxgkpCN8zfV1jm3cCXcav2CGjVs6ykvXSSZKQw&oe=6A98F276",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -368,11 +346,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "격투",
       "payload": {
@@ -384,7 +360,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24673981072227472/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/604328314_2105874486806268_2101806152389758596_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=rJvoz-qgiu8Q7kNvwG9ij9D&_nc_oc=AdpKT1yAVcA0njjSBfIdlTLvdpO3SNtVZjzOvyqZNV9Vu9_qOMtqvaf9ZJxWNQNFoI0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIuBFjdRPZ9c_2YLlr6rTyFBDRT4qw6uiYRv4dyNcbyEg&oe=6A98FD3D",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -403,11 +379,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "샌드박스",
       "payload": {
@@ -419,7 +393,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9756772107679490/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619571_1321594482946439_3418948060417576467_n.webp?stp=dst-webp_s720x720&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=zsq4QYSXdMwQ7kNvwEgh0Zg&_nc_oc=Adojsp2p0GqdGQBmqnp2Yficu4Cff8jBJGh_r5mWTMBgQF1dv0JhTbUAZ90nEI3h3cE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIxaaHHerF2laZrmZNDOPTZLj4yQK6jYgXZ2DjVk1nbZg&oe=6A9909EA",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -438,11 +412,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "월드 만들기",
       "payload": {
@@ -454,7 +426,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/2532035600194083/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/473393455_1562459041098316_7515591369874963920_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=8GjMnT23zA8Q7kNvwESIdcS&_nc_oc=Adp5HWgZeq-AGf3pVHdnZJP1wf13yd-cR_Ga7107xyjP6TtDB0b17JskrjcwZB_Jyt0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJyAflnatPy-f01mHWoisCmap0JYCDwW24g5cXJo-NVRA&oe=6A991055",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -473,11 +445,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "아케이드",
       "payload": {
@@ -489,7 +459,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25404867019199136/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499623295_1570793117718851_2549036309804376203_n.webp?stp=dst-webp_s720x720&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=hEO5PX6KDhAQ7kNvwH4LQGs&_nc_oc=AdrNU0fRmZjgp8u1XA9FzVEjczbe6TQf4bLiNTW9K3Nr_ASQ4gaSyPUU5avw_66hnRg&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIpRtayTQ5Kg8c3Z0DrqF-v28Xh5_FnLUFGQWgsOoINpQ&oe=6A98FD32",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -508,11 +478,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -524,7 +492,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25415738261360858/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499298248_1543374724082475_2109772878121283522_n.webp?stp=dst-webp_s720x720&_nc_cat=111&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=xs7eYgkK3bsQ7kNvwFjqr3H&_nc_oc=AdrB1q3A05vuUXg3LJ_8aImFdhIe6RZjgQDZvPFgL8Pln6BtMXtSYn0ZIV4EMHXL2eU&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ4a2qN5TMGrR9J7GEwXyGK-3Gyhdmv0gv0VAgfdfGKyg&oe=6A99211B",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -543,11 +511,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -559,7 +525,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9665456710187837/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499617762_1905096123493861_2471915816237825056_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=zv2lQPw60CoQ7kNvwGgG46y&_nc_oc=AdoycJ96AN4tEnhx16-2bNwP2D7cjnl-M6s4Ju0Eqydexl6GKMNHfc162GCqTfnW9XA&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJXT1jbRl4IuyEu3pcwrVn4Le8XPQwIv5ten99WRo0ZrA&oe=6A990E1E",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -578,11 +544,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -594,7 +558,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/26317184997880598/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620414_1051027384072937_5649583373785369985_n.webp?stp=dst-webp_s720x720&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=CTWxMOvkzecQ7kNvwHhrh30&_nc_oc=Adpo_sA5fADN899UDwSa7Ky48NxVRxlItaqETLFQ0_FxbuDQU3wKhceEkrIjpegygDE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKy1bBwA0AcMGShOydOVZnCfl7fJEF7edsIZRbwE8Lq2Q&oe=6A98F33B",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -613,11 +577,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -629,7 +591,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/26032069883043850/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499618251_2153966918755470_9110364024711963927_n.webp?stp=dst-webp_s720x720&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=vFsI0RYlXpEQ7kNvwG3fYJu&_nc_oc=AdqHttif6PNrEE2BRsg9ctisXdX8sqS7Vu4MMRCOd2F7k_1WEx-WWDpCl1DykHX19Ac&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ-q0A81zgDFlnJuuV34VG6PAtKwosO-HdAL9UFbtdSXA&oe=6A98F07B",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -648,11 +610,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -664,7 +624,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/28891150583866181/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/507833663_1333107058790249_5116649561049291244_n.webp?stp=dst-webp_s720x720&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=vYk5QjAGdmUQ7kNvwFUEBHO&_nc_oc=AdpTPZ2-lwaxt5j0dD7QINHh3EVhvgG6Jwoq3tsrA5b3wE7CW-1vQPHzS5F0BruXjDs&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIwxms8BhtM6ZcHG9mDFz8n4j9ob4qBD2skwtMZH_kMCw&oe=6A991E71",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -683,11 +643,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "액션",
       "payload": {
@@ -699,7 +657,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8205502289496386/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/39036648_1692244471356760_1912228401019567121_n.webp?stp=dst-webp_s720x720&_nc_cat=107&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=o04af1lMzpEQ7kNvwGhOTap&_nc_oc=AdovhdveNuDDzQVx3HVGvBFD3n7vHONleBn1d3AsOO4zRK-q3aCcNDombLYnmm-eQiY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKhyf6uJ58lNxfFXduokAucl6oGc6r5Ejd3C4Bm2AaFvg&oe=6A9910A5",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -718,11 +676,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -734,7 +690,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/6366866460079568/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499618103_1585146616058590_2305933813161404851_n.webp?stp=dst-webp_s720x720&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=-cR-hTUQbIsQ7kNvwH53FEC&_nc_oc=AdrgmHaDHUBrg-QkwJR7SYQtjm9PmXHtC_13ivS_bSzDJDMvb5gxloBph2S9UYkbEhY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIXIsaO0NZDWAXzo3MuKGHkW8vm8eYGen-YT016nhtdOQ&oe=6A992255",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -753,11 +709,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -769,7 +723,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/7766928490091147/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/604282317_2007162163501530_2416455229533128295_n.webp?stp=dst-webp_s720x720&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=jGhF1gAZ4_kQ7kNvwGlwfEZ&_nc_oc=AdqTL-x3JXcekjMQg4-CCIBBO0ZPS1bvtm1Z3eWgTtD9MyOiTDe1NfS5egvhyAskyV8&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJWt8shHZlMqg2qMXPxSp-gqj60oYZMxckT9OyzoPMtDA&oe=6A99267B",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -788,11 +742,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "어드벤처",
       "payload": {
@@ -804,7 +756,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/6904307006303740/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619485_26766131503046269_3465022557657739765_n.webp?stp=dst-webp_s720x720&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=3fqTCqr01PEQ7kNvwFJvtze&_nc_oc=AdoCUQ-d4UQ9S61aG1yKLBHmXT7cCNMp1lpJ3_9W8HV3HdLobg7EmH-Uvgw2WOpqXHo&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIejdOOVuiys3IPQL9iOBHO-RL6ruIVSzGvBYjS24ZBog&oe=6A98FB82",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -823,11 +775,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -839,7 +789,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24696055850016802/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/585799753_3507196312788168_2204253751173894520_n.webp?stp=dst-webp_s720x720&_nc_cat=101&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=1hcddiow5vgQ7kNvwHlNeuF&_nc_oc=AdqtK6LTdhiYSd_TcPDcDHvxFxssX-uZfeTinYL1b0hjYE79nlDNX2dGGAuZo6-P7o0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQK3hTlCaGm4W9NRKoCWazWcwfMbH13yrZWScRtFc4hVxQ&oe=6A990769",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -858,11 +808,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -874,7 +822,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/26809008098700102/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620341_2288177598625676_6370839214555555966_n.webp?stp=dst-webp_s720x720&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=aEwGeh0B2gcQ7kNvwF3TtD_&_nc_oc=Adon-JmAroXLd5bWwHICC0LoopAyt3PNgxjgB9QrtG5711diCBGcwDIttJyLNWnqNys&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJPockXzO2KoD5c5r65e9lxbBYtqRXLHpyim3nC6uQgTg&oe=6A98F2CA",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -893,11 +841,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -909,7 +855,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9862837387168749/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620432_2113438975885040_7857313366678386535_n.webp?stp=dst-webp_s720x720&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=fer_ECd-Iy0Q7kNvwG_9wGF&_nc_oc=AdopF_H9Ljq8tOlGarjKMiAZ5n8_jC8ZLBMWz_s-2wdtfMKIV8LmUUx2SCHSNkLnuoM&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ4CU5F6cSdhfsr-yDhF9jvFOs_QQV_IvsyjNK5bSFfsQ&oe=6A98FA24",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -928,11 +874,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "스포츠",
       "payload": {
@@ -944,7 +888,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/5754014731339882/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823790_1606227527831705_8853122905756379554_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=GmiWvi1HbigQ7kNvwEsOzI0&_nc_oc=Adq6ETKmIUbfHqlt56OiF_eMX-VSrAXx-7TOJVKPe8vghLAsYvqwwdFqStbXAHzHbHA&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLq23xEQFngibh9my8ZAn5Sj2mfjgMn1zn4CzTWikqzpg&oe=6A98F799",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -963,11 +907,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -979,7 +921,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9016339138445993/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823271_26892625577022899_6131121947616185012_n.webp?stp=dst-webp_s720x720&_nc_cat=102&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=cumnlgUL5_AQ7kNvwEgOWMq&_nc_oc=AdpRCF6mrvuL2qybecqGyaktODEhg79cf1io769FG5TvCJJiox3ewll5yCwPUSvCv9E&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKA_yuVhZ4KHFiqBQEs5NI9rvnvEq3IO9xZVKQZlhzN0Q&oe=6A98F5D0",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -998,11 +940,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -1014,7 +954,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/5635852399856124/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499618093_1770944874286560_1454802441163817879_n.webp?stp=dst-webp_s720x720&_nc_cat=107&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=maa60RUBH34Q7kNvwFTU2No&_nc_oc=Adq-OW8qMHJe3H6Fcfu6U8_EMPK0EdmMA-q94ufP5FjDo-wcGTQ_Jd3aNeH9IxFbX_E&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQK-CAX2WaEg5Ug8deN58khT9zBqTTxs9szyzcjwT57nZA&oe=6A9922FB",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1033,11 +973,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -1049,7 +987,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/7777321829011683/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620940_1040456128556324_6808974684749398608_n.webp?stp=dst-webp_s720x720&_nc_cat=107&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=pf3DaWrXGYAQ7kNvwHuO-x4&_nc_oc=AdrbeIAIgaxXXsxI92aVNpu6jsNWd6fPvtvJTEY4ZPOcGXF929759E7kuRKwdhmLHJY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJr7jzbKYoyTCJh-RJrbzCXL9JpmvkQuoJGk4eV0QU5ug&oe=6A98FD6E",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1068,11 +1006,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1084,7 +1020,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9425078717597141/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823757_910902352015597_4155435217001198528_n.webp?stp=dst-webp_s720x720&_nc_cat=110&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=AwMY_ZvDNbgQ7kNvwFPdzx9&_nc_oc=AdqQ6Q99vpT7Ke5Az0Qbalaq8PRnD_c3UTIiZ4EjPkUaoC0A3y67HBIfLhstIoGzuEE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLOEzkEKubikff23Kovd60Kmq0YEEVZ7qjv95VYTiJ9vw&oe=6A9911C4",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1103,11 +1039,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -1119,7 +1053,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/6845832862203652/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/38974714_1202629554415141_5356809352537281712_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=RJu2MK7r5rkQ7kNvwEDRNYY&_nc_oc=AdreLIlDs9vjB_LC8ITP2ivFBHM_RYCyDYCAf1LSwOJL9IE_L3uFYy6z4ZnvOkUavwA&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQK761tibKtjT_stxmnIeWImoAyFC__WqQ9T0RWQD2mgFw&oe=6A98F2B5",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1142,9 +1076,7 @@
       "duplicate_reasons": [
         "batch_name"
       ],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [
         "slug_adjusted"
       ],
@@ -1158,7 +1090,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24988696354163011/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491828608_1082930720924547_9064028629958753109_n.webp?stp=dst-webp_s720x720&_nc_cat=111&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=tEPj5RU2YpcQ7kNvwFkkNiB&_nc_oc=AdqtZkhZb5fH-17aks4U83HHwblV3V-ezR8fShIRjlIafsak_dWMqS3L1ckQb9bnBCc&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQL2ArLN2syaYP1ThEnz1TtC9ICyrxCVghHqEGeNEm9c0g&oe=6A990437",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1177,11 +1109,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1193,7 +1123,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/5817303821616533/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619681_37294333303547757_2921144729380487175_n.webp?stp=dst-webp_s720x720&_nc_cat=107&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=Y1lOi-lkPCcQ7kNvwF-27iF&_nc_oc=AdrcachvZacgxtGUakR-pAO7Z3ZLikSAFGNQYmQlepNpqm4tbGEbrCdx-PKP8MM8n14&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLtNZIAbKfdjfGeasXkRRtI60_7HMRMYHcX4oBFPpVGlw&oe=6A98FD94",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1212,11 +1142,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1228,7 +1156,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25483831577871553/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491821115_1962251757738812_7790218437359593627_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=LQWWY0cR8K4Q7kNvwFguabE&_nc_oc=AdpZzIQRX14mer7utT6KNMVZogHA-pjiqsQRpe0CFtsUQo56TYGiWPW7H1tt8Bo7T5I&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLLzrPWliGyzwlj8Jr0nUz5ucksg_ISTYf_hjUH5nJBdg&oe=6A98FA56",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1247,11 +1175,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -1263,7 +1189,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/7275543385800661/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823802_1389441939966310_902926968784661095_n.webp?stp=dst-webp_s720x720&_nc_cat=102&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=hAVyddSnshkQ7kNvwF_hc0M&_nc_oc=AdrnjQPXA8ARj_zDxqOmtHMxkVchp8rq0b7OMUxjDgvAeRUYq6hGBc6dDZz6Ram7tr0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJIU_NfMNh8R5i7nWuihSz5mVqkenYdmRK_187207JqCw&oe=6A98EF8A",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1282,11 +1208,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "액션",
       "payload": {
@@ -1298,7 +1222,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/5407386572706843/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/38984447_770094331122258_3941649009115806967_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=_Ttu2HCdYT8Q7kNvwGCK9I9&_nc_oc=AdofKbxdpGGelcMkHc4rJtoTCN7--KGDf8oEfZf7-R02FRiJxpvfS_zK00LkaAqHu24&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQK9ogShFLjjOSUUlD2L_ZAH1B7sqjiipja1vXVlJJdnow&oe=6A9903E4",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1317,11 +1241,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1333,7 +1255,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9627096030748269/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491828050_1908473860537481_122645818168519396_n.webp?stp=dst-webp_s720x720&_nc_cat=110&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=V8Jp3KcAkLwQ7kNvwEl29MN&_nc_oc=AdpO3kVkBW9IhlGd5UT08pwO7XOU7G93YkfTJrmc0MfSkLhoVevb4xEWW2svGNjK9-A&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLMgDzvc7aeRiCz64vQBfOxpaKoczGimp5O660XCpcmng&oe=6A99100A",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1352,11 +1274,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1368,7 +1288,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/5409297455797322/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/75557068_468285946056132_5067689738862937636_n.webp?stp=dst-webp_s720x720&_nc_cat=103&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=jAQuP8meVtcQ7kNvwF3IF3J&_nc_oc=AdqjfWUvUgofrzE120tG989_or1jFD8Mw5j3k1exG8q0cWMhJI5xQhKILJksDc5ZjCc&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIw1bRvsjLG7cMoWVwiuG0VKBN46YxlZYjjJB7ZGypyzQ&oe=6A990CF6",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1387,11 +1307,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1403,7 +1321,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9972710149415118/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499296123_1010684771596932_2299439985824632837_n.webp?stp=dst-webp_s720x720&_nc_cat=110&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=4NeH2rsBd2kQ7kNvwH0uRVq&_nc_oc=AdpxVl7aouoW00mBvhnra2He_4ospzU71zAvm-XrMNuVNV1i4BPlmeCXFb4rMzGqjfU&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJwD9jheYwIfG0IvSiUNCPnZSgKgmlB1dtwD1A2pvJdGg&oe=6A990A21",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1422,11 +1340,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "샌드박스",
       "payload": {
@@ -1438,7 +1354,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/29249003638032341/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619672_27299699436346335_3535608934237879087_n.webp?stp=dst-webp_s720x720&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=4FVDnA_JibYQ7kNvwEZNy52&_nc_oc=Adry9dnMhb-tLdGDz57B6VjatwqXvw8bh5skiN2mKLWRzQm0ZdsUMaxJBJiFLcVPkIo&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKdIgwSdfneBmwuC5OHFi0y7vm8gPB29VhLN6-diT6NAg&oe=6A98F3A1",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1457,11 +1373,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1473,7 +1387,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8037813306285913/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823351_960765456311135_6679091255438601299_n.webp?stp=dst-webp_s720x720&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=10dMOLYskE0Q7kNvwHtaHG9&_nc_oc=AdqYeNUePArr3g6fCufSVx3fifV7FzZGQhL1UOR0MVuhF6i5xLa_QOO6bLdA5pEiFPo&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQK0Q5i0on1Om9vrZsOFSHesQnzLKjPEwI7ytl-dx0B4ww&oe=6A990DBE",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1492,11 +1406,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "샌드박스",
       "payload": {
@@ -1508,7 +1420,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9121280154639969/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499304870_1039153354541917_93189709134618502_n.webp?stp=dst-webp_s720x720&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=WaANa0BtTFcQ7kNvwFow4wO&_nc_oc=Adpmnu65QqMray4otRuc6vFXopa8C2055IqP3V0pmylefxj24wOdER_VyZgM-SqxucA&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLqGySYySdzYyvhhqp1LJ_U08mQMyQCZsaDPLBWHpjLjA&oe=6A9907DD",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1527,11 +1439,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "액션",
       "payload": {
@@ -1543,7 +1453,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25514962028187850/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823366_911588057979823_2180010482567488139_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=KALEdtXveBEQ7kNvwH7OCxk&_nc_oc=Adrf_TF1TF4Mhyb-kNqmGNsSbU_a52-Eh38zBTRDOT3ZNRpRhjq_mNOhSyFXEA6fR-Q&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ_VydOUAXWryK_9G9SyN6zlPahsCt4BDHvQ4w4uW-D1w&oe=6A9909B5",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1562,11 +1472,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "격투",
       "payload": {
@@ -1578,7 +1486,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8562631313821906/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491818925_1635485883789818_5142212177503604797_n.webp?stp=dst-webp_s720x720&_nc_cat=110&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=KliGv2vs5G8Q7kNvwHE3W0L&_nc_oc=AdpVvfYKCpJF9pnSqHyHS81fqfc4KEF_mhRST3ovAJATuatlTLFg6CIYbjdtftS2f8w&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQK3KJA5Vl6Mv9qCKV__Bm8kQH0EnFn7l0LrdAWMRFsRqw&oe=6A98FC8D",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1597,11 +1505,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1613,7 +1519,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/7181769438517329/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619680_1229568652402529_6819312690264759140_n.webp?stp=dst-webp_s720x720&_nc_cat=103&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=qqZ_QCWp6iIQ7kNvwELXeeY&_nc_oc=AdpYtIIg9szXh5kiZdC8Zq-qwlqcYKetCStBfSJJY9l_3TYutzrC37ISwgyIGd9ADu8&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJVuk0TOnuugg32h5BbNnZyLyhqt_8crjw_Nz0ylX9xTw&oe=6A98FFC0",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1632,11 +1538,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1648,7 +1552,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24548630668106067/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619450_1852409482398102_8248900837125645069_n.webp?stp=dst-webp_s720x720&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=qKvI96qTthMQ7kNvwF5N65B&_nc_oc=AdoB5Oe8iI31ZVgLCVBtoGTQWyfktAqUIvghEEcvywNTyaRrckIu2I0CVCCcdQD_Go0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIeIRs1HVL6f3QyHy-J9dvNR8GS3kdQFjOtzILmzT_scw&oe=6A9924CD",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1667,11 +1571,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "롤플레잉",
       "payload": {
@@ -1683,7 +1585,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/3594982710558708/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/473391885_901348811988382_1773961555056839888_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=g30aba6Veh0Q7kNvwE93ROe&_nc_oc=AdrUdB4bBNzEcjm2CqmzW9rFEwxdqKwU49-i0x833ffNPXR9wSe3zL6uJbndzsEe43Y&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJb62-ETT9qLDC6D8Apl7ic7I7KC65RKEqaPEACWgaxYw&oe=6A9904A7",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1702,11 +1604,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "샌드박스",
       "payload": {
@@ -1718,7 +1618,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/29822556324056955/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491818890_1263580052273804_8812625466338761517_n.webp?stp=dst-webp_s720x720&_nc_cat=111&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=8fNl8nkBwDgQ7kNvwE8BCaz&_nc_oc=AdrBnm73HJ9HbvApxaC4uSF81EoUTrHsdgeoquybLFAfGNpVTZWBpxP1wYeHXTeT5y8&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLoBuCmwiT6Lfmp4L_S739oC-qj1HriG_tZ7btZ5tQr7Q&oe=6A98F24A",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1737,11 +1637,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1753,7 +1651,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24997206943270464/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499307962_27257965887239488_2728810355700300352_n.webp?stp=dst-webp_s720x720&_nc_cat=102&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=EIGRZhhkWWkQ7kNvwEaSRzO&_nc_oc=AdrnFH4JZXtUadmP-9wfOleOwb1mlyaviS1trqL9tsCeoqBpRuVWN3YlSyDz8GvLv6g&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQK05trf4cEn6uMdo7FUSSV-E6B6r_CHGMTVE_kMxdG8Sg&oe=6A9924B9",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1772,11 +1670,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1788,7 +1684,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24491742630507427/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499305071_1364149708980399_1623024553201039647_n.webp?stp=dst-webp_s720x720&_nc_cat=103&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=x8hYnQmSQ1kQ7kNvwEChv2i&_nc_oc=Adowi3DXlGH4xdsaSH6Ghv8Ts1PETD_4qM7k6vSRAtE62eHRUUCt9-Y6X5Y4VBHxEhM&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIzHpy1A7uBDJB8FwL3xSdxdEwBgjqOUAVzq9IJb8C_LA&oe=6A990D01",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1807,11 +1703,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "어드벤처",
       "payload": {
@@ -1823,7 +1717,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/7804019456313851/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499617831_1613885543295516_1541285287261152337_n.webp?stp=dst-webp_s720x720&_nc_cat=110&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=qOMt6WQnz-cQ7kNvwFBNOZc&_nc_oc=AdqqPfl-2ij3gvA6zvWCNpqlECO57hHWCq0pWrh-fa6s8aIlX9OfmT6n99ckMqKo8G8&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKOs_4kDKxHl5vme0HHvEj0QgojNFjkej_dosTW5d9B2A&oe=6A9917CD",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1842,11 +1736,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1858,7 +1750,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24749356794676098/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491830003_4081827758629243_3251706070499854574_n.webp?stp=dst-webp_s720x720&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=KSQ795UQndQQ7kNvwFEUN5U&_nc_oc=AdoVJITCKJXSYQ2QJl-v4dCkj2F0TsEfxLdhwR3Ifi68CZq3t2Cwi6fnGAP_wpDWnjA&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJNCIuitihutjBlDWhO0C7OP_87Wm7AQQbbQl-HUemq7g&oe=6A98F8F6",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1881,9 +1773,7 @@
       "duplicate_reasons": [
         "batch_name"
       ],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [
         "slug_adjusted"
       ],
@@ -1897,7 +1787,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/26271356395816252/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823279_845409135245159_6009184365916966567_n.webp?stp=dst-webp_s720x720&_nc_cat=111&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=i48cJSmLoKIQ7kNvwGsTTxS&_nc_oc=Adp9giXmln_1anZhTb_3v2rlL6U3ICXEqrDWKA02yVGE04YVX8ER4WTSPg7yI28Y_ss&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ9sayP99t8zKhp8wAXvtMCn-_sTvnSi2gfJ3RVcqfAcQ&oe=6A992411",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1916,11 +1806,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1932,7 +1820,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8926069107454260/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619588_1561382448347204_1475795528907550651_n.webp?stp=dst-webp_s720x720&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=gK-9EpTq3tcQ7kNvwH7qRgv&_nc_oc=AdrLRqg_FDB8NdvNFxtgWbR6k_su3jV4KCneTQT_njuOl5QKR0-hIVOdHKPqBN3y1tE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQL0kXNdKjuwdGVI2OYzMeayDxZ9LB03B6noCkKnD53pLQ&oe=6A99054D",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1951,11 +1839,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -1967,7 +1853,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/23963943953294730/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620875_1783759146297730_6639463417406504216_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=M-KmMoYX0qoQ7kNvwGcbVNL&_nc_oc=Adp22fUb_yNu9njI-xooiZEqLfSxweFNamIokXvI3QSJmrbC03HQEZnA9z5pXi25lLg&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIfL722WjVeSy4R1Ber3Q-bIgEgBfe2FgrRmrl8-fz6dQ&oe=6A990A7E",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -1986,11 +1872,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "아케이드",
       "payload": {
@@ -2002,7 +1886,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8810972189011254/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491824307_1012146991195692_3079903227309569209_n.webp?stp=dst-webp_s720x720&_nc_cat=107&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=ie3Ae1rXHIEQ7kNvwHuPO-5&_nc_oc=AdpKM-_saLeCiOGJS2qqnInvCZ2HhtscWLiCV8NVE1tvq_LB1mzD1WVxVoCLSwnfqI4&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ9_n0s7PekNQFu6ekWCCzproAnRUaRgs1juMRCBzDZCQ&oe=6A98FF69",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2021,11 +1905,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2037,7 +1919,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/996016406703860/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823930_1537526854582199_7985584478332932460_n.webp?stp=dst-webp_s720x720&_nc_cat=111&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=44ZEDqyxOKMQ7kNvwGFxpYX&_nc_oc=AdpDKXnzDgCOLWAJZJsQbwRdKCg59NMguVRIrVe8-07JmdSEOp5m9nRvGaW8TfLKSVo&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIE-zLzz2kGUJFTKk2sj-TLPSZWDvYrAkYhIRnAcwDWnQ&oe=6A9921D3",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2056,11 +1938,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -2072,7 +1952,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/27091149583865041/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499303790_805836732529831_3211973427519061116_n.webp?stp=dst-webp_s720x720&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=o9fOgCjhMwMQ7kNvwEQE1re&_nc_oc=Adp0LyNLiVsK7ZZGr4aV2lXJqpz1iXZY01v3uMMYNZU0dRXZFipKVmpg2F0x03Z1-kw&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ2BtKI-fLi6mzcn5YZ2oLoQ6tG-1ofMSwkfe94REjyAw&oe=6A9903F5",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2091,11 +1971,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2107,7 +1985,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/1187714281084963/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499311585_1025725139880278_1414052903282969641_n.webp?stp=dst-webp_s720x720&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=cFjTa1-KxeQQ7kNvwHfjAJY&_nc_oc=AdpzWJLd0O2U-stE3e9knSeJgki0LFWGocbb8MvCdSYlVmxm3NtxkPVpsXkUP-lfyP0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLX8MxresQqEj1GwEU4XDLU2UZCVpnqmhaBeZFUby9O4w&oe=6A98FD74",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2126,11 +2004,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -2142,7 +2018,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/4307257289362025/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499617680_1287204362847511_2367746289613456397_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=wWxSDL7wb24Q7kNvwHpfW9s&_nc_oc=AdojsrBkoqYVUFt6NnVBSJheLO0JVbmllwyOtumka4mFmeA3KtjebAfSP8i9T_TE4f4&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJTAgrqu4rJUq0O2c0wLP7B7kh7eHNgCGAoffmtIvRxug&oe=6A990208",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2161,11 +2037,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2177,7 +2051,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24012525575000818/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499619588_1688232902380682_446930397067499585_n.webp?stp=dst-webp_s720x720&_nc_cat=101&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=CueruEK0rMAQ7kNvwGdpliN&_nc_oc=Adq8uDC_ORcAolI0_yafGPesDZ4LREokcKSgxOm9Z3OEGwy8Xwa8em6fpo0q7rdh0Qo&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIVSBSy0wNiIYJnYaKxjynaTDCr7OcKQzvdM976ZnAwMw&oe=6A991DC7",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2196,11 +2070,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2212,7 +2084,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25957856700542611/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499313074_1763847681276099_4468990918501428645_n.webp?stp=dst-webp_s720x720&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=v-n3lXltYl0Q7kNvwHnc3nD&_nc_oc=AdoQdYaOhRxA8Z8wuHwm_TjMg0ESd7CWbCoIsiVcIJJiR5v3296xkvK4_LtLHwkllEE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJuTwhzIhSIPrRw0eWOjps-nxhxDINlXyT9dXrgXbEKYw&oe=6A990C67",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2231,11 +2103,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -2247,7 +2117,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24474398975542516/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499314657_1527059925825588_5791144042935593975_n.webp?stp=dst-webp_s720x720&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=KwOFoy-vYx4Q7kNvwHy4Ztl&_nc_oc=AdpsTCE9482HmJ-9CPn_rFn6ESgs7kFwlcpqSvDhflVtH5kfrfNGN8V4ejWiG_yvYoU&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLZWAwFEtedIRu_2bpkzTqiUagmf4NCz0W3RsY8NFSrvA&oe=6A9924E1",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2266,11 +2136,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2282,7 +2150,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/4528497603918074/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499294616_2014212066010528_6091695560022305240_n.webp?stp=dst-webp_s720x720&_nc_cat=107&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=yjz2gTNmwo4Q7kNvwEJVtCb&_nc_oc=AdpyXjXthp3fRofFBBFCqc10Nyh8ylyYb-pToXun0H-vhYwic8OrzI_vpp_QyZzvJXk&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ6nMxuBtciDV9vF5jC7pOh16zNpvOX6fgTL2cmHNc1Fg&oe=6A9923F6",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2301,11 +2169,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2317,7 +2183,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/32802413069401898/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620860_1379848497545200_972006808739237685_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=QnSc9MeiIj0Q7kNvwFNWVzf&_nc_oc=AdrKpvXWutKezCjxgCqOHjqpm_exGLRNgklekvLtLWnM7bQViO-gAJ7RABFqEv7DZjs&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQIUsHGtXbf7zubn7BG6jc4JknjpfV7WL-H9U0O7pxaVLg&oe=6A9904B2",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2336,11 +2202,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "아케이드",
       "payload": {
@@ -2352,7 +2216,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8983046065094463/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/748811223_2119991965392468_2026994828445989189_n.webp?stp=dst-webp_s720x720&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=Fr6BCohxRSQQ7kNvwFKfVGl&_nc_oc=AdpD7ZLf4zWtojU1be5bmIMRLg-7FtAAzteuIPl029tepAnr7R64DYnl3KK6x9axo4c&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQI6X_vtQ9xtMgeRz52fRdZbZ6gLkZCoqTtBzD124inykA&oe=6A98FEF3",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2371,11 +2235,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "샌드박스",
       "payload": {
@@ -2387,7 +2249,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/29030239516575272/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491820387_1436863084412621_3642746678690200572_n.webp?stp=dst-webp_s720x720&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=Ollo4pdJszMQ7kNvwEEGf9a&_nc_oc=Adr8OLHYOBRpExX1BdZ1IkMe4Yrq5XB9vodJW1r3Bm0Jcs6l9NcqkFSQxNTH2Oa7piE&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLxnE6ollbdc94fHQKhVBQrCjD-F6lRZizNDP0u4A_zsw&oe=6A9920CA",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2406,11 +2268,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2422,7 +2282,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/24312369968435461/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620940_3059831547539915_8818932512661008861_n.webp?stp=dst-webp_s720x720&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=DQZBKmt7YgMQ7kNvwFHtZhZ&_nc_oc=AdpnHPoA5uCh5RgyZx0dqzD7EI9z3zBf8TaQkj2VK4QnOEgImUE7arxFxvrTgrlf2kY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKuQZsHu53G_jcvHb1Lw4k6bgBs7UE5Eeh5BAWqLo9Kxg&oe=6A98F4BA",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2441,11 +2301,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2457,7 +2315,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/1218791921314709/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499313390_2263508234395322_4181380961678944031_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=C_ZABVcSyDcQ7kNvwFjar0o&_nc_oc=AdpdiY6Jm2Un-z7V1T4wfVjSV5tqm1qco1jiQVaSiIMfqMB8AC7fje03j4P5i2JyL0M&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLZQJD8BuBIUf2KRPFT9gZnbgC5QxW2CeEFdYC5Hwh5lA&oe=6A992063",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2476,11 +2334,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2492,7 +2348,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25967502812884505/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499307931_1330206209182297_5237546618968556670_n.webp?stp=dst-webp_s720x720&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=syCEdd1c6BAQ7kNvwGlFU0k&_nc_oc=AdpX5HkVs-WVLroIwgcJM4-AUHq7V0VSYCdE2uMa7B94mYLQUy7z_dMlc9y5lkXWNj0&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQITBp8d6HHyIPGGB3_KwgbWzKv8xCagg-Y1XEcBFQH0kw&oe=6A98F2FB",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2511,11 +2367,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2527,7 +2381,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25500837289602257/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491820387_1588418055924957_8089041615104658519_n.webp?stp=dst-webp_s720x720&_nc_cat=111&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=laWG0VNNr6IQ7kNvwHR00nn&_nc_oc=AdoEt0QBgcf-1UY4gata8WRxMJuratP8cQIJf_hqtcmCpjYnNu5ZIILQGMd1e9AzfWk&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJ96dRGYo-avjvIg7JHXPtDp7hM8bquH9Lmq0Jur55BqA&oe=6A98EFD5",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2546,11 +2400,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2562,7 +2414,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8476561809049952/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499307309_1210435811283830_4520325968201284901_n.webp?stp=dst-webp_s720x720&_nc_cat=103&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=ML4L9fLReQkQ7kNvwGU9Bto&_nc_oc=AdqXzmQLPndFDzoocAjtqjTLrbMaEKqB0ZXJCpiD7s6hX82w8bes7oIRjHcqfh2y6mM&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKZgH_WKxC9Avg4EnUipx-2cgfHyHPBOTy1buXlmVl2BQ&oe=6A9926B8",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2581,11 +2433,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2597,7 +2447,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/23971701229124193/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499308046_2061831317746731_4737131457014929958_n.webp?stp=dst-webp_s720x720&_nc_cat=101&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=0zIPpuQiW6wQ7kNvwHO7Fpn&_nc_oc=AdphEh16z3CXi1XuP94YV2JGCeEqBdUCHatMwZROZlx11_cnAdMFNlVrs4PiqXLI5ts&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKih9sbT5GbcmB7VLEhXzxT-43kLBuu8qmpj2U0OSHhjg&oe=6A98F94C",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2616,11 +2466,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "격투",
       "payload": {
@@ -2632,7 +2480,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/25106457802334660/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/473391863_2851010251774121_4062883134380787692_n.webp?stp=dst-webp_s720x720&_nc_cat=107&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=IJAcGlHmD6sQ7kNvwFgpKox&_nc_oc=Ado2te-snJJw_Hwq-SlgoE9NHZxktU9j4cIvceoORj9SPMjmWfW2Vua5mEQ09enb81g&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJp-T4mygd_ekFTx9atAPTnxTg_hSjooyNeYN1L7J61tQ&oe=6A990C4D",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2651,11 +2499,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -2667,7 +2513,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/4640272592706957/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/75221326_506644874531682_3668502976574040437_n.webp?stp=dst-webp_s720x720&_nc_cat=101&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=UynHnQiIRhwQ7kNvwGb212h&_nc_oc=AdpusPKY4ESJa9bxk1Jl2mGHqBuHEk-e1Or0TJlgzY3OF3EeIyQqUunNFifeWyzatnQ&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJmLdVP7mHgS2XhuQh1SDx8dmipUff22kJeh9plFRg-JA&oe=6A98F94C",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2686,11 +2532,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -2702,7 +2546,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/3070239359662935/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491823259_1271599028258803_3188931008399526271_n.webp?stp=dst-webp_s720x720&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=jGtTGvNZASAQ7kNvwEfYcV4&_nc_oc=Adr8qW_r63u_58a0BhT7DjZ7WdpymtWA0jXqkfO7GHw6b-lDYAZhKAaOqvs8al_G91Y&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQJAN4eczmZiapL2_yiBfNot-JLjy_jnKB9kPM4ykIeLgQ&oe=6A9924ED",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2721,11 +2565,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -2737,7 +2579,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/9247339018720745/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499302651_791813197250518_1873808837700200818_n.webp?stp=dst-webp_s720x720&_nc_cat=101&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=5EBt7bDasNkQ7kNvwGbmgC7&_nc_oc=Adq9r5AYTqNQQmlxWi-1ZYjtUw6o2CxBnYEYnSxRmpzJNuA-p2_sre0ayO07cc1lGzY&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKr76t342vrE-sXHZif1BxlXXyL2jVNhK7titVDd1EvKA&oe=6A99211A",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2756,11 +2598,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "샌드박스",
       "payload": {
@@ -2772,7 +2612,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/26535121336160120/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/499620444_1493745142483693_4991068193711215210_n.webp?stp=dst-webp_s720x720&_nc_cat=106&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=KTwDbV8CLqcQ7kNvwGRPRNi&_nc_oc=Adpguaf8UHx47uxEz98cc-uSH7cCFh4Y7ksDodMVY0YrF1A1m3NjHS8DwgCtLDJgzmI&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKouPHlXx-Bz0iuwNoB9OdYJs2JkxiQ6zb7virx34gdVQ&oe=6A990920",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2791,11 +2631,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "슈팅 게임",
       "payload": {
@@ -2807,7 +2645,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/4518172508241377/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/473393941_1603286350330792_6993991799404493144_n.webp?stp=dst-webp_s720x720&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=UXE2G-P3_PsQ7kNvwFSN8xW&_nc_oc=Adr9xBydKOFyWeFE0Q7ufiPYyPL3MB7POQNFTTh0d5CXbZSyJFyDzVpIM9xcznw0gS4&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQLhtlErEpagtTsvrzP22LmIaEsYt22bNMZWRlrk8HA3cw&oe=6A9916D1",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2826,11 +2664,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "플랫폼 게임",
       "payload": {
@@ -2842,7 +2678,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/8390456747663346/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/38974876_1927814844383762_3118873329999578939_n.webp?stp=dst-webp_s720x720&_nc_cat=109&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=r1cfetv-RwkQ7kNvwEHmxMT&_nc_oc=AdpmJaIrF3l_oCasVQvATxaDpnBL20EC2yvGNtfJ-D1bNy8x9HZX8a8HpAvLj1jrMF4&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKg70lh2Hw0q6N3nul8Lzrrfkz4RBkAjzKa2JtiFlC0mA&oe=6A98FE91",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",
@@ -2861,11 +2697,9 @@
       }
     },
     {
-      "status": "blocked",
+      "status": "ready",
       "duplicate_reasons": [],
-      "blocking_issues": [
-        "missing_thumbnail"
-      ],
+      "blocking_issues": [],
       "warnings": [],
       "genre": "소셜",
       "payload": {
@@ -2877,7 +2711,7 @@
         "affiliate_url": null,
         "meta_store_url": "https://www.meta.com/experiences/2082595615120854/",
         "image_path": null,
-        "source_image_url": null,
+        "source_image_url": "https://scontent-ssn1-1.oculuscdn.com/v/t64.5771-25/491819982_1259957635496854_1164326794711101077_n.webp?stp=dst-webp_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=247uJt2QPsgQ7kNvwHNyTnM&_nc_oc=Adp7WCghdY6W6ddLEJnGvf8nW41GfHIFxiuk1wQGt2b_fdqGakbzYDPhuVso7WgaFDw&_nc_zt=3&_nc_ht=scontent-ssn1-1.oculuscdn.com&_nc_ss=7d289&oh=00_AQKqZYOICRmkDr6W1QCtd1DiPTYXUQ34zZanA1ZyiIKPPQ&oe=6A98FC3D",
         "current_price": 0,
         "original_price": 0,
         "currency": "USD",

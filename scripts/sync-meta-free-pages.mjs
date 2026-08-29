@@ -14,8 +14,12 @@ try {
   if (error.code !== "ENOENT") throw error;
 }
 const rawSupabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || localEnv.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || localEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-if (!rawSupabaseUrl || !supabaseKey) throw new Error("Supabase 공개 환경변수가 필요합니다.");
+const publicKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || localEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+const secretKey = process.env.SUPABASE_SECRET_KEY;
+const supabaseKey = apply ? secretKey : publicKey;
+if (!rawSupabaseUrl || !supabaseKey) {
+  throw new Error(apply ? "SUPABASE_SECRET_KEY가 필요합니다." : "Supabase 공개 환경변수가 필요합니다.");
+}
 const supabaseUrl = rawSupabaseUrl.trim().replace(/\/+$/, "").replace(/\/rest\/v1$/i, "");
 
 const updates = report.rows

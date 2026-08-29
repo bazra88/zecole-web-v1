@@ -1,0 +1,59 @@
+name: Apply Meta free-game updates
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'DB 반영을 승인하려면 APPLY를 입력하세요'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Validate approval
+        env:
+          CONFIRM: ${{ inputs.confirm }}
+        run: test "$CONFIRM" = "APPLY"
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh and validate data
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run data:free:update
+
+      - name: Apply reviewed changes
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run data:free:sync -- --apply
+
+      - name: Upload apply reports
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: meta-free-apply-${{ github.run_id }}
+          path: |
+            data/meta-free/candidates.*
+            data/meta-free/parsed.*
+            data/meta-free/parse-report.json
+            data/meta-free/diff-report.json
+            data/meta-free/sync-report.json
+          if-no-files-found: warn

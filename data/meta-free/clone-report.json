@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-29T19:56:18.871Z",
+  "threshold": {
+    "algorithm": "dhash-256",
+    "max_hamming_distance": 8
+  },
+  "scanned": 99,
+  "existing_scanned": 17,
+  "candidates_scanned": 82,
+  "failed": 0,
+  "clone_groups": 0,
+  "excluded_count": 0,
+  "excluded_meta_ids": [],
+  "groups": [],
+  "matches": [],
+  "failures": []
+}

@@ -32,6 +32,10 @@ if (!rawUrl || !key) throw new Error("Supabase 공개 환경변수가 필요합�
 const supabaseUrl = rawUrl.trim().replace(/\/+$/, "").replace(/\/rest\/v1$/i, "");
 
 const source = JSON.parse(await readFile(inputPath, "utf8"));
+let cloneReport = { excluded_meta_ids: [] };
+try { cloneReport = JSON.parse(await readFile(resolve(dataDir, "clone-report.json"), "utf8")); }
+catch (error) { if (error.code !== "ENOENT") throw error; }
+const cloneExcludedIds = new Set((cloneReport.excluded_meta_ids || []).map(String));
 const existing = [];
 for (let offset = 0; ; offset += 1000) {
   const endpoint = new URL(`${supabaseUrl}/rest/v1/games`);
@@ -63,6 +67,7 @@ for (const game of source.games || []) {
   if (existingNames.has(nameKey)) duplicateReasons.push("existing_name");
   if (seenIds.has(metaId)) duplicateReasons.push("batch_meta_id");
   if (seenNames.has(nameKey)) duplicateReasons.push("batch_name");
+  if (cloneExcludedIds.has(metaId)) duplicateReasons.push("clone_thumbnail");
   seenIds.add(metaId);
   seenNames.add(nameKey);
 
@@ -149,4 +154,3 @@ await Promise.all([
 ]);
 console.log(`등록 전 검사: 전체 ${rows.length}개 / 준비 ${report.counts.ready} / 차단 ${report.counts.blocked} / 중복 ${report.counts.duplicate}`);
 console.log(`DB 변경 없음. 리포트: ${resolve(dataDir, "insert-preview.json")}`);
-

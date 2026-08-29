@@ -9,6 +9,7 @@
     "data:free:candidates": "node scripts/prepare-meta-free-candidates.mjs",
     "data:free:discover": "node scripts/discover-meta-free-games.mjs",
     "data:free:thumbnails": "node scripts/enrich-meta-free-thumbnails.mjs",
+    "data:free:clones": "node scripts/detect-meta-free-clones.mjs",
     "data:free:prepare-inserts": "node scripts/prepare-meta-free-inserts.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",
     "data:free:parse": "node scripts/parse-meta-free-pages.mjs",
@@ -20,6 +21,7 @@
   "dependencies": {
     "next": "16.3.3",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "sharp": "0.35.4"
   }
 }

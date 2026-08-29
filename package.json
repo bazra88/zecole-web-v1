@@ -9,6 +9,7 @@
     "data:free:candidates": "node scripts/prepare-meta-free-candidates.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",
     "data:free:parse": "node scripts/parse-meta-free-pages.mjs",
+    "data:free:validate": "node scripts/validate-meta-free-pages.mjs",
     "data:free:diff": "node scripts/diff-meta-free-pages.mjs",
     "data:free:sync": "node scripts/sync-meta-free-pages.mjs",
     "data:free:update": "node scripts/update-meta-free-pipeline.mjs"

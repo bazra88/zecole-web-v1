@@ -4,6 +4,7 @@ const steps = [
   "prepare-meta-free-candidates.mjs",
   "cache-meta-free-pages.mjs",
   "parse-meta-free-pages.mjs",
+  "validate-meta-free-pages.mjs",
   "diff-meta-free-pages.mjs",
 ];
 

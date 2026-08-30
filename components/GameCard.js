@@ -93,7 +93,16 @@ export default function GameCard({ game }) {
               <strong>{price.primary}</strong>
             </div>
           )}
-          {price.secondary ? <span>{price.secondary}</span> : null}
+          {(affiliateDiscount > 0 || price.secondary) ? (
+            <div className="game-price-side">
+              {affiliateDiscount > 0 ? (
+                <span className={`game-discount-label${discount.promotional ? " promo" : ""}`}>
+                  {affiliateDiscount}% 할인
+                </span>
+              ) : null}
+              {price.secondary ? <span className="game-secondary-price">{price.secondary}</span> : null}
+            </div>
+          ) : null}
         </div>
 
         <p className={`region-note${price.regional ? "" : " is-empty"}`} aria-hidden={!price.regional}>

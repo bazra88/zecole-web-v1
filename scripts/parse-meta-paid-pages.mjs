@@ -56,18 +56,30 @@ function relayPrice(app) {
   const amount = Number(price?.offset_amount);
   return Number.isFinite(amount) ? amount / 100 : null;
 }
+function normalizedReleaseDate(value) {
+  if (!value) return null;
+  const text = String(value).trim();
+  const korean = text.match(/(\d{4})\s*년\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일/);
+  if (korean) return `${korean[1]}-${korean[2].padStart(2, "0")}-${korean[3].padStart(2, "0")}`;
+  const iso = text.match(/\d{4}-\d{2}-\d{2}/)?.[0];
+  return iso || null;
+}
 const rows = [];
 for (const game of candidates.games) {
   const id = String(game.meta_product_id || game.meta_store_url?.match(/\b\d{10,}\b/)?.[0] || "");
   const html = files.has(`${id}.html`) ? await readFile(resolve(cacheDir, `${id}.html`), "utf8") : "";
-  const alreadyReviewed = game.source_status === "official_meta_paid_reviewed";
+  const detailMetadataComplete = Boolean(game.release_date && (game.developer || game.publisher) && game.supports_korean != null);
+  const alreadyReviewed = game.source_status === "official_meta_paid_reviewed" && detailMetadataComplete;
   const app = !alreadyReviewed && html && ldApp(html);
   const relayId = id.match(/\d{10,}$/)?.[0] || id;
-  const relay = !alreadyReviewed && html && !app ? relayApp(html, relayId) : null;
+  const relay = !alreadyReviewed && html ? relayApp(html, relayId) : null;
   const aggregate = app?.aggregateRating || {};
   const offer = first(app?.offers) || {};
   const author = first(app?.author);
   const publisher = first(app?.publisher);
+  const supportedLanguages = Array.isArray(relay?.supported_in_app_languages)
+    ? relay.supported_in_app_languages.map((language) => typeof language === "string" ? language : language?.name).filter(Boolean)
+    : [];
   const parsed = Boolean(app || relay);
   rows.push({
     id: game.id, meta_id: id, source_name: game.name, meta_store_url: game.meta_store_url,
@@ -81,9 +93,14 @@ for (const game of candidates.games) {
     price: app ? (offer.price == null ? null : Number(offer.price)) : relayPrice(relay),
     currency: offer.priceCurrency || relay?.current_offer?.price?.currency || null,
     availability: offer.availability || null,
-    release_date: app?.datePublished || app?.releaseDate || null,
+    release_date: normalizedReleaseDate(app?.datePublished || app?.releaseDate || relay?.release_info?.display_date),
     developer: typeof author === "string" ? author : author?.name || relay?.developer_name || null,
     publisher: typeof publisher === "string" ? publisher : publisher?.name || relay?.publisher_name || null,
+    supported_languages: supportedLanguages,
+    supports_korean: supportedLanguages.length
+      ? supportedLanguages.some((language) => ["한국어", "korean"].includes(String(language).trim().toLowerCase()))
+      : null,
+    supported_player_modes: Array.isArray(relay?.supported_player_modes) ? relay.supported_player_modes : [],
     parse_status: alreadyReviewed ? "already_reviewed" : parsed ? (relay ? "parsed_relay_json" : "parsed") : "missing_meta_data",
   });
 }

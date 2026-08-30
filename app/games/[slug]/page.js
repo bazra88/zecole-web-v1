@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { discountedPriceLabel, effectiveAffiliateDiscount, formatGamePrice, isFreeGame } from "@/lib/game-format";
-import { gameImageUrl, getGameBySlug, getGameVideos } from "@/lib/supabase";
+import { gameImageUrl, getGameBySlug, getGameGenres, getGameVideos } from "@/lib/supabase";
 
 export const revalidate = 300;
 
 function dateLabel(value) {
-  if (!value) return "정보 준비중";
+  if (!value) return null;
   return new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric" }).format(new Date(`${value}T00:00:00`));
 }
 
@@ -31,7 +31,10 @@ export default async function GameDetailPage({ params }) {
   const game = await getGameBySlug(slug).catch(() => null);
   if (!game) notFound();
 
-  const videos = await getGameVideos(game.id).catch(() => []);
+  const [videos, genres] = await Promise.all([
+    getGameVideos(game.id).catch(() => []),
+    getGameGenres(game.id).catch(() => []),
+  ]);
   const image = gameImageUrl(game.image_path || game.source_image_url);
   const price = formatGamePrice(game);
   const free = isFreeGame(game);
@@ -39,6 +42,18 @@ export default async function GameDetailPage({ params }) {
   const affiliateDiscount = !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
   const discountedPrice = affiliateDiscount > 0 ? discountedPriceLabel(game, affiliateDiscount) : null;
   const supports = supportLabels(game);
+  const playStyles = [game.seated_supported && "좌식", game.standing_supported && "입식"].filter(Boolean);
+  const facts = [
+    ["출시일", dateLabel(game.release_date)],
+    ["장르", genres.map((genre) => genre.name).join(" · ") || null],
+    ["한국 스토어", game.region_restricted ? "지역 제한" : game.krw_store_available === false ? "확인 필요" : "이용 가능"],
+    ["개발사", game.developer || null],
+    ["퍼블리셔", game.publisher || null],
+    ["지원 기기", supports.join(" · ") || null],
+    ["한국어", game.supports_korean === true ? "지원" : game.supports_korean === false ? "미지원" : null],
+    ["플레이 방식", playStyles.join(" · ") || null],
+    ["멀미 난이도", game.motion_sickness_level ? `${game.motion_sickness_level}/5` : null],
+  ].filter(([, value]) => value);
 
   return (
     <main className="container detail-page">
@@ -120,12 +135,9 @@ export default async function GameDetailPage({ params }) {
           <p>{game.description || "공식 게임 소개를 준비하고 있습니다. Meta Store 원본 페이지에서 최신 정보를 먼저 확인할 수 있습니다."}</p>
         </div>
         <aside className="detail-facts">
-          <div><span>출시일</span><strong>{dateLabel(game.release_date)}</strong></div>
-          <div><span>한국 스토어</span><strong>{game.region_restricted ? "지역 제한" : game.krw_store_available === false ? "확인 필요" : "이용 가능"}</strong></div>
-          <div><span>개발사</span><strong>{game.developer || game.publisher || "정보 준비중"}</strong></div>
-          <div><span>지원 기기</span><strong>{supports.length ? supports.join(" · ") : "정보 준비중"}</strong></div>
-          <div><span>플레이 방식</span><strong>{[game.seated_supported && "좌식", game.standing_supported && "입식"].filter(Boolean).join(" · ") || "정보 준비중"}</strong></div>
-          <div><span>멀미 난이도</span><strong>{game.motion_sickness_level ? `${game.motion_sickness_level}/5` : "정보 준비중"}</strong></div>
+          {facts.map(([label, value]) => (
+            <div key={label}><span>{label}</span><strong>{value}</strong></div>
+          ))}
         </aside>
       </section>
 

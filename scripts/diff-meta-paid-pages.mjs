@@ -18,9 +18,17 @@ const rows = parsed.games.map((game) => {
   if (game.description) payload.description = game.description;
   if (game.rating != null) payload.rating = game.rating;
   if (game.review_count != null) payload.review_count = game.review_count;
+  if (game.release_date) payload.release_date = String(game.release_date).slice(0, 10);
+  if (game.developer) payload.developer = game.developer;
+  if (game.publisher) payload.publisher = game.publisher;
+  if (game.supports_korean != null) payload.supports_korean = game.supports_korean;
   payload.supports_quest_2 = supports(game.supported_devices, "quest 2");
   payload.supports_quest_3 = supports(game.supported_devices, "quest 3");
   payload.supports_quest_3s = supports(game.supported_devices, "quest 3s");
+  if (game.supported_player_modes?.length) {
+    payload.seated_supported = game.supported_player_modes.includes("SITTING");
+    payload.standing_supported = game.supported_player_modes.includes("STANDING");
+  }
   const priceField = game.currency === "KRW" ? "krw_price" : game.currency === "USD" ? "usd_price" : null;
   const storedOfficialPrice = priceField ? current[priceField] : null;
   const priceChanged = game.price != null && priceField && Number(game.price) !== Number(storedOfficialPrice);

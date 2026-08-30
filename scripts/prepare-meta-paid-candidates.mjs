@@ -15,7 +15,7 @@ const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || localEnv.NEXT_PUBLIC_SUPA
 const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || localEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 if (!rawUrl || !key) throw new Error("Supabase 공개 환경변수가 필요합니다.");
 const supabaseUrl = rawUrl.trim().replace(/\/+$/, "").replace(/\/rest\/v1$/i, "");
-const fields = ["id", "meta_product_id", "name", "slug", "meta_store_url", "current_price", "original_price", "currency", "krw_price", "usd_price", "source_image_url", "image_path", "source_status"];
+const fields = ["id", "meta_product_id", "name", "slug", "meta_store_url", "current_price", "original_price", "currency", "krw_price", "usd_price", "source_image_url", "image_path", "source_status", "release_date", "developer", "publisher", "supports_korean"];
 const url = new URL(`${supabaseUrl}/rest/v1/games`);
 url.searchParams.set("select", fields.join(","));
 url.searchParams.set("active", "eq.true");

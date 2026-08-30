@@ -18,6 +18,11 @@ export default function GameCard({ game }) {
     ? discountedPriceLabel(game, affiliateDiscount)
     : null;
   const reviews = reviewLabel(game.review_count);
+  const genres = [...new Set(
+    (game.game_genres || [])
+      .map((link) => link.genres?.name)
+      .filter(Boolean)
+  )];
 
   return (
     <article className="game-card">
@@ -61,6 +66,12 @@ export default function GameCard({ game }) {
             <span>멀미 {game.motion_sickness_level}/5</span>
           ) : null}
         </div>
+        ) : null}
+
+        {genres.length ? (
+          <div className="game-genres" aria-label="장르">
+            {genres.map((genre) => <span key={genre}>{genre}</span>)}
+          </div>
         ) : null}
 
         <div className="game-price">

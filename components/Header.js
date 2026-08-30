@@ -17,7 +17,7 @@ export default function Header() {
           <input
             type="search"
             name="q"
-            placeholder="원하시는 게임 이름을 적어주세요"
+            placeholder="원하시는 게임 이름을 검색하세요"
             aria-label="VR 게임 검색"
           />
         </form>

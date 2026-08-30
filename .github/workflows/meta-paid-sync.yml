@@ -1,0 +1,42 @@
+name: Sync reviewed Meta paid game batch
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type SYNC_PAID_BATCH to update the reviewed paid batch
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    if: ${{ inputs.confirmation == 'SYNC_PAID_BATCH' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Dry run
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run data:paid:sync
+      - name: Apply reviewed batch
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run data:paid:sync -- --apply --confirm=SYNC_PAID_BATCH
+      - if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: meta-paid-sync-${{ github.run_id }}
+          path: data/meta-paid/sync-report.json
+          if-no-files-found: warn
+

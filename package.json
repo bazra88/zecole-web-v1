@@ -16,6 +16,7 @@
     "data:paid:cache": "node scripts/cache-meta-paid-pages.mjs",
     "data:paid:parse": "node scripts/parse-meta-paid-pages.mjs",
     "data:paid:diff": "node scripts/diff-meta-paid-pages.mjs",
+    "data:paid:sync": "node scripts/sync-meta-paid-pages.mjs",
     "data:free:prepare-inserts": "node scripts/prepare-meta-free-inserts.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",
     "data:free:parse": "node scripts/parse-meta-free-pages.mjs",

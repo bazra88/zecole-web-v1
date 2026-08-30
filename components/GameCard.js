@@ -8,6 +8,10 @@ import {
   reviewLabel,
 } from "@/lib/game-format";
 
+function genreHue(name) {
+  return [...name].reduce((hash, character) => ((hash * 31) + character.charCodeAt(0)) % 360, 210);
+}
+
 export default function GameCard({ game }) {
   const image = gameImageUrl(game.image_path || game.source_image_url);
   const price = formatGamePrice(game);
@@ -70,7 +74,9 @@ export default function GameCard({ game }) {
 
         {genres.length ? (
           <div className="game-genres" aria-label="장르">
-            {genres.map((genre) => <span key={genre}>{genre}</span>)}
+            {genres.map((genre) => (
+              <span key={genre} style={{ "--genre-hue": genreHue(genre) }}>{genre}</span>
+            ))}
           </div>
         ) : null}
 

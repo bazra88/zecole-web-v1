@@ -38,6 +38,7 @@ jobs:
           META_FETCH_ATTEMPTS: '4'
           META_BATCH_ATTEMPTS: '3'
           META_BATCH_COOLDOWN_MS: '120000'
+          META_MAX_BLOCKED_PER_BATCH: '5'
         run: npm run data:paid:full -- --start-offset="$PAID_START_OFFSET" --apply --confirm=SYNC_ALL_PAID_GAMES
       - if: always()
         uses: actions/upload-artifact@v6

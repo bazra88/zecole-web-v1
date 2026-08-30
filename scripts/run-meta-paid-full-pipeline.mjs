@@ -7,6 +7,7 @@ const dataDir = resolve(root, "data", "meta-paid");
 const batchSize = 100;
 const batchAttempts = Math.max(1, Number(process.env.META_BATCH_ATTEMPTS || 3));
 const batchCooldownMs = Math.max(10_000, Number(process.env.META_BATCH_COOLDOWN_MS || 120_000));
+const maxBlockedPerBatch = Math.max(0, Number(process.env.META_MAX_BLOCKED_PER_BATCH || 5));
 const startOffsetValue = Number(process.argv.find((value) => value.startsWith("--start-offset="))?.split("=")[1] || 0);
 const requestedEnd = Number(process.argv.find((value) => value.startsWith("--end-offset="))?.split("=")[1] || 0);
 if (!Number.isInteger(startOffsetValue) || startOffsetValue < 0 || startOffsetValue % batchSize !== 0) {
@@ -24,7 +25,7 @@ function run(script, args = []) {
     child.on("exit", (code) => code === 0 ? resolveRun() : reject(new Error(`${script} 종료 코드 ${code}`)));
   });
 }
-const report = { generated_at: new Date().toISOString(), mode: apply ? "apply" : "dry_run", start_offset: startOffset, end_offset: null, total: null, completed_batches: 0, processed: 0, updated: 0, failed_offset: null, batches: [], status: "running" };
+const report = { generated_at: new Date().toISOString(), mode: apply ? "apply" : "dry_run", start_offset: startOffset, end_offset: null, total: null, completed_batches: 0, processed: 0, updated: 0, blocked: 0, failed_offset: null, batches: [], status: "running" };
 async function save() { await writeFile(resolve(dataDir, "full-run-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8"); }
 
 try {
@@ -63,11 +64,14 @@ try {
     report.completed_batches += 1;
     report.processed += parsed.count;
     report.updated += batchUpdated;
-    report.batches.push({ offset, count: parsed.count, parsed: parsed.parsed, skipped: parsed.skipped || 0, missing: parsed.missing, blocked: batchDiff.blocked, updated: batchUpdated, genre_links: batchGenreLinks, unknown_genres: sync.unknown_genres, status: parsed.missing ? "incomplete" : sync.status });
+    report.blocked += parsed.missing;
+    const blockedGames = parsed.games.filter((game) => game.parse_status === "missing_ld_json").map((game) => ({ id: game.id, name: game.source_name, meta_id: game.meta_id, url: game.meta_store_url }));
+    report.batches.push({ offset, count: parsed.count, parsed: parsed.parsed, skipped: parsed.skipped || 0, missing: parsed.missing, blocked: batchDiff.blocked, blocked_games: blockedGames, updated: batchUpdated, genre_links: batchGenreLinks, unknown_genres: sync.unknown_genres, status: parsed.missing ? "incomplete" : sync.status });
     await save();
-    if (parsed.missing > 0) throw new Error(`offset ${offset} 배치에 ${parsed.missing}개가 ${batchAttempts}회 후에도 누락되었습니다.`);
+    if (parsed.missing > maxBlockedPerBatch) throw new Error(`offset ${offset} 배치에 ${parsed.missing}개가 ${batchAttempts}회 후에도 누락되었습니다. 대량 차단 가능성이 있어 중단합니다.`);
+    if (parsed.missing > 0) console.log(`영구 파싱 불가 ${parsed.missing}개는 보류 목록에 기록하고 다음 배치를 계속합니다.`);
   }
-  report.status = "complete";
+  report.status = report.blocked ? "complete_with_blocked" : "complete";
 } catch (error) {
   report.status = "failed";
   report.error = error.message;
@@ -76,4 +80,4 @@ try {
   throw error;
 }
 await save();
-console.log(`\n전체 유료게임 파이프라인 완료: ${report.processed}개 처리, ${report.updated}개 반영`);
+console.log(`\n전체 유료게임 파이프라인 완료: ${report.processed}개 처리, ${report.updated}개 반영, ${report.blocked}개 보류`);

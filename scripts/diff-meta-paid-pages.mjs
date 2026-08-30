@@ -26,7 +26,7 @@ const rows = parsed.games.map((game) => {
   const priceChanged = game.price != null && priceField && Number(game.price) !== Number(storedOfficialPrice);
   return {
     id: game.id, meta_id: game.meta_id, source_name: game.source_name, parsed_name: game.title,
-    status: game.parse_status === "parsed" ? "review_required" : game.parse_status === "already_reviewed" ? "skipped" : "blocked",
+    status: ["parsed", "parsed_relay_json"].includes(game.parse_status) ? "review_required" : game.parse_status === "already_reviewed" ? "skipped" : "blocked",
     payload, genre: game.genre, official_price: game.price, official_currency: game.currency,
     current_price: current.current_price, current_currency: current.currency, price_field: priceField,
     stored_official_price: storedOfficialPrice, price_changed: Boolean(priceChanged),

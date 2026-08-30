@@ -11,8 +11,8 @@ const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms)
 const requestDelayMs = Math.max(500, Number(process.env.META_REQUEST_DELAY_MS || 2000));
 const maxAttempts = Math.max(1, Number(process.env.META_FETCH_ATTEMPTS || 4));
 const validMetaHtml = (html) => html.length >= 5000
-  && /application\/ld\+json/i.test(html)
-  && /SoftwareApplication/i.test(html);
+  && ((/application\/ld\+json/i.test(html) && /SoftwareApplication/i.test(html))
+    || (/application\/json/i.test(html) && /"display_name"\s*:/i.test(html) && /"current_offer"\s*:/i.test(html)));
 await mkdir(cacheDir, { recursive: true });
 const manifest = [];
 const queue = [...candidates.games];

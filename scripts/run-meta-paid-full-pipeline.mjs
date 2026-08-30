@@ -65,7 +65,7 @@ try {
     report.processed += parsed.count;
     report.updated += batchUpdated;
     report.blocked += parsed.missing;
-    const blockedGames = parsed.games.filter((game) => game.parse_status === "missing_ld_json").map((game) => ({ id: game.id, name: game.source_name, meta_id: game.meta_id, url: game.meta_store_url }));
+    const blockedGames = parsed.games.filter((game) => game.parse_status === "missing_meta_data").map((game) => ({ id: game.id, name: game.source_name, meta_id: game.meta_id, url: game.meta_store_url }));
     report.batches.push({ offset, count: parsed.count, parsed: parsed.parsed, skipped: parsed.skipped || 0, missing: parsed.missing, blocked: batchDiff.blocked, blocked_games: blockedGames, updated: batchUpdated, genre_links: batchGenreLinks, unknown_genres: sync.unknown_genres, status: parsed.missing ? "incomplete" : sync.status });
     await save();
     if (parsed.missing > maxBlockedPerBatch) console.log(`대량 누락 ${parsed.missing}개가 재시도 후에도 남았습니다. 보류 목록에 기록하고 다음 배치를 계속합니다.`);

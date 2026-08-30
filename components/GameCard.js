@@ -2,6 +2,7 @@ import Link from "next/link";
 import { gameImageUrl } from "@/lib/supabase";
 import {
   discountedPriceLabel,
+  discountSavingsLabel,
   effectiveAffiliateDiscount,
   formatGamePrice,
   isFreeGame,
@@ -20,6 +21,9 @@ export default function GameCard({ game }) {
   const affiliateDiscount = !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
   const discountedPrice = affiliateDiscount > 0
     ? discountedPriceLabel(game, affiliateDiscount)
+    : null;
+  const discountSavings = affiliateDiscount > 0
+    ? discountSavingsLabel(game, affiliateDiscount)
     : null;
   const reviews = reviewLabel(game.review_count);
   const genres = [...new Set(
@@ -87,20 +91,16 @@ export default function GameCard({ game }) {
             <div className="game-card-prices">
               <span>{price.primary}</span>
               <strong>{discountedPrice}</strong>
+              {discountSavings ? <em className="game-discount-savings">{discountSavings}</em> : null}
             </div>
           ) : (
             <div>
               <strong>{price.primary}</strong>
             </div>
           )}
-          {(affiliateDiscount > 0 || price.secondary) ? (
+          {price.secondary ? (
             <div className="game-price-side">
-              {affiliateDiscount > 0 ? (
-                <span className={`game-discount-label${discount.promotional ? " promo" : ""}`}>
-                  {affiliateDiscount}% 할인
-                </span>
-              ) : null}
-              {price.secondary ? <span className="game-secondary-price">{price.secondary}</span> : null}
+              <span className="game-secondary-price">{price.secondary}</span>
             </div>
           ) : null}
         </div>

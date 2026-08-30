@@ -289,7 +289,7 @@ button, input, select, textarea { font: inherit; }
   flex: 1;
   flex-direction: column;
   min-height: 176px;
-  padding: 15px 15px 14px;
+  padding: 15px 15px 8px;
   background: linear-gradient(145deg, rgba(23, 42, 70, .44), rgba(9, 18, 33, .18) 58%, rgba(44, 25, 70, .14));
 }
 .game-title {
@@ -308,7 +308,7 @@ button, input, select, textarea { font: inherit; }
 .game-title::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .game-meta { margin-top: 0; min-height: 18px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; color: #9aabc4; font-size: 12px; line-height: 18px; }
 .game-meta > span { display: inline-flex; min-height: 18px; align-items: center; line-height: 18px; }
-.game-genres { min-height: 18px; margin-top: 8px; display: flex; align-items: flex-start; flex-wrap: wrap; gap: 4px; }
+.game-genres { min-height: 18px; margin: 8px 0 8px; display: flex; align-items: flex-start; flex-wrap: wrap; gap: 4px; }
 .game-genres span {
   padding: 2px 7px;
   border: 1px solid hsl(var(--genre-hue) 62% 54% / .72);
@@ -337,7 +337,7 @@ button, input, select, textarea { font: inherit; }
 .game-card-prices { display: flex; align-items: baseline; gap: 7px; }
 .game-card-prices span { color: #8190aa; font-size: 11px; font-weight: 700; text-decoration: line-through; }
 .game-card-prices strong { color: #fff; }
-.region-note { min-height: 11px; margin: -2px 0 8px; color: #d9b55c; font-size: 9px; line-height: 11px; }
+.region-note { min-height: 10px; margin: -2px 0 0; color: #d9b55c; font-size: 9px; line-height: 10px; }
 .region-note.is-empty { visibility: hidden; }
 .card-link {
   position: relative;

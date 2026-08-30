@@ -235,6 +235,8 @@ button, input, select, textarea { font: inherit; }
 .game-grid.listing { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .game-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgba(77, 108, 158, .48);
@@ -259,6 +261,7 @@ button, input, select, textarea { font: inherit; }
 .game-thumb {
   display: block;
   position: relative;
+  flex: 0 0 auto;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #060b14;
@@ -282,6 +285,10 @@ button, input, select, textarea { font: inherit; }
 
 .game-card-body {
   position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 176px;
   padding: 15px 15px 14px;
   background: linear-gradient(145deg, rgba(23, 42, 70, .44), rgba(9, 18, 33, .18) 58%, rgba(44, 25, 70, .14));
 }
@@ -301,7 +308,7 @@ button, input, select, textarea { font: inherit; }
 .game-title::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .game-meta { margin-top: 0; min-height: 18px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; color: #9aabc4; font-size: 12px; line-height: 18px; }
 .game-meta > span { display: inline-flex; min-height: 18px; align-items: center; line-height: 18px; }
-.game-genres { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.game-genres { min-height: 18px; margin-top: 8px; display: flex; align-items: flex-start; flex-wrap: wrap; gap: 4px; }
 .game-genres span {
   padding: 2px 7px;
   border: 1px solid hsl(var(--genre-hue) 62% 54% / .72);
@@ -317,7 +324,7 @@ button, input, select, textarea { font: inherit; }
 .game-reviews { color: #9aabc4; }
 .game-price {
   min-height: 38px;
-  margin-top: 8px;
+  margin-top: auto;
   padding-top: 9px;
   border-top: 1px solid rgba(255,255,255,.065);
   display: flex;
@@ -330,7 +337,8 @@ button, input, select, textarea { font: inherit; }
 .game-card-prices { display: flex; align-items: baseline; gap: 7px; }
 .game-card-prices span { color: #8190aa; font-size: 11px; font-weight: 700; text-decoration: line-through; }
 .game-card-prices strong { color: #fff; }
-.region-note { margin: -2px 0 8px; color: #d9b55c; font-size: 9px; }
+.region-note { min-height: 11px; margin: -2px 0 8px; color: #d9b55c; font-size: 9px; line-height: 11px; }
+.region-note.is-empty { visibility: hidden; }
 .card-link {
   position: relative;
   z-index: 2;
@@ -500,8 +508,8 @@ button, input, select, textarea { font: inherit; }
   margin-bottom: 30px;
   padding: 16px;
   display: grid;
-  grid-template-columns: minmax(230px, 1.45fr) repeat(5, minmax(130px, 1fr));
-  gap: 12px;
+  grid-template-columns: minmax(190px, 1.45fr) repeat(6, minmax(112px, 1fr));
+  gap: 10px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--panel);

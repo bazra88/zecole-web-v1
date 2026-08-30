@@ -64,7 +64,6 @@ export default function GameCard({ game }) {
           {game.name}
         </Link>
 
-        {(game.rating || reviews || game.motion_sickness_level) ? (
         <div className="game-meta">
           {game.rating ? (
             <span className="game-rating">
@@ -76,15 +75,12 @@ export default function GameCard({ game }) {
             <span>멀미 {game.motion_sickness_level}/5</span>
           ) : null}
         </div>
-        ) : null}
 
-        {genres.length ? (
-          <div className="game-genres" aria-label="장르">
-            {genres.map((genre) => (
-              <span key={genre} style={{ "--genre-hue": genreHue(genre) }}>{genre}</span>
-            ))}
-          </div>
-        ) : null}
+        <div className="game-genres" aria-label={genres.length ? "장르" : undefined}>
+          {genres.map((genre) => (
+            <span key={genre} style={{ "--genre-hue": genreHue(genre) }}>{genre}</span>
+          ))}
+        </div>
 
         <div className="game-price">
           {discountedPrice ? (
@@ -100,9 +96,9 @@ export default function GameCard({ game }) {
           {price.secondary ? <span>{price.secondary}</span> : null}
         </div>
 
-        {price.regional ? (
-          <p className="region-note">한국 스토어 미판매 · 환산 가격 참고</p>
-        ) : null}
+        <p className={`region-note${price.regional ? "" : " is-empty"}`} aria-hidden={!price.regional}>
+          {price.regional ? "한국 스토어 미판매 · 환산 가격 참고" : "가격 지역 안내 없음"}
+        </p>
 
       </div>
     </article>

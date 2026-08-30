@@ -5,6 +5,8 @@ import { resolve } from "node:path";
 const root = process.cwd();
 const dataDir = resolve(root, "data", "meta-paid");
 const batchSize = 100;
+const batchAttempts = Math.max(1, Number(process.env.META_BATCH_ATTEMPTS || 3));
+const batchCooldownMs = Math.max(10_000, Number(process.env.META_BATCH_COOLDOWN_MS || 120_000));
 const startOffsetValue = Number(process.argv.find((value) => value.startsWith("--start-offset="))?.split("=")[1] || 0);
 const requestedEnd = Number(process.argv.find((value) => value.startsWith("--end-offset="))?.split("=")[1] || 0);
 if (!Number.isInteger(startOffsetValue) || startOffsetValue < 0 || startOffsetValue % batchSize !== 0) {
@@ -34,19 +36,36 @@ try {
   for (let offset = startOffset; offset < endOffset; offset += batchSize) {
     console.log(`\n===== 유료게임 ${offset + 1}-${Math.min(offset + batchSize, endOffset)} / ${first.total} =====`);
     if (offset !== startOffset) await run("prepare-meta-paid-candidates.mjs", [`--offset=${offset}`, `--limit=${batchSize}`]);
-    await run("cache-meta-paid-pages.mjs");
-    await run("parse-meta-paid-pages.mjs");
-    await run("diff-meta-paid-pages.mjs");
-    const syncArgs = apply ? ["--apply", "--confirm=SYNC_PAID_BATCH"] : [];
-    await run("sync-meta-paid-pages.mjs", syncArgs);
-    const parsed = JSON.parse(await readFile(resolve(dataDir, "parsed.json"), "utf8"));
-    const batchDiff = JSON.parse(await readFile(resolve(dataDir, "diff-report.json"), "utf8"));
-    const sync = JSON.parse(await readFile(resolve(dataDir, "sync-report.json"), "utf8"));
+    let parsed;
+    let batchDiff;
+    let sync;
+    let batchUpdated = 0;
+    let batchGenreLinks = 0;
+    for (let attempt = 1; attempt <= batchAttempts; attempt += 1) {
+      if (attempt > 1) {
+        const cooldown = batchCooldownMs * (attempt - 1);
+        console.log(`배치 누락 재시도 ${attempt}/${batchAttempts}: ${Math.round(cooldown / 1000)}초 대기`);
+        await new Promise((resolveWait) => setTimeout(resolveWait, cooldown));
+        await run("prepare-meta-paid-candidates.mjs", [`--offset=${offset}`, `--limit=${batchSize}`]);
+      }
+      await run("cache-meta-paid-pages.mjs");
+      await run("parse-meta-paid-pages.mjs");
+      await run("diff-meta-paid-pages.mjs");
+      const syncArgs = apply ? ["--apply", "--confirm=SYNC_PAID_BATCH"] : [];
+      await run("sync-meta-paid-pages.mjs", syncArgs);
+      parsed = JSON.parse(await readFile(resolve(dataDir, "parsed.json"), "utf8"));
+      batchDiff = JSON.parse(await readFile(resolve(dataDir, "diff-report.json"), "utf8"));
+      sync = JSON.parse(await readFile(resolve(dataDir, "sync-report.json"), "utf8"));
+      batchUpdated += sync.updated;
+      batchGenreLinks += sync.genre_links;
+      if (parsed.missing === 0) break;
+    }
     report.completed_batches += 1;
     report.processed += parsed.count;
-    report.updated += sync.updated;
-    report.batches.push({ offset, count: parsed.count, parsed: parsed.parsed, missing: parsed.missing, blocked: batchDiff.blocked, updated: sync.updated, genre_links: sync.genre_links, unknown_genres: sync.unknown_genres, status: sync.status });
+    report.updated += batchUpdated;
+    report.batches.push({ offset, count: parsed.count, parsed: parsed.parsed, skipped: parsed.skipped || 0, missing: parsed.missing, blocked: batchDiff.blocked, updated: batchUpdated, genre_links: batchGenreLinks, unknown_genres: sync.unknown_genres, status: parsed.missing ? "incomplete" : sync.status });
     await save();
+    if (parsed.missing > 0) throw new Error(`offset ${offset} 배치에 ${parsed.missing}개가 ${batchAttempts}회 후에도 누락되었습니다.`);
   }
   report.status = "complete";
 } catch (error) {

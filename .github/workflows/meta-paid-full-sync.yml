@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       start_offset:
-        description: Resume offset (300 games are already complete)
+        description: Resume offset (completed games are skipped automatically)
         required: true
         default: '300'
         type: string
@@ -34,6 +34,10 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          META_REQUEST_DELAY_MS: '2000'
+          META_FETCH_ATTEMPTS: '4'
+          META_BATCH_ATTEMPTS: '3'
+          META_BATCH_COOLDOWN_MS: '120000'
         run: npm run data:paid:full -- --start-offset="$PAID_START_OFFSET" --apply --confirm=SYNC_ALL_PAID_GAMES
       - if: always()
         uses: actions/upload-artifact@v6

@@ -23,7 +23,8 @@ const rows = [];
 for (const game of candidates.games) {
   const id = String(game.meta_product_id || game.meta_store_url?.match(/\b\d{10,}\b/)?.[0] || "");
   const html = files.has(`${id}.html`) ? await readFile(resolve(cacheDir, `${id}.html`), "utf8") : "";
-  const app = html && ldApp(html);
+  const alreadyReviewed = game.source_status === "official_meta_paid_reviewed";
+  const app = !alreadyReviewed && html && ldApp(html);
   const aggregate = app?.aggregateRating || {};
   const offer = first(app?.offers) || {};
   const author = first(app?.author);
@@ -37,11 +38,13 @@ for (const game of candidates.games) {
     release_date: app?.datePublished || app?.releaseDate || null,
     developer: typeof author === "string" ? author : author?.name || null,
     publisher: typeof publisher === "string" ? publisher : publisher?.name || null,
-    parse_status: app ? "parsed" : "missing_ld_json",
+    parse_status: alreadyReviewed ? "already_reviewed" : app ? "parsed" : "missing_ld_json",
   });
 }
-const missing = rows.filter((row) => row.parse_status !== "parsed");
-const report = { generated_at: new Date().toISOString(), offset: candidates.offset, count: rows.length, parsed: rows.length - missing.length, missing: missing.length, games: rows };
+const skipped = rows.filter((row) => row.parse_status === "already_reviewed");
+const missing = rows.filter((row) => row.parse_status === "missing_ld_json");
+const parsed = rows.filter((row) => row.parse_status === "parsed");
+const report = { generated_at: new Date().toISOString(), offset: candidates.offset, count: rows.length, parsed: parsed.length, skipped: skipped.length, missing: missing.length, games: rows };
 await writeFile(resolve(dataDir, "parsed.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
 console.log(`유료게임 세부 파싱: ${report.parsed}/${report.count}, 실패 ${report.missing}`);
 if (missing.length) console.log("파싱 누락 게임은 이번 동기화에서 보류하고 다음 배치를 계속합니다.");

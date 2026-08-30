@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-30T02:01:05.413Z",
+  "generated_at": "2026-08-30T02:05:04.964Z",
   "offset": 100,
   "count": 100,
   "review_required": 100,
   "blocked": 0,
-  "price_changes": 91,
+  "price_changes": 0,
   "genres": {
     "격투": 3,
     "내러티브": 1,
@@ -47,14 +47,9 @@
       "current_price": 7.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 10900,
-        "currency": "KRW"
-      }
+      "stored_official_price": 10900,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "fb5ac8e2-d8f4-4c4a-bb89-50c1bcf0c557",
@@ -77,14 +72,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23501,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23501,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "5c75f290-1757-4a42-b0ee-21bb669b9e8d",
@@ -107,14 +97,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23501,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23501,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "6248f20b-c552-4394-8e08-1166163f8c30",
@@ -136,14 +121,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 14800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 14800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "90f6dadf-5742-4b91-9d84-2dfe8065d9c4",
@@ -165,14 +145,9 @@
       "current_price": 24.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 34000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 34000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "4ca5b997-ff61-4c98-8401-6e3a24ffd8f4",
@@ -194,14 +169,9 @@
       "current_price": 39.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 48000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 48000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "25014b5a-62f7-4804-9411-93b72a373be9",
@@ -223,14 +193,9 @@
       "current_price": 14.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 18000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 18000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "c6eb4796-a231-4637-8106-05f05d33603e",
@@ -252,14 +217,9 @@
       "current_price": 12.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 12000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 12000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "e2fd0e7f-9f20-48a2-987f-2fee9563737c",
@@ -281,14 +241,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "a1bd1295-9c98-4d27-904d-933d0a7d9530",
@@ -308,14 +263,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 14800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 14800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "271766f3-23d4-4169-a907-26b260ebddd1",
@@ -335,14 +285,9 @@
       "current_price": 25.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 35600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 35600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "5874fdca-44c9-4175-888d-f40f1222b952",
@@ -364,14 +309,9 @@
       "current_price": 7.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 8800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 8800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "19bd697b-771f-4fa8-83ef-2694eaabaff6",
@@ -393,14 +333,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "188ae466-57f5-400a-8411-c832f4fe4065",
@@ -422,14 +357,9 @@
       "current_price": 15.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 21900,
-        "currency": "KRW"
-      }
+      "stored_official_price": 21900,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "fb3fac29-6540-4b1b-ac83-30fee032663c",
@@ -473,14 +403,9 @@
       "current_price": 49.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 55200,
-        "currency": "KRW"
-      }
+      "stored_official_price": 55200,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "5b356a5f-346f-45b2-a44d-25ce9da1b296",
@@ -502,14 +427,9 @@
       "current_price": 18.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 26000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 26000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "e16511d7-964d-4d9c-a57f-1485f5dc0d2b",
@@ -531,14 +451,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "a3caf0d9-e89a-4abc-a47c-ab506f0eb805",
@@ -561,14 +476,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 12000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 12000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "2f42a4ea-6da3-4469-9890-eccb87d4500b",
@@ -590,14 +500,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 11000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 11000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "02498236-d627-4fee-afcc-1661b637bbeb",
@@ -617,14 +522,9 @@
       "current_price": 99.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 136800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 136800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "3a395a12-4b1a-4039-a242-9a9fd1ee9a99",
@@ -644,14 +544,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 27400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 27400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "db039fcd-24d1-4764-af66-9dbd50df78cc",
@@ -671,14 +566,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 27400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 27400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "1b05dfd6-f0e2-46f6-8036-6397cd2622f8",
@@ -698,14 +588,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 27400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 27400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "d7ed96b6-df46-4587-8d0a-a06efcf1d5aa",
@@ -725,14 +610,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 27400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 27400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "3db7e49a-e0cf-42d1-935c-759daf28eba0",
@@ -752,14 +632,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 27400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 27400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "ecbb97c3-7f56-4ed5-9a6c-09d87aba0fd1",
@@ -779,14 +654,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 27400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 27400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "355d2f22-4d92-4a26-b4d6-cda1a47fb665",
@@ -806,14 +676,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 27400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 27400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "132e9ff4-617a-40bd-b534-d9df43ff8747",
@@ -833,14 +698,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23501,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23501,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "06cff88e-d0a4-4722-aa1b-056c9e3b3e02",
@@ -862,14 +722,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23501,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23501,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "dd9a821a-f26f-41d0-b170-f719801dedaf",
@@ -891,14 +746,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 6000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 6000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "721fac59-bc82-481e-851b-30bb2643149b",
@@ -920,14 +770,9 @@
       "current_price": 29.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 29900,
-        "currency": "KRW"
-      }
+      "stored_official_price": 29900,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "ddbf62a9-30e8-4be9-b8ef-68c5fd6e649e",
@@ -949,14 +794,9 @@
       "current_price": 7.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 11000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 11000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "a3960636-3c13-49bb-b280-12e9d1858fac",
@@ -976,14 +816,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "679ad4c7-b04e-471e-88d0-68359ed8ee18",
@@ -1005,14 +840,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23501,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23501,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "c1bdeca3-4807-419b-bd27-03f19bbde702",
@@ -1034,14 +864,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 6000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 6000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "3b371f35-7230-4b3c-a5ff-5b42ba8d53bb",
@@ -1063,14 +888,9 @@
       "current_price": 14.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 20500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 20500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "ffb6ed79-c792-4ef4-a6c6-c209114d99ad",
@@ -1092,14 +912,9 @@
       "current_price": 24.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 34200,
-        "currency": "KRW"
-      }
+      "stored_official_price": 34200,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "9e254aae-b573-44bc-9904-2e1155805af5",
@@ -1121,14 +936,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "664fb803-eb85-417e-a1e0-eb8dd431066c",
@@ -1150,14 +960,9 @@
       "current_price": 8.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 12300,
-        "currency": "KRW"
-      }
+      "stored_official_price": 12300,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "cbf5cdca-b384-4c5a-b6fd-eeef6830e96d",
@@ -1179,14 +984,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 13700,
-        "currency": "KRW"
-      }
+      "stored_official_price": 13700,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "94822aa1-2aeb-4695-b92c-69fc7dfcd33a",
@@ -1208,14 +1008,9 @@
       "current_price": 13.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 15400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 15400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "79b8b2ba-3aba-4278-93be-9b240b7e061e",
@@ -1237,14 +1032,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "b8919fb5-e716-41b6-8fa2-cadc4b23459d",
@@ -1266,14 +1056,9 @@
       "current_price": 24.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 34200,
-        "currency": "KRW"
-      }
+      "stored_official_price": 34200,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "c7aa2ebb-47d2-493d-bea0-133031b58cc5",
@@ -1295,14 +1080,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "232b330b-b6e0-44e9-abd6-e4be03eff810",
@@ -1348,14 +1128,9 @@
       "current_price": 17.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 21600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 21600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "7975e627-1bc0-4b56-b6c6-495bd150e711",
@@ -1377,14 +1152,9 @@
       "current_price": 6.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 9600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 9600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "17483493-e20e-435c-84c5-eef5e0482da5",
@@ -1404,14 +1174,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 14800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 14800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "6a17d52d-33b4-4f28-9546-0bfecabb03fe",
@@ -1431,14 +1196,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "19b12c4d-de43-4ed5-bd13-2976df945540",
@@ -1460,14 +1220,9 @@
       "current_price": 2.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 9600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 9600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "77e0fd55-5d48-4a16-abf9-8eea1495583c",
@@ -1513,14 +1268,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 5500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 5500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "9e71be3e-74c5-42c9-993f-8c9a2bd7e01a",
@@ -1542,14 +1292,9 @@
       "current_price": 13.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 21600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 21600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "40a2a88a-8853-441c-814a-2ed4865e0e9d",
@@ -1571,14 +1316,9 @@
       "current_price": 2.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 5500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 5500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "49f98de4-7c56-4990-b302-988229b7d027",
@@ -1598,14 +1338,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 5500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 5500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "c3c91dd0-3c44-4232-904b-1cb7013a6a9c",
@@ -1628,14 +1363,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "8e7bfb3b-db17-4dec-8dab-7eb9bed65ec0",
@@ -1655,14 +1385,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 5500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 5500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "e1537cdd-9984-4aea-8f68-fba6361ef92f",
@@ -1684,14 +1409,9 @@
       "current_price": 7.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 10900,
-        "currency": "KRW"
-      }
+      "stored_official_price": 10900,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "8d3cc3a0-1f0d-4c44-93d5-d9d26cb7abd2",
@@ -1713,14 +1433,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 14800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 14800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "4a169e66-3bb5-4f44-a578-d534259968e9",
@@ -1766,14 +1481,9 @@
       "current_price": 24.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 34000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 34000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "0a7a42ce-65a9-40d3-b66d-0d63a2a11164",
@@ -1793,14 +1503,9 @@
       "current_price": 14.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 20500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 20500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "3ad6e16e-10c8-4df6-82c9-697051d6eab0",
@@ -1822,14 +1527,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23501,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23501,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "6f8b9fdd-b953-4dce-ae52-216299521929",
@@ -1851,14 +1551,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 14800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 14800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "4c87d6e5-b66d-436d-a4d5-a2a1c5e6529f",
@@ -1880,14 +1575,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "ec9698ed-1472-4cf2-bca2-c62b55c81357",
@@ -1909,14 +1599,9 @@
       "current_price": 24.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 27600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 27600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "40ef8bc0-c604-4c2a-9d7c-762619d8ff47",
@@ -1938,14 +1623,9 @@
       "current_price": 5.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 8600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 8600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "6f4dd267-dda6-428f-a859-1eb9aeb4e4df",
@@ -1967,14 +1647,9 @@
       "current_price": 24.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 34000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 34000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "3c35e8e5-7370-4a40-9545-1a6049332f16",
@@ -1994,14 +1669,9 @@
       "current_price": 3.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 5500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 5500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "12e62215-47af-49cc-8107-73e7a4877df2",
@@ -2021,14 +1691,9 @@
       "current_price": 22.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 25400,
-        "currency": "KRW"
-      }
+      "stored_official_price": 25400,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "c8873e56-4cd1-4f89-9e6d-546ec340f0c4",
@@ -2051,14 +1716,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 6000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 6000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "2ef9e6c8-f021-4132-bbb6-379d64c0bb2e",
@@ -2080,14 +1740,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 14800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 14800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "43d442fc-bb44-45ad-9c2e-b5e0a9fdc70a",
@@ -2109,14 +1764,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 12000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 12000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "b203f78f-8656-418a-a07c-c0a63dc663b8",
@@ -2136,14 +1786,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 10900,
-        "currency": "KRW"
-      }
+      "stored_official_price": 10900,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "b95695a3-0b4e-47a6-afaa-8075d649c10b",
@@ -2165,14 +1810,9 @@
       "current_price": 24.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 34000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 34000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "45955393-0622-47d8-b0ab-609e370ad719",
@@ -2194,14 +1834,9 @@
       "current_price": 8.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 12300,
-        "currency": "KRW"
-      }
+      "stored_official_price": 12300,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "0a1d1dae-71e0-4766-83e8-7cfbc808dd8f",
@@ -2223,14 +1858,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23501,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23501,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "ecb6f51f-84ac-4133-9fb0-560d29b33934",
@@ -2252,14 +1882,9 @@
       "current_price": 7.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 10900,
-        "currency": "KRW"
-      }
+      "stored_official_price": 10900,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "3ec10801-055e-483b-bd0e-c64f4d7bde12",
@@ -2279,14 +1904,9 @@
       "current_price": 3.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 4800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 4800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "63f4aceb-24de-450d-8245-5d49bb7dd1af",
@@ -2381,14 +2001,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 12000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 12000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "90e0a590-9c20-4d69-af06-e89acff5d95d",
@@ -2410,14 +2025,9 @@
       "current_price": 17.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 24600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 24600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "d40f981b-9cdf-4d22-8fbd-a462ea86b43c",
@@ -2439,14 +2049,9 @@
       "current_price": 5.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 8600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 8600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "e07e2cf9-b94e-47c1-a4cc-559daed7fae6",
@@ -2466,14 +2071,9 @@
       "current_price": 3.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 5500,
-        "currency": "KRW"
-      }
+      "stored_official_price": 5500,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "41587cc5-abfd-4afc-9745-1255a0e74454",
@@ -2495,14 +2095,9 @@
       "current_price": 5.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 8600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 8600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "24d499ee-4278-47c6-b8dc-ad01dd8ee67b",
@@ -2524,14 +2119,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 11000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 11000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "19fd96e1-6914-45ec-b2bd-cd06c8aaa723",
@@ -2553,14 +2143,9 @@
       "current_price": 6.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 9600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 9600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "696095cb-c6cd-4f51-be3d-3c6eec09bc00",
@@ -2582,14 +2167,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 12000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 12000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "82642f66-563c-42de-8258-5006693ef331",
@@ -2611,14 +2191,9 @@
       "current_price": 14.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 18000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 18000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "e0bb03a0-cd94-43b1-8f58-559c4e7b9ed0",
@@ -2640,14 +2215,9 @@
       "current_price": 5.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 8600,
-        "currency": "KRW"
-      }
+      "stored_official_price": 8600,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "83b0c463-e8d0-48d7-8acf-c72b4069a696",
@@ -2667,14 +2237,9 @@
       "current_price": 4.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 7000,
-        "currency": "KRW"
-      }
+      "stored_official_price": 7000,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "ae592f66-5875-4e4f-be92-fce30b2ddea8",
@@ -2721,14 +2286,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 14800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 14800,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "0aefa6c8-f9ad-4ae4-a02f-d0349bc73d9a",
@@ -2750,14 +2310,9 @@
       "current_price": 19.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 23501,
-        "currency": "KRW"
-      }
+      "stored_official_price": 23501,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "4ee3e6a2-d732-4e8d-989c-5731c8fb9d9f",
@@ -2803,14 +2358,9 @@
       "current_price": 17.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 19900,
-        "currency": "KRW"
-      }
+      "stored_official_price": 19900,
+      "price_changed": false,
+      "price_change": null
     },
     {
       "id": "b343a547-1395-4ec6-97a1-61cfc13f7b2c",
@@ -2830,14 +2380,9 @@
       "current_price": 9.99,
       "current_currency": "USD",
       "price_field": "krw_price",
-      "stored_official_price": null,
-      "price_changed": true,
-      "price_change": {
-        "field": "krw_price",
-        "from": null,
-        "to": 14800,
-        "currency": "KRW"
-      }
+      "stored_official_price": 14800,
+      "price_changed": false,
+      "price_change": null
     }
   ]
 }

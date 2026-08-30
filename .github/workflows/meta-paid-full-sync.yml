@@ -1,0 +1,47 @@
+name: Sync all Meta paid games
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type SYNC_ALL_PAID_GAMES to process every remaining paid game
+        required: true
+        type: string
+      start_offset:
+        description: Resume offset (200 games are already complete)
+        required: true
+        default: '200'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  sync-all:
+    if: ${{ inputs.confirmation == 'SYNC_ALL_PAID_GAMES' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Collect and sync all remaining paid games
+        env:
+          PAID_START_OFFSET: ${{ inputs.start_offset }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run data:paid:full -- --start-offset="$PAID_START_OFFSET" --apply --confirm=SYNC_ALL_PAID_GAMES
+      - if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: meta-paid-full-${{ github.run_id }}
+          path: |
+            data/meta-paid/full-run-report.json
+            data/meta-paid/sync-report.json
+            data/meta-paid/diff-report.json
+            .meta-cache/paid-games/manifest.json
+          if-no-files-found: warn

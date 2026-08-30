@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { createHash } from "node:crypto";
 
 const root = process.cwd();
 const dataDir = resolve(root, "data", "meta-paid");
@@ -29,11 +30,6 @@ const genreSlugs = {
 };
 const unknownGenres = [...new Set(rows.map((row) => row.genre).filter((genre) => genre && !genreSlugs[genre]))];
 const report = { generated_at: new Date().toISOString(), mode: apply ? "apply" : "dry_run", candidates: rows.length, unknown_genres: unknownGenres, updated: 0, genre_links: 0, failed: [], status: "pending" };
-if (unknownGenres.length) {
-  report.status = "blocked";
-  await writeFile(resolve(dataDir, "sync-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
-  throw new Error(`장르 매핑 누락: ${unknownGenres.join(", ")}`);
-}
 if (!apply) {
   report.status = "ready";
   await writeFile(resolve(dataDir, "sync-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -41,7 +37,10 @@ if (!apply) {
   process.exit(0);
 }
 
-const genres = [...new Set(rows.map((row) => row.genre).filter(Boolean))].map((name) => ({ name, slug: genreSlugs[name] }));
+const genres = [...new Set(rows.map((row) => row.genre).filter(Boolean))].map((name) => ({
+  name,
+  slug: genreSlugs[name] || `meta-genre-${createHash("sha256").update(name).digest("hex").slice(0, 12)}`,
+}));
 let url = new URL(`${supabaseUrl}/rest/v1/genres`);
 url.searchParams.set("on_conflict", "name");
 let response = await fetch(url, { method: "POST", headers: { ...headers, Prefer: "resolution=ignore-duplicates,return=minimal" }, body: JSON.stringify(genres) });

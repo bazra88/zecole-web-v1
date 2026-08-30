@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-08-30T02:05:03.187Z",
+  "mode": "dry_run",
+  "start_offset": 100,
+  "end_offset": 200,
+  "total": 3797,
+  "completed_batches": 1,
+  "processed": 100,
+  "updated": 0,
+  "failed_offset": null,
+  "batches": [
+    {
+      "offset": 100,
+      "count": 100,
+      "parsed": 100,
+      "missing": 0,
+      "updated": 0,
+      "genre_links": 0,
+      "unknown_genres": [],
+      "status": "ready"
+    }
+  ],
+  "status": "complete"
+}

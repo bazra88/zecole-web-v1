@@ -59,7 +59,7 @@ try {
       sync = JSON.parse(await readFile(resolve(dataDir, "sync-report.json"), "utf8"));
       batchUpdated += sync.updated;
       batchGenreLinks += sync.genre_links;
-      if (parsed.missing === 0) break;
+      if (parsed.missing <= maxBlockedPerBatch) break;
     }
     report.completed_batches += 1;
     report.processed += parsed.count;

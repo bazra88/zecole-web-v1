@@ -27,6 +27,12 @@ export default function GameCard({ game }) {
       .map((link) => link.genres?.name)
       .filter(Boolean)
   )];
+  const titleLength = [...game.name].length;
+  const titleSizeClass = titleLength > 38
+    ? " game-title-extra-compact"
+    : titleLength > 23
+    ? " game-title-compact"
+    : "";
 
   return (
     <article className="game-card">
@@ -54,7 +60,7 @@ export default function GameCard({ game }) {
       </Link>
 
       <div className="game-card-body">
-        <Link href={`/games/${game.slug}`} className="game-title">
+        <Link href={`/games/${game.slug}`} className={`game-title${titleSizeClass}`}>
           {game.name}
         </Link>
 

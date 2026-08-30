@@ -1,0 +1,2832 @@
+{
+  "generated_at": "2026-08-30T01:49:14.171Z",
+  "offset": 0,
+  "count": 100,
+  "review_required": 100,
+  "blocked": 0,
+  "price_changes": 94,
+  "genres": {
+    "격투": 2,
+    "내러티브": 2,
+    "미디어": 2,
+    "샌드박스": 1,
+    "서바이벌": 1,
+    "슈팅 게임": 18,
+    "스포츠": 6,
+    "시뮬레이션": 6,
+    "아케이드": 12,
+    "액션": 1,
+    "어드벤처": 7,
+    "여행/탐험": 3,
+    "전략": 1,
+    "테이블탑": 2,
+    "퍼즐": 5,
+    "플랫폼 게임": 4,
+    "피트니스/웰빙": 2,
+    "학습": 25
+  },
+  "rows": [
+    {
+      "id": "4a080369-2189-4bdb-8a92-d68871a987c1",
+      "meta_id": "product_35505_6700345930021672",
+      "source_name": " Dissection Simulator: Mammalian Organ Pack",
+      "parsed_name": " Dissection Simulator: Mammalian Organ Pack",
+      "status": "review_required",
+      "payload": {
+        "description": "Join Wendy Martin, national award-winning science teacher, to guide you through a virtual reality cat dissection in Mammalian Organ Pack Dissection. Learn the fundamentals of the feline anatomy through its various systems in our fully immersive VR experience.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 34000,
+      "official_currency": "KRW",
+      "current_price": 24.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 34000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "8ef37196-41fd-4a1a-98d4-938348dc78ef",
+      "meta_id": "product_35505_7386362164787258",
+      "source_name": "-22,7°C",
+      "parsed_name": "-22,7°C",
+      "status": "review_required",
+      "payload": {
+        "description": "22.7°C VR is an interactive audio and visual journey that invites you to (re)discover the polar world.\nGuided by sound, you'll navigate an ‘outer’ dimension imbued with powerful, majestic and dangerous nature, before discovering an ‘inner’ dimension in which you'll find yourself in touch with yourself, your sensations and your fears. These two dimensions gradually merge until you reach a state of harmony and communion with the universe.",
+        "rating": 4,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "여행/탐험",
+      "official_price": 7000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "d424921a-a1cc-4ab5-af14-7ba2c97a7c90",
+      "meta_id": "product_35505_7562218670489199",
+      "source_name": "¡Zombies! : Faulty Towers",
+      "parsed_name": "¡Zombies! : Faulty Towers",
+      "status": "review_required",
+      "payload": {
+        "description": "¡Zombies! put you in the middle of the action as you try to escape the unstable zombie world. Players must use a combination of wits and skill to get to the heliport and certain escape. The only problem is, the zombies are everywhere, they appear to be very hungry and very still. There is a limited amount of time within which the player can escape.",
+        "rating": 4.3,
+        "review_count": 3,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "격투",
+      "official_price": 7700,
+      "official_currency": "KRW",
+      "current_price": 6.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7700,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "fb7ad802-4aee-4cb2-9ef4-8877d6db4014",
+      "meta_id": "product_35505_9506280622784157",
+      "source_name": "• zenku •",
+      "parsed_name": "• zenku •",
+      "status": "review_required",
+      "payload": {
+        "description": "Think about Sudoku, but reinvented!",
+        "rating": 5,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "퍼즐",
+      "official_price": 6600,
+      "official_currency": "KRW",
+      "current_price": 5.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 6600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "12528651-29d3-49ef-a5c2-5e0be0ae94f3",
+      "meta_id": "product_35505_31509716888611818",
+      "source_name": "1 HORROR DRIVE",
+      "parsed_name": "1 HORROR DRIVE",
+      "status": "review_required",
+      "payload": {
+        "description": "A late night drive.  The law is watching.\nYou are being followed through dangerous, dark roads on a horrifying drive... to hell.\n\nController-free gameplay, use your hands to steer, shift and change the  radio.",
+        "rating": 1,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "어드벤처",
+      "official_price": 7000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "7d370491-7b23-4f32-ab2d-c1540bd4ecaa",
+      "meta_id": "product_35505_5852927224806912",
+      "source_name": "10 Seconds",
+      "parsed_name": "10 Seconds",
+      "status": "review_required",
+      "payload": {
+        "description": "Gather your friends and play this party, funny, fast paced game in order to see who is better at throwing stuff, eating, drinking or other common activities when the time is your worst enemy! To complete each task you have a maximum of... yeah... you guessed it... 10 seconds!",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": null,
+      "official_currency": null,
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": null,
+      "stored_official_price": null,
+      "price_changed": false,
+      "price_change": null
+    },
+    {
+      "id": "e7b4dd71-413c-4262-8af0-a8f3b50149a4",
+      "meta_id": "product_35505_8618805201577833",
+      "source_name": "17 Seconds",
+      "parsed_name": "17 Seconds",
+      "status": "review_required",
+      "payload": {
+        "description": "Dive into an adrenaline-fueled challenge where every second counts! You have just 17 seconds to eliminate every enemy in the scene.",
+        "rating": 4,
+        "review_count": 6,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 13200,
+      "official_currency": "KRW",
+      "current_price": 11.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 13200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "632c4f70-a55d-4f78-aaf2-8ad103f13f85",
+      "meta_id": "product_35505_3653147101448084",
+      "source_name": "1976 Back to Midway",
+      "parsed_name": "1976 Back to Midway",
+      "status": "review_required",
+      "payload": {
+        "description": "시간을 거슬러 1943년으로 회귀해, VR로 클래식 아케이드 도그파이트의 재미를 즐기세요\n\n클래식 에센스 / VR 기술\n거대한 3D 양자 시뮬레이터 화면 앞에 앉아서, 안전벨트를 매고 전설적인 세로 스크롤 타이틀의 마법에 빠져 보세요.\n1인칭 관점을 \"클래식\" 시점으로 대체하고, 엄청난 기동을 적의 탄환을 회피하세요. 눈 앞에 펼쳐지는 역동적인 시나리오 요소를 마음껏 감상하세요. 역대급으로 실제적이고 빠르게 진행되는 시뮬레이션입니다. \n\n특징:\n- 유머로 가득한 16개의 스토리 모드 레벨.\n- 24개 몰입 존.\n- 64개 미션.\n- 200개 이상의 항공기 업그레이드.\n- 튜토리얼이나 코인 투입 없는, 끝없는 액션; 무한 재시도 가능.",
+        "rating": 3.9,
+        "review_count": 69,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 18000,
+      "official_currency": "KRW",
+      "current_price": 14.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 18000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "d66873ab-84d6-4d1a-8c35-f989a71535e5",
+      "meta_id": "product_35505_27030677859866568",
+      "source_name": "2248: Numbers Merge Game",
+      "parsed_name": "2248: Numbers Merge Game",
+      "status": "review_required",
+      "payload": {
+        "description": "VR로 즐기는 최고의 숫자 연결 챌린지! 육각형 타일을 연결하여 더 높은 숫자에 도달하는 중독성 강한 3D 퍼즐 게임입니다.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "퍼즐",
+      "official_price": 5500,
+      "official_currency": "KRW",
+      "current_price": 3.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 5500,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "e0642cc7-9621-4511-8425-c7eb68b74d6d",
+      "meta_id": "product_35505_24272826598996072",
+      "source_name": "2LIT",
+      "parsed_name": "2LIT",
+      "status": "review_required",
+      "payload": {
+        "description": "Welcome to Widewater! 2LIT is an open-world action driving experience set in the sun-soaked, neon-charged city of Widewater. Cruise the streets, hit the water, take to the skies, and step into a world of speed, style, chaos, and freedom.",
+        "rating": 3.5,
+        "review_count": 11,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "시뮬레이션",
+      "official_price": 15000,
+      "official_currency": "KRW",
+      "current_price": 10.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 15000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "825da553-208e-4cd3-9937-db18f3a8334f",
+      "meta_id": "product_35505_2592096760842149",
+      "source_name": "2MD: VR Football Unleashed ALL☆STAR",
+      "parsed_name": "2MD: VR Football Unleashed ALL☆STAR",
+      "status": "review_required",
+      "payload": {
+        "description": "2MD is a groundbreaking motion-controlled arcade football game. Draw the plays and throw, hand-off, or run the ball before the clock runs out!\n\n‣ Throw like a pro in a seated, standing, or room-scale, experience.\n‣ Draw unique offensive plays.\n‣ Play 2-minute drill or 20, 40, or 60 minute games.\n‣ 56 Customizable teams, 8 leagues and body types\n‣ Incredible presentation, achievements, leaderboards, a virtual trophy case, & more.\n‣ Become the ball-carrier and catch with manual receiver mode.",
+        "rating": 4.3,
+        "review_count": 2689,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "bb1d9fd3-ee57-4394-b802-e197a0893184",
+      "meta_id": "product_35505_9902066526564542",
+      "source_name": "360 Tree Runner",
+      "parsed_name": "360 Tree Runner",
+      "status": "review_required",
+      "payload": {
+        "description": "Run, dodge, and cling to a spinning log in 360 Tree Runner! Play as a brave male cat racing through a wild forest log. Avoid deadly branches, rotate 360°, and stick to the log with perfect balance using your left and right triggers. Survive the twisting path to reunite with your beloved at the finish line. Are you fast and agile enough to complete the challenge?",
+        "rating": 1,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "플랫폼 게임",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "afa41aa3-5245-4ed9-a9a1-db0fc6e83daa",
+      "meta_id": "product_35505_4714190665359588",
+      "source_name": "3D Mahjong worlds - Quest",
+      "parsed_name": "3D Mahjong worlds - Quest",
+      "status": "review_required",
+      "payload": {
+        "description": "This is the VR implementation of the classic Mahjong game\nCreative design of solid 3D mahjong levels and simple game rules!\n5 relaxing environments, 8 various colourful tile sets,60 levels and night mode! Mixed Reality support",
+        "rating": 4.5,
+        "review_count": 28,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "테이블탑",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "2bdcfedd-9bc6-4ced-aa6c-1b4aadbb6110",
+      "meta_id": "product_35505_25526688583665617",
+      "source_name": "3D Scan Explorer: VR Environments",
+      "parsed_name": "3D Scan Explorer: VR Environments",
+      "status": "review_required",
+      "payload": {
+        "description": "Explore photoreal 3D-scanned environments in VR. Walk around with teleport locomotion, take in the details, and discover real-world spaces like never before.",
+        "rating": 1.4,
+        "review_count": 5,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "여행/탐험",
+      "official_price": 1375,
+      "official_currency": "KRW",
+      "current_price": 3.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 1375,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "38d5357c-887a-4c01-abe9-2ef0ae37cacc",
+      "meta_id": "product_35505_26422971180665448",
+      "source_name": "4X4 Driving Simulator",
+      "parsed_name": "4X4 드라이빙 시뮬레이터",
+      "status": "review_required",
+      "payload": {
+        "name": "4X4 드라이빙 시뮬레이터",
+        "description": "4X4 Driving Simulator에서 강력한 차량을 조종하세요! 깊은 진흙, 바위길, 가파른 산길로 가득한 험난한 환경을 정복하세요. 사실적인 차량 물리 엔진, 몰입감 넘치는 1인칭 플레이, 흥미진진한 미션으로 도전적인 오프로드 주행을 마스터하세요. Meta Quest를 위해 제작된 스릴 넘치는 오프로드 모험을 경험하세요!",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "시뮬레이션",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "780eeec4-d989-453f-9e6b-9b73a86c82bc",
+      "meta_id": "product_35505_7988058397952265",
+      "source_name": "6 Keys: The Gym",
+      "parsed_name": "6 Keys: The Gym",
+      "status": "review_required",
+      "payload": {
+        "description": "권장 : Oculus Quest 3\n최소 : Oculus Quest 2 (프레임 드랍 발생 가능)\n\n교칙을 준수하세요\n\n당신은 체육관을 담당하는 열쇠 당번입니다.\n체육관에 흩어져있는 열쇠를 찾아 정리하고 하교하세요.\n\n열쇠를 정리하며 주변에서 일어나는 현상을 같이 정리하세요.\n\n눈으로 보이지 않으면 귀로 듣고 귀에 들리지 않으면 눈으로 찾으세요.\n\n플레이 타임\n15 ~ 30분\n교칙을 준수하세요\n\n당신은 체육관을 담당하는 열쇠 당번입니다.\n체육관에 흩어져있는 열쇠를 찾아 정리하고 하교하세요.\n\n열쇠를 정리하며 주변에서 일어나는 현상을 같이 정리하세요.\n\n눈으로 보이지 않으면 귀로 듣고 귀에 들리지 않으면 눈으로 찾으세요.\n\n플레이 타임\n15 ~ 30분\n\n추천 세팅\n1. 오큘러스로 플레이 할 경우 볼륨을 5~6으로 맞추시는 걸 추천드립니다.\n2. 몰입을 위해 플레이 경계를 룸스케일로 넓게 세팅하시는 걸 추천드립니다.",
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "어드벤처",
+      "official_price": 3500,
+      "official_currency": "KRW",
+      "current_price": 2.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 3500,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "c61c2dbc-bd9f-45ab-bd3a-f85109d6850a",
+      "meta_id": "product_35505_5176354602393267",
+      "source_name": "8-Ball Pool VR: Online Lounge",
+      "parsed_name": "8-Ball Pool VR: Online Lounge",
+      "status": "review_required",
+      "payload": {
+        "description": "Welcome to the Christmas 2025 Multiplayer Version of The Game!\n\n- No Micro Transactions, nor Pay to Win.\n- Create your Avatars, modify your Cue and Style. \n- 110,000 Active Users <3 Thank you for Support!\n- Free Trial Play is here, along with new difficulty levels and an Auto Matchmaking System.\n\nPlay now the most realistic VR 8 ball pool game! Engage in thrilling matches against AI opponents or connect with friends around the world for a real-time pool face-off.",
+        "rating": 4.2,
+        "review_count": 926,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "스포츠",
+      "official_price": 7000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ee5331f8-dc5c-470f-8da9-273d3951216c",
+      "meta_id": "product_35505_5869609956407659",
+      "source_name": "9 Ball Pool VRX",
+      "parsed_name": "9 Ball Pool VRX",
+      "status": "review_required",
+      "payload": {
+        "description": "Wear the headset and Come to the 9 ball pool club to improve your snooker techniques. Whether you sit or stand, you can play this billiard game. This pool game allows players to play 9 ball pool using the teleport option if they feel motion sickness. The player will play against an AI in this offline snooker game.",
+        "rating": 2.5,
+        "review_count": 4,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "스포츠",
+      "official_price": 3600,
+      "official_currency": "KRW",
+      "current_price": 2.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 3600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "1c9028cc-d7c2-40f9-8b54-b7afa3afbe2a",
+      "meta_id": "product_35505_25381527218177734",
+      "source_name": "A Black Climbing Dog",
+      "parsed_name": "A Black Climbing Dog",
+      "status": "review_required",
+      "payload": {
+        "description": "You're a black dog! While playing video games, your hooman best friend has been thrown at the top of the weirdest tower there is! Your goal is simple: get to the top of the tower to save your friend. But it's not going to be easy!",
+        "rating": 4.3,
+        "review_count": 51,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "플랫폼 게임",
+      "official_price": 9600,
+      "official_currency": "KRW",
+      "current_price": 6.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 9600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "365729e1-105d-4437-a221-c668f20ace9d",
+      "meta_id": "product_35505_5699723006756447",
+      "source_name": "A Boy A Shield And A Sword",
+      "parsed_name": "A Boy A Shield And A Sword",
+      "status": "review_required",
+      "payload": {
+        "description": "A Boy A Shield And A Sword is a high paced, color slashing adventure.\n\nTrapped in a childhood dream, use your shield and your sword in creative ways and overcome your nightmares.  ",
+        "rating": 5,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 7000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "17bdca5d-cb04-427e-9d3b-0535586bf06a",
+      "meta_id": "product_35505_25207885845545692",
+      "source_name": "A Climbing Game",
+      "parsed_name": "A Climbing Game",
+      "status": "review_required",
+      "payload": {
+        "description": "Climb climb climb! Get your pick axes and use them to climb as fast as possible on top of the mountain. How fast can you go?!",
+        "rating": 4,
+        "review_count": 3,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "플랫폼 게임",
+      "official_price": 7000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "35d4ba7d-6d55-41e6-b42f-b5f1fe1c26c5",
+      "meta_id": "product_35505_2299967930057156",
+      "source_name": "A Fisherman's Tale",
+      "parsed_name": "피셔맨즈 테일",
+      "status": "review_required",
+      "payload": {
+        "name": "피셔맨즈 테일",
+        "description": "2019년 올해의 게임(Game of the Year) VR 어워드를 수상한 게임에서 현실을 이리저리 구부리고 비틀어 보세요. 단순한 말장난이 아니예요. 피셔맨즈 테일은 정말 모든 것이 뒤집히고 돌아간, 정신을 구부리는 VR 퍼즐 어드벤처입니다.",
+        "rating": 4.5,
+        "review_count": 2417,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "퍼즐",
+      "official_price": 11200,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 11200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "42facf96-504a-4809-b1c8-d2f454c81485",
+      "meta_id": "product_35505_4543286815791830",
+      "source_name": "A Fisherman's Tale 2",
+      "parsed_name": "A Fisherman's Tale 2",
+      "status": "review_required",
+      "payload": {
+        "description": "다수의 게임상을 수상한 A Fisherman's Tale의 후속작 A Fisherman's Tale 2에서 새롭고 놀라운 모험을 떠나보세요. 새롭고 정신을 쏙 빼놓는 VR 퍼즐 메커니즘을 체험하며 서정적인 이야기에 푹 빠져들게 됩니다. 내 몸을 사용해 퍼즐을 풀고 팔다리를 분리하기도 하며 새로운 부품을 찾아 이용하기도 합니다. A Fisherman's Tale 제작진이 생명을 불어넣은 아름답고 독특한 장소들을 여행하며 진실을 밝혀내 보세요. 마음을 사로잡을 이 게임만의 독특한 VR 체험이 여러분을 기다립니다.",
+        "rating": 4.6,
+        "review_count": 318,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "어드벤처",
+      "official_price": null,
+      "official_currency": null,
+      "current_price": 14.99,
+      "current_currency": "USD",
+      "price_field": null,
+      "stored_official_price": null,
+      "price_changed": false,
+      "price_change": null
+    },
+    {
+      "id": "6152f0a8-23b1-4caa-80a4-6bd1857a26e8",
+      "meta_id": "product_35505_8490574334401881",
+      "source_name": "A frog that swallowed a ring",
+      "parsed_name": "A frog that swallowed a ring",
+      "status": "review_required",
+      "payload": {
+        "description": "Cut open a frog's stomach in virtual reality to learn the names and descriptions of all of its organs \nand descriptions of all the frog's organs and learn about their structure and roles. ",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 55200,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 55200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "2af6b414-0426-40c8-be57-ff477f67ae45",
+      "meta_id": "product_35505_4297523073681259",
+      "source_name": "A Knight in the Attic",
+      "parsed_name": "A Knight in the Attic",
+      "status": "review_required",
+      "payload": {
+        "description": "Guide Guinevere on a quest to save the kingdom from darkness. Find mysterious objects in a living labyrinth board to solve unique puzzles and defeat the evil Mordred, all from the comfort of your grandmother’s attic. ",
+        "rating": 4.3,
+        "review_count": 36,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "어드벤처",
+      "official_price": 12000,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 12000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ca4b702e-0c12-4728-ae08-1d08026d3ca2",
+      "meta_id": "product_35505_8832013246881266",
+      "source_name": "A little journey",
+      "parsed_name": "A little journey",
+      "status": "review_required",
+      "payload": {
+        "description": "이 게임에서 플레이어는 소녀를 안내하고, 다양한 사고로부터 보호하고, 꿈 같은 세상을 모험합니다.\n\n아름다운 하늘 풍경을 배경으로 소녀와 함께 수많은 도전을 극복합니다.\n\n소녀가 하늘의 위험, 예를 들어 땅의 큰 융기와 강풍에 날리는 장애물을 피하도록 도와야 합니다.\n\n소녀의 길을 가로막는 캐릭터도 매우 독특하며 다양한 표정을 보여줍니다.\n\n숨겨진 아이템을 수집하고 특별한 이벤트를 경험하세요.",
+        "rating": 3.8,
+        "review_count": 5,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "어드벤처",
+      "official_price": 16500,
+      "official_currency": "KRW",
+      "current_price": 14.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 16500,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "c79dda29-9ad5-423c-9ed8-1933ae89f3a7",
+      "meta_id": "product_35505_8516346971826025",
+      "source_name": "A medical assistant for diagnostic tests",
+      "parsed_name": "A medical assistant for diagnostic tests",
+      "status": "review_required",
+      "payload": {
+        "description": "1.press ready to work, put on gown, mask and gloves\n2.Lay down white paper and pour out tips\n3.Close the tip cap and insert into the holder \n4.Tap Clean up and discard paper and mask gloves in the medical waste bin ",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 331200,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 331200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ded269f1-d243-446e-bffe-29506e0aa92f",
+      "meta_id": "product_35505_9207922845991600",
+      "source_name": "A Persistent Illusion",
+      "parsed_name": "A Persistent Illusion",
+      "status": "review_required",
+      "payload": {
+        "description": "Escape Rooms and Physics Puzzles with mixed-reality elements and lots of balls.",
+        "rating": 4.1,
+        "review_count": 16,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "퍼즐",
+      "official_price": 4200,
+      "official_currency": "KRW",
+      "current_price": 2.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 4200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "5dfda376-54e5-4577-aec1-e155701b3764",
+      "meta_id": "product_35505_3816141331792031",
+      "source_name": "A Rogue Escape",
+      "parsed_name": "A Rogue Escape",
+      "status": "review_required",
+      "payload": {
+        "description": "It was your only way off this forsaken planet, but standing aboard a colossal stolen mech, you find yourself surrounded by unfamiliar buttons, levers, and monitors. In full VR, push, pull, press and hack everything you can find in an attempt to activate this lumbering beast and make your escape.",
+        "rating": 3.7,
+        "review_count": 124,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "어드벤처",
+      "official_price": 23501,
+      "official_currency": "KRW",
+      "current_price": 19.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 23501,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "56a7308e-71bf-4fec-8035-d97b10c71e8e",
+      "meta_id": "product_35505_7106365289444873",
+      "source_name": "A Space Pawdyssey",
+      "parsed_name": "A Space Pawdyssey",
+      "status": "review_required",
+      "payload": {
+        "description": "Join the space pack and embark on a high-stakes cosmic adventure: Battle meteor storms, rival feline-astronauts, and chaotic mishaps like sneezing fits and questionable chicken sabotage. Solve puzzles, play rhythm mini-games, and explore newly discovered planets!!",
+        "rating": 5,
+        "review_count": 3,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "어드벤처",
+      "official_price": 22100,
+      "official_currency": "KRW",
+      "current_price": 19.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 22100,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "eacd7374-f70d-4e03-82e5-ca7b7cc70f90",
+      "meta_id": "product_35505_3964358697013731",
+      "source_name": "A102",
+      "parsed_name": "A102",
+      "status": "review_required",
+      "payload": {
+        "description": "You are the first human to travel to the edge of a black hole without a return ticket, in this little space adventure you will face situations and dangers that no one has ever seen before.",
+        "rating": 4.8,
+        "review_count": 12,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 3600,
+      "official_currency": "KRW",
+      "current_price": 2.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 3600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "18bf8960-5cbc-4ba7-8007-c92fe656d95a",
+      "meta_id": "product_35505_7516637915127003",
+      "source_name": "AAA Driver",
+      "parsed_name": "AAA Driver",
+      "status": "review_required",
+      "payload": {
+        "description": "AAA Driver provides a realistic driving experience with a variety of vehicles.\n\n1. Free driving practice in various environments\n2. Racing mode\n3. Various driving physics simulations\n4. Parking skills\n5. Passing skills\n6. Safe driving practice\n7. Driver's license practice\n\nMeet the amazing graphics!",
+        "rating": 3.8,
+        "review_count": 4,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "스포츠",
+      "official_price": 22100,
+      "official_currency": "KRW",
+      "current_price": 19.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 22100,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "4569bf43-d81d-43ef-9ba6-a3651ce3b516",
+      "meta_id": "product_35505_9293136354139887",
+      "source_name": "AAA Sailor",
+      "parsed_name": "AAA Sailor",
+      "status": "review_required",
+      "payload": {
+        "description": "AAA Sailor allows you to drive a variety of boats, yachts, and ships, and provides a realistic experience.\n\n1. Boat racing function\n2. Free boat driving practice\n3. Submarine driving, torpedo launching function\n4. Aircraft carrier driving and air fighter driving\n5. Medieval warship driving and cannon operation\n6. Various fish fishing\n7. Rowing, sailing and lowering\n\nAdvanced graphic technology is applied to maximize the realistic feeling.",
+        "rating": 5,
+        "review_count": 1,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "스포츠",
+      "official_price": 11000,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 11000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "4bc12f62-06f0-46e8-8672-091def200afa",
+      "meta_id": "product_35505_3330090083858207",
+      "source_name": "ABA Behavior Intervention Classroom",
+      "parsed_name": "ABA Behavior Intervention Classroom",
+      "status": "review_required",
+      "payload": {
+        "description": "The ABA Behavior Intervention Classroom provides a platform to practice how to respond and express oneself appropriately in various social situations through behavior intervention. Master these essential skills and experience meaningful behavioral modification through repetitive practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 120000,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 120000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "2f4d2136-f817-441f-91ca-ecd405764c25",
+      "meta_id": "product_35505_3330217047178844",
+      "source_name": "ABA Behavior Intervention Corridor",
+      "parsed_name": "ABA Behavior Intervention Corridor",
+      "status": "review_required",
+      "payload": {
+        "description": "The ABA Behavior Intervention Corridor provides a platform to practice how to respond and express oneself appropriately in various situations through behavior intervention.\nMaster these essential skills and learn behavior intervention through repetitive practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 120000,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 120000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ad85c50c-0e7a-4a69-a9a8-b7593a4a4495",
+      "meta_id": "product_35505_3330242527176296",
+      "source_name": "ABA Behavior Intervention counsel",
+      "parsed_name": "ABA Behavior Intervention counsel",
+      "status": "review_required",
+      "payload": {
+        "description": "The ABA Behavior Intervention counsel provides a platform to practice how to respond and express oneself appropriately in various situations through behavior intervention. Master these essential skills and learn behavior intervention through repetitive practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 120000,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 120000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "b552a644-8273-4aeb-aa6f-46296f4a921a",
+      "meta_id": "product_35505_3330178307182718",
+      "source_name": "ABA Behavior Intervention factory",
+      "parsed_name": "ABA Behavior Intervention factory",
+      "status": "review_required",
+      "payload": {
+        "description": "The ABA Behavior Intervention Factory provides a platform to practice how to respond and express oneself appropriately in various situations through behavior intervention. Master these essential skills and learn behavior intervention through repetitive practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 120000,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 120000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "d43cc4c0-e413-4f51-9114-dccf049ee4c4",
+      "meta_id": "product_35505_3330245783842637",
+      "source_name": "ABA Behavior Intervention Home",
+      "parsed_name": "ABA Behavior Intervention Home",
+      "status": "review_required",
+      "payload": {
+        "description": "The ABA Behavior Intervention Home provides a platform to practice how to respond and express oneself appropriately in various situations through behavior intervention. Master these essential skills and learn behavior intervention through repetitive practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 120000,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 120000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "4445c22c-1c98-43df-8efa-1f76ab29db6b",
+      "meta_id": "product_35505_3398190303714851",
+      "source_name": "ABA Behavior Intervention Hospital",
+      "parsed_name": "ABA Behavior Intervention Hospital",
+      "status": "review_required",
+      "payload": {
+        "description": "The ABA Behavior Intervention Hospital provides a platform to practice how to respond and express oneself appropriately in various situations that may occur in a hospital through behavior intervention. Master these essential skills and learn behavior intervention through repetitive practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 120000,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 120000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "e1e5aaf0-6bd7-4388-8196-806c5c514e6b",
+      "meta_id": "product_35505_3330234417177107",
+      "source_name": "ABA Behavior Intervention Office",
+      "parsed_name": "ABA Behavior Intervention Office",
+      "status": "review_required",
+      "payload": {
+        "description": "The ABA Behavior Intervention Office provides a platform to practice how to respond and express oneself appropriately in various situations through behavior intervention. Master these essential skills and learn behavior intervention through repetitive practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 120000,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 120000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ffa5851d-04b4-4146-b228-653f70401759",
+      "meta_id": "product_35505_3330221077178441",
+      "source_name": "ABA Behavior Intervention Park",
+      "parsed_name": "ABA Behavior Intervention Park",
+      "status": "review_required",
+      "payload": {
+        "description": "The ABA Behavior Intervention Park provides a platform to practice how to respond and express oneself appropriately in various situations through behavior intervention. Master these essential skills and learn behavior intervention through repetitive practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 120000,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 120000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "95abc098-bb23-47ac-8029-dce2dd385b48",
+      "meta_id": "product_35505_3543498265753468",
+      "source_name": "Absolute Gravity",
+      "parsed_name": "Absolute Gravity",
+      "status": "review_required",
+      "payload": {
+        "description": "A race of spaceships in a gravitational tube in the middle of the sidereal vacuum. ",
+        "rating": 3,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 12000,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 12000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "17f80f25-8653-4b93-9d3d-311d5f9a9843",
+      "meta_id": "product_35505_26975957508760446",
+      "source_name": "Abstract Shooter: VR Adventure",
+      "parsed_name": "앱스트랙트 슈터: VR 어드벤처",
+      "status": "review_required",
+      "payload": {
+        "name": "앱스트랙트 슈터: VR 어드벤처",
+        "description": "빛나는 액션의 세계로 들어서세요!",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 7000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "3bf32c49-0ff3-410b-bbbc-c7abd442cd66",
+      "meta_id": "product_35505_1354682533525340",
+      "source_name": "Abyss First descent",
+      "parsed_name": "Abyss First descent",
+      "status": "review_required",
+      "payload": {
+        "description": "You take on the role of a prisoner who has recently awoken from cryosleep on a faraway planet. In exchange for a reduced sentence, you must check human research stations that have gone silent.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "서바이벌",
+      "official_price": 8600,
+      "official_currency": "KRW",
+      "current_price": 5.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 8600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "114f0271-6b72-4f46-a0e7-832939006217",
+      "meta_id": "product_35505_2481987975166999",
+      "source_name": "Accounting+",
+      "parsed_name": "Accounting+",
+      "status": "review_required",
+      "payload": {
+        "description": "Accounting+ is a NIGHTMARE ADVENTURE COMEDY by Crows Crows Crows, designed with Squanch Games. Over double the size of the original (critically, critically acclaimed) Accounting. Experience classic reality gameplay: clean up your office, take the battery out of the cooling machine, play the skeleton xylophone, and/or summon thousands upon thousands of demons.",
+        "rating": 4,
+        "review_count": 1258,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "내러티브",
+      "official_price": null,
+      "official_currency": null,
+      "current_price": 11.99,
+      "current_currency": "USD",
+      "price_field": null,
+      "stored_official_price": null,
+      "price_changed": false,
+      "price_change": null
+    },
+    {
+      "id": "0ce41584-b65b-42ce-889b-fcbd70df17c8",
+      "meta_id": "product_35505_6724330454317901",
+      "source_name": "Acetone Evaporation Experiment - ContentsDa Science Experiment",
+      "parsed_name": "Acetone Evaporation Experiment - ContentsDa Science Experiment",
+      "status": "review_required",
+      "payload": {
+        "description": "Experience the fascinating process of evaporation with the acetone evaporation experiment. It's a simple yet intriguing demonstration of how substances change from liquid to gas, providing a clear insight into the principles of physical changes and vapor pressure.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 55200,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 55200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "22a1c71c-943e-416c-a7e6-993be2316dcc",
+      "meta_id": "product_35505_7197455516934175",
+      "source_name": "Acid Base Indicator Experiment - ContentsDa Science Experiment",
+      "parsed_name": "Acid Base Indicator Experiment - ContentsDa Science Experiment",
+      "status": "review_required",
+      "payload": {
+        "description": "Dive into the colorful world of acids and bases. This experiment uses natural indicators to reveal the pH levels of various substances, showcasing the fascinating changes in color that occur when acids and bases interact.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 55200,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 55200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "377c0a92-6825-4884-a0a0-9389fcaa3b90",
+      "meta_id": "product_35505_2345082335516570",
+      "source_name": "Acron: Attack of the Squirrels!",
+      "parsed_name": "Acron: Attack of the Squirrels!",
+      "status": "review_required",
+      "payload": {
+        "description": "경고: 모바일 기기로 플레이하는 다른 사람 최소 한 명과 함께 플레이해야 하는 매우 중독적인 VR 게임입니다. iOS 및 Android용 필수 모바일 게임은 무료입니다.\r\n\r\nResolution Games에서 제작한 이 미친 멀티플레이어 게임에서 황금 도토리를 지켜내실 수 있나요, 아니면 다람쥐처럼 달아나시겠어요?",
+        "rating": 4.6,
+        "review_count": 1845,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 23501,
+      "official_currency": "KRW",
+      "current_price": 19.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 23501,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "03e08925-1da9-44aa-a7f3-72d448d19238",
+      "meta_id": "product_35505_6287220331382123",
+      "source_name": "Across the Valley",
+      "parsed_name": "Across the Valley",
+      "status": "review_required",
+      "payload": {
+        "description": "Across the Valley - portable Edition\n\nAcross the Valley is your friendly VR farm where you really lend a hand. Instead of clicking around in menus, you care for the animals and plants with your own hands.\n\nSow, water, weed and harvest your own plants, raise adorable baby animals, milk the cows, shear the sheep and go on a truffle hunt or simply enjoy the hand-drawn graphics and cozy music while relaxing on your farm.\n",
+        "rating": 4,
+        "review_count": 15,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "시뮬레이션",
+      "official_price": 18000,
+      "official_currency": "KRW",
+      "current_price": 14.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 18000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "5af6c542-16a4-475c-ac2c-77b6e4307946",
+      "meta_id": "product_35505_7021123758002222",
+      "source_name": "Action Hero",
+      "parsed_name": "Action Hero",
+      "status": "review_required",
+      "payload": {
+        "description": "폭발적인 세트 피스와 영화 같은 디자인을 갖춘 블록버스터 VR FPS인 Action Hero에서 공룡의 얼굴을 때리고, 산탄총으로 닌자와 싸우고, 질주하는 기차에서 악당을 추적하세요. 게임플레이는 느린 동작으로 진행되며 플레이어가 움직일수록 속도가 빨라집니다. 스타일리시한 만족감으로 총알 주위에 기대고, 공중에서 무기를 잡고, 거대한 보스를 처치하세요.",
+        "rating": 4.6,
+        "review_count": 642,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ef0bff60-cd67-4d5d-8cd2-2cd6913d055f",
+      "meta_id": "product_35505_6264001107055173",
+      "source_name": "Action Resort XR",
+      "parsed_name": "Action Resort XR",
+      "status": "review_required",
+      "payload": {
+        "description": "Action Resort는 4-in-1 최고 평점 스포츠/액션 게임입니다. 준비되셨나요?",
+        "rating": 4.5,
+        "review_count": 34,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "격투",
+      "official_price": 22100,
+      "official_currency": "KRW",
+      "current_price": 19.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 22100,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "8d31becb-3cc7-4af0-bbb2-6786d4b01ad5",
+      "meta_id": "product_35505_25980968701537354",
+      "source_name": "ADL -  Cook(Egg Fry)",
+      "parsed_name": "ADL -  Cook(Egg Fry)",
+      "status": "review_required",
+      "payload": {
+        "description": "Bring the simple pleasure of frying eggs to life in VR. Pour oil, crack eggs, season with salt, and flip to perfection. Sharpen your cooking skills with engaging, repeat practice sessions.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "a574820c-2ff2-4cb4-90b7-7b82a38a0115",
+      "meta_id": "product_35505_26214995658095614",
+      "source_name": "ADL -  Cook(Hotchoco)",
+      "parsed_name": "ADL -  Cook(Hotchoco)",
+      "status": "review_required",
+      "payload": {
+        "description": "Step into virtual reality and create a cozy cup of hot chocolate using rich milk, luscious chocolate, and just the right amount of sugar. Perfect your skills with fun, repetitive practice designed to make you a hot chocolate master!",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "cd238dfd-9253-481e-8cdd-8da6f16aa6e4",
+      "meta_id": "product_35505_25637415965868816",
+      "source_name": "ADL -  Cook(Icebar)",
+      "parsed_name": "ADL -  Cook(Icebar)",
+      "status": "review_required",
+      "payload": {
+        "description": "Dive into a refreshing VR treat by crafting your own ice bars. Fill molds with fresh strawberries, pour creamy milk, and freeze them to perfection. Hone your ice bar making skills through immersive, hands-on practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "51f8b461-0753-44d7-bac1-2932709f2877",
+      "meta_id": "product_35505_25634536062893049",
+      "source_name": "ADL -  Cook(Korean Skewers)",
+      "parsed_name": "ADL -  Cook(Korean Skewers)",
+      "status": "review_required",
+      "payload": {
+        "description": "Savor the classic Korean street snack in VR by skewering rice cakes and sausages, frying them to a crisp, and drizzling flavorful sauce on top. Build your expertise and enjoy the process with repetitive hands-on training.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ab92219e-6b56-4eeb-90c3-87063bb47821",
+      "meta_id": "product_35505_25680213461619773",
+      "source_name": "ADL -  Cook(Pizza)",
+      "parsed_name": "ADL -  Cook(Pizza)",
+      "status": "review_required",
+      "payload": {
+        "description": "Craft your own delicious mushroom pizza bread in virtual reality. Layer fresh ingredients on bread, cook it in a hot pan, and savor the magic of creating your perfect pizza. Practice makes perfect, and this content helps you get there fast!",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "95e8edd7-b9b3-4833-960d-b3623fd47cd8",
+      "meta_id": "product_35505_25001371162872098",
+      "source_name": "ADL -  Cook(Ramen)",
+      "parsed_name": "ADL -  Cook(Ramen)",
+      "status": "review_required",
+      "payload": {
+        "description": "Cook up a comforting bowl of ramen in VR. Open the packet, add the ingredients to the pot, and carefully boil to deliciousness. Build your confidence and cooking skill through immersive, repeat practice.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "5d7d53f4-7d24-4831-815b-ea633f8e753f",
+      "meta_id": "product_35505_33592565573724870",
+      "source_name": "ADL -  Cook(Vietnam roll)",
+      "parsed_name": "ADL -  Cook(Vietnam roll)",
+      "status": "review_required",
+      "payload": {
+        "description": "Experience the art of fresh spring roll making in VR. Julienne vibrant veggies, place them on delicate rice paper, and roll to perfection. Develop your skills through interactive, repetitive practice designed for fun and mastery.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "537b0ba9-094a-4f13-8c96-4bc67552387d",
+      "meta_id": "product_35505_26137821325841570",
+      "source_name": "ADL - Cook(Hamburger)",
+      "parsed_name": "ADL - Cook(Hamburger)",
+      "status": "review_required",
+      "payload": {
+        "description": "The handmade hamburger-making content lets you create a hamburger in virtual reality. Grill the patty, prepare the ingredients, and assemble the burger. Designed to improve your skills through repeated practice, it allows you to master hamburger-making. ",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "19b0c828-6533-41d6-a734-23f2dd170caa",
+      "meta_id": "product_35505_33272760062368103",
+      "source_name": "ADL - Cook(Kimchi Stew)",
+      "parsed_name": "ADL - Cook(Kimchi Stew)",
+      "status": "review_required",
+      "payload": {
+        "description": "Kimchi stew content lets you cook kimchi stew directly in virtual reality. After cutting the kimchi into appropriate sizes, place it in a pot, add tuna, pour in water, and bring it to a boil. It is designed to allow you to practice cooking kimchi stew repeatedly to master the skill and improve your abilities. ",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "1ea4e2d1-dccc-469d-8c1e-5d11406badb9",
+      "meta_id": "product_35505_25650631254559922",
+      "source_name": "ADL - Cook(Rice)",
+      "parsed_name": "ADL - Cook(Rice)",
+      "status": "review_required",
+      "payload": {
+        "description": "The rice cooking content allows you to cook rice directly in virtual reality. Pour an appropriate amount of rice, rinse it with water, then add water until it reaches the level where it ripples on the back of your hand. Place the inner pot into the electric rice cooker and press the cook button. It is designed to allow you to practice rice cooking repeatedly to master it and improve your skills. ",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 68400,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 68400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "88c5340c-089f-4079-99d5-cef903465172",
+      "meta_id": "product_35505_7217423188267969",
+      "source_name": "AED Use Training - ContentsDA",
+      "parsed_name": "AED Use Training - ContentsDA",
+      "status": "review_required",
+      "payload": {
+        "description": "Learn how to use an Automated External Defibrillator (AED). This life-saving skill is essential in emergency situations where someone is experiencing cardiac arrest.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 55200,
+      "official_currency": "KRW",
+      "current_price": 49.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 55200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "2178f920-9c3c-44d1-a09f-ddab7dfa0bc7",
+      "meta_id": "product_35505_24104901749164306",
+      "source_name": "Aegis Transfer: A Deliverynauts Game",
+      "parsed_name": "Aegis Transfer: A Deliverynauts Game",
+      "status": "review_required",
+      "payload": {
+        "description": "Protect massive transport ships during dangerous slingshot maneuver. Man your station, load missiles, and fight off waves of outlaw attackers in retro-futuristic space combat. Every shot counts.",
+        "rating": 5,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 8600,
+      "official_currency": "KRW",
+      "current_price": 5.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 8600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "1b525d91-e707-4ea3-ba42-2324d4f049c7",
+      "meta_id": "product_35505_8064388876991237",
+      "source_name": "AEROES: Beat the Rush",
+      "parsed_name": "AEROES: Beat the Rush",
+      "status": "review_required",
+      "payload": {
+        "description": "AEROES: Beat the Rush는 아케이드, 피트니스, 리듬 게임의 장점을 결합했습니다. 혼합 현실(MR)에서만 가능한 독특한 게임플레이 메커니즘으로 방 전체를 뛰어다니게 됩니다.\n\n경로를 그려 비행 우주선을 착륙시키고 크레딧을 획득하세요. 충돌을 막고 위험을 피해 점점 더 어려워지는 웨이브에서 살아남으세요 - 각 웨이브는 이전보다 더 격렬해집니다.\n\nAEROES: Beat the Rush에 대한 플레이어들의 반응:\n\"이 게임은 MR에서 특별한 무언가가 있다\"\n\"...Beat Saber보다 더 땀나게 만든다\"",
+        "rating": 4.8,
+        "review_count": 115,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "be44c31c-1cb2-459a-8448-bb33f3e1560e",
+      "meta_id": "product_35505_32631602343151033",
+      "source_name": "Aerosurfer",
+      "parsed_name": "Aerosurfer",
+      "status": "review_required",
+      "payload": {
+        "description": "Glide and surf through handcrafted tracks at breakneck speed. Fly close to obstacles to charge up your boost meter, then time it just right when you engage your boost for max speed. Chase your best times, race against other players' ghosts, and climb global leaderboards in a high speed journey of control and flow. ",
+        "rating": 4.3,
+        "review_count": 14,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "26af8002-630f-49f2-8690-7295eb135e26",
+      "meta_id": "product_35505_2967784573246968",
+      "source_name": "AFFECTED: The Manor - Complete Edition",
+      "parsed_name": "어펙티드 대저택",
+      "status": "review_required",
+      "payload": {
+        "name": "어펙티드 대저택",
+        "description": "많은 사랑을 받았던 저주의 집 VR 게임을 이제 Quest에서 즐기실 수 있습니다. 새로운 게임 모드인 건틀릿도 포함되어 있습니다!\n",
+        "rating": 3.9,
+        "review_count": 1033,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "액션",
+      "official_price": 12000,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 12000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "e3bd0f10-0f1e-43ee-9fd4-00df6d03398a",
+      "meta_id": "product_35505_8017594008339275",
+      "source_name": "African Space Makers",
+      "parsed_name": "African Space Makers",
+      "status": "review_required",
+      "payload": {
+        "description": "The only way to understand Urban Storytelling it's by experiencing it! \nChoose which film director you would like to be and experience urban \nAfrica with your crew. This is your assignment, and this is how you are \ngoing to understand what it means to be an African Space Maker, a \nreal urban hero!!",
+        "rating": 5,
+        "review_count": 5,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "미디어",
+      "official_price": 8600,
+      "official_currency": "KRW",
+      "current_price": 5.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 8600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "b0ec8dc3-2ab8-47ae-ab41-e22df5f92a4a",
+      "meta_id": "product_35505_4201468923247485",
+      "source_name": "Afroroutes",
+      "parsed_name": "Afroroutes",
+      "status": "review_required",
+      "payload": {
+        "description": "AFROROUTES is a musical VR documentary - a journey through different Afro-communities and slave descendants around the world. A simple and intuitive designed VR experience, transporting the user to unexpected places with amazing characters and outstanding music. An immersive journey through the diverse slavery roads, documenting and exploring today's afrocultures, rites and traditions worldwide - created by  Selim Harbi and Sönke Kirchhof, produced by INVR.SPACE. ",
+        "rating": 4.8,
+        "review_count": 6,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "여행/탐험",
+      "official_price": 8600,
+      "official_currency": "KRW",
+      "current_price": 5.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 8600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "c7c471a5-ecb7-4736-b668-bfb5ca04e3fc",
+      "meta_id": "product_35505_33371931495786374",
+      "source_name": "After Death",
+      "parsed_name": "After Death",
+      "status": "review_required",
+      "payload": {
+        "description": "A short, emotional VR experience set at a fragile moment between an ending and a beginning.\nWithout direct narration or dialogue, players are drawn into a symbolic journey through time, memory, and self-reflection.\nThis is not a traditional game, but a contemplative VR experience.",
+        "rating": 3.8,
+        "review_count": 5,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "피트니스/웰빙",
+      "official_price": 1400,
+      "official_currency": "KRW",
+      "current_price": 5.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 1400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "b938813c-449d-465e-9474-4178cd683ad5",
+      "meta_id": "product_35505_2160364850746031",
+      "source_name": "After the Fall®",
+      "parsed_name": "After the Fall®",
+      "status": "review_required",
+      "payload": {
+        "description": "VR을 위해 하나부터 열까지 만들어진 After the Fall은 궁극의 멀티플레이 좀비 아포칼립스입니다! 최대 3명의 동료 생존자와 함께 팀을 꾸려서, 지옥처럼 얼어붙어 뒤틀려버린 적대적인 세계에 맞서세요.",
+        "rating": 4,
+        "review_count": 3708,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": null,
+      "official_currency": null,
+      "current_price": 19.99,
+      "current_currency": "USD",
+      "price_field": null,
+      "stored_official_price": null,
+      "price_changed": false,
+      "price_change": null
+    },
+    {
+      "id": "a78515ed-755f-46e8-a0e9-ad7987de74d5",
+      "meta_id": "product_35505_24126117353683715",
+      "source_name": "Afterlife: Dead Zone",
+      "parsed_name": "Afterlife: Dead Zone",
+      "status": "review_required",
+      "payload": {
+        "description": "Survive in a post-apocalyptic world overrun by zombies and mutants while awaiting rescue… Can you endure in the Dead Zones?",
+        "rating": 4,
+        "review_count": 2,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 4200,
+      "official_currency": "KRW",
+      "current_price": 2.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 4200,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "a49eca46-c58b-4b8a-ab8a-c41804c1b756",
+      "meta_id": "product_35505_25524302530524703",
+      "source_name": "AGE OF KINGDOMS VR",
+      "parsed_name": "AGE OF KINGDOMS VR",
+      "status": "review_required",
+      "payload": {
+        "description": "👑 왕국은 저절로 지어지지 않습니다!\n🏰 VR을 위해 만들어진 중세 도시건설 게임 — 두 손으로 직접 지으세요.\n\n농장, 선술집, 병영까지 하나하나 직접 배치하세요. 🌾 밀은 빵으로, 홉은 맥주로. 👥 주민들을 배부르고 일하게, 그리고 행복하게. ⚔️ 그런 다음 군대를 훈련시키고, 습격이 오면 성벽을 지켜내세요.\n\n습격과 습격 사이, 당신만의 속도로 지으세요 — 또는 왕국을 한계까지 밀어붙이세요. 왕이 될 수 있겠습니까? 👑",
+        "rating": 4.6,
+        "review_count": 20,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "전략",
+      "official_price": 27400,
+      "official_currency": "KRW",
+      "current_price": 19.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 27400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "fb74c128-493e-41c3-a4bc-09e0a4924e59",
+      "meta_id": "product_35505_6029105540508221",
+      "source_name": "Age of the monster",
+      "parsed_name": "Age of the monster",
+      "status": "review_required",
+      "payload": {
+        "description": "Through a succession of time jumps from the 70s to a post anthropocene future, we follow in the footsteps of a mysterious creature with whom we journey across eras.\nDirected by Benjamin Nuel, winner of the Best VR Story Award in Venice in 2018, AGE OF THE MONSTER is an interactive and dreamlike experience.",
+        "rating": 2.8,
+        "review_count": 4,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "미디어",
+      "official_price": 3600,
+      "official_currency": "KRW",
+      "current_price": 2.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 3600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "c3bb8fb4-9cca-4a9d-b8bf-7d15ca6d53d6",
+      "meta_id": "product_35505_9349410855149756",
+      "source_name": "Agent Oops!",
+      "parsed_name": "Agent Oops!",
+      "status": "review_required",
+      "payload": {
+        "description": "Agent Oops! is the cooperative Mixed Reality party game for 1-4 players that redefines how we play together! Collaborate with your friends to help Charles, the world’s clumsiest spy, by deactivating deadly traps, avoiding security cameras and using crazy spy tools. Featuring 11 worlds to explore, over 180 unique levels and the ability to create your own missions, Agent Oops! is a dynamic, chaotic, and social experience. Can you make the world believe that Charles is a true legend?",
+        "rating": 3.3,
+        "review_count": 6,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "테이블탑",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ebcd373c-8c7c-48c1-96cc-35f9ff9face8",
+      "meta_id": "product_35505_23937822945917932",
+      "source_name": "AI Conduct Lesson",
+      "parsed_name": "AI Conduct Lesson",
+      "status": "review_required",
+      "payload": {
+        "description": "AI Conduct Lesson is a gaming experience for aspiring conductors.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "시뮬레이션",
+      "official_price": 27400,
+      "official_currency": "KRW",
+      "current_price": 19.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 27400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "71e9193f-e17b-43df-a6c5-6a0944bd8e7c",
+      "meta_id": "product_35505_7182773695092320",
+      "source_name": "AI Listener: Your Emotional Guide",
+      "parsed_name": "AI Listener: Your Emotional Guide",
+      "status": "review_required",
+      "payload": {
+        "description": "AI Listener: Your Emotional Guide is your space to talk and be heard. Share your thoughts or worries with an AI that listens and responds naturally. A built-in journal reflects on past conversations, helping you look back and discover patterns. Meet characters like William Anderson or Sarah Mitchell, each bringing their own unique style.",
+        "rating": 3.9,
+        "review_count": 88,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "피트니스/웰빙",
+      "official_price": 0,
+      "official_currency": "KRW",
+      "current_price": 7.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": false,
+      "price_change": null
+    },
+    {
+      "id": "beab9004-a87b-4bec-a46c-4fb6ee4f771d",
+      "meta_id": "product_35505_8977038105742978",
+      "source_name": "Aim & Bounce",
+      "parsed_name": "Aim & Bounce",
+      "status": "review_required",
+      "payload": {
+        "description": "Get ready for a thrilling VR adventure with Aim & Bounce! Use your skills to launch characters with precision, bouncing off obstacles and hitting colorful targets in vibrant, interactive worlds. Each level offers unique challenges requiring quick thinking and strategic timing. Perfect for casual gamers and VR enthusiasts, this action-packed game combines fun visuals with dynamic gameplay. Step into the action on Meta Quest and experience the excitement of aiming, launching, and bouncing your way",
+        "rating": 2,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 1386,
+      "official_currency": "KRW",
+      "current_price": 2.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 1386,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "30bd28f8-c7a4-4925-ab4a-3bd06092f06a",
+      "meta_id": "product_35505_24713300634926906",
+      "source_name": "Aim Assault",
+      "parsed_name": "Aim Assault",
+      "status": "review_required",
+      "payload": {
+        "description": "Aim Assault brings the thrill of old-school arcade rail-shooters into the world of virtual reality. Blast through various enemies, master different gunplay styles, and race the timer to climb to the top of the global leaderboards.\n\nTry FREE DEMO https://www.meta.com/cs-cz/experiences/aim-assault-demo/9565626616867849/",
+        "rating": 4.4,
+        "review_count": 78,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 24600,
+      "official_currency": "KRW",
+      "current_price": 17.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 24600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "551d64b0-cafd-4e6a-90b4-853eb5c8138a",
+      "meta_id": "product_35505_31094214446893826",
+      "source_name": "Aim Reflex",
+      "parsed_name": "Aim Reflex",
+      "status": "review_required",
+      "payload": {
+        "description": "Aim Reflex is a VR training game designed to sharpen your aiming reflexes. Use different weapons to shoot down robot and sphere targets, and track how fast you can eliminate 100 enemies. The built-in stat system records your performance, helping you improve reaction time and precision. Challenge yourself to beat your own scores, train smarter, and stay one step ahead of others in any VR game.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 9600,
+      "official_currency": "KRW",
+      "current_price": 6.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 9600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "c36cf4d4-1eed-4021-80db-4025ceeb3d9d",
+      "meta_id": "product_35505_7605141302869111",
+      "source_name": "Aim Shooting VR",
+      "parsed_name": "Aim Shooting VR",
+      "status": "review_required",
+      "payload": {
+        "description": "Get ready for an adrenaline-packed VR experience! Aim Shooting VR challenges your accuracy and reflexes in a thrilling, guided and immersive environment.",
+        "rating": 4.8,
+        "review_count": 14,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 7000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "1a167e9c-4ec3-4203-a7cb-3a3bd555e64e",
+      "meta_id": "product_35505_9566723733411753",
+      "source_name": "Aim Trainer",
+      "parsed_name": "Aim Trainer",
+      "status": "review_required",
+      "payload": {
+        "description": "Step into Aim Trainer, a high-intensity shooter designed from the ground up to sharpen your reflexes and elevate your aim. Whether you're a casual player or a competitive sharpshooter, this fast-paced training ground offers a focused environment where every shot counts. Master precision, improve your reaction time, and dominate the leaderboard as you push your skills to the next level.",
+        "rating": 4.3,
+        "review_count": 7,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "19503516-52b7-4d87-b86d-7487bcc3053c",
+      "meta_id": "product_35505_24411719598451279",
+      "source_name": "Aim True - VR Archery Shooting Game",
+      "parsed_name": "Aim True - VR Archery Shooting Game",
+      "status": "review_required",
+      "payload": {
+        "description": "Step into the world of archery like never before in Aim True. Test your precision, speed, and focus as you shoot targets, break records, and master the bow in a fully immersive VR experience.",
+        "rating": 1,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 7000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 7000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "bbdb8286-d9f2-498a-a00e-d1cdcb754272",
+      "meta_id": "product_35505_5305975889501916",
+      "source_name": "Aimtropolis",
+      "parsed_name": "Aimtropolis",
+      "status": "review_required",
+      "payload": {
+        "description": "Do you think you have a good aim? Prove it. AIMTROPOLIS is a VR arcade/shooter where you will have to prove yourself and the rest of the world in 7 random minigames from the 20 available. Get the highest score, and position yourself as a world champion.\n",
+        "rating": 4.8,
+        "review_count": 16,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 12000,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 12000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ab6bee4e-2800-494d-acd9-0b0846da94c6",
+      "meta_id": "product_35505_4032481123471363",
+      "source_name": "Air Brigade",
+      "parsed_name": "Air Brigade",
+      "status": "review_required",
+      "payload": {
+        "description": "Fast paced arcade jet fighting action! Unlock and fly some of the most fearsome aircraft of the sky.",
+        "rating": 4.1,
+        "review_count": 51,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 6000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 6000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "29563dc4-48cf-48e8-a505-3092590dccbd",
+      "meta_id": "product_35505_8527244200647576",
+      "source_name": "Air Cav",
+      "parsed_name": "Air Cav",
+      "status": "review_required",
+      "payload": {
+        "description": "Lock and load! Prepare for non-stop arcade shooting action in Air Cav! \n\nTake to the gunner seat of an attack helicopter and test your skills against enemy infantry, armored vehicles, and air units!\n\nAir Cav is an arcade virtual reality shooting experience that places players in the role of a helicopter door gunner during intense combat scenarios!",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 5500,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 5500,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "677e7ac0-dd43-42c2-8409-10673da14ec6",
+      "meta_id": "product_35505_7077011055670205",
+      "source_name": "Air Hockey VR",
+      "parsed_name": "Air Hockey VR",
+      "status": "review_required",
+      "payload": {
+        "description": "The ultimate Air Hockey simulator",
+        "rating": 3.2,
+        "review_count": 18,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "스포츠",
+      "official_price": 12000,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 12000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "e24f0ad0-e359-47fb-b298-375a53841738",
+      "meta_id": "product_35505_9062170007183730",
+      "source_name": "AirFight",
+      "parsed_name": "AirFight",
+      "status": "review_required",
+      "payload": {
+        "description": "Airfight – Strike to the Beat, Sweat with Style\nAirfight is an innovative fusion of VR immersion, rhythmic music, and boxing fitness. Players throw punches to the beat, burning calories in an energetic virtual world. A unique 3D trajectory system and scoring feedback enhance precision and interactivity, turning workouts into pure fun. Airfight breaks the boundary between gaming and fitness, creating a new form of immersive, healthy entertainment.",
+        "rating": 3,
+        "review_count": 7,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 21900,
+      "official_currency": "KRW",
+      "current_price": 15.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 21900,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "f5b6bb4c-0a8f-4e80-949c-e89f97366eba",
+      "meta_id": "product_35505_1250382778154657",
+      "source_name": "Airplane Racing : Flight League",
+      "parsed_name": "Airplane Racing : Flight League",
+      "status": "review_required",
+      "payload": {
+        "description": "Take control of a high speed racing aircraft and compete across challenging aerial tracks built for virtual reality. Master sharp turns, alternate routes, timed boosts, and tactical dogfights as you race AI pilots in Championship, Arcade, and Time Trial modes. Win events, climb the local leaderboard, and unlock new aircraft, tracks, and rewards on your journey to become the champion of the Flight League.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "스포츠",
+      "official_price": 12300,
+      "official_currency": "KRW",
+      "current_price": 14.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 12300,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "6b7d4804-c35d-430d-8582-99efd4c2ce3f",
+      "meta_id": "product_35505_5747619538657394",
+      "source_name": "Airport Ground Handling Simulator VR",
+      "parsed_name": "Airport Ground Handling Simulator VR",
+      "status": "review_required",
+      "payload": {
+        "description": "This is an Early Access of a consumer version of the professional VR training software developed by AVIAR and used by the biggest airports and ground handlers to train their ground staff. Your role is a ground crew member and you will perform different tasks during an aircraft turnaround process at the airport.",
+        "rating": 4,
+        "review_count": 72,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "학습",
+      "official_price": 18000,
+      "official_currency": "KRW",
+      "current_price": 14.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 18000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "a8acd3e0-7a84-4a39-a662-ea54b8780c9d",
+      "meta_id": "product_35505_9643971789031426",
+      "source_name": "Airport Idle",
+      "parsed_name": "Airport Idle",
+      "status": "review_required",
+      "payload": {
+        "description": "Airport Idle에서 공항 관리자 역할을 맡아보세요! 터미널을 건설하고 항공 교통을 통제하며, 몰입감 있는 VR 세계에서 항공 일정을 관리하세요. 공항 제국을 성장시키고 새로운 항공기를 잠금 해제하며, 운영을 최적화하여 최대의 수익을 올리세요. 캐주얼 및 타이쿤 게임 팬에게 완벽한 게임!",
+        "rating": 1,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "시뮬레이션",
+      "official_price": 1375,
+      "official_currency": "KRW",
+      "current_price": 3.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 1375,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "7c2b7fd6-1ba6-4aaa-a470-7e5282cb457d",
+      "meta_id": "product_35505_25633351716350829",
+      "source_name": "Airport Security Dog",
+      "parsed_name": "Airport Security Dog",
+      "status": "review_required",
+      "payload": {
+        "description": "This airport has rules. You have instincts. 🐾😈 Become a security dog in a chaotic VR experience—sniff luggage, chase distractions, and try (and fail) to follow the rules. You'll have more than 70 missions to clear with  laugh-out-loud chaos at every turn. ✈️🎒",
+        "rating": 4.7,
+        "review_count": 120,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "샌드박스",
+      "official_price": 20500,
+      "official_currency": "KRW",
+      "current_price": 14.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 20500,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "e8b7072f-16be-41d0-8cb2-75072e9ad06d",
+      "meta_id": "product_35505_26059156970405219",
+      "source_name": "Airport Security Simulator VR",
+      "parsed_name": "Airport Security Simulator VR",
+      "status": "review_required",
+      "payload": {
+        "description": "Step into the role of an airport security officer in VR. Check passports, scan passengers, inspect luggage, monitor health vitals, and decide who is cleared to fly. Spot hidden threats, catch fake identities, and stop dangerous passengers in this intense VR security experience. Every decision matters.",
+        "rating": 1,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "시뮬레이션",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "85abc43e-6c41-4616-98ac-7a27f154fe7e",
+      "meta_id": "product_35505_7523170214434197",
+      "source_name": "Airspace Defender",
+      "parsed_name": "Airspace Defender",
+      "status": "review_required",
+      "payload": {
+        "description": "Airspace Defender is a 3D tabletop arcade game in mixed reality. Manage your city's defenses and thwart enemy attacks with carefully timed retaliatory strikes!",
+        "rating": 4.6,
+        "review_count": 84,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ebf8f958-07e8-4e92-8d0d-f79bf6e3e5c0",
+      "meta_id": "product_35505_7769429289811400",
+      "source_name": "Ajax All Powerful",
+      "parsed_name": "Ajax All Powerful",
+      "status": "review_required",
+      "payload": {
+        "description": "A unique VR comedy from the creators of GARGOYLE DOYLE! Ajax (Henry Winkler) is a foul-mouthed genie addicted to the human souls he collects after tricking gullible masters. But something is different about the little girl who found his lamp this time: she's hired a lawyer (Chris Parnell) to negotiate her wishes.",
+        "rating": 4.9,
+        "review_count": 11,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "내러티브",
+      "official_price": 4400,
+      "official_currency": "KRW",
+      "current_price": 3.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 4400,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "c36796ee-934e-4513-822f-5611ec731e32",
+      "meta_id": "product_35505_979546501613209",
+      "source_name": "Albo & Alba",
+      "parsed_name": "Albo & Alba",
+      "status": "review_required",
+      "payload": {
+        "description": "Guide Albo and Alba through clever cooperative puzzles where every move matters. Navigate obstacles, master timing, and work together to reach the goal across handcrafted VR and mixed reality levels.\n\nEarly Access now available with 10 playable levels, with more puzzles, mechanics, and content coming in future updates.\n",
+        "rating": 4.3,
+        "review_count": 12,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "플랫폼 게임",
+      "official_price": 1480,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 1480,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "395681e5-ab9d-4f7d-91c4-8094eeabd335",
+      "meta_id": "product_35505_26050891131212290",
+      "source_name": "Alien abduction",
+      "parsed_name": "Alien abduction",
+      "status": "review_required",
+      "payload": {
+        "description": "Alien abduction is a game where you have a laser pistol to fight against the aliens who have invaded the Earth, you have to rescue 3 persons of your town that are being abducted on each mission.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 14800,
+      "official_currency": "KRW",
+      "current_price": 9.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 14800,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "f63b2b2e-37bd-4106-949c-30d7a2ae6513",
+      "meta_id": "product_35505_5141207052556425",
+      "source_name": "Alien Extraction",
+      "parsed_name": "Alien Extraction",
+      "status": "review_required",
+      "payload": {
+        "description": "Control an alien infested space station in this lighthearted VR strategy puzzle game. Guide Lenny the janitor through deadly and dangerous levels: sneak, burn, distract, pilot, blast and clean his way to safety. Control drones, check cameras and complete puzzles to solve the station's mysteries.",
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "퍼즐",
+      "official_price": 15600,
+      "official_currency": "KRW",
+      "current_price": 12.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 15600,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "d8328ee0-a42b-4fe2-8bc9-8e024607b97d",
+      "meta_id": "product_35505_3358885150881323",
+      "source_name": "Alien Squatters",
+      "parsed_name": "Alien Squatters",
+      "status": "review_required",
+      "payload": {
+        "description": "The aliens have landed! And they've taken over our houses, buildings, and monuments.\nWell, if we can't have 'em, neither can they!\nUse your trusty rocket launcher to destroy the buildings they're squatting in.\nWhen they try and fly away in their UFOs, blow them out of the sky!",
+        "rating": 3,
+        "review_count": 1,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": 6000,
+      "official_currency": "KRW",
+      "current_price": 4.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 6000,
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "58e906e4-e221-4c76-b012-866a196c219f",
+      "meta_id": "product_35505_24882487241367228",
+      "source_name": "Alien: Rogue Incursion",
+      "parsed_name": "Alien: Rogue Incursion",
+      "status": "review_required",
+      "payload": {
+        "description": "에이리언: 로그 인커전은 완전히 새로운 액션 호러 VR 게임으로, 전직 식민지 해병대원 Zula Hendricks가 되어 위험 천만한 임무를 맡고 미지의 행성 퍼단으로 떠납니다. 혁신적인 실제 모션을 활용한 게임플레이와 전신 장비, 지금까지 본 가장 교활한 제노모프를 만나보세요.",
+        "rating": 4,
+        "review_count": 757,
+        "supports_quest_2": false,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "슈팅 게임",
+      "official_price": null,
+      "official_currency": null,
+      "current_price": 39.99,
+      "current_currency": "USD",
+      "price_field": null,
+      "stored_official_price": null,
+      "price_changed": false,
+      "price_change": null
+    },
+    {
+      "id": "c3377cff-74f2-488d-81a2-c57366f2852c",
+      "meta_id": "product_35505_4947080252001461",
+      "source_name": "Aliens Love Beefs",
+      "parsed_name": "Aliens Love Beefs",
+      "status": "review_required",
+      "payload": {
+        "description": "Aliens are hungry and they would LOVE to bite some tasty Beef.\n\nAbduct the Beefs on each planet, while avoiding missiles, explosions and lasers. Indie Virtual Reality game using cool spherical gravity game mechanics.\n\nCurrent episodes (6 levels on each):\n- Episode 1 - Beef Regular\n- Episode 2 - Beef Evolution (S/M/L/XL)\n- Episode 3 - Beef in Chili Sauce\n- Episode 4 - Beef BBQ\n\nLeaderboards! (per episode + total score)\n\nBlob Lab is a small single person indie game studio. Please support my work!",
+        "rating": 3,
+        "review_count": 2,
+        "supports_quest_2": true,
+        "supports_quest_3": true,
+        "supports_quest_3s": true
+      },
+      "genre": "아케이드",
+      "official_price": 8800,
+      "official_currency": "KRW",
+      "current_price": 7.99,
+      "current_currency": "USD",
+      "price_field": "krw_price",
+      "stored_official_price": null,
+      "price_changed": true,
+      "price_change": {
+        "field": "krw_price",
+        "from": null,
+        "to": 8800,
+        "currency": "KRW"
+      }
+    }
+  ]
+}

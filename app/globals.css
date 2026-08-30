@@ -383,7 +383,13 @@ button, input, select, textarea { font: inherit; }
   background: transparent;
 }
 .horizon-section .section { padding-top: 32px; padding-bottom: 52px; }
-.horizon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.horizon-grid {
+  width: 74%;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
 .horizon-grid a {
   position: relative;
   isolation: isolate;
@@ -435,14 +441,14 @@ button, input, select, textarea { font: inherit; }
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 12px;
   width: 100%;
-  padding: 0 18px;
+  padding: 0 12px;
 }
 .monthly-game-names b {
   overflow: hidden;
   color: #fff;
-  font-size: 21px;
+  font-size: 16px;
   font-weight: 900;
   line-height: 1.35;
   text-overflow: ellipsis;
@@ -724,6 +730,7 @@ button, input, select, textarea { font: inherit; }
   .detail-info { width: min(100%, 620px); justify-self: center; }
   .detail-buy { width: 100%; }
   .horizon-grid {
+    width: auto;
     grid-template-columns: repeat(3, minmax(310px, 84vw));
     gap: 12px;
     margin-inline: -12px;

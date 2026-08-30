@@ -266,6 +266,41 @@ export default async function Home() {
   </div>
 </section>
 
+      <section className="horizon-section">
+        <div className="container section">
+          <SectionHeader
+            eyebrow="HORIZON+"
+            title="이번 달 호라이즌 플러스(Horizon+) 구독 게임목록"
+            description="매월 바뀌는 세 종류의 구독 게임을 각각 관리합니다."
+            href="/horizon-plus"
+          />
+          <div className="horizon-grid">
+            <HorizonTile
+              href="/horizon-plus#monthly"
+              number="01"
+              title="월간 게임 2종"
+              description="이번 달 별도 제공되는 두 게임"
+              games={monthlyHorizon}
+              monthly
+            />
+            <HorizonTile
+              href="/horizon-plus#catalog"
+              number="02"
+              title="Horizon 카탈로그"
+              description="메인 구독 카탈로그 추가·제외 게임"
+              games={horizonCatalog}
+            />
+            <HorizonTile
+              href="/horizon-plus#indie"
+              number="03"
+              title="인디 카탈로그"
+              description="인디 중심의 별도 게임 카탈로그"
+              games={indieCatalog}
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="container section">
         <SectionHeader
           eyebrow="NEW RELEASES"
@@ -334,41 +369,6 @@ export default async function Home() {
             <Link href="/games">전체 게임 보기 →</Link>
           </div>
         )}
-      </section>
-
-      <section className="horizon-section">
-        <div className="container section">
-          <SectionHeader
-            eyebrow="HORIZON+"
-            title="이번 달 호라이즌 플러스(Horizon+) 구독 게임목록"
-            description="매월 바뀌는 세 종류의 구독 게임을 각각 관리합니다."
-            href="/horizon-plus"
-          />
-          <div className="horizon-grid">
-            <HorizonTile
-              href="/horizon-plus#monthly"
-              number="01"
-              title="월간 게임 2종"
-              description="이번 달 별도 제공되는 두 게임"
-              games={monthlyHorizon}
-              monthly
-            />
-            <HorizonTile
-              href="/horizon-plus#catalog"
-              number="02"
-              title="Horizon 카탈로그"
-              description="메인 구독 카탈로그 추가·제외 게임"
-              games={horizonCatalog}
-            />
-            <HorizonTile
-              href="/horizon-plus#indie"
-              number="03"
-              title="인디 카탈로그"
-              description="인디 중심의 별도 게임 카탈로그"
-              games={indieCatalog}
-            />
-          </div>
-        </div>
       </section>
 
       <section className="container section">

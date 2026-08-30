@@ -584,6 +584,7 @@ button, input, select, textarea { font: inherit; }
   color: #e9f2ff;
   font-size: 13px;
   font-weight: 800;
+  cursor: pointer;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
   transition: border-color .18s ease, filter .18s ease, transform .18s ease;
 }

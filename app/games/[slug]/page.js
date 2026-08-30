@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import BackButton from "@/components/BackButton";
 import { discountedPriceLabel, effectiveAffiliateDiscount, formatGamePrice, isFreeGame } from "@/lib/game-format";
 import { gameImageUrl, getGameBySlug, getGameGenres, getGameVideos } from "@/lib/supabase";
 
@@ -57,7 +57,7 @@ export default async function GameDetailPage({ params }) {
 
   return (
     <main className="container detail-page">
-      <Link href="/games" className="back-link"><span aria-hidden="true">←</span> 뒤로가기</Link>
+      <BackButton />
 
       <section className="detail-hero">
         <div className="detail-image">

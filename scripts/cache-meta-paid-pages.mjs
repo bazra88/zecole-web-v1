@@ -21,7 +21,8 @@ const workers = Array.from({ length: Math.min(1, queue.length) }, async () => {
     const game = queue.shift();
     const id = metaId(game);
     const htmlPath = resolve(cacheDir, `${id}.html`);
-    if (game.source_status === "official_meta_paid_reviewed") {
+    const detailMetadataComplete = Boolean(game.release_date && (game.developer || game.publisher) && game.supports_korean != null);
+    if (game.source_status === "official_meta_paid_reviewed" && detailMetadataComplete) {
       manifest.push({ game_id: game.id, meta_id: id, name: game.name, status: "already_reviewed" });
       continue;
     }

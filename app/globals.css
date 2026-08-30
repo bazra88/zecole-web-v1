@@ -384,11 +384,9 @@ button, input, select, textarea { font: inherit; }
 }
 .horizon-section .section { padding-top: 32px; padding-bottom: 52px; }
 .horizon-grid {
-  width: 74%;
-  margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 .horizon-grid a {
   position: relative;
@@ -396,7 +394,7 @@ button, input, select, textarea { font: inherit; }
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  min-height: 240px;
+  min-height: 340px;
   border: 1px solid #29436d;
   border-radius: 16px;
   background: linear-gradient(145deg, #15274a, #101d35);
@@ -441,14 +439,14 @@ button, input, select, textarea { font: inherit; }
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 18px;
   width: 100%;
-  padding: 0 12px;
+  padding: 0 18px;
 }
 .monthly-game-names b {
   overflow: hidden;
   color: #fff;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 900;
   line-height: 1.35;
   text-overflow: ellipsis;
@@ -730,7 +728,6 @@ button, input, select, textarea { font: inherit; }
   .detail-info { width: min(100%, 620px); justify-self: center; }
   .detail-buy { width: 100%; }
   .horizon-grid {
-    width: auto;
     grid-template-columns: repeat(3, minmax(310px, 84vw));
     gap: 12px;
     margin-inline: -12px;

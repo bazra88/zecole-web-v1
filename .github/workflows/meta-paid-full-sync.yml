@@ -10,7 +10,7 @@ on:
       start_offset:
         description: Resume offset (completed games are skipped automatically)
         required: true
-        default: '300'
+        default: '2900'
         type: string
 
 permissions:

@@ -25,6 +25,7 @@ const genreSlugs = {
   "슈팅 게임": "shooting", "스포츠": "sports", "시뮬레이션": "simulation", "아케이드": "arcade", "액션": "action",
   "어드벤처": "adventure", "여행/탐험": "travel-exploration", "전략": "strategy", "테이블탑": "tabletop", "퍼즐": "puzzle",
   "플랫폼 게임": "platform", "피트니스/웰빙": "fitness-wellness", "학습": "education",
+  "파티 게임": "party", "창의성": "creativity", "롤플레잉": "role-playing",
 };
 const unknownGenres = [...new Set(rows.map((row) => row.genre).filter((genre) => genre && !genreSlugs[genre]))];
 const report = { generated_at: new Date().toISOString(), mode: apply ? "apply" : "dry_run", candidates: rows.length, unknown_genres: unknownGenres, updated: 0, genre_links: 0, failed: [], status: "pending" };
@@ -84,4 +85,3 @@ report.status = report.updated === rows.length && !report.failed.length ? "compl
 await writeFile(resolve(dataDir, "sync-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
 console.log(`유료게임 동기화: ${report.updated}/${rows.length}, 장르 연결 ${report.genre_links}, 실패 ${report.failed.length}`);
 if (report.status !== "complete") process.exitCode = 1;
-

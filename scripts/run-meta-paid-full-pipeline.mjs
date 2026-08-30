@@ -40,11 +40,12 @@ try {
     const syncArgs = apply ? ["--apply", "--confirm=SYNC_PAID_BATCH"] : [];
     await run("sync-meta-paid-pages.mjs", syncArgs);
     const parsed = JSON.parse(await readFile(resolve(dataDir, "parsed.json"), "utf8"));
+    const batchDiff = JSON.parse(await readFile(resolve(dataDir, "diff-report.json"), "utf8"));
     const sync = JSON.parse(await readFile(resolve(dataDir, "sync-report.json"), "utf8"));
     report.completed_batches += 1;
     report.processed += parsed.count;
     report.updated += sync.updated;
-    report.batches.push({ offset, count: parsed.count, parsed: parsed.parsed, missing: parsed.missing, updated: sync.updated, genre_links: sync.genre_links, unknown_genres: sync.unknown_genres, status: sync.status });
+    report.batches.push({ offset, count: parsed.count, parsed: parsed.parsed, missing: parsed.missing, blocked: batchDiff.blocked, updated: sync.updated, genre_links: sync.genre_links, unknown_genres: sync.unknown_genres, status: sync.status });
     await save();
   }
   report.status = "complete";

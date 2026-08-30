@@ -8,9 +8,9 @@ on:
         required: true
         type: string
       start_offset:
-        description: Resume offset (200 games are already complete)
+        description: Resume offset (300 games are already complete)
         required: true
-        default: '200'
+        default: '300'
         type: string
 
 permissions:

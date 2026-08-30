@@ -37,5 +37,4 @@ manifest.sort((a, b) => a.name.localeCompare(b.name));
 await writeFile(resolve(cacheDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
 const failed = manifest.filter((row) => !["fetched", "cached"].includes(row.status));
 console.log(`유료게임 Meta HTML: 성공 ${manifest.length - failed.length}/${manifest.length}, 실패 ${failed.length}`);
-if (failed.length) process.exitCode = 1;
-
+if (failed.length) console.log("수집 실패 게임은 이번 동기화에서 보류하고 다음 배치를 계속합니다.");

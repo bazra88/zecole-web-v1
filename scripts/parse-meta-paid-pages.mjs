@@ -44,5 +44,4 @@ const missing = rows.filter((row) => row.parse_status !== "parsed");
 const report = { generated_at: new Date().toISOString(), offset: candidates.offset, count: rows.length, parsed: rows.length - missing.length, missing: missing.length, games: rows };
 await writeFile(resolve(dataDir, "parsed.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
 console.log(`유료게임 세부 파싱: ${report.parsed}/${report.count}, 실패 ${report.missing}`);
-if (missing.length) process.exitCode = 1;
-
+if (missing.length) console.log("파싱 누락 게임은 이번 동기화에서 보류하고 다음 배치를 계속합니다.");

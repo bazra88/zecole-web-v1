@@ -381,9 +381,8 @@ button, input, select, textarea { font: inherit; }
 
 .horizon-section {
   background: transparent;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
 }
+.horizon-section .section { padding-top: 32px; padding-bottom: 52px; }
 .horizon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .horizon-grid a {
   position: relative;
@@ -391,7 +390,7 @@ button, input, select, textarea { font: inherit; }
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  min-height: 340px;
+  min-height: 240px;
   border: 1px solid #29436d;
   border-radius: 16px;
   background: linear-gradient(145deg, #15274a, #101d35);

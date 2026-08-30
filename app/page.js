@@ -270,7 +270,7 @@ export default async function Home() {
         <div className="container section">
           <SectionHeader
             eyebrow="HORIZON+"
-            title="이번 달 호라이즌 플러스(Horizon+) 구독 게임목록"
+            title="호라이즌 플러스(Horizon+) 구독 게임목록"
             description="매월 바뀌는 세 종류의 구독 게임을 각각 관리합니다."
             href="/horizon-plus"
           />

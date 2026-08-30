@@ -22,6 +22,9 @@ const rows = parsed.games.map((game) => {
   if (game.developer) payload.developer = game.developer;
   if (game.publisher) payload.publisher = game.publisher;
   if (game.supports_korean != null) payload.supports_korean = game.supports_korean;
+  payload.meta_store_original_price = game.meta_store_original_price;
+  payload.meta_store_offer_ends_at = game.meta_store_offer_ends_at;
+  payload.meta_store_show_timer = game.meta_store_show_timer;
   payload.supports_quest_2 = supports(game.supported_devices, "quest 2");
   payload.supports_quest_3 = supports(game.supported_devices, "quest 3");
   payload.supports_quest_3s = supports(game.supported_devices, "quest 3s");

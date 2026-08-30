@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SaleCountdown from "@/components/SaleCountdown";
 import { gameImageUrl } from "@/lib/supabase";
 import {
   discountedPriceLabel,
@@ -31,6 +32,7 @@ export default function GameCard({ game }) {
       .map((link) => link.genres?.name)
       .filter(Boolean)
   )];
+  const timedStoreOffer = game.meta_store_show_timer && game.meta_store_offer_ends_at;
   const titleLength = [...game.name].length;
   const titleSizeClass = titleLength > 38
     ? " game-title-extra-compact"
@@ -105,9 +107,15 @@ export default function GameCard({ game }) {
           ) : null}
         </div>
 
-        <p className={`region-note${price.regional ? "" : " is-empty"}`} aria-hidden={!price.regional}>
-          {price.regional ? "한국 스토어 미판매 · 환산 가격 참고" : "가격 지역 안내 없음"}
-        </p>
+        <div className={`region-note${timedStoreOffer || price.regional ? "" : " is-empty"}`} aria-hidden={!timedStoreOffer && !price.regional}>
+          {timedStoreOffer ? (
+            <SaleCountdown endsAt={game.meta_store_offer_ends_at} />
+          ) : price.regional ? (
+            "한국 스토어 미판매 · 환산 가격 참고"
+          ) : (
+            "가격 지역 안내 없음"
+          )}
+        </div>
 
       </div>
     </article>

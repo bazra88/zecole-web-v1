@@ -56,6 +56,20 @@ function relayPrice(app) {
   const amount = Number(price?.offset_amount);
   return Number.isFinite(amount) ? amount / 100 : null;
 }
+function relayMoney(value) {
+  const amount = Number(value?.offset_amount);
+  return Number.isFinite(amount) ? amount / 100 : null;
+}
+function normalizedOfferEnd(value) {
+  if (!value) return null;
+  const numeric = Number(value);
+  const milliseconds = Number.isFinite(numeric)
+    ? numeric * (numeric > 10_000_000_000 ? 1 : 1000)
+    : Date.parse(value);
+  return Number.isFinite(milliseconds) && milliseconds > Date.now()
+    ? new Date(milliseconds).toISOString()
+    : null;
+}
 function normalizedReleaseDate(value) {
   if (!value) return null;
   const text = String(value).trim();
@@ -68,13 +82,13 @@ const rows = [];
 for (const game of candidates.games) {
   const id = String(game.meta_product_id || game.meta_store_url?.match(/\b\d{10,}\b/)?.[0] || "");
   const html = files.has(`${id}.html`) ? await readFile(resolve(cacheDir, `${id}.html`), "utf8") : "";
-  const detailMetadataComplete = Boolean(game.release_date && (game.developer || game.publisher) && game.supports_korean != null);
-  const alreadyReviewed = game.source_status === "official_meta_paid_reviewed" && detailMetadataComplete;
-  const app = !alreadyReviewed && html && ldApp(html);
+  const app = html && ldApp(html);
   const relayId = id.match(/\d{10,}$/)?.[0] || id;
-  const relay = !alreadyReviewed && html ? relayApp(html, relayId) : null;
+  const relay = html ? relayApp(html, relayId) : null;
   const aggregate = app?.aggregateRating || {};
   const offer = first(app?.offers) || {};
+  const storeOffer = relay?.current_offer || {};
+  const storeOfferEnd = storeOffer.show_timer ? normalizedOfferEnd(storeOffer.end_time) : null;
   const author = first(app?.author);
   const publisher = first(app?.publisher);
   const supportedLanguages = Array.isArray(relay?.supported_in_app_languages)
@@ -92,6 +106,9 @@ for (const game of candidates.games) {
     thumbnail_url: imageUrl(app?.image || app?.thumbnailUrl) || relayImage(relay),
     price: app ? (offer.price == null ? null : Number(offer.price)) : relayPrice(relay),
     currency: offer.priceCurrency || relay?.current_offer?.price?.currency || null,
+    meta_store_original_price: relayMoney(storeOffer.strikethrough_price),
+    meta_store_offer_ends_at: storeOfferEnd,
+    meta_store_show_timer: Boolean(storeOffer.show_timer && storeOfferEnd),
     availability: offer.availability || null,
     release_date: normalizedReleaseDate(app?.datePublished || app?.releaseDate || relay?.release_info?.display_date),
     developer: typeof author === "string" ? author : author?.name || relay?.developer_name || null,
@@ -101,10 +118,10 @@ for (const game of candidates.games) {
       ? supportedLanguages.some((language) => ["한국어", "korean"].includes(String(language).trim().toLowerCase()))
       : null,
     supported_player_modes: Array.isArray(relay?.supported_player_modes) ? relay.supported_player_modes : [],
-    parse_status: alreadyReviewed ? "already_reviewed" : parsed ? (relay ? "parsed_relay_json" : "parsed") : "missing_meta_data",
+    parse_status: parsed ? (relay ? "parsed_relay_json" : "parsed") : "missing_meta_data",
   });
 }
-const skipped = rows.filter((row) => row.parse_status === "already_reviewed");
+const skipped = [];
 const missing = rows.filter((row) => row.parse_status === "missing_meta_data");
 const parsed = rows.filter((row) => ["parsed", "parsed_relay_json"].includes(row.parse_status));
 const report = { generated_at: new Date().toISOString(), offset: candidates.offset, count: rows.length, parsed: parsed.length, skipped: skipped.length, missing: missing.length, games: rows };

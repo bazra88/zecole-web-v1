@@ -7,6 +7,9 @@ node_modules
 .vercel-cli-state
 .npm-cache
 .meta-cache
+.tools/
+.next-dev.log
+.next-dev-error.log
 data/horizon-plus/*.json
 data/meta-recent/*.json
 

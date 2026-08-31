@@ -2171,6 +2171,7 @@ main:has(.horizon-section) { display: flex; flex-direction: column; }
 main:has(.horizon-section) > section { order: 1; }
 main:has(.horizon-section) > .horizon-section { order: 4; }
 main:has(.horizon-section) > .home-free-section { order: 3; }
-main:has(.horizon-section) > .home-recommend-section { order: 5; }
-main:has(.horizon-section) > .business-band { order: 6; }
+main:has(.horizon-section) > .latest-content-section { order: 5; }
+main:has(.horizon-section) > .home-recommend-section { order: 6; }
+main:has(.horizon-section) > .business-band { order: 7; }
 .game-card-prices span, .game-card-prices strong { font-size: inherit; }

@@ -418,7 +418,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="container section">
+      <section className="container section latest-content-section">
         <SectionHeader
           eyebrow="LATEST CONTENT"
           title="VR 뉴스 · 입문 가이드 · 영상"

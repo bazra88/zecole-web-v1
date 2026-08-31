@@ -95,7 +95,7 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
             <div className="game-card-prices">
               <span>{price.primary}</span>
               <strong>{discountedPrice}</strong>
-              {affiliateDiscount > 0 ? <em className="game-discount-savings">-{affiliateDiscount}%</em> : null}
+              {affiliateDiscount > 0 ? <em className="game-discount-savings">-{affiliateDiscount}% 할인</em> : null}
             </div>
           ) : (
             <div>

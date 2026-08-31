@@ -19,8 +19,8 @@ export default function RootLayout({ children }) {
         <footer className="footer">
           <div className="container footer-grid">
             <div>
-              <strong className="footer-logo">ZECOLE</strong>
-              <p>한국어 VR 정보 · 게임 · 구매 허브</p>
+              <strong className="footer-logo">ZECOLE STORE</strong>
+              <p>메타 공식제휴 10% 할인 · 게임 정보 · 업계 동향</p>
             </div>
             <div className="footer-links">
               <a href="/games">VR 게임</a>
@@ -29,8 +29,8 @@ export default function RootLayout({ children }) {
               <a href="/business">비즈니스 문의</a>
             </div>
             <div className="affiliate-copy">
-              일부 링크는 제휴 링크이며, 구매 시 ZECOLE이 수수료를 받을 수
-              있습니다.
+              제휴링크를 통해 구매시 수익금의 일부가 후원됩니다. 후원금은
+              전액 메타에서 부담합니다.
             </div>
           </div>
         </footer>

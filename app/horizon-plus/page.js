@@ -47,7 +47,8 @@ function Category({ id, title, description, rows, usdKrwRate }) {
 }
 
 function rowKey(row) {
-  return row.game_id ? `id:${row.game_id}` : `name:${String(row.external_game_name || "").trim().toLowerCase()}`;
+  const identity = row.game_id ? `id:${row.game_id}` : `name:${String(row.external_game_name || "").trim().toLowerCase()}`;
+  return `${row.category}:${identity}`;
 }
 
 function compareSnapshots(rows) {

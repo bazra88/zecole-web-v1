@@ -1,4 +1,5 @@
 node_modules
+.playwright
 .next
 .env.local
 .DS_Store

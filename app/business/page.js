@@ -1,29 +1,37 @@
+"use client";
+
 import SectionHeader from "@/components/SectionHeader";
 
 export default function BusinessPage() {
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const subject = formData.get("subject") || "사이트 문의";
+    const body = [
+      `성함 / 닉네임: ${formData.get("name") || ""}`,
+      `이메일: ${formData.get("email") || ""}`,
+      `문의 유형: ${formData.get("type") || ""}`,
+      "",
+      formData.get("message") || "",
+    ].join("\n");
+
+    window.location.href = `mailto:zecole.official@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
   return (
     <main className="container page narrow">
       <SectionHeader
         eyebrow="BUSINESS INQUIRY"
-        title="비즈니스 문의"
-        description="광고, 스폰서십, 게임/제품 리뷰, 협업, 행사 및 취재 제안을 받습니다."
+        title="비즈니스 및 사이트 문의"
+        description="사이트에 요청하실 부분이나, 비즈니스 관련 문의 모두 환영합니다."
       />
 
-      <div className="business-tags">
-        <span>광고 / 스폰서십</span>
-        <span>게임 리뷰</span>
-        <span>제품 리뷰</span>
-        <span>협업 / 제휴</span>
-        <span>행사 / 취재</span>
-      </div>
-
-      <div className="business-form">
-        <label>회사 / 브랜드<input placeholder="회사명 또는 브랜드명" /></label>
-        <label>담당자명<input placeholder="담당자명" /></label>
-        <label>이메일<input type="email" placeholder="contact@example.com" /></label>
+      <form className="business-form" onSubmit={handleSubmit}>
+        <label>성함 / 닉네임<input name="name" placeholder="성함 또는 닉네임" required /></label>
+        <label>이메일<input name="email" type="email" placeholder="contact@example.com" required /></label>
         <label>
           문의 유형
-          <select defaultValue="">
+          <select name="type" defaultValue="" required>
             <option value="" disabled>선택해주세요</option>
             <option>광고 / 스폰서십</option>
             <option>게임 리뷰</option>
@@ -33,15 +41,10 @@ export default function BusinessPage() {
             <option>기타</option>
           </select>
         </label>
-        <label>제목<input placeholder="문의 제목" /></label>
-        <label>내용<textarea rows="8" placeholder="제안 내용을 자세히 적어주세요." /></label>
-        <label>관련 링크<input placeholder="제품 페이지, 보도자료, 영상 등" /></label>
-        <button type="button" className="primary-button">문의 보내기</button>
-        <p className="form-note">
-          새 프론트 v1에서는 UI만 구성했습니다. 실제 저장은 스팸 방지와
-          개인정보 처리 문구를 정한 후 안전하게 연결합니다.
-        </p>
-      </div>
+        <label>제목<input name="subject" placeholder="문의 제목" required /></label>
+        <label>내용<textarea name="message" rows="8" placeholder="문의 내용을 자세히 적어주세요." required /></label>
+        <button type="submit" className="primary-button">문의 보내기</button>
+      </form>
     </main>
   );
 }

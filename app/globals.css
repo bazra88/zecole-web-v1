@@ -2102,7 +2102,7 @@ button, input, select, textarea { font: inherit; }
 .admin-section-title { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
 .admin-section-title h2 { margin-bottom: 5px; }
 .admin-section-title > strong { color: #8eb7ff; }
-.admin-filter { display: grid; grid-template-columns: 1fr 150px 190px auto; gap: 9px; margin: 22px 0 16px; }
+.admin-filter { display: grid; grid-template-columns: 1fr 140px 165px 190px auto; gap: 9px; margin: 22px 0 16px; }
 .admin-game-list { display: grid; gap: 8px; }
 .admin-game-row { display: grid; grid-template-columns: 74px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 10px; border: 1px solid #243a5b; border-radius: 13px; background: rgba(7,18,35,.72); }
 .admin-game-row.is-hidden { opacity: .62; }

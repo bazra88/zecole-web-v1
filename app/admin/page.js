@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 const PAGE_SIZE = 50;
 
-async function loadGames(query, visibility, sort, page) {
+async function loadGames(query, visibility, affiliate, sort, page) {
   const from = (page - 1) * PAGE_SIZE;
   const params = new URLSearchParams({
     select: "id,name,slug,affiliate_url,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,admin_new_release_pinned,created_at",
@@ -21,13 +21,16 @@ async function loadGames(query, visibility, sort, page) {
   if (query) params.set("name", `ilike.*${query.replaceAll("*", "")}*`);
   if (visibility === "hidden") params.set("admin_hidden", "eq.true");
   if (visibility === "visible") params.set("admin_hidden", "eq.false");
+  if (affiliate === "missing") params.set("affiliate_url", "is.null");
+  if (affiliate === "present") params.set("affiliate_url", "not.is.null");
   return adminRestPage(`games?${params.toString()}`);
 }
 
-function adminPageHref({ query, visibility, sort, page }) {
+function adminPageHref({ query, visibility, affiliate, sort, page }) {
   const params = new URLSearchParams();
   if (query) params.set("q", query);
   if (visibility !== "all") params.set("visibility", visibility);
+  if (affiliate !== "all") params.set("affiliate", affiliate);
   if (sort !== "newest") params.set("sort", sort);
   if (page > 1) params.set("page", String(page));
   const search = params.toString();
@@ -65,15 +68,16 @@ export default async function AdminPage({ searchParams }) {
   const params = await searchParams;
   const query = String(params?.q || "").trim();
   const visibility = ["all", "visible", "hidden"].includes(params?.visibility) ? params.visibility : "all";
+  const affiliate = ["all", "missing", "present"].includes(params?.affiliate) ? params.affiliate : "all";
   const sort = ["newest", "oldest"].includes(params?.sort) ? params.sort : "newest";
   const requestedPage = Math.max(1, Number.parseInt(String(params?.page || "1"), 10) || 1);
-  const initialResult = await loadGames(query, visibility, sort, requestedPage);
+  const initialResult = await loadGames(query, visibility, affiliate, sort, requestedPage);
   const totalPages = Math.max(1, Math.ceil(initialResult.total / PAGE_SIZE));
   const currentPage = Math.min(requestedPage, totalPages);
   const { data: games, total } = currentPage === requestedPage
     ? initialResult
-    : await loadGames(query, visibility, sort, currentPage);
-  const hrefForPage = (page) => adminPageHref({ query, visibility, sort, page });
+    : await loadGames(query, visibility, affiliate, sort, currentPage);
+  const hrefForPage = (page) => adminPageHref({ query, visibility, affiliate, sort, page });
   return (
     <main className="admin-shell">
       <header className="admin-header">
@@ -92,6 +96,9 @@ export default async function AdminPage({ searchParams }) {
           <input name="q" defaultValue={query} placeholder="게임 이름 검색" />
           <select name="visibility" defaultValue={visibility}>
             <option value="all">전체 상태</option><option value="visible">노출 중</option><option value="hidden">숨김</option>
+          </select>
+          <select name="affiliate" defaultValue={affiliate}>
+            <option value="all">전체 제휴 링크</option><option value="missing">제휴 링크 없음</option><option value="present">제휴 링크 있음</option>
           </select>
           <select name="sort" defaultValue={sort}>
             <option value="newest">최근 추가된 순</option><option value="oldest">오래전에 추가된 순</option>

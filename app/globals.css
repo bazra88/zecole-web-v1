@@ -2138,7 +2138,7 @@ button, input, select, textarea { font: inherit; }
 .admin-game-main > span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
 .admin-game-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
 .admin-game-title-row > strong { min-width: 80px; max-width: 100%; }
-.admin-game-stat { flex: 0 0 auto; padding: 2px 6px; border: 1px solid #304868; border-radius: 999px; background: rgba(20,39,67,.65); color: #c9d9ee; font-size: 9px; font-weight: 800; }
+.admin-game-stat { flex: 0 0 auto; padding: 2px 6px; border: 1px solid #304868; border-radius: 999px; background: rgba(20,39,67,.65); color: #c9d9ee; font-size: 9px; font-weight: 400; }
 .admin-game-stat.price { color: #dbeafe; }
 .admin-game-stat.rating { color: #fde68a; }
 .admin-game-stat.reviews { color: #bfdbfe; }

@@ -13,7 +13,9 @@ const SOURCES = {
   horizon_catalog: "https://www.meta.com/ko-kr/experiences/section/746836817401205/",
   indie_catalog: "https://www.meta.com/ko-kr/experiences/section/3170833353093973/",
 };
-const MINIMUMS = { monthly_games: 2, horizon_catalog: 35, indie_catalog: 35 };
+// The indie catalog is currently smaller than the main catalog; keep a guard
+// against truncated responses without rejecting the legitimate ~25-30 item list.
+const MINIMUMS = { monthly_games: 2, horizon_catalog: 35, indie_catalog: 20 };
 
 const parseEnv = (source) => Object.fromEntries(source.split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#") && line.includes("=")).map((line) => {
   const index = line.indexOf("=");

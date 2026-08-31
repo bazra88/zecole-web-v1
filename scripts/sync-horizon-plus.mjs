@@ -111,6 +111,15 @@ async function rest(path, options = {}) {
   return response.status === 204 ? null : response.json();
 }
 
+async function restAll(path, pageSize = 1000) {
+  const rows = [];
+  for (let start = 0; ; start += pageSize) {
+    const page = await rest(path, { headers: { Range: `${start}-${start + pageSize - 1}` } });
+    rows.push(...(page || []));
+    if (!page || page.length < pageSize) return rows;
+  }
+}
+
 await mkdir(reportDir, { recursive: true });
 const month = pacificMonth();
 const collected = {};
@@ -131,7 +140,7 @@ if (invalid.length) {
   throw new Error(`불완전한 Meta 응답: ${invalid.map(([category]) => `${category}=${counts[category]}`).join(", ")}`);
 }
 
-const games = await rest("games?select=id,name,slug,meta_product_id,meta_store_url&limit=10000");
+const games = await restAll("games?select=id,name,slug,meta_product_id,meta_store_url&order=id.asc");
 const byMetaId = new Map();
 const byName = new Map();
 for (const game of games || []) {

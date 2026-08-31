@@ -36,13 +36,23 @@ function AffiliateEditor({ game }) {
   );
 }
 
+function RefreshDetails({ game }) {
+  const [state, action, pending] = useActionState(importGameAction, null);
+  return <form action={action} className="admin-refresh-form">
+    <input type="hidden" name="meta_store_url" value={game.meta_store_url} />
+    <button className="admin-refresh" type="submit" disabled={pending}>{pending ? "갱신 중…" : "세부정보 갱신"}</button>
+    {state?.error ? <span className="admin-refresh-message error">{state.error}</span> : null}
+    {state?.success ? <span className="admin-refresh-message success">갱신 완료</span> : null}
+  </form>;
+}
+
 export default function AdminGameControls({ game }) {
   const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   return (
     <div className="admin-game-controls">
       <AffiliateEditor game={game} />
-      {game.meta_store_url ? <form action={importGameAction}><input type="hidden" name="meta_store_url" value={game.meta_store_url} /><button className="admin-refresh" type="submit">세부정보 갱신</button></form> : null}
+      {game.meta_store_url ? <RefreshDetails game={game} /> : null}
 
       <form action={setGameNewReleasePinnedAction}>
         <input type="hidden" name="id" value={game.id} />

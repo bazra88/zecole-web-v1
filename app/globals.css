@@ -2098,6 +2098,12 @@ button, input, select, textarea { font: inherit; }
 .admin-home-link { margin-left: auto; display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border: 1px solid #36557f; border-radius: 9px; background: #0d1d35; color: #c1d7ff; font-size: 13px; font-weight: 750; text-decoration: none; white-space: nowrap; }
 .admin-home-link:hover { border-color: #6296ee; background: #142b4d; }
 .admin-header > form { margin-left: 10px; }
+.admin-refresh-form { display: inline-flex; align-items: center; gap: 6px; }
+.admin-refresh { border: 1px solid #36557f; border-radius: 7px; background: #132846; color: #c1d7ff; padding: 7px 9px; font-size: 11px; cursor: pointer; }
+.admin-refresh:disabled { opacity: .6; cursor: wait; }
+.admin-refresh-message { font-size: 10px; white-space: nowrap; }
+.admin-refresh-message.error { color: #ff8fa3; }
+.admin-refresh-message.success { color: #75e0ac; }
 .admin-secondary, .admin-danger, .admin-restore, .admin-pin, .admin-pinned, .admin-delete-trigger, .admin-delete, .admin-cancel, .admin-affiliate-add, .admin-affiliate-edit, .admin-affiliate-save { min-height: 38px; padding: 0 12px; border-radius: 9px; font-size: 11px; font-weight: 800; cursor: pointer; }
 .admin-secondary { border: 1px solid #38557f; background: #0e203c; color: #dce9ff; }
 .admin-panel { padding: 28px; margin-bottom: 24px; }

@@ -60,7 +60,10 @@ function compareSnapshots(rows) {
   const previousKeys = new Set(previous.map(rowKey));
   const currentKeys = new Set(current.map(rowKey));
   const categories = ["monthly_games", "horizon_catalog", "indie_catalog"];
-  const active = Object.fromEntries(categories.map((category) => [category, current.filter((row) => row.category === category).map((row) => ({ ...row, status: previousMonth && !previousKeys.has(rowKey(row)) ? "added" : null }))]));
+  const active = Object.fromEntries(categories.map((category) => [category, current
+    .filter((row) => row.category === category)
+    .map((row) => ({ ...row, status: previousMonth && !previousKeys.has(rowKey(row)) ? "added" : null }))
+    .sort((left, right) => Number(right.status === "added") - Number(left.status === "added"))]));
   const removed = Object.fromEntries(categories.map((category) => [category, previous.filter((row) => row.category === category && !currentKeys.has(rowKey(row))).map((row) => ({ ...row, status: "removed" }))]));
   return { active, removed, previousMonth };
 }

@@ -102,7 +102,7 @@ export default async function GameDetailPage({ params }) {
               ) : null}
             </div>
             {price.secondary ? <span>{price.secondary}</span> : null}
-            {game.krw_store_available === false || game.region_restricted ? <small>한국 스토어에서는 구매할 수 없는 상품입니다.</small> : null}
+            {game.krw_store_available === false || game.region_restricted ? <small>한국 스토어에서는 구매할 수 없는 상품입니다. 구입 시 VPN 사용이 필요합니다.</small> : null}
           </div>
 
           {game.affiliate_url || game.meta_store_url ? (

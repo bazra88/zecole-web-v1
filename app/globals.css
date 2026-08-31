@@ -574,6 +574,9 @@ button, input, select, textarea { font: inherit; }
 
 .detail-page { padding: 42px 0 90px; max-width: 1180px; }
 .back-link {
+  position: sticky;
+  top: 84px;
+  z-index: 20;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2071,4 +2074,55 @@ button, input, select, textarea { font: inherit; }
 .badge.catalog-removed {
   background: #64748b;
   color: #f8fafc;
+}
+
+/* Admin */
+.admin-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 54px 0 100px; }
+.admin-login-page { min-height: calc(100vh - 72px); display: grid; place-items: center; }
+.admin-login-card, .admin-panel { border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(145deg, rgba(16,32,59,.98), rgba(8,20,39,.98)); box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+.admin-login-card { width: min(460px, 100%); padding: 40px; }
+.admin-login-card h1, .admin-header h1 { margin: 7px 0 8px; font-size: 34px; }
+.admin-login-card > p, .admin-section-title p { margin: 0; color: var(--muted); }
+.admin-login-form { display: grid; gap: 10px; margin-top: 28px; }
+.admin-login-form label, .admin-import-form label { color: #dce9ff; font-size: 13px; font-weight: 800; }
+.admin-login-form input, .admin-import-form input, .admin-filter input, .admin-filter select { min-height: 46px; padding: 0 14px; border: 1px solid #304767; border-radius: 10px; background: #09162a; color: white; outline: none; }
+.admin-login-form input:focus, .admin-import-form input:focus, .admin-filter input:focus, .admin-filter select:focus { border-color: #6296ee; }
+.admin-login-form button, .admin-import-form button, .admin-filter button { min-height: 46px; padding: 0 20px; border: 0; border-radius: 10px; background: linear-gradient(135deg, #2e7cf5, #6b5df6); color: white; font-weight: 850; cursor: pointer; }
+.admin-login-form button:disabled, .admin-import-form button:disabled { opacity: .55; cursor: wait; }
+.admin-config-warning, .admin-message { padding: 11px 13px; border-radius: 9px; font-size: 12px; }
+.admin-config-warning, .admin-message.error { background: rgba(244,63,94,.12); color: #ff9aad; border: 1px solid rgba(244,63,94,.25); }
+.admin-message.success { background: rgba(34,197,94,.12); color: #86efac; border: 1px solid rgba(34,197,94,.25); }
+.admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+.admin-secondary, .admin-danger, .admin-restore { min-height: 38px; padding: 0 14px; border-radius: 9px; font-weight: 800; cursor: pointer; }
+.admin-secondary { border: 1px solid #38557f; background: #0e203c; color: #dce9ff; }
+.admin-panel { padding: 28px; margin-bottom: 24px; }
+.admin-panel h2 { margin: 0 0 18px; font-size: 22px; }
+.admin-import-form > div { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.admin-import-form small { display: block; margin-top: 9px; color: var(--muted); }
+.admin-section-title { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
+.admin-section-title h2 { margin-bottom: 5px; }
+.admin-section-title > strong { color: #8eb7ff; }
+.admin-filter { display: grid; grid-template-columns: 1fr 170px auto; gap: 9px; margin: 22px 0 16px; }
+.admin-game-list { display: grid; gap: 8px; }
+.admin-game-row { display: grid; grid-template-columns: 74px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 10px; border: 1px solid #243a5b; border-radius: 13px; background: rgba(7,18,35,.72); }
+.admin-game-row.is-hidden { opacity: .62; }
+.admin-game-image { width: 74px; height: 60px; display: grid; place-items: center; overflow: hidden; border-radius: 8px; background: #07101f; color: #536784; font-size: 9px; }
+.admin-game-image img { width: 100%; height: 100%; object-fit: cover; }
+.admin-game-main { min-width: 0; }
+.admin-game-main strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.admin-game-main > span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
+.admin-game-main > div { display: flex; gap: 12px; margin-top: 7px; }
+.admin-game-main a { color: #82adf5; font-size: 11px; }
+.admin-danger { border: 1px solid rgba(244,63,94,.4); background: rgba(244,63,94,.12); color: #ff91a5; }
+.admin-restore { border: 1px solid rgba(34,197,94,.4); background: rgba(34,197,94,.12); color: #86efac; }
+.admin-empty { padding: 40px; text-align: center; color: var(--muted); }
+
+@media (max-width: 680px) {
+  .admin-shell { width: min(100% - 24px, 1180px); padding-top: 28px; }
+  .admin-login-card, .admin-panel { padding: 20px; }
+  .admin-import-form > div, .admin-filter { grid-template-columns: 1fr; }
+  .admin-game-row { grid-template-columns: 58px minmax(0,1fr); }
+  .admin-game-image { width: 58px; height: 52px; }
+  .admin-game-row > form { grid-column: 1 / -1; }
+  .admin-game-row > form button { width: 100%; }
 }

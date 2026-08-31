@@ -3,6 +3,7 @@ import { adminIsConfigured, isAdmin } from "@/lib/admin-auth";
 import { adminRestPage } from "@/lib/admin-supabase";
 import { formatGamePrice } from "@/lib/game-format";
 import { gameImageUrl } from "@/lib/supabase";
+import { getVercelAnalyticsSummary } from "@/lib/vercel-analytics";
 import { AdminImportForm, AdminLoginForm } from "./AdminForms";
 import AdminGameControls from "./AdminGameControls";
 import { logoutAction } from "./actions";
@@ -88,6 +89,7 @@ export default async function AdminPage({ searchParams }) {
   }
 
   const params = await searchParams;
+  const analytics = await getVercelAnalyticsSummary();
   const query = String(params?.q || "").trim();
   const visibility = ["all", "visible", "hidden"].includes(params?.visibility) ? params.visibility : "all";
   const affiliate = ["all", "missing", "present"].includes(params?.affiliate) ? params.affiliate : "all";
@@ -109,6 +111,27 @@ export default async function AdminPage({ searchParams }) {
         <Link className="admin-home-link" href="/admin">⌂ 관리자 홈</Link>
         <form action={logoutAction}><button className="admin-secondary" type="submit">로그아웃</button></form>
       </header>
+
+      <section className="admin-panel admin-analytics-panel">
+        <div className="admin-section-title">
+          <div><h2>방문자 통계</h2><p>Vercel Web Analytics 기준이며 최대 5분 간격으로 갱신됩니다.</p></div>
+          {analytics.updatedAt ? <span>{new Date(analytics.updatedAt).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })}</span> : null}
+        </div>
+        {!analytics.configured ? (
+          <p className="admin-analytics-notice">Vercel Analytics API 환경변수를 설정하면 이곳에 통계가 표시됩니다.</p>
+        ) : analytics.error ? (
+          <p className="admin-analytics-notice error">{analytics.error}</p>
+        ) : (
+          <div className="admin-analytics-grid">
+            <div><span>최근 24시간 방문자</span><strong>{analytics.day.visitors.toLocaleString("ko-KR")}</strong></div>
+            <div><span>최근 24시간 페이지뷰</span><strong>{analytics.day.pageviews.toLocaleString("ko-KR")}</strong></div>
+            <div><span>최근 7일 방문자</span><strong>{analytics.week.visitors.toLocaleString("ko-KR")}</strong></div>
+            <div><span>최근 7일 페이지뷰</span><strong>{analytics.week.pageviews.toLocaleString("ko-KR")}</strong></div>
+            <div><span>최근 30일 방문자</span><strong>{analytics.month.visitors.toLocaleString("ko-KR")}</strong></div>
+            <div><span>최근 30일 페이지뷰</span><strong>{analytics.month.pageviews.toLocaleString("ko-KR")}</strong></div>
+          </div>
+        )}
+      </section>
 
       <section className="admin-panel">
         <h2>신규 게임 등록</h2>

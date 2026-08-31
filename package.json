@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@sparticuz/chromium": "^143.0.0",
+    "@vercel/analytics": "^2.0.1",
     "next": "16.3.3",
     "playwright-core": "^1.55.0",
     "react": "19.2.0",

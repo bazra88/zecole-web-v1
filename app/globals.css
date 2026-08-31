@@ -2126,6 +2126,13 @@ button, input, select, textarea { font: inherit; }
 .admin-section-title { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
 .admin-section-title h2 { margin-bottom: 5px; }
 .admin-section-title > strong { color: #8eb7ff; }
+.admin-section-title > span { color: var(--muted); font-size: 11px; }
+.admin-analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.admin-analytics-grid > div { display: grid; gap: 7px; padding: 17px; border: 1px solid #29466d; border-radius: 12px; background: rgba(5,18,37,.55); }
+.admin-analytics-grid span { color: var(--muted); font-size: 12px; }
+.admin-analytics-grid strong { color: #e8f1ff; font-size: 25px; }
+.admin-analytics-notice { margin: 18px 0 0; padding: 15px; border: 1px dashed #3b5578; border-radius: 10px; color: #a9bdd8; }
+.admin-analytics-notice.error { border-color: #743747; color: #fda4af; }
 .admin-filter { display: grid; grid-template-columns: minmax(180px,1fr) 125px 150px 150px 170px auto; gap: 9px; margin: 22px 0 16px; }
 .admin-game-list { display: grid; gap: 8px; }
 .admin-game-row { display: grid; grid-template-columns: 74px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 10px; border: 1px solid #243a5b; border-radius: 13px; background: rgba(7,18,35,.72); }
@@ -2185,6 +2192,7 @@ button, input, select, textarea { font: inherit; }
 @media (max-width: 680px) {
   .admin-shell { width: min(100% - 24px, 1180px); padding-top: 28px; }
   .admin-login-card, .admin-panel { padding: 20px; }
+  .admin-analytics-grid { grid-template-columns: repeat(2, 1fr); }
   .admin-import-form > div, .admin-filter { grid-template-columns: 1fr; }
   .admin-game-row { grid-template-columns: 58px minmax(0,1fr); }
   .admin-game-image { width: 58px; height: 52px; }

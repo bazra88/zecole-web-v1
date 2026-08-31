@@ -2166,4 +2166,5 @@ button, input, select, textarea { font: inherit; }
   .admin-affiliate-form { grid-template-columns: 1fr auto auto; }
 }
 .hero-clean, .hero-split { display: none; }
+.hero-feature-bar { display: none; }
 .game-card-prices span, .game-card-prices strong { font-size: inherit; }

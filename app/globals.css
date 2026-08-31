@@ -749,7 +749,7 @@ button, input, select, textarea { font: inherit; }
     scroll-snap-align: start;
   }
   .main-nav a:nth-child(5),
-  .main-nav a:nth-child(7) { display: block; }
+  .main-nav a:nth-child(7) { display: inline-flex; }
   .game-toolbar { grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
   .game-toolbar input { grid-column: 1 / -1; }
   .game-toolbar select:last-of-type { grid-column: 1 / -1; }
@@ -799,6 +799,15 @@ button, input, select, textarea { font: inherit; }
 
 @media (max-width: 600px) {
   .game-grid, .game-grid.listing { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .game-card-body { padding-inline: 12px; }
+  .game-price { min-height: 56px; align-items: flex-start; }
+  .game-card-prices {
+    width: 100%;
+    flex-wrap: wrap;
+    column-gap: 7px;
+    row-gap: 5px;
+  }
+  .game-discount-savings { font-size: 11px; }
 }
 
 

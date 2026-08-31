@@ -2112,9 +2112,9 @@ button, input, select, textarea { font: inherit; }
 .admin-home-link:hover { border-color: #6296ee; background: #142b4d; }
 .admin-header > form { margin-left: 10px; }
 .admin-refresh-form { display: inline-flex; align-items: center; gap: 6px; }
-.admin-refresh { border: 1px solid #36557f; border-radius: 7px; background: #132846; color: #c1d7ff; padding: 7px 9px; font-size: 11px; cursor: pointer; }
+.admin-refresh { border: 1px solid #36557f; border-radius: 7px; background: #132846; color: #c1d7ff; padding: 7px 9px; font-size: 14px; cursor: pointer; }
 .admin-refresh:disabled { opacity: .6; cursor: wait; }
-.admin-refresh-message { font-size: 10px; white-space: nowrap; }
+.admin-refresh-message { font-size: 12px; white-space: nowrap; }
 .admin-refresh-message.error { color: #ff8fa3; }
 .admin-refresh-message.success { color: #75e0ac; }
 .admin-secondary, .admin-danger, .admin-restore, .admin-pin, .admin-pinned, .admin-delete-trigger, .admin-delete, .admin-cancel, .admin-affiliate-add, .admin-affiliate-edit, .admin-affiliate-save { min-height: 38px; padding: 0 12px; border-radius: 9px; font-size: 11px; font-weight: 800; cursor: pointer; }
@@ -2131,47 +2131,48 @@ button, input, select, textarea { font: inherit; }
 .admin-game-row { display: grid; grid-template-columns: 74px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 10px; border: 1px solid #243a5b; border-radius: 13px; background: rgba(7,18,35,.72); }
 .admin-game-row.is-hidden { opacity: .62; }
 .admin-game-row.is-pinned { border-color: rgba(96,165,250,.68); box-shadow: inset 3px 0 #60a5fa; }
-.admin-game-image { width: 74px; height: 60px; display: grid; place-items: center; overflow: hidden; border-radius: 8px; background: #07101f; color: #536784; font-size: 9px; }
+.admin-game-image { width: 74px; height: 60px; display: grid; place-items: center; overflow: hidden; border-radius: 8px; background: #07101f; color: #536784; font-size: 11px; }
 .admin-game-image img { width: 100%; height: 100%; object-fit: cover; }
 .admin-game-main { min-width: 0; }
 .admin-game-main strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .admin-game-main > span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
 .admin-game-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
-.admin-game-title-row > strong { min-width: 80px; max-width: 100%; }
-.admin-game-stat { flex: 0 0 auto; padding: 2px 6px; border: 1px solid #304868; border-radius: 999px; background: rgba(20,39,67,.65); color: #c9d9ee; font-size: 9px; font-weight: 400; }
+.admin-game-title-row > strong { min-width: 80px; max-width: 100%; font-size: 16px; }
+.admin-game-stat { flex: 0 0 auto; padding: 2px 6px; border: 1px solid #304868; border-radius: 999px; background: rgba(20,39,67,.65); color: #c9d9ee; font-size: 11px; font-weight: 400; }
 .admin-game-stat.price { color: #dbeafe; }
 .admin-game-stat.rating { color: #fde68a; }
 .admin-game-stat.reviews { color: #bfdbfe; }
-.admin-game-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 5px; color: var(--muted); font-size: 11px; }
-.admin-game-meta > b { font-size: 10px; }
+.admin-game-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 5px; color: var(--muted); font-size: 14px; }
+.admin-game-meta > b { font-size: 12px; }
 .admin-genre-tags { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px; }
-.admin-genre-tags span { padding: 2px 6px; border: 1px solid rgba(96,165,250,.4); border-radius: 999px; color: #a8caff; font-size: 9px; font-weight: 750; }
+.admin-genre-tags span { padding: 2px 6px; border: 1px solid rgba(96,165,250,.4); border-radius: 999px; color: #a8caff; font-size: 11px; font-weight: 750; }
 .admin-game-main .has-affiliate { color: #86efac; }
 .admin-game-main .no-affiliate { color: #fda4af; }
 .admin-game-main > .admin-game-links { display: flex; gap: 12px; margin-top: 7px; }
 .admin-game-main > .admin-recommendation-summary { display: flex; gap: 5px; margin-top: 7px; }
-.admin-recommendation-summary span { padding: 2px 6px; border: 1px solid rgba(45,212,191,.42); border-radius: 999px; color: #99f6e4; font-size: 9px; font-weight: 800; }
-.admin-game-main a { color: #82adf5; font-size: 11px; }
+.admin-recommendation-summary span { padding: 2px 6px; border: 1px solid rgba(45,212,191,.42); border-radius: 999px; color: #99f6e4; font-size: 11px; font-weight: 800; }
+.admin-game-main a { color: #82adf5; font-size: 14px; }
 .admin-danger { border: 1px solid rgba(244,63,94,.4); background: rgba(244,63,94,.12); color: #ff91a5; }
 .admin-restore { border: 1px solid rgba(34,197,94,.4); background: rgba(34,197,94,.12); color: #86efac; }
 .admin-game-controls { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 7px; max-width: 650px; }
 .admin-game-controls form { margin: 0; }
+.admin-game-controls button { font-size: 14px; }
 .admin-recommendation-controls { flex: 1 1 100%; display: flex; justify-content: flex-end; gap: 6px; }
 .admin-recommendation { border: 1px solid rgba(45,212,191,.38); background: rgba(13,148,136,.1); color: #99f6e4; }
 .admin-recommendation.is-active { border-color: #2dd4bf; background: rgba(13,148,136,.32); color: white; box-shadow: inset 0 0 0 1px rgba(153,246,228,.18); }
 .admin-affiliate-add, .admin-affiliate-edit { border: 1px solid rgba(167,139,250,.5); background: rgba(124,58,237,.14); color: #c4b5fd; }
 .admin-affiliate-form { flex: 1 1 100%; display: grid; grid-template-columns: minmax(190px,1fr) auto auto; gap: 6px; align-items: center; }
-.admin-affiliate-form input[type="url"] { min-width: 0; height: 38px; padding: 0 10px; border: 1px solid #405a80; border-radius: 8px; background: #07152a; color: white; font-size: 11px; }
+.admin-affiliate-form input[type="url"] { min-width: 0; height: 38px; padding: 0 10px; border: 1px solid #405a80; border-radius: 8px; background: #07152a; color: white; font-size: 14px; }
 .admin-affiliate-save { border: 1px solid rgba(34,197,94,.45); background: rgba(34,197,94,.14); color: #86efac; }
 .admin-affiliate-save:disabled { opacity: .55; cursor: wait; }
-.admin-affiliate-message { grid-column: 1 / -1; font-size: 10px; font-weight: 700; }
+.admin-affiliate-message { grid-column: 1 / -1; font-size: 12px; font-weight: 700; }
 .admin-affiliate-message.error { color: #fda4af; }
 .admin-affiliate-message.success { color: #86efac; }
 .admin-pin { border: 1px solid rgba(96,165,250,.45); background: rgba(59,130,246,.12); color: #9bc3ff; }
 .admin-pinned { border: 1px solid rgba(250,204,21,.5); background: rgba(250,204,21,.12); color: #fde68a; }
 .admin-delete-trigger, .admin-delete { border: 1px solid rgba(251,113,133,.5); background: rgba(127,29,29,.32); color: #fecdd3; }
 .admin-delete-confirm { display: flex; align-items: center; gap: 6px; padding-left: 7px; border-left: 1px solid #3b4b65; }
-.admin-delete-confirm > span { color: #fecdd3; font-size: 10px; font-weight: 800; }
+.admin-delete-confirm > span { color: #fecdd3; font-size: 12px; font-weight: 800; }
 .admin-cancel { border: 1px solid #3b4b65; background: #101d32; color: #b8c8de; }
 .admin-empty { padding: 40px; text-align: center; color: var(--muted); }
 .admin-pagination { display: grid; grid-template-columns: 72px minmax(0, 1fr) 72px; align-items: center; gap: 12px; margin-top: 22px; }

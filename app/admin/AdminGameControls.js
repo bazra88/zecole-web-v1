@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { deleteGameAction, setGameNewReleasePinnedAction, setGameVisibilityAction, updateAffiliateUrlAction } from "./actions";
+import { deleteGameAction, importGameAction, setGameNewReleasePinnedAction, setGameVisibilityAction, updateAffiliateUrlAction } from "./actions";
 
 function AffiliateEditor({ game }) {
   const [editing, setEditing] = useState(false);
@@ -42,6 +42,7 @@ export default function AdminGameControls({ game }) {
   return (
     <div className="admin-game-controls">
       <AffiliateEditor game={game} />
+      {game.meta_store_url ? <form action={importGameAction}><input type="hidden" name="meta_store_url" value={game.meta_store_url} /><button className="admin-refresh" type="submit">세부정보 갱신</button></form> : null}
 
       <form action={setGameNewReleasePinnedAction}>
         <input type="hidden" name="id" value={game.id} />

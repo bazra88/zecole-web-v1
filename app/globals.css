@@ -601,6 +601,7 @@ button, input, select, textarea { font: inherit; }
 .detail-info h1 { margin: 0; max-width: 720px; font-size: clamp(38px, 4.5vw, 66px); line-height: 1.04; letter-spacing: -.045em; }
 .detail-badges { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 18px; }
 .detail-badges:empty { display: none; }
+.detail-badges .badge.sale, .detail-badges .badge.promo { font-weight: 400; }
 .detail-price { margin-top: 16px; }
 .detail-price strong { display: block; font-size: 31px; }
 .detail-price span { display: block; color: var(--muted); margin-top: 4px; }

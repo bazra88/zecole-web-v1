@@ -115,8 +115,8 @@ export default async function GameDetailPage({ params }) {
               {free
                 ? "다운로드"
                 : affiliateDiscount > 0
-                ? `${affiliateDiscount}% 할인받고 구매하기`
-                : "ZECOLE 링크로 구매하기"}
+                ? "구매하기"
+                : "구매하기"}
             </a>
           ) : null}
 

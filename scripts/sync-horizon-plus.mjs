@@ -76,8 +76,13 @@ async function fetchSource(page, category, url) {
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
   let previousCount = 0;
   let stableRounds = 0;
-  for (let round = 0; round < 30 && stableRounds < 4; round += 1) {
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  // Meta lazy-loads cards through viewport intersection observers. Walking in
+  // viewport increments is required; jumping straight to the bottom can skip them.
+  for (let round = 0; round < 80 && stableRounds < 8; round += 1) {
+    await page.evaluate((step) => {
+      const y = Math.min(document.body.scrollHeight - window.innerHeight, step * window.innerHeight * 0.75);
+      window.scrollTo(0, Math.max(0, y));
+    }, round);
     await page.waitForTimeout(1200);
     const count = await page.locator('a[href*="/experiences/"]').count();
     stableRounds = count === previousCount ? stableRounds + 1 : 0;

@@ -102,18 +102,13 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
               <strong>{price.primary}</strong>
             </div>
           )}
-          {price.secondary ? (
-            <div className="game-price-side">
-              <span className="game-secondary-price">{price.secondary}</span>
-            </div>
-          ) : null}
         </div>
 
         <div className={`region-note${timedStoreOffer || price.regional ? "" : " is-empty"}`} aria-hidden={!timedStoreOffer && !price.regional}>
           {timedStoreOffer ? (
             <SaleCountdown endsAt={game.meta_store_offer_ends_at} />
           ) : price.regional ? (
-            "한국 스토어 미판매 · 환산 가격 참고"
+            "한국 스토어 미판매"
           ) : (
             "가격 지역 안내 없음"
           )}

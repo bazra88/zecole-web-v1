@@ -13,7 +13,7 @@ const PAGE_SIZE = 50;
 async function loadGames(query, visibility, affiliate, sort, page) {
   const from = (page - 1) * PAGE_SIZE;
   const params = new URLSearchParams({
-    select: "id,name,slug,affiliate_url,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,admin_new_release_pinned,created_at",
+    select: "id,name,slug,affiliate_url,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,admin_new_release_pinned,beginner_recommended,advanced_recommended,zecole_recommended,created_at",
     order: sort === "oldest" ? "created_at.asc,id.asc" : "created_at.desc,id.desc",
     offset: String(from),
     limit: String(PAGE_SIZE),
@@ -113,6 +113,13 @@ export default async function AdminPage({ searchParams }) {
               <div className="admin-game-main">
                 <strong>{game.name}</strong>
                 <span>{game.release_date || "출시일 미확인"} · {game.active ? "활성" : "비활성"}{game.admin_new_release_pinned ? " · 신규 출시 고정" : ""} · <b className={game.affiliate_url ? "has-affiliate" : "no-affiliate"}>{game.affiliate_url ? "제휴 링크 있음" : "제휴 링크 없음"}</b></span>
+                {game.beginner_recommended || game.advanced_recommended || game.zecole_recommended ? (
+                  <div className="admin-recommendation-summary">
+                    {game.beginner_recommended ? <span>초보자</span> : null}
+                    {game.advanced_recommended ? <span>숙련자</span> : null}
+                    {game.zecole_recommended ? <span>ZECOLE 추천</span> : null}
+                  </div>
+                ) : null}
                 <div><Link href={`/games/${game.slug}`}>상세 보기</Link>{game.meta_store_url ? <a href={game.meta_store_url} target="_blank" rel="noreferrer">Meta 스토어</a> : null}</div>
               </div>
               <AdminGameControls game={game} />

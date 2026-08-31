@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { deleteGameAction, importGameAction, setGameNewReleasePinnedAction, setGameVisibilityAction, updateAffiliateUrlAction } from "./actions";
+import { deleteGameAction, importGameAction, setGameNewReleasePinnedAction, setGameRecommendationAction, setGameVisibilityAction, updateAffiliateUrlAction } from "./actions";
 
 function AffiliateEditor({ game }) {
   const [editing, setEditing] = useState(false);
@@ -53,6 +53,23 @@ export default function AdminGameControls({ game }) {
     <div className="admin-game-controls">
       <AffiliateEditor game={game} />
       {game.meta_store_url ? <RefreshDetails game={game} /> : null}
+
+      <div className="admin-recommendation-controls" aria-label={`${game.name} 추천 단계`}>
+        {[
+          ["beginner", "초보자", game.beginner_recommended],
+          ["advanced", "숙련자", game.advanced_recommended],
+          ["zecole", "ZECOLE 추천", game.zecole_recommended],
+        ].map(([recommendation, label, enabled]) => (
+          <form action={setGameRecommendationAction} key={recommendation}>
+            <input type="hidden" name="id" value={game.id} />
+            <input type="hidden" name="recommendation" value={recommendation} />
+            <input type="hidden" name="enabled" value={enabled ? "false" : "true"} />
+            <button className={`admin-recommendation${enabled ? " is-active" : ""}`} type="submit" aria-pressed={enabled}>
+              {label}{enabled ? " ✓" : ""}
+            </button>
+          </form>
+        ))}
+      </div>
 
       <form action={setGameNewReleasePinnedAction}>
         <input type="hidden" name="id" value={game.id} />

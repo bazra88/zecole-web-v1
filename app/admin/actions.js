@@ -133,6 +133,32 @@ export async function setGameNewReleasePinnedAction(formData) {
   revalidatePath("/admin");
 }
 
+export async function setGameRecommendationAction(formData) {
+  await requireAdmin();
+  const id = String(formData.get("id") || "");
+  const recommendation = String(formData.get("recommendation") || "");
+  const enabled = String(formData.get("enabled")) === "true";
+  const fields = {
+    beginner: "beginner_recommended",
+    advanced: "advanced_recommended",
+    zecole: "zecole_recommended",
+  };
+  const field = fields[recommendation];
+  if (!/^[0-9a-f-]{36}$/i.test(id)) throw new Error("게임 ID가 올바르지 않습니다.");
+  if (!field) throw new Error("추천 단계가 올바르지 않습니다.");
+
+  const updated = await adminRest(`games?id=eq.${id}&select=id`, {
+    method: "PATCH",
+    headers: { Prefer: "return=representation" },
+    body: JSON.stringify({ [field]: enabled, updated_at: new Date().toISOString() }),
+  });
+  if (!updated?.length) throw new Error("추천 단계를 저장할 게임을 찾지 못했습니다.");
+
+  revalidatePath("/");
+  revalidatePath("/games");
+  revalidatePath("/admin");
+}
+
 export async function deleteGameAction(formData) {
   await requireAdmin();
   const id = String(formData.get("id") || "");

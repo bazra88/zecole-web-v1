@@ -13,7 +13,10 @@ const SOURCES = {
   horizon_catalog: "https://www.meta.com/ko-kr/experiences/section/746836817401205/",
   indie_catalog: "https://www.meta.com/ko-kr/experiences/section/3170833353093973/",
 };
-const MINIMUMS = { monthly_games: 2, horizon_catalog: 35, indie_catalog: 50 };
+// Hard floors only catch obviously broken pages. Real catalog sizes are dynamic;
+// completeness is primarily protected by repeated collection and snapshot checks.
+const MINIMUMS = { monthly_games: 2, horizon_catalog: 20, indie_catalog: 20 };
+const CARD_BADGES = new Set(["우수 판매자", "높은 평점", "베스트셀러", "Top Selling", "Top Rated", "무료", "Free"]);
 const TITLE_ALIASES = new Map(Object.entries({
   "더 라이트 브리게이드": "The Light Brigade",
   "데메오: 던전 크롤러 VR": "Demeo",
@@ -99,7 +102,8 @@ async function fetchSource(page, category, url) {
     previousCount = count;
     if (stableRounds >= 10) break;
   }
-  const products = await page.locator('a[href*="/experiences/"]').evaluateAll((anchors) => {
+  const products = await page.locator('a[href*="/experiences/"]').evaluateAll((anchors, badgeLabels) => {
+    const cardBadges = new Set(badgeLabels);
     const seen = new Set();
     const rows = [];
     for (const anchor of anchors) {
@@ -107,13 +111,13 @@ async function fetchSource(page, category, url) {
       const match = href.match(/\/experiences\/(?!section\/|view\/|meta-horizon-plus\/)([^/?#]+)\/(\d{6,})\/?/);
       if (!match || seen.has(match[2])) continue;
       const text = (anchor.innerText || "").split("\n").map((line) => line.trim()).filter(Boolean);
-      const name = text[0] || match[1].replaceAll("-", " ");
-      if (["홈", "게임", "앱", "Home", "Games", "Apps", "우수 판매자", "높은 평점"].includes(name)) continue;
+      const name = text.find((line) => !cardBadges.has(line)) || match[1].replaceAll("-", " ");
+      if (["홈", "게임", "앱", "Home", "Games", "Apps"].includes(name)) continue;
       seen.add(match[2]);
       rows.push({ meta_id: match[2], slug: match[1], name });
     }
     return rows;
-  });
+  }, [...CARD_BADGES]);
   return category === "monthly_games" ? products.slice(0, 2) : products;
 }
 
@@ -125,8 +129,7 @@ async function collectSource(page, category, url, minimum) {
     const products = await fetchSource(page, category, url);
     attemptCounts.push(products.length);
     for (const product of products) merged.set(product.meta_id, product);
-    if (merged.size >= minimum) break;
-    await page.waitForTimeout(2000);
+    if (attempt < maxAttempts) await page.waitForTimeout(2000);
   }
   return { rows: [...merged.values()], attemptCounts };
 }

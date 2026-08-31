@@ -358,7 +358,7 @@ export default async function Home() {
         )}
       </section>
 
-      <section className="container section">
+      <section className="container section home-free-section">
         <SectionHeader
           eyebrow="FREE TO START"
           title="인기 무료 VR 게임"
@@ -386,7 +386,7 @@ export default async function Home() {
         )}
       </section>
 
-      <section className="container section">
+      <section className="container section home-recommend-section">
         <SectionHeader
           eyebrow="ZECOLE PICK"
           title="VR 적응 단계별 추천"

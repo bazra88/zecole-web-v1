@@ -51,6 +51,9 @@ function pacificMonth() {
 function normalizeName(value) {
   return String(value || "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "").trim();
 }
+function noteMetaId(note) {
+  return String(note || "").match(/(\d{6,})$/)?.[1] || null;
+}
 function slugName(slug) {
   return decodeURIComponent(slug || "").split("-").filter(Boolean).map((word) => word[0]?.toUpperCase() + word.slice(1)).join(" ");
 }
@@ -173,7 +176,16 @@ const baselineRows = previousCurrent.length ? previousCurrent : (historical || [
 const baselineCounts = Object.fromEntries(Object.keys(SOURCES).map((category) => [category, baselineRows.filter((row) => row.category === category).length]));
 const minimumFailures = Object.entries(MINIMUMS).filter(([category, minimum]) => counts[category] < minimum).map(([category, minimum]) => ({ category, reason: "minimum", expected: minimum, actual: counts[category] }));
 const suddenDrops = Object.keys(SOURCES).filter((category) => baselineCounts[category] && counts[category] < baselineCounts[category] - Math.max(3, Math.ceil(baselineCounts[category] * 0.15))).map((category) => ({ category, reason: "sudden_drop", expected: baselineCounts[category], actual: counts[category] }));
-const invalid = [...minimumFailures, ...suddenDrops];
+const collectedMetaIds = Object.fromEntries(Object.entries(collected).map(([category, rows]) => [category, new Set(rows.map((row) => String(row.meta_id)))]));
+const sameMonthMissing = previousCurrent.length ? Object.keys(SOURCES).flatMap((category) => {
+  const missingMetaIds = previousCurrent
+    .filter((row) => row.category === category)
+    .map((row) => noteMetaId(row.note))
+    .filter(Boolean)
+    .filter((metaId) => !collectedMetaIds[category].has(metaId));
+  return missingMetaIds.length ? [{ category, reason: "same_month_missing", expected: baselineCounts[category], actual: counts[category], missing_meta_ids: missingMetaIds }] : [];
+}) : [];
+const invalid = [...minimumFailures, ...suddenDrops, ...sameMonthMissing];
 const report = { generated_at: new Date().toISOString(), month, mode: apply ? "apply" : "dry_run", sources: SOURCES, minimums: MINIMUMS, counts, collection_attempts: collectionAttempts, baseline_month: baselineMonth || null, baseline_counts: baselineCounts, status: invalid.length ? "invalid_source" : "ready", invalid, matched: 0, unmatched: [], inserted: 0 };
 if (invalid.length) {
   await writeFile(resolve(reportDir, "latest-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");

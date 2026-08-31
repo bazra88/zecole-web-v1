@@ -30,7 +30,8 @@ const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms)
 async function rest(path, options = {}) {
   const response = await fetch(`${supabaseUrl}/rest/v1/${path}`, { ...options, headers: { ...headers, ...options.headers } });
   if (!response.ok) throw new Error(`Supabase 요청 실패 (${response.status}): ${(await response.text()).slice(0, 500)}`);
-  return response.status === 204 ? null : response.json();
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
 }
 function parseKrw(html) {
   for (const match of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
@@ -98,4 +99,3 @@ if (apply) {
 const report = { generated_at: new Date().toISOString(), mode: apply ? "apply" : "dry_run", requested: candidates?.length || 0, checked: rows.length, actionable: actionable.length, updated, rows };
 await writeFile(resolve(reportDir, "krw-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
 console.log(`최근 게임 KRW 확인: 대상 ${report.requested}, 확인 ${report.checked}, 반영 가능 ${report.actionable}, 실제 반영 ${report.updated}`);
-

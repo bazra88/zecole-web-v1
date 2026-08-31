@@ -143,7 +143,8 @@ function supportsDevice(devices, target) {
 async function rest(path, options = {}) {
   const response = await fetch(`${supabaseUrl}/rest/v1/${path}`, { ...options, headers: { ...headers, ...options.headers } });
   if (!response.ok) throw new Error(`Supabase 요청 실패 (${response.status}): ${(await response.text()).slice(0, 500)}`);
-  return response.status === 204 ? null : response.json();
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
 }
 async function restAll(path, pageSize = 1000) {
   const rows = [];
@@ -228,6 +229,7 @@ for (const game of candidates) {
     skipped.push({ meta_id: game.meta_id, name: game.name, reason: game.parse_status !== "parsed" ? game.parse_status : "missing_required_metadata" });
     continue;
   }
+  if (game.genre) genreByMetaId.set(String(game.meta_id), GENRE_NAMES[game.genre] || game.genre);
   const found = existingByMetaId.get(String(game.meta_id));
   if (found) {
     const payload = {};
@@ -257,7 +259,6 @@ for (const game of candidates) {
     source_status: `official_meta_recent_overseas:${game.listing_status}`, active: game.listing_status === "released",
     pricing_type: free ? "free" : "paid", affiliate_discount_active: false, region_restricted: false,
   });
-  if (game.genre) genreByMetaId.set(String(game.meta_id), GENRE_NAMES[game.genre] || game.genre);
 }
 
 const report = {
@@ -268,6 +269,7 @@ const report = {
   new_games: newRows.length, existing_updates: existingUpdates.length, skipped,
   inserted: 0, updated: 0, genre_links: 0, status: "ready", preview: newRows,
 };
+await writeFile(resolve(reportDir, "latest-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
 if (apply) {
   let inserted = [];
   if (newRows.length) {
@@ -278,13 +280,16 @@ if (apply) {
     const updated = await rest(`games?id=eq.${update.id}`, { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify({ ...update.payload, updated_at: new Date().toISOString() }) });
     report.updated += updated?.length || 0;
   }
-  const genreNames = [...new Set(inserted.map((game) => genreByMetaId.get(String(game.meta_product_id))).filter(Boolean))];
+  const allTargetGames = new Map(existing.map((game) => [String(game.meta_product_id || game.meta_catalog_item_id), game]));
+  for (const game of inserted) allTargetGames.set(String(game.meta_product_id), game);
+  const genreTargets = candidates.map((game) => ({ game: allTargetGames.get(String(game.meta_id)), genre: genreByMetaId.get(String(game.meta_id)) })).filter((target) => target.game?.id && target.genre);
+  const genreNames = [...new Set(genreTargets.map((target) => target.genre))];
   if (genreNames.length) {
     const genres = genreNames.map((name) => ({ name, slug: GENRE_SLUGS[name] || `meta-genre-${createHash("sha256").update(name).digest("hex").slice(0, 12)}` }));
     await rest("genres?on_conflict=name", { method: "POST", headers: { Prefer: "resolution=ignore-duplicates,return=minimal" }, body: JSON.stringify(genres) });
     const genreRows = await rest("genres?select=id,name&limit=1000");
     const genreIds = new Map((genreRows || []).map((genre) => [genre.name, genre.id]));
-    const links = inserted.map((game) => ({ game_id: game.id, genre_id: genreIds.get(genreByMetaId.get(String(game.meta_product_id))) })).filter((link) => link.genre_id);
+    const links = genreTargets.map((target) => ({ game_id: target.game.id, genre_id: genreIds.get(target.genre) })).filter((link) => link.genre_id);
     if (links.length) {
       const linked = await rest("game_genres?on_conflict=game_id,genre_id", { method: "POST", headers: { Prefer: "resolution=ignore-duplicates,return=representation" }, body: JSON.stringify(links) });
       report.genre_links = linked?.length || 0;

@@ -31,7 +31,9 @@
     "data:free:update": "node scripts/update-meta-free-pipeline.mjs"
   },
   "dependencies": {
+    "@sparticuz/chromium": "^143.0.0",
     "next": "16.3.3",
+    "playwright-core": "^1.55.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "sharp": "0.35.4"

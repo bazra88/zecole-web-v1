@@ -677,6 +677,10 @@ button, input, select, textarea { font: inherit; }
 .business-form { display: grid; gap: 15px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
 .business-form label { display: grid; gap: 7px; color: #cbd7e8; font-size: 12px; }
 .business-form textarea { resize: vertical; }
+.inquiry-honeypot { position: absolute !important; left: -9999px !important; }
+.inquiry-status { margin: 0; text-align: center; font-size: 12px; }
+.inquiry-status.success { color: #67e8a5; }
+.inquiry-status.error { color: #ff8796; }
 .form-note { margin: 0; color: var(--muted); font-size: 10px; }
 
 .footer { padding: 36px 0; border-top: 1px solid var(--line); background: #050b15; color: var(--muted); font-size: 11px; }

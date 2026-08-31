@@ -369,14 +369,14 @@ button, input, select, textarea { font: inherit; }
 .empty-panel p, .error-panel p, .feature-panel p { margin: 5px 0 0; }
 .empty-dot { flex: 0 0 auto; width: 10px; height: 10px; margin-top: 6px; border-radius: 50%; background: var(--blue); }
 .error-panel { border-color: #6d3542; }
-.quest-placeholder {
+.page-placeholder {
   width: 75%;
   min-height: 220px;
   align-items: center;
 }
 
 @media (max-width: 720px) {
-  .quest-placeholder { width: 100%; }
+  .page-placeholder { width: 100%; }
 }
 
 .free-placeholder {

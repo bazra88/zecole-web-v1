@@ -12,9 +12,21 @@ const PAGE_SIZE = 50;
 
 async function loadGames(query, visibility, affiliate, recommendation, sort, page) {
   const from = (page - 1) * PAGE_SIZE;
+  const sortOrders = {
+    newest: "created_at.desc.nullslast,id.desc",
+    oldest: "created_at.asc.nullslast,id.asc",
+    reviews_desc: "review_count.desc.nullslast,id.asc",
+    reviews_asc: "review_count.asc.nullslast,id.asc",
+    rating_desc: "rating.desc.nullslast,id.asc",
+    rating_asc: "rating.asc.nullslast,id.asc",
+    release_desc: "release_date.desc.nullslast,id.asc",
+    release_asc: "release_date.asc.nullslast,id.asc",
+    price_desc: "current_price.desc.nullslast,id.asc",
+    price_asc: "current_price.asc.nullslast,id.asc",
+  };
   const params = new URLSearchParams({
     select: "id,name,slug,affiliate_url,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,admin_new_release_pinned,beginner_recommended,advanced_recommended,zecole_recommended,created_at",
-    order: sort === "oldest" ? "created_at.asc,id.asc" : "created_at.desc,id.desc",
+    order: sortOrders[sort] || sortOrders.newest,
     offset: String(from),
     limit: String(PAGE_SIZE),
   });
@@ -79,7 +91,8 @@ export default async function AdminPage({ searchParams }) {
   const visibility = ["all", "visible", "hidden"].includes(params?.visibility) ? params.visibility : "all";
   const affiliate = ["all", "missing", "present"].includes(params?.affiliate) ? params.affiliate : "all";
   const recommendation = ["all", "beginner", "advanced", "zecole", "none"].includes(params?.recommendation) ? params.recommendation : "all";
-  const sort = ["newest", "oldest"].includes(params?.sort) ? params.sort : "newest";
+  const sortOptions = ["newest", "oldest", "reviews_desc", "reviews_asc", "rating_desc", "rating_asc", "release_desc", "release_asc", "price_desc", "price_asc"];
+  const sort = sortOptions.includes(params?.sort) ? params.sort : "newest";
   const requestedPage = Math.max(1, Number.parseInt(String(params?.page || "1"), 10) || 1);
   const initialResult = await loadGames(query, visibility, affiliate, recommendation, sort, requestedPage);
   const totalPages = Math.max(1, Math.ceil(initialResult.total / PAGE_SIZE));
@@ -119,7 +132,16 @@ export default async function AdminPage({ searchParams }) {
             <option value="none">추천 미지정</option>
           </select>
           <select name="sort" defaultValue={sort}>
-            <option value="newest">최근 추가된 순</option><option value="oldest">오래전에 추가된 순</option>
+            <option value="newest">최근 추가된 순</option>
+            <option value="oldest">오래전에 추가된 순</option>
+            <option value="reviews_desc">리뷰 많은 순</option>
+            <option value="reviews_asc">리뷰 적은 순</option>
+            <option value="rating_desc">평점 높은 순</option>
+            <option value="rating_asc">평점 낮은 순</option>
+            <option value="release_desc">최근 출시 순</option>
+            <option value="release_asc">오래된 출시 순</option>
+            <option value="price_desc">가격 높은 순</option>
+            <option value="price_asc">가격 낮은 순</option>
           </select>
           <button type="submit">검색</button>
         </form>

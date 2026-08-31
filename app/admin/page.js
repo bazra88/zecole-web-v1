@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 const PAGE_SIZE = 50;
 
-async function loadGames(query, visibility, affiliate, sort, page) {
+async function loadGames(query, visibility, affiliate, recommendation, sort, page) {
   const from = (page - 1) * PAGE_SIZE;
   const params = new URLSearchParams({
     select: "id,name,slug,affiliate_url,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,admin_new_release_pinned,beginner_recommended,advanced_recommended,zecole_recommended,created_at",
@@ -23,14 +23,23 @@ async function loadGames(query, visibility, affiliate, sort, page) {
   if (visibility === "visible") params.set("admin_hidden", "eq.false");
   if (affiliate === "missing") params.set("affiliate_url", "is.null");
   if (affiliate === "present") params.set("affiliate_url", "not.is.null");
+  if (recommendation === "beginner") params.set("beginner_recommended", "eq.true");
+  if (recommendation === "advanced") params.set("advanced_recommended", "eq.true");
+  if (recommendation === "zecole") params.set("zecole_recommended", "eq.true");
+  if (recommendation === "none") {
+    params.set("beginner_recommended", "not.is.true");
+    params.set("advanced_recommended", "not.is.true");
+    params.set("zecole_recommended", "not.is.true");
+  }
   return adminRestPage(`games?${params.toString()}`);
 }
 
-function adminPageHref({ query, visibility, affiliate, sort, page }) {
+function adminPageHref({ query, visibility, affiliate, recommendation, sort, page }) {
   const params = new URLSearchParams();
   if (query) params.set("q", query);
   if (visibility !== "all") params.set("visibility", visibility);
   if (affiliate !== "all") params.set("affiliate", affiliate);
+  if (recommendation !== "all") params.set("recommendation", recommendation);
   if (sort !== "newest") params.set("sort", sort);
   if (page > 1) params.set("page", String(page));
   const search = params.toString();
@@ -69,15 +78,16 @@ export default async function AdminPage({ searchParams }) {
   const query = String(params?.q || "").trim();
   const visibility = ["all", "visible", "hidden"].includes(params?.visibility) ? params.visibility : "all";
   const affiliate = ["all", "missing", "present"].includes(params?.affiliate) ? params.affiliate : "all";
+  const recommendation = ["all", "beginner", "advanced", "zecole", "none"].includes(params?.recommendation) ? params.recommendation : "all";
   const sort = ["newest", "oldest"].includes(params?.sort) ? params.sort : "newest";
   const requestedPage = Math.max(1, Number.parseInt(String(params?.page || "1"), 10) || 1);
-  const initialResult = await loadGames(query, visibility, affiliate, sort, requestedPage);
+  const initialResult = await loadGames(query, visibility, affiliate, recommendation, sort, requestedPage);
   const totalPages = Math.max(1, Math.ceil(initialResult.total / PAGE_SIZE));
   const currentPage = Math.min(requestedPage, totalPages);
   const { data: games, total } = currentPage === requestedPage
     ? initialResult
-    : await loadGames(query, visibility, affiliate, sort, currentPage);
-  const hrefForPage = (page) => adminPageHref({ query, visibility, affiliate, sort, page });
+    : await loadGames(query, visibility, affiliate, recommendation, sort, currentPage);
+  const hrefForPage = (page) => adminPageHref({ query, visibility, affiliate, recommendation, sort, page });
   return (
     <main className="admin-shell">
       <header className="admin-header">
@@ -100,6 +110,13 @@ export default async function AdminPage({ searchParams }) {
           </select>
           <select name="affiliate" defaultValue={affiliate}>
             <option value="all">전체 제휴 링크</option><option value="missing">제휴 링크 없음</option><option value="present">제휴 링크 있음</option>
+          </select>
+          <select name="recommendation" defaultValue={recommendation}>
+            <option value="all">전체 추천 단계</option>
+            <option value="beginner">초보자</option>
+            <option value="advanced">숙련자</option>
+            <option value="zecole">ZECOLE 추천</option>
+            <option value="none">추천 미지정</option>
           </select>
           <select name="sort" defaultValue={sort}>
             <option value="newest">최근 추가된 순</option><option value="oldest">오래전에 추가된 순</option>

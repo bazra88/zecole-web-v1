@@ -14,6 +14,12 @@ function supportLabels(game) {
   return [game.supports_quest_3s && "Quest 3S", game.supports_quest_3 && "Quest 3", game.supports_quest_2 && "Quest 2"].filter(Boolean);
 }
 
+function koreanStoreLabel(game) {
+  if (game.krw_store_available === true) return "이용 가능";
+  if (game.krw_store_available === false || game.region_restricted) return "미출시";
+  return "확인 전";
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const game = await getGameBySlug(slug).catch(() => null);
@@ -46,7 +52,7 @@ export default async function GameDetailPage({ params }) {
   const facts = [
     ["출시일", dateLabel(game.release_date)],
     ["장르", genres.map((genre) => genre.name).join(" · ") || null],
-    ["한국 스토어", game.region_restricted ? "지역 제한" : game.krw_store_available === false ? "확인 필요" : "이용 가능"],
+    ["한국 스토어", koreanStoreLabel(game)],
     ["개발사", game.developer || null],
     ["퍼블리셔", game.publisher || null],
     ["지원 기기", supports.join(" · ") || null],
@@ -74,8 +80,10 @@ export default async function GameDetailPage({ params }) {
                 {affiliateDiscount}% 할인
               </span>
             ) : null}
-            {game.region_restricted ? (
-              <span className="badge region">한국 지역 제한</span>
+            {game.krw_store_available === false || game.region_restricted ? (
+              <span className="badge region">한국 스토어 미출시</span>
+            ) : game.krw_store_available == null ? (
+              <span className="badge">한국 스토어 확인 전</span>
             ) : null}
           </div>
 
@@ -94,7 +102,7 @@ export default async function GameDetailPage({ params }) {
               ) : null}
             </div>
             {price.secondary ? <span>{price.secondary}</span> : null}
-            {game.region_restricted ? <small>한국 스토어에서는 구매할 수 없는 상품입니다.</small> : null}
+            {game.krw_store_available === false || game.region_restricted ? <small>한국 스토어에서는 구매할 수 없는 상품입니다.</small> : null}
           </div>
 
           {game.affiliate_url || game.meta_store_url ? (

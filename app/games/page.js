@@ -1,6 +1,7 @@
 import GameCard from "@/components/GameCard";
 import GameFilters from "@/components/GameFilters";
 import SectionHeader from "@/components/SectionHeader";
+import { getUsdKrwRate } from "@/lib/exchange-rate";
 import { getGames, getGenres } from "@/lib/supabase";
 
 export const revalidate = 300;
@@ -65,7 +66,7 @@ export default async function GamesPage({ searchParams }) {
   const pageSize = PAGE_SIZES.includes(requestedPageSize) ? requestedPageSize : 24;
 
   let result = { data: [], count: 0 };
-  const genres = await getGenres();
+  const [genres, usdKrwRate] = await Promise.all([getGenres(), getUsdKrwRate()]);
   let error = null;
 
   try {
@@ -117,7 +118,7 @@ export default async function GamesPage({ searchParams }) {
       ) : games.length ? (
         <div className="game-grid listing">
           {games.map((game) => (
-            <GameCard key={game.id} game={game} />
+            <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} />
           ))}
         </div>
       ) : (

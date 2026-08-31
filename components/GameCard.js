@@ -14,12 +14,12 @@ function genreHue(name) {
   return [...name].reduce((hash, character) => ((hash * 31) + character.charCodeAt(0)) % 360, 210);
 }
 
-export default function GameCard({ game }) {
+export default function GameCard({ game, usdKrwRate = null, catalogStatus = null }) {
   const image = gameImageUrl(game.image_path || game.source_image_url);
-  const price = formatGamePrice(game);
   const free = isFreeGame(game);
   const discount = effectiveAffiliateDiscount(game);
   const affiliateDiscount = !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
+  const price = formatGamePrice(game, usdKrwRate, affiliateDiscount);
   const discountedPrice = affiliateDiscount > 0
     ? discountedPriceLabel(game, affiliateDiscount)
     : null;
@@ -50,6 +50,8 @@ export default function GameCard({ game }) {
         )}
 
         <div className="badges">
+          {catalogStatus === "added" ? <span className="badge catalog-added">이번 달 추가</span> : null}
+          {catalogStatus === "removed" ? <span className="badge catalog-removed">이번 달 제외</span> : null}
           {free ? <span className="badge free">무료</span> : null}
           {!free && affiliateDiscount > 0 ? (
             <span className={`badge ${discount.promotional ? "promo" : "sale"}`}>

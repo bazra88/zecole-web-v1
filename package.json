@@ -18,6 +18,8 @@
     "data:paid:diff": "node scripts/diff-meta-paid-pages.mjs",
     "data:paid:sync": "node scripts/sync-meta-paid-pages.mjs",
     "data:paid:full": "node scripts/run-meta-paid-full-pipeline.mjs",
+    "data:paid:qsdb": "node scripts/collect-qsdb-paid-metadata.mjs",
+    "data:horizon-plus:sync": "node scripts/sync-horizon-plus.mjs",
     "data:free:prepare-inserts": "node scripts/prepare-meta-free-inserts.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",
     "data:free:parse": "node scripts/parse-meta-free-pages.mjs",
@@ -31,5 +33,8 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "sharp": "0.35.4"
+  },
+  "devDependencies": {
+    "playwright": "1.55.0"
   }
 }

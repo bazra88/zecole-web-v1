@@ -2,6 +2,7 @@ import Link from "next/link";
 import GameCard from "@/components/GameCard";
 import EmptyPanel from "@/components/EmptyPanel";
 import SectionHeader from "@/components/SectionHeader";
+import { getUsdKrwRate } from "@/lib/exchange-rate";
 import { gameImageUrl, getContent, getGames, getHorizonPlus } from "@/lib/supabase";
 
 export const revalidate = 300;
@@ -85,6 +86,7 @@ export default async function Home() {
     guides,
     videos,
     horizonPlus,
+    usdKrwRate,
   ] = await Promise.all([
     safeGames({
       limit: 12,
@@ -109,17 +111,19 @@ export default async function Home() {
     safeContent("beginner_guide", 3),
     safeContent("youtube", 3),
     safeHorizonPlus(),
+    getUsdKrwRate(),
   ]);
 
   const hasReleaseDates = newReleaseGames.length > 0;
   const featuredNewReleases = (hasReleaseDates ? newReleaseGames : recentlyAddedGames).slice(0, 12);
-  const newReleaseIds = new Set(featuredNewReleases.map((game) => game.id));
-  const featuredPopularPaid = popularPaidGames
-    .filter((game) => !newReleaseIds.has(game.id))
-    .slice(0, 12);
-  const monthlyHorizon = horizonPlus.filter((row) => row.category === "monthly_games");
-  const horizonCatalog = horizonPlus.filter((row) => row.category === "horizon_catalog");
-  const indieCatalog = horizonPlus.filter((row) => row.category === "indie_catalog");
+  const featuredPopularPaid = popularPaidGames.slice(0, 12);
+  const latestHorizonMonth = [...new Set(horizonPlus.map((row) => row.month).filter(Boolean))].sort().at(-1);
+  const latestHorizon = latestHorizonMonth
+    ? horizonPlus.filter((row) => row.month === latestHorizonMonth)
+    : horizonPlus;
+  const monthlyHorizon = latestHorizon.filter((row) => row.category === "monthly_games");
+  const horizonCatalog = latestHorizon.filter((row) => row.category === "horizon_catalog");
+  const indieCatalog = latestHorizon.filter((row) => row.category === "indie_catalog");
 
   return (
     <main>
@@ -311,7 +315,7 @@ export default async function Home() {
         {featuredNewReleases.length ? (
           <div className="game-grid">
             {featuredNewReleases.map((game) => (
-              <GameCard key={game.id} game={game} />
+              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} />
             ))}
           </div>
         ) : (
@@ -332,7 +336,7 @@ export default async function Home() {
         {featuredPopularPaid.length ? (
           <div className="game-grid">
             {featuredPopularPaid.map((game) => (
-              <GameCard key={game.id} game={game} />
+              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} />
             ))}
           </div>
         ) : (
@@ -353,7 +357,7 @@ export default async function Home() {
         {popularFreeGames.length ? (
           <div className="game-grid">
             {popularFreeGames.map((game) => (
-              <GameCard key={game.id} game={game} />
+              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} />
             ))}
           </div>
         ) : (

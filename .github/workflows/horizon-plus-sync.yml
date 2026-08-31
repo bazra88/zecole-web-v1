@@ -1,0 +1,58 @@
+name: Sync Meta Horizon Plus catalog
+
+on:
+  schedule:
+    # Pacific midnight is 07:00 UTC during PDT and 08:00 UTC during PST.
+    - cron: "0 7,8 1 * *"
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type SYNC_HORIZON_PLUS
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: horizon-plus-monthly-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Check Pacific schedule
+        id: pacific
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            [[ "${{ inputs.confirmation }}" == "SYNC_HORIZON_PLUS" ]] || exit 1
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          elif [[ "$(TZ=America/Los_Angeles date +%d-%H)" == "01-00" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Collect and apply official catalogs
+        if: steps.pacific.outputs.run == 'true'
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run data:horizon-plus:sync -- --apply --confirm=SYNC_HORIZON_PLUS
+      - name: Upload sync report
+        if: always() && steps.pacific.outputs.run == 'true'
+        uses: actions/upload-artifact@v6
+        with:
+          name: horizon-plus-sync-${{ github.run_id }}
+          path: data/horizon-plus/latest-report.json
+          if-no-files-found: warn

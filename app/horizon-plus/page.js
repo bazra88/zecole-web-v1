@@ -1,10 +1,11 @@
 import GameCard from "@/components/GameCard";
 import SectionHeader from "@/components/SectionHeader";
+import { getUsdKrwRate } from "@/lib/exchange-rate";
 import { getHorizonPlus } from "@/lib/supabase";
 
 export const revalidate = 300;
 
-function Category({ id, title, description, rows }) {
+function Category({ id, title, description, rows, usdKrwRate }) {
   return (
     <section id={id} className="catalog-section">
       <div>
@@ -16,7 +17,7 @@ function Category({ id, title, description, rows }) {
         <div className="game-grid listing horizon-game-grid">
           {rows.map((row) =>
             row.game ? (
-              <GameCard key={row.id} game={row.game} />
+              <GameCard key={row.id} game={row.game} usdKrwRate={usdKrwRate} catalogStatus={row.status} />
             ) : (
               <article key={row.id} className="game-card horizon-missing-card">
                 <div className="game-thumb">
@@ -45,8 +46,30 @@ function Category({ id, title, description, rows }) {
   );
 }
 
+function rowKey(row) {
+  return row.game_id ? `id:${row.game_id}` : `name:${String(row.external_game_name || "").trim().toLowerCase()}`;
+}
+
+function compareSnapshots(rows) {
+  const months = [...new Set(rows.map((row) => row.month).filter(Boolean))].sort();
+  const latestMonth = months.at(-1);
+  const previousMonth = months.at(-2);
+  const current = rows.filter((row) => row.month === latestMonth);
+  const previous = rows.filter((row) => row.month === previousMonth);
+  const previousKeys = new Set(previous.map(rowKey));
+  const currentKeys = new Set(current.map(rowKey));
+  const categories = ["monthly_games", "horizon_catalog", "indie_catalog"];
+  const active = Object.fromEntries(categories.map((category) => [category, current.filter((row) => row.category === category).map((row) => ({ ...row, status: previousMonth && !previousKeys.has(rowKey(row)) ? "added" : null }))]));
+  const removed = Object.fromEntries(categories.map((category) => [category, previous.filter((row) => row.category === category && !currentKeys.has(rowKey(row))).map((row) => ({ ...row, status: "removed" }))]));
+  return { active, removed, previousMonth };
+}
+
 export default async function HorizonPage() {
-  const rows = await getHorizonPlus().catch(() => []);
+  const [rows, usdKrwRate] = await Promise.all([
+    getHorizonPlus().catch(() => []),
+    getUsdKrwRate(),
+  ]);
+  const { active, removed, previousMonth } = compareSnapshots(rows);
 
   return (
     <main className="container page">
@@ -60,20 +83,31 @@ export default async function HorizonPage() {
         id="monthly"
         title="월간 게임 2종"
         description="매월 별도로 제공되는 두 게임"
-        rows={rows.filter((r) => r.category === "monthly_games")}
+        rows={active.monthly_games}
+        usdKrwRate={usdKrwRate}
       />
       <Category
         id="catalog"
         title="Horizon 카탈로그"
         description="메인 Horizon+ 구독 카탈로그"
-        rows={rows.filter((r) => r.category === "horizon_catalog")}
+        rows={active.horizon_catalog}
+        usdKrwRate={usdKrwRate}
       />
       <Category
         id="indie"
         title="인디 카탈로그"
         description="인디 게임 중심의 별도 카탈로그"
-        rows={rows.filter((r) => r.category === "indie_catalog")}
+        rows={active.indie_catalog}
+        usdKrwRate={usdKrwRate}
       />
+      {previousMonth ? (
+        <section className="catalog-removed-section">
+          <SectionHeader eyebrow="CATALOG CHANGES" title="지난달 대비 제외된 게임" description={`${previousMonth} 스냅샷과 비교한 결과입니다.`} />
+          {Object.entries({ monthly_games: "월간 게임", horizon_catalog: "Horizon 카탈로그", indie_catalog: "인디 카탈로그" }).map(([category, title]) => (
+            removed[category].length ? <Category key={category} id={`removed-${category}`} title={title} description="이번 달 카탈로그에서 제외된 게임" rows={removed[category]} usdKrwRate={usdKrwRate} /> : null
+          ))}
+        </section>
+      ) : null}
     </main>
   );
 }

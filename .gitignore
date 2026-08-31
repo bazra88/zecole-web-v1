@@ -6,5 +6,6 @@ node_modules
 .vercel-cli-state
 .npm-cache
 .meta-cache
+data/horizon-plus/*.json
 
 .vercel

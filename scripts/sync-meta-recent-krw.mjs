@@ -33,7 +33,28 @@ async function rest(path, options = {}) {
   const text = await response.text();
   return text ? JSON.parse(text) : null;
 }
-function parseKrw(html) {
+const normalizedDate = (value) => {
+  if (!value) return null;
+  const text = String(value).trim();
+  const korean = text.match(/(\d{4})\s*년\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일/);
+  if (korean) return `${korean[1]}-${korean[2].padStart(2, "0")}-${korean[3].padStart(2, "0")}`;
+  return text.match(/\d{4}-\d{2}-\d{2}/)?.[0] || null;
+};
+function relayApp(html, metaId) {
+  const matches = [];
+  const visit = (value) => {
+    if (!value || typeof value !== "object") return;
+    const id = String(value.id || "");
+    if (!Array.isArray(value) && (id === metaId || (!id && value.__isAppStoreItem === "Application")) && (value.release_info || value.current_offer || value.display_name)) matches.push(value);
+    for (const child of Object.values(value)) visit(child);
+  };
+  for (const match of html.matchAll(/<script[^>]+type=["']application\/json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try { visit(JSON.parse(match[1].trim())); } catch {}
+  }
+  return matches.sort((left, right) => Object.keys(right).length - Object.keys(left).length)[0] || null;
+}
+function parseKrw(html, metaId) {
+  const relay = relayApp(html, metaId);
   for (const match of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     try {
       const parsed = JSON.parse(match[1].trim());
@@ -41,21 +62,29 @@ function parseKrw(html) {
       const app = graph.find((item) => [item?.["@type"]].flat().includes("SoftwareApplication"));
       const offer = Array.isArray(app?.offers) ? app.offers[0] : app?.offers;
       if (!app) continue;
+      const availability = offer?.availability || null;
       return {
         found: true,
         currency: offer?.priceCurrency || null,
         price: offer?.price == null ? null : Number(offer.price),
         available: /InStock|PreOrder/i.test(offer?.availability || "") || offer?.price != null,
+        preorder: /PreOrder/i.test(availability || "") || (relay?.pre_order_bundles?.length || 0) > 0,
+        release_date: normalizedDate(app?.datePublished || app?.releaseDate || relay?.release_info?.display_date),
       };
     } catch {}
   }
-  const currency = html.match(/"currency"\s*:\s*"(KRW|USD)"/i)?.[1]?.toUpperCase() || null;
-  const amount = html.match(/"offset_amount"\s*:\s*(\d+)/)?.[1];
-  return { found: Boolean(currency || amount), currency, price: amount ? Number(amount) / 100 : null, available: Boolean(currency || amount) };
+  const currency = relay?.current_offer?.price?.currency || null;
+  const amount = Number(relay?.current_offer?.price?.offset_amount);
+  const price = Number.isFinite(amount) ? amount / 100 : null;
+  return {
+    found: Boolean(relay), currency, price, available: Boolean(relay?.current_offer),
+    preorder: (relay?.pre_order_bundles?.length || 0) > 0,
+    release_date: normalizedDate(relay?.release_info?.display_date),
+  };
 }
 
 await mkdir(reportDir, { recursive: true });
-const candidates = await rest(`games?select=id,name,slug,meta_product_id,krw_price,krw_store_available,source_status&source_status=like.official_meta_recent_overseas:*&or=(krw_price.is.null,krw_store_available.is.null)&order=release_date.desc.nullslast,created_at.desc&limit=${limit}`);
+const candidates = await rest(`games?select=id,name,slug,meta_product_id,krw_price,krw_store_available,source_status,active,release_date&source_status=like.official_meta_recent_overseas:*&or=(krw_price.is.null,krw_store_available.is.null,release_date.is.null)&order=release_date.desc.nullslast,created_at.desc&limit=${limit}`);
 const rows = [];
 let consecutiveBlocked = 0;
 for (const game of candidates || []) {
@@ -72,12 +101,17 @@ for (const game of candidates || []) {
         break;
       }
       if (!response.ok) { result = { id: game.id, name: game.name, status: `http_${response.status}`, attempt }; continue; }
-      const parsed = parseKrw(html);
+      const parsed = parseKrw(html, String(game.meta_product_id));
       const krw = parsed.currency === "KRW" && Number.isFinite(parsed.price);
+      const releasedByDate = parsed.release_date && Date.parse(`${parsed.release_date}T23:59:59Z`) <= Date.now();
+      const listingStatus = parsed.preorder ? "preorder" : releasedByDate || game.source_status.endsWith(":released") ? "released" : "coming_soon";
+      const storeResolved = krw || (parsed.found && listingStatus !== "coming_soon");
       result = {
-        id: game.id, name: game.name, status: krw ? "krw_found" : parsed.found ? "not_krw_store" : "unresolved",
-        krw_price: krw ? parsed.price : null, krw_store_available: krw ? true : parsed.found ? false : null,
-        region_restricted: krw ? false : parsed.found ? true : null, attempt, final_url: response.url,
+        id: game.id, name: game.name, status: krw ? "krw_found" : storeResolved ? "not_krw_store" : parsed.found ? "metadata_only" : "unresolved",
+        krw_price: krw ? parsed.price : null, krw_store_available: krw ? true : storeResolved ? false : null,
+        region_restricted: krw ? false : storeResolved ? true : null, release_date: parsed.release_date,
+        source_status: `official_meta_recent_overseas:${listingStatus}`, active: listingStatus === "released",
+        resolved: parsed.found, attempt, final_url: response.url,
       };
       consecutiveBlocked = 0;
       break;
@@ -87,11 +121,17 @@ for (const game of candidates || []) {
   if (consecutiveBlocked >= 2) break;
 }
 
-const actionable = rows.filter((row) => ["krw_found", "not_krw_store"].includes(row.status));
+const actionable = rows.filter((row) => row.resolved);
 let updated = 0;
 if (apply) {
   for (const row of actionable) {
-    const payload = { krw_price: row.krw_price, krw_store_available: row.krw_store_available, region_restricted: row.region_restricted, price_checked_at: new Date().toISOString(), updated_at: new Date().toISOString() };
+    const payload = { source_status: row.source_status, active: row.active, price_checked_at: new Date().toISOString(), updated_at: new Date().toISOString() };
+    if (row.release_date) payload.release_date = row.release_date;
+    if (row.krw_store_available != null) {
+      payload.krw_price = row.krw_price;
+      payload.krw_store_available = row.krw_store_available;
+      payload.region_restricted = row.region_restricted;
+    }
     const result = await rest(`games?id=eq.${row.id}`, { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify(payload) });
     updated += result?.length || 0;
   }

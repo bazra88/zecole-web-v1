@@ -114,8 +114,10 @@ function parseDetail(html, product) {
   const price = app && offer.price != null ? Number(offer.price) : money(storeOffer.price);
   const availability = offer.availability || null;
   const releaseDate = normalizedDate(app?.datePublished || app?.releaseDate || relay?.release_info?.display_date);
+  const listingStatus = /PreOrder/i.test(availability || "") || (relay?.pre_order_bundles?.length || 0) > 0 ? "preorder" : product.listing_status;
   return {
     ...product,
+    listing_status: listingStatus,
     name: app?.name || relay?.display_name || product.name,
     description: app?.description || relay?.display_long_description || relay?.display_machine_translated_long_description || null,
     rating: Number(aggregate.ratingValue || relay?.quality_rating_i18n_score_string) || null,
@@ -193,10 +195,18 @@ catch (error) {
 }
 const candidates = [];
 let listed = [];
+const listAttemptCounts = [];
 try {
   const context = await browser.newContext({ locale: "en-US", userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131 Safari/537.36" });
   const listPage = await context.newPage();
-  listed = await collectCards(listPage);
+  const mergedCards = new Map();
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const cards = await collectCards(listPage);
+    listAttemptCounts.push(cards.length);
+    for (const card of cards) mergedCards.set(card.meta_id, card);
+    if (attempt < 2) await listPage.waitForTimeout(1500);
+  }
+  listed = [...mergedCards.values()];
   const detailPage = await context.newPage();
   let olderReleasedStreak = 0;
   for (const product of listed) {
@@ -204,11 +214,11 @@ try {
     await detailPage.goto(product.meta_store_url, { waitUntil: "domcontentloaded", timeout: 60_000 });
     await detailPage.waitForTimeout(500);
     const parsed = parseDetail(await detailPage.content(), product);
-    const released = product.listing_status === "released" && !/PreOrder/i.test(parsed.availability || "");
+    const released = parsed.listing_status === "released";
     const releaseTime = parsed.release_date ? Date.parse(`${parsed.release_date}T00:00:00Z`) : NaN;
     const older = released && Number.isFinite(releaseTime) && releaseTime < cutoff.getTime();
     olderReleasedStreak = older ? olderReleasedStreak + 1 : 0;
-    if (product.listing_status !== "released" || !Number.isFinite(releaseTime) || releaseTime >= cutoff.getTime()) candidates.push(parsed);
+    if (parsed.listing_status !== "released" || !Number.isFinite(releaseTime) || releaseTime >= cutoff.getTime()) candidates.push(parsed);
     if (olderReleasedStreak >= 5) break;
     await sleep(DETAIL_DELAY_MS + Math.floor(Math.random() * 500));
   }
@@ -263,7 +273,7 @@ for (const game of candidates) {
 
 const report = {
   generated_at: new Date().toISOString(), mode: apply ? "apply" : "dry_run", source_url: SOURCE_URL,
-  cutoff_date: cutoff.toISOString().slice(0, 10), listed: listed.length, eligible: candidates.length,
+  cutoff_date: cutoff.toISOString().slice(0, 10), list_attempt_counts: listAttemptCounts, listed: listed.length, eligible: candidates.length,
   upcoming: candidates.filter((game) => game.listing_status !== "released").length,
   recent_released: candidates.filter((game) => game.listing_status === "released").length,
   new_games: newRows.length, existing_updates: existingUpdates.length, skipped,

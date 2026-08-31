@@ -76,6 +76,33 @@ export async function setGameVisibilityAction(formData) {
   revalidatePath("/admin");
 }
 
+export async function updateAffiliateUrlAction(_previousState, formData) {
+  try {
+    await requireAdmin();
+    const id = String(formData.get("id") || "");
+    const slug = String(formData.get("slug") || "");
+    const affiliateUrl = String(formData.get("affiliate_url") || "").trim();
+    if (!/^[0-9a-f-]{36}$/i.test(id)) return { error: "게임 ID가 올바르지 않습니다." };
+    if (affiliateUrl) {
+      const parsed = new URL(affiliateUrl);
+      if (!["http:", "https:"].includes(parsed.protocol)) return { error: "http 또는 https 주소만 입력할 수 있습니다." };
+    }
+    const updated = await adminRest(`games?id=eq.${id}&select=id`, {
+      method: "PATCH",
+      headers: { Prefer: "return=representation" },
+      body: JSON.stringify({ affiliate_url: affiliateUrl || null, updated_at: new Date().toISOString() }),
+    });
+    if (!updated?.length) return { error: "제휴 링크를 저장할 게임을 찾지 못했습니다." };
+    revalidatePath("/");
+    revalidatePath("/games");
+    if (slug) revalidatePath(`/games/${slug}`);
+    revalidatePath("/admin");
+    return { success: affiliateUrl ? "제휴 링크를 저장했습니다." : "제휴 링크를 제거했습니다." };
+  } catch (error) {
+    return { error: error instanceof TypeError ? "올바른 URL을 입력해 주세요." : error.message || "제휴 링크 저장에 실패했습니다." };
+  }
+}
+
 export async function setGameNewReleasePinnedAction(formData) {
   await requireAdmin();
   const id = String(formData.get("id") || "");

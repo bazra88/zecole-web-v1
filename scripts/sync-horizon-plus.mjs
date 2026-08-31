@@ -13,9 +13,7 @@ const SOURCES = {
   horizon_catalog: "https://www.meta.com/ko-kr/experiences/section/746836817401205/",
   indie_catalog: "https://www.meta.com/ko-kr/experiences/section/3170833353093973/",
 };
-// The indie catalog is currently smaller than the main catalog; keep a guard
-// against truncated responses without rejecting the legitimate ~25-30 item list.
-const MINIMUMS = { monthly_games: 2, horizon_catalog: 35, indie_catalog: 20 };
+const MINIMUMS = { monthly_games: 2, horizon_catalog: 35, indie_catalog: 50 };
 const TITLE_ALIASES = new Map(Object.entries({
   "더 라이트 브리게이드": "The Light Brigade",
   "데메오: 던전 크롤러 VR": "Demeo",
@@ -89,15 +87,17 @@ async function fetchSource(page, category, url) {
   let stableRounds = 0;
   // Meta lazy-loads cards through viewport intersection observers. Walking in
   // viewport increments is required; jumping straight to the bottom can skip them.
-  for (let round = 0; round < 80 && stableRounds < 8; round += 1) {
-    await page.evaluate((step) => {
-      const y = Math.min(document.body.scrollHeight - window.innerHeight, step * window.innerHeight * 0.75);
-      window.scrollTo(0, Math.max(0, y));
-    }, round);
+  for (let round = 0; round < 100; round += 1) {
+    await page.evaluate(() => {
+      const bottom = Math.max(0, document.body.scrollHeight - window.innerHeight);
+      window.scrollTo(0, Math.min(bottom, window.scrollY + window.innerHeight * 0.75));
+    });
     await page.waitForTimeout(1200);
     const count = await page.locator('a[href*="/experiences/"]').count();
-    stableRounds = count === previousCount ? stableRounds + 1 : 0;
+    const atBottom = await page.evaluate(() => window.scrollY + window.innerHeight >= document.body.scrollHeight - 8);
+    stableRounds = atBottom && count === previousCount ? stableRounds + 1 : 0;
     previousCount = count;
+    if (stableRounds >= 10) break;
   }
   const products = await page.locator('a[href*="/experiences/"]').evaluateAll((anchors) => {
     const seen = new Set();
@@ -115,6 +115,20 @@ async function fetchSource(page, category, url) {
     return rows;
   });
   return category === "monthly_games" ? products.slice(0, 2) : products;
+}
+
+async function collectSource(page, category, url, minimum) {
+  const merged = new Map();
+  const attemptCounts = [];
+  const maxAttempts = category === "monthly_games" ? 2 : 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const products = await fetchSource(page, category, url);
+    attemptCounts.push(products.length);
+    for (const product of products) merged.set(product.meta_id, product);
+    if (merged.size >= minimum) break;
+    await page.waitForTimeout(2000);
+  }
+  return { rows: [...merged.values()], attemptCounts };
 }
 async function rest(path, options = {}) {
   const response = await fetch(`${supabaseUrl}/rest/v1/${path}`, { ...options, headers: { ...headers, ...options.headers } });
@@ -134,21 +148,33 @@ async function restAll(path, pageSize = 1000) {
 await mkdir(reportDir, { recursive: true });
 const month = pacificMonth();
 const collected = {};
+const collectionAttempts = {};
 const browser = await chromium.launch({ headless: true });
 try {
   const context = await browser.newContext({ locale: "ko-KR", userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131 Safari/537.36" });
   const page = await context.newPage();
-  for (const [category, url] of Object.entries(SOURCES)) collected[category] = await fetchSource(page, category, url);
+  for (const [category, url] of Object.entries(SOURCES)) {
+    const result = await collectSource(page, category, url, MINIMUMS[category]);
+    collected[category] = result.rows;
+    collectionAttempts[category] = result.attemptCounts;
+  }
   await context.close();
 } finally {
   await browser.close();
 }
 const counts = Object.fromEntries(Object.entries(collected).map(([category, rows]) => [category, rows.length]));
-const invalid = Object.entries(MINIMUMS).filter(([category, minimum]) => counts[category] < minimum);
-const report = { generated_at: new Date().toISOString(), month, mode: apply ? "apply" : "dry_run", sources: SOURCES, minimums: MINIMUMS, counts, status: invalid.length ? "invalid_source" : "ready", invalid, matched: 0, unmatched: [], inserted: 0 };
+const previousCurrent = await rest(`horizon_plus_entries?select=id,month,category,game_id,external_game_name,note&month=eq.${month}&limit=1000`);
+const historical = previousCurrent.length ? [] : await rest(`horizon_plus_entries?select=month,category&month=lt.${month}&order=month.desc&limit=1000`);
+const baselineMonth = previousCurrent.length ? month : historical?.[0]?.month;
+const baselineRows = previousCurrent.length ? previousCurrent : (historical || []).filter((row) => row.month === baselineMonth);
+const baselineCounts = Object.fromEntries(Object.keys(SOURCES).map((category) => [category, baselineRows.filter((row) => row.category === category).length]));
+const minimumFailures = Object.entries(MINIMUMS).filter(([category, minimum]) => counts[category] < minimum).map(([category, minimum]) => ({ category, reason: "minimum", expected: minimum, actual: counts[category] }));
+const suddenDrops = Object.keys(SOURCES).filter((category) => baselineCounts[category] && counts[category] < baselineCounts[category] - Math.max(3, Math.ceil(baselineCounts[category] * 0.15))).map((category) => ({ category, reason: "sudden_drop", expected: baselineCounts[category], actual: counts[category] }));
+const invalid = [...minimumFailures, ...suddenDrops];
+const report = { generated_at: new Date().toISOString(), month, mode: apply ? "apply" : "dry_run", sources: SOURCES, minimums: MINIMUMS, counts, collection_attempts: collectionAttempts, baseline_month: baselineMonth || null, baseline_counts: baselineCounts, status: invalid.length ? "invalid_source" : "ready", invalid, matched: 0, unmatched: [], inserted: 0 };
 if (invalid.length) {
   await writeFile(resolve(reportDir, "latest-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
-  throw new Error(`불완전한 Meta 응답: ${invalid.map(([category]) => `${category}=${counts[category]}`).join(", ")}`);
+  throw new Error(`불완전한 Meta 응답: ${invalid.map((item) => `${item.category}=${item.actual} (${item.reason})`).join(", ")}`);
 }
 
 const games = await restAll("games?select=id,name,slug,meta_product_id,meta_store_url&order=id.asc");
@@ -176,7 +202,6 @@ if (!apply) {
   process.exit(0);
 }
 
-const previousCurrent = await rest(`horizon_plus_entries?select=id,month,category,game_id,external_game_name,note&month=eq.${month}&limit=1000`);
 const allIds = await rest("horizon_plus_entries?select=id&order=id.desc&limit=1");
 const startId = Number(allIds?.[0]?.id || 0) + 1;
 const payload = snapshot.map((row, index) => ({ id: startId + index, ...row }));
@@ -186,7 +211,10 @@ try {
   report.inserted = inserted?.length || 0;
   if (report.inserted !== payload.length) throw new Error(`삽입 행 수 불일치: ${report.inserted}/${payload.length}`);
 } catch (error) {
-  if (previousCurrent?.length) await rest("horizon_plus_entries", { method: "POST", headers: { Prefer: "resolution=ignore-duplicates,return=minimal" }, body: JSON.stringify(previousCurrent) }).catch(() => {});
+  if (previousCurrent?.length) {
+    await rest(`horizon_plus_entries?month=eq.${month}`, { method: "DELETE", headers: { Prefer: "return=minimal" } }).catch(() => {});
+    await rest("horizon_plus_entries", { method: "POST", headers: { Prefer: "resolution=ignore-duplicates,return=minimal" }, body: JSON.stringify(previousCurrent) }).catch(() => {});
+  }
   throw error;
 }
 const verified = await rest(`horizon_plus_entries?select=id,category&month=eq.${month}&limit=1000`);

@@ -16,6 +16,17 @@ const SOURCES = {
 // The indie catalog is currently smaller than the main catalog; keep a guard
 // against truncated responses without rejecting the legitimate ~25-30 item list.
 const MINIMUMS = { monthly_games: 2, horizon_catalog: 35, indie_catalog: 20 };
+const TITLE_ALIASES = new Map(Object.entries({
+  "더 라이트 브리게이드": "The Light Brigade",
+  "데메오: 던전 크롤러 VR": "Demeo",
+  "스페이셜 옵스": "Spatial Ops",
+  "신스라이더(Synth Riders)": "Synth Riders",
+  "프리미엄 볼링": "Premium Bowling",
+  "Tiny Archers (타이니 아처스)": "Tiny Archers",
+  "레트로폴리스 2: 결코 작별하지 마세요": "Retropolis 2: Never Say Goodbye",
+  "레트로폴리스의 비밀": "The Secret of Retropolis",
+  "오디오 트립": "Audio Trip",
+}).map(([source, target]) => [normalizeName(source), normalizeName(target)]));
 
 const parseEnv = (source) => Object.fromEntries(source.split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#") && line.includes("=")).map((line) => {
   const index = line.indexOf("=");
@@ -151,7 +162,8 @@ for (const game of games || []) {
 const snapshot = [];
 for (const [category, products] of Object.entries(collected)) {
   for (const product of products) {
-    const game = byMetaId.get(product.meta_id) || byName.get(normalizeName(product.name));
+    const normalized = normalizeName(product.name);
+    const game = byMetaId.get(product.meta_id) || byName.get(normalized) || byName.get(TITLE_ALIASES.get(normalized));
     if (game) report.matched += 1;
     else report.unmatched.push({ category, ...product });
     snapshot.push({ month, category, game_id: game?.id || null, external_game_name: game ? null : product.name, note: `Meta 공식 Horizon+ 자동 수집 · ${product.meta_id}` });

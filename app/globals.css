@@ -2136,10 +2136,20 @@ button, input, select, textarea { font: inherit; }
 .admin-game-main { min-width: 0; }
 .admin-game-main strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .admin-game-main > span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
+.admin-game-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.admin-game-title-row > strong { min-width: 80px; max-width: 100%; }
+.admin-game-stat { flex: 0 0 auto; padding: 2px 6px; border: 1px solid #304868; border-radius: 999px; background: rgba(20,39,67,.65); color: #c9d9ee; font-size: 9px; font-weight: 800; }
+.admin-game-stat.price { color: #dbeafe; }
+.admin-game-stat.rating { color: #fde68a; }
+.admin-game-stat.reviews { color: #bfdbfe; }
+.admin-game-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 5px; color: var(--muted); font-size: 11px; }
+.admin-game-meta > b { font-size: 10px; }
+.admin-genre-tags { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+.admin-genre-tags span { padding: 2px 6px; border: 1px solid rgba(96,165,250,.4); border-radius: 999px; color: #a8caff; font-size: 9px; font-weight: 750; }
 .admin-game-main .has-affiliate { color: #86efac; }
 .admin-game-main .no-affiliate { color: #fda4af; }
-.admin-game-main > div { display: flex; gap: 12px; margin-top: 7px; }
-.admin-game-main > .admin-recommendation-summary { gap: 5px; }
+.admin-game-main > .admin-game-links { display: flex; gap: 12px; margin-top: 7px; }
+.admin-game-main > .admin-recommendation-summary { display: flex; gap: 5px; margin-top: 7px; }
 .admin-recommendation-summary span { padding: 2px 6px; border: 1px solid rgba(45,212,191,.42); border-radius: 999px; color: #99f6e4; font-size: 9px; font-weight: 800; }
 .admin-game-main a { color: #82adf5; font-size: 11px; }
 .admin-danger { border: 1px solid rgba(244,63,94,.4); background: rgba(244,63,94,.12); color: #ff91a5; }

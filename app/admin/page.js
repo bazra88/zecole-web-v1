@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { adminIsConfigured, isAdmin } from "@/lib/admin-auth";
 import { adminRestPage } from "@/lib/admin-supabase";
+import { formatGamePrice } from "@/lib/game-format";
 import { gameImageUrl } from "@/lib/supabase";
 import { AdminImportForm, AdminLoginForm } from "./AdminForms";
 import AdminGameControls from "./AdminGameControls";
@@ -25,7 +26,7 @@ async function loadGames(query, visibility, affiliate, recommendation, sort, pag
     price_asc: "current_price.asc.nullslast,id.asc",
   };
   const params = new URLSearchParams({
-    select: "id,name,slug,affiliate_url,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,admin_new_release_pinned,beginner_recommended,advanced_recommended,zecole_recommended,created_at",
+    select: "id,name,slug,affiliate_url,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,admin_new_release_pinned,beginner_recommended,advanced_recommended,zecole_recommended,created_at,current_price,krw_price,usd_price,currency,pricing_type,rating,review_count,game_genres(genres(name))",
     order: sortOrders[sort] || sortOrders.newest,
     offset: String(from),
     limit: String(PAGE_SIZE),
@@ -150,8 +151,19 @@ export default async function AdminPage({ searchParams }) {
             <article className={`admin-game-row${game.admin_hidden ? " is-hidden" : ""}${game.admin_new_release_pinned ? " is-pinned" : ""}`} key={game.id}>
               <div className="admin-game-image">{gameImageUrl(game.image_path) || game.source_image_url ? <img src={gameImageUrl(game.image_path) || game.source_image_url} alt="" /> : <span>NO IMAGE</span>}</div>
               <div className="admin-game-main">
-                <strong>{game.name}</strong>
-                <span>{game.release_date || "출시일 미확인"} · {game.active ? "활성" : "비활성"}{game.admin_new_release_pinned ? " · 신규 출시 고정" : ""} · <b className={game.affiliate_url ? "has-affiliate" : "no-affiliate"}>{game.affiliate_url ? "제휴 링크 있음" : "제휴 링크 없음"}</b></span>
+                <div className="admin-game-title-row">
+                  <strong>{game.name}</strong>
+                  <span className="admin-game-stat price">{formatGamePrice(game).primary}</span>
+                  <span className="admin-game-stat rating">★ {game.rating != null ? Number(game.rating).toFixed(1) : "-"}</span>
+                  <span className="admin-game-stat reviews">리뷰 {game.review_count != null ? Number(game.review_count).toLocaleString("ko-KR") : "-"}</span>
+                </div>
+                <div className="admin-game-meta">
+                  <span>{game.release_date || "출시일 미확인"} · {game.active ? "활성" : "비활성"}{game.admin_new_release_pinned ? " · 신규 출시 고정" : ""}</span>
+                  <b className={game.affiliate_url ? "has-affiliate" : "no-affiliate"}>{game.affiliate_url ? "제휴 링크 있음" : "제휴 링크 없음"}</b>
+                  <div className="admin-genre-tags">
+                    {[...new Set((game.game_genres || []).map((link) => link.genres?.name).filter(Boolean))].map((genre) => <span key={genre}>{genre}</span>)}
+                  </div>
+                </div>
                 {game.beginner_recommended || game.advanced_recommended || game.zecole_recommended ? (
                   <div className="admin-recommendation-summary">
                     {game.beginner_recommended ? <span>초보자</span> : null}
@@ -159,7 +171,7 @@ export default async function AdminPage({ searchParams }) {
                     {game.zecole_recommended ? <span>ZECOLE 추천</span> : null}
                   </div>
                 ) : null}
-                <div><Link href={`/games/${game.slug}`}>상세 보기</Link>{game.meta_store_url ? <a href={game.meta_store_url} target="_blank" rel="noreferrer">Meta 스토어</a> : null}</div>
+                <div className="admin-game-links"><Link href={`/games/${game.slug}`}>상세 보기</Link>{game.meta_store_url ? <a href={game.meta_store_url} target="_blank" rel="noreferrer">Meta 스토어</a> : null}</div>
               </div>
               <AdminGameControls game={game} />
             </article>

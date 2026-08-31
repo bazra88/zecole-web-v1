@@ -81,7 +81,8 @@ export default async function AdminPage({ searchParams }) {
   return (
     <main className="admin-shell">
       <header className="admin-header">
-        <div><span className="eyebrow">ZECOLE ADMIN</span><h1>게임 관리자</h1></div>
+        <div><span className="eyebrow">ZECOLE ADMIN</span><h1><Link href="/admin">게임 관리자</Link></h1></div>
+        <Link className="admin-home-link" href="/admin">⌂ 관리자 홈</Link>
         <form action={logoutAction}><button className="admin-secondary" type="submit">로그아웃</button></form>
       </header>
 

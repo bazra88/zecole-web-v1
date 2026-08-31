@@ -63,7 +63,7 @@ function productsFromHtml(html) {
   const names = productNames(normalized);
   const products = [];
   const seen = new Set();
-  const pattern = /\/experiences\/(?!section\/|meta-horizon-plus\/)([^/"?#]+)\/(\d{6,})\/?/g;
+  const pattern = /\/experiences\/(?!section\/|view\/|meta-horizon-plus\/)([^/"?#]+)\/(\d{6,})\/?/g;
   for (const match of normalized.matchAll(pattern)) {
     const [, slug, metaId] = match;
     if (seen.has(metaId)) continue;
@@ -93,11 +93,13 @@ async function fetchSource(page, category, url) {
     const rows = [];
     for (const anchor of anchors) {
       const href = anchor.href || anchor.getAttribute("href") || "";
-      const match = href.match(/\/experiences\/(?!section\/|meta-horizon-plus\/)([^/?#]+)\/(\d{6,})\/?/);
+      const match = href.match(/\/experiences\/(?!section\/|view\/|meta-horizon-plus\/)([^/?#]+)\/(\d{6,})\/?/);
       if (!match || seen.has(match[2])) continue;
-      seen.add(match[2]);
       const text = (anchor.innerText || "").split("\n").map((line) => line.trim()).filter(Boolean);
-      rows.push({ meta_id: match[2], slug: match[1], name: text[0] || match[1].replaceAll("-", " ") });
+      const name = text[0] || match[1].replaceAll("-", " ");
+      if (["홈", "게임", "앱", "Home", "Games", "Apps", "우수 판매자", "높은 평점"].includes(name)) continue;
+      seen.add(match[2]);
+      rows.push({ meta_id: match[2], slug: match[1], name });
     }
     return rows;
   });

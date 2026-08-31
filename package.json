@@ -19,6 +19,8 @@
     "data:paid:sync": "node scripts/sync-meta-paid-pages.mjs",
     "data:paid:full": "node scripts/run-meta-paid-full-pipeline.mjs",
     "data:paid:qsdb": "node scripts/collect-qsdb-paid-metadata.mjs",
+    "data:recent:sync": "node scripts/sync-meta-recent.mjs",
+    "data:recent:krw": "node scripts/sync-meta-recent-krw.mjs",
     "data:horizon-plus:sync": "node scripts/sync-horizon-plus.mjs",
     "data:free:prepare-inserts": "node scripts/prepare-meta-free-inserts.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",

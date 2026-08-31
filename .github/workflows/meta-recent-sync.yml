@@ -1,0 +1,43 @@
+name: Sync recent Meta games
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type SYNC_META_RECENT
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: meta-recent-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: ${{ inputs.confirmation == 'SYNC_META_RECENT' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Collect overseas catalog and apply new games
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run data:recent:sync -- --apply --confirm=SYNC_META_RECENT
+      - if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: meta-recent-sync-${{ github.run_id }}
+          path: data/meta-recent/latest-report.json
+          if-no-files-found: warn
+

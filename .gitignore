@@ -7,5 +7,6 @@ node_modules
 .npm-cache
 .meta-cache
 data/horizon-plus/*.json
+data/meta-recent/*.json
 
 .vercel

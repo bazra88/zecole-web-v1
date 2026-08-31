@@ -2167,4 +2167,8 @@ button, input, select, textarea { font: inherit; }
 }
 .hero-clean, .hero-split { display: none; }
 .hero-feature-bar { display: none; }
+main:has(.horizon-section) { display: flex; flex-direction: column; }
+main:has(.horizon-section) > section { order: 1; }
+main:has(.horizon-section) > .horizon-section { order: 4; }
+main:has(.horizon-section) > section:nth-of-type(4) { order: 3; }
 .game-card-prices span, .game-card-prices strong { font-size: inherit; }

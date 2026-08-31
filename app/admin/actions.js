@@ -56,7 +56,11 @@ export async function importGameAction(_previous, formData) {
     if (target?.id && game.genres?.length) {
       for (const name of game.genres) {
         const rows = await adminRest(`genres?name=eq.${encodeURIComponent(name)}&select=id&limit=1`);
-        const genre = rows?.[0] || (await adminRest("genres", { method: "POST", headers: { Prefer: "return=representation" }, body: JSON.stringify({ name, slug: `meta-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`) }))?.[0];
+        const genre = rows?.[0] || (await adminRest("genres", {
+          method: "POST",
+          headers: { Prefer: "return=representation" },
+          body: JSON.stringify({ name, slug: `meta-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` }),
+        }))?.[0];
         if (genre?.id) await adminRest("game_genres?on_conflict=game_id,genre_id", { method: "POST", headers: { Prefer: "resolution=ignore-duplicates" }, body: JSON.stringify({ game_id: target.id, genre_id: genre.id }) });
       }
     }

@@ -3,7 +3,8 @@ import { adminIsConfigured, isAdmin } from "@/lib/admin-auth";
 import { adminRestPage } from "@/lib/admin-supabase";
 import { gameImageUrl } from "@/lib/supabase";
 import { AdminImportForm, AdminLoginForm } from "./AdminForms";
-import { logoutAction, setGameVisibilityAction } from "./actions";
+import AdminGameControls from "./AdminGameControls";
+import { logoutAction } from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,7 @@ const PAGE_SIZE = 50;
 async function loadGames(query, visibility, sort, page) {
   const from = (page - 1) * PAGE_SIZE;
   const params = new URLSearchParams({
-    select: "id,name,slug,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,created_at",
+    select: "id,name,slug,source_image_url,image_path,meta_store_url,release_date,active,admin_hidden,admin_new_release_pinned,created_at",
     order: sort === "oldest" ? "created_at.asc,id.asc" : "created_at.desc,id.desc",
     offset: String(from),
     limit: String(PAGE_SIZE),
@@ -86,7 +87,7 @@ export default async function AdminPage({ searchParams }) {
       </section>
 
       <section className="admin-panel">
-        <div className="admin-section-title"><div><h2>등록된 게임</h2><p>삭제는 데이터 보존을 위해 숨김 처리되며 언제든 복구할 수 있습니다.</p></div><strong>전체 {total.toLocaleString("ko-KR")}개</strong></div>
+        <div className="admin-section-title"><div><h2>등록된 게임</h2><p>숨김은 복구할 수 있으며, DB 삭제는 확인 후 영구적으로 처리됩니다.</p></div><strong>전체 {total.toLocaleString("ko-KR")}개</strong></div>
         <form className="admin-filter" method="get">
           <input name="q" defaultValue={query} placeholder="게임 이름 검색" />
           <select name="visibility" defaultValue={visibility}>
@@ -99,18 +100,14 @@ export default async function AdminPage({ searchParams }) {
         </form>
         <div className="admin-game-list">
           {games.map((game) => (
-            <article className={`admin-game-row${game.admin_hidden ? " is-hidden" : ""}`} key={game.id}>
+            <article className={`admin-game-row${game.admin_hidden ? " is-hidden" : ""}${game.admin_new_release_pinned ? " is-pinned" : ""}`} key={game.id}>
               <div className="admin-game-image">{gameImageUrl(game.image_path) || game.source_image_url ? <img src={gameImageUrl(game.image_path) || game.source_image_url} alt="" /> : <span>NO IMAGE</span>}</div>
               <div className="admin-game-main">
                 <strong>{game.name}</strong>
-                <span>{game.release_date || "출시일 미확인"} · {game.active ? "활성" : "비활성"}</span>
+                <span>{game.release_date || "출시일 미확인"} · {game.active ? "활성" : "비활성"}{game.admin_new_release_pinned ? " · 신규 출시 고정" : ""}</span>
                 <div><Link href={`/games/${game.slug}`}>상세 보기</Link>{game.meta_store_url ? <a href={game.meta_store_url} target="_blank" rel="noreferrer">Meta 스토어</a> : null}</div>
               </div>
-              <form action={setGameVisibilityAction}>
-                <input type="hidden" name="id" value={game.id} />
-                <input type="hidden" name="hidden" value={game.admin_hidden ? "false" : "true"} />
-                <button className={game.admin_hidden ? "admin-restore" : "admin-danger"} type="submit">{game.admin_hidden ? "복구" : "숨기기"}</button>
-              </form>
+              <AdminGameControls game={game} />
             </article>
           ))}
           {!games.length ? <p className="admin-empty">조건에 맞는 게임이 없습니다.</p> : null}

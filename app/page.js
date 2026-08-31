@@ -79,6 +79,7 @@ function HorizonTile({ href, number, title, description, games, monthly = false 
 export default async function Home() {
   const [
     newReleaseGames,
+    pinnedNewReleaseGames,
     recentlyAddedGames,
     popularPaidGames,
     popularFreeGames,
@@ -92,6 +93,11 @@ export default async function Home() {
       limit: 12,
       releasedOnly: true,
       order: "release_date.desc.nullslast,name.asc",
+    }),
+    safeGames({
+      limit: 12,
+      newReleasePinned: true,
+      order: "created_at.desc,name.asc",
     }),
     safeGames({
       limit: 12,
@@ -115,7 +121,12 @@ export default async function Home() {
   ]);
 
   const hasReleaseDates = newReleaseGames.length > 0;
-  const featuredNewReleases = (hasReleaseDates ? newReleaseGames : recentlyAddedGames).slice(0, 12);
+  const automaticNewReleases = hasReleaseDates ? newReleaseGames : recentlyAddedGames;
+  const pinnedNewReleaseIds = new Set(pinnedNewReleaseGames.map((game) => game.id));
+  const featuredNewReleases = [
+    ...pinnedNewReleaseGames,
+    ...automaticNewReleases.filter((game) => !pinnedNewReleaseIds.has(game.id)),
+  ].slice(0, 12);
   const featuredPopularPaid = popularPaidGames.slice(0, 12);
   const latestHorizonMonth = [...new Set(horizonPlus.map((row) => row.month).filter(Boolean))].sort().at(-1);
   const latestHorizon = latestHorizonMonth

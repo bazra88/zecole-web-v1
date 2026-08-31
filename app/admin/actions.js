@@ -75,3 +75,44 @@ export async function setGameVisibilityAction(formData) {
   revalidatePath("/games");
   revalidatePath("/admin");
 }
+
+export async function setGameNewReleasePinnedAction(formData) {
+  await requireAdmin();
+  const id = String(formData.get("id") || "");
+  const pinned = String(formData.get("pinned")) === "true";
+  if (!/^[0-9a-f-]{36}$/i.test(id)) throw new Error("게임 ID가 올바르지 않습니다.");
+  await adminRest(`games?id=eq.${id}`, {
+    method: "PATCH",
+    headers: { Prefer: "return=minimal" },
+    body: JSON.stringify({
+      admin_new_release_pinned: pinned,
+      ...(pinned ? { active: true, admin_hidden: false } : {}),
+      updated_at: new Date().toISOString(),
+    }),
+  });
+  revalidatePath("/");
+  revalidatePath("/admin");
+}
+
+export async function deleteGameAction(formData) {
+  await requireAdmin();
+  const id = String(formData.get("id") || "");
+  if (!/^[0-9a-f-]{36}$/i.test(id)) throw new Error("게임 ID가 올바르지 않습니다.");
+  const games = await adminRest(`games?id=eq.${id}&select=id,name&limit=1`);
+  const game = games?.[0];
+  if (!game) throw new Error("삭제할 게임을 찾지 못했습니다.");
+  await adminRest(`horizon_plus_entries?game_id=eq.${id}&external_game_name=is.null`, {
+    method: "PATCH",
+    headers: { Prefer: "return=minimal" },
+    body: JSON.stringify({ external_game_name: game.name }),
+  });
+  const deleted = await adminRest(`games?id=eq.${id}&select=id`, {
+    method: "DELETE",
+    headers: { Prefer: "return=representation" },
+  });
+  if (!deleted?.length) throw new Error("게임을 삭제하지 못했습니다.");
+  revalidatePath("/");
+  revalidatePath("/games");
+  revalidatePath("/horizon-plus");
+  revalidatePath("/admin");
+}

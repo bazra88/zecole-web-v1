@@ -2093,7 +2093,7 @@ button, input, select, textarea { font: inherit; }
 .admin-config-warning, .admin-message.error { background: rgba(244,63,94,.12); color: #ff9aad; border: 1px solid rgba(244,63,94,.25); }
 .admin-message.success { background: rgba(34,197,94,.12); color: #86efac; border: 1px solid rgba(34,197,94,.25); }
 .admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
-.admin-secondary, .admin-danger, .admin-restore { min-height: 38px; padding: 0 14px; border-radius: 9px; font-weight: 800; cursor: pointer; }
+.admin-secondary, .admin-danger, .admin-restore, .admin-pin, .admin-pinned, .admin-delete-trigger, .admin-delete, .admin-cancel { min-height: 38px; padding: 0 12px; border-radius: 9px; font-size: 11px; font-weight: 800; cursor: pointer; }
 .admin-secondary { border: 1px solid #38557f; background: #0e203c; color: #dce9ff; }
 .admin-panel { padding: 28px; margin-bottom: 24px; }
 .admin-panel h2 { margin: 0 0 18px; font-size: 22px; }
@@ -2106,6 +2106,7 @@ button, input, select, textarea { font: inherit; }
 .admin-game-list { display: grid; gap: 8px; }
 .admin-game-row { display: grid; grid-template-columns: 74px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 10px; border: 1px solid #243a5b; border-radius: 13px; background: rgba(7,18,35,.72); }
 .admin-game-row.is-hidden { opacity: .62; }
+.admin-game-row.is-pinned { border-color: rgba(96,165,250,.68); box-shadow: inset 3px 0 #60a5fa; }
 .admin-game-image { width: 74px; height: 60px; display: grid; place-items: center; overflow: hidden; border-radius: 8px; background: #07101f; color: #536784; font-size: 9px; }
 .admin-game-image img { width: 100%; height: 100%; object-fit: cover; }
 .admin-game-main { min-width: 0; }
@@ -2115,6 +2116,14 @@ button, input, select, textarea { font: inherit; }
 .admin-game-main a { color: #82adf5; font-size: 11px; }
 .admin-danger { border: 1px solid rgba(244,63,94,.4); background: rgba(244,63,94,.12); color: #ff91a5; }
 .admin-restore { border: 1px solid rgba(34,197,94,.4); background: rgba(34,197,94,.12); color: #86efac; }
+.admin-game-controls { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 7px; max-width: 330px; }
+.admin-game-controls form { margin: 0; }
+.admin-pin { border: 1px solid rgba(96,165,250,.45); background: rgba(59,130,246,.12); color: #9bc3ff; }
+.admin-pinned { border: 1px solid rgba(250,204,21,.5); background: rgba(250,204,21,.12); color: #fde68a; }
+.admin-delete-trigger, .admin-delete { border: 1px solid rgba(251,113,133,.5); background: rgba(127,29,29,.32); color: #fecdd3; }
+.admin-delete-confirm { display: flex; align-items: center; gap: 6px; padding-left: 7px; border-left: 1px solid #3b4b65; }
+.admin-delete-confirm > span { color: #fecdd3; font-size: 10px; font-weight: 800; }
+.admin-cancel { border: 1px solid #3b4b65; background: #101d32; color: #b8c8de; }
 .admin-empty { padding: 40px; text-align: center; color: var(--muted); }
 .admin-pagination { display: grid; grid-template-columns: 72px minmax(0, 1fr) 72px; align-items: center; gap: 12px; margin-top: 22px; }
 .admin-pagination > div { display: flex; justify-content: center; flex-wrap: wrap; gap: 7px; }
@@ -2129,6 +2138,8 @@ button, input, select, textarea { font: inherit; }
   .admin-import-form > div, .admin-filter { grid-template-columns: 1fr; }
   .admin-game-row { grid-template-columns: 58px minmax(0,1fr); }
   .admin-game-image { width: 58px; height: 52px; }
-  .admin-game-row > form { grid-column: 1 / -1; }
-  .admin-game-row > form button { width: 100%; }
+  .admin-game-controls { grid-column: 1 / -1; max-width: none; justify-content: stretch; }
+  .admin-game-controls > form, .admin-game-controls > button { flex: 1 1 120px; }
+  .admin-game-controls form button { width: 100%; }
+  .admin-delete-confirm { flex: 1 1 100%; justify-content: flex-end; }
 }

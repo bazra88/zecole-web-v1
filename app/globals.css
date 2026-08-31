@@ -2165,3 +2165,5 @@ button, input, select, textarea { font: inherit; }
   .admin-delete-confirm { flex: 1 1 100%; justify-content: flex-end; }
   .admin-affiliate-form { grid-template-columns: 1fr auto auto; }
 }
+.hero-clean, .hero-split { display: none; }
+.game-card-prices span, .game-card-prices strong { font-size: inherit; }

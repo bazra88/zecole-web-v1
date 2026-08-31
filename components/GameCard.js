@@ -52,8 +52,8 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
         <div className="badges">
           {catalogStatus === "added" ? <span className="badge catalog-added">이번 달 추가</span> : null}
           {catalogStatus === "removed" ? <span className="badge catalog-removed">이번 달 제외</span> : null}
-          {free ? <span className="badge free">무료</span> : null}
-          {!free && affiliateDiscount > 0 ? (
+          {false && free ? <span className="badge free">무료</span> : null}
+          {false && !free && affiliateDiscount > 0 ? (
             <span className={`badge ${discount.promotional ? "promo" : "sale"}`}>
               {discount.promotional ? "기간한정 " : ""}
               {affiliateDiscount}% 할인
@@ -95,7 +95,7 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
             <div className="game-card-prices">
               <span>{price.primary}</span>
               <strong>{discountedPrice}</strong>
-              {discountSavings ? <em className="game-discount-savings">{discountSavings}</em> : null}
+              {affiliateDiscount > 0 ? <em className="game-discount-savings">-{affiliateDiscount}%</em> : null}
             </div>
           ) : (
             <div>

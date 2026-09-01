@@ -2211,8 +2211,6 @@ button, input, select, textarea { font: inherit; }
   .admin-delete-confirm { flex: 1 1 100%; justify-content: flex-end; }
   .admin-affiliate-form { grid-template-columns: 1fr auto auto; }
 }
-.hero-clean, .hero-split { display: none; }
-.hero-feature-bar { display: none; }
 main:has(.horizon-section) { display: flex; flex-direction: column; }
 main:has(.horizon-section) > section { order: 1; }
 main:has(.horizon-section) > .horizon-section { order: 4; }

@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { adminIsConfigured, clearAdminSession, createAdminSession, requireAdmin, verifyAdminPassword } from "@/lib/admin-auth";
 import { adminRest } from "@/lib/admin-supabase";
-import { inspectMetaStoreUrl } from "@/lib/meta-store-import";
 
 export async function loginAction(_previous, formData) {
   if (!adminIsConfigured()) return { error: "관리자 환경변수를 먼저 설정해 주세요." };
@@ -18,58 +17,36 @@ export async function logoutAction() {
   redirect("/admin");
 }
 
+// 이 액션은 Vercel(미국 IP)에서 실행되지만 메타스토어는 요청 IP 국가로 통화/가격을
+// 정하기 때문에 여기서 직접 스크래핑하면 KRW를 못 받는다. 그래서 실제 수집은 한국
+// 클라우드 서버(서울)에 상시 구동 중인 API(scripts/import-api-server.mjs)에 위임하고,
+// 이 액션은 그 결과를 기다렸다가 캐시만 갱신한다.
 export async function importGameAction(_previous, formData) {
   try {
     await requireAdmin();
-    const game = await inspectMetaStoreUrl(formData.get("meta_store_url"));
-    const found = await adminRest(`games?select=id,slug&or=(meta_product_id.eq.${encodeURIComponent(game.metaId)},meta_catalog_item_id.eq.${encodeURIComponent(game.metaId)})&limit=1`);
-    const payload = {
-      meta_product_id: game.metaId,
-      meta_catalog_item_id: game.metaId,
-      name: game.name,
-      slug: found?.[0]?.slug || game.slug,
-      meta_store_url: game.metaStoreUrl,
-      source_image_url: game.imageUrl,
-      description: game.description,
-      developer: game.developer,
-      publisher: game.publisher,
-      release_date: game.releaseDate,
-      rating: game.rating,
-      review_count: game.reviewCount,
-      current_price: game.currentPrice,
-      original_price: game.originalPrice,
-      currency: game.currency,
-      usd_price: game.currency === "USD" ? game.currentPrice : null,
-      krw_price: game.currency === "KRW" ? game.currentPrice : null,
-      pricing_type: game.currentPrice === 0 ? "free" : "paid",
-      source_status: game.preorder ? "manual_admin:preorder" : "manual_admin:registered",
-      active: !game.preorder,
-      admin_hidden: false,
-      updated_at: new Date().toISOString(),
-    };
-    if (found?.[0]) {
-      await adminRest(`games?id=eq.${found[0].id}`, { method: "PATCH", headers: { Prefer: "return=minimal" }, body: JSON.stringify(payload) });
-    } else {
-      await adminRest("games", { method: "POST", headers: { Prefer: "return=minimal" }, body: JSON.stringify(payload) });
-    }
-    const target = found?.[0] || (await adminRest(`games?meta_product_id=eq.${encodeURIComponent(game.metaId)}&select=id&limit=1`))?.[0];
-    if (target?.id && game.genres?.length) {
-      for (const name of game.genres) {
-        const rows = await adminRest(`genres?name=eq.${encodeURIComponent(name)}&select=id&limit=1`);
-        const genre = rows?.[0] || (await adminRest("genres", {
-          method: "POST",
-          headers: { Prefer: "return=representation" },
-          body: JSON.stringify({ name, slug: `meta-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` }),
-        }))?.[0];
-        if (genre?.id) await adminRest("game_genres?on_conflict=game_id,genre_id", { method: "POST", headers: { Prefer: "resolution=ignore-duplicates" }, body: JSON.stringify({ game_id: target.id, genre_id: genre.id }) });
-      }
-    }
+    const metaStoreUrl = String(formData.get("meta_store_url") || "").trim();
+    if (!metaStoreUrl) return { error: "Meta 스토어 게임 링크를 입력해 주세요." };
+
+    const apiUrl = process.env.IMPORT_API_URL;
+    const apiSecret = process.env.IMPORT_API_SECRET;
+    if (!apiUrl || !apiSecret) return { error: "IMPORT_API_URL/IMPORT_API_SECRET 환경변수가 설정되지 않았습니다." };
+
+    const response = await fetch(`${apiUrl.replace(/\/+$/, "")}/import-game`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiSecret}` },
+      body: JSON.stringify({ meta_store_url: metaStoreUrl }),
+      signal: AbortSignal.timeout(60_000),
+    });
+    const result = await response.json().catch(() => null);
+    if (!response.ok || !result?.success) return { error: result?.error || `수집 서버 요청 실패 (${response.status})` };
+
     revalidatePath("/");
     revalidatePath("/games");
+    if (result.slug) revalidatePath(`/games/${result.slug}`);
     revalidatePath("/admin");
-    return { success: `${game.name}을(를) ${found?.[0] ? "갱신" : "등록"}했습니다.` };
+    return { success: `${result.name}을(를) ${result.created ? "등록" : "갱신"}했습니다.` };
   } catch (error) {
-    return { error: error.message || "게임 등록에 실패했습니다." };
+    return { error: error.name === "TimeoutError" ? "수집 서버 응답이 너무 오래 걸립니다." : error.message || "게임 등록에 실패했습니다." };
   }
 }
 

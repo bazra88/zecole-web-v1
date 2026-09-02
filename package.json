@@ -23,6 +23,7 @@
     "data:recent:krw": "node scripts/sync-meta-recent-krw.mjs",
     "data:horizon-plus:sync": "node scripts/sync-horizon-plus.mjs",
     "data:youtube:sync": "node scripts/sync-youtube-videos.mjs",
+    "import-api:start": "node scripts/import-api-server.mjs",
     "data:free:prepare-inserts": "node scripts/prepare-meta-free-inserts.mjs",
     "data:free:cache": "node scripts/cache-meta-free-pages.mjs",
     "data:free:parse": "node scripts/parse-meta-free-pages.mjs",

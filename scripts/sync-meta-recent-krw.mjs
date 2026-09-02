@@ -39,7 +39,7 @@ const scope = arg("scope", "recent");
 if (!["recent", "all"].includes(scope)) throw new Error("scope은 recent 또는 all이어야 합니다.");
 
 const limit = Math.max(1, Number(arg("limit", 60)));
-const delayMs = Math.max(5000, Number(arg("delay-ms", 12000)));
+const delayMs = Math.max(5000, Number(arg("delay-ms", 20000)));
 const maxAttempts = Math.max(1, Number(arg("attempts", 3)));
 const inspectId = arg("inspect", null);
 

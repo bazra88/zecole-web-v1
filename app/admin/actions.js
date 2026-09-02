@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { adminIsConfigured, clearAdminSession, createAdminSession, requireAdmin, verifyAdminPassword } from "@/lib/admin-auth";
 import { adminRest } from "@/lib/admin-supabase";
+import { inspectMetaStoreUrl } from "@/lib/meta-store-import";
 
 export async function loginAction(_previous, formData) {
   if (!adminIsConfigured()) return { error: "관리자 환경변수를 먼저 설정해 주세요." };
@@ -39,6 +40,30 @@ export async function importGameAction(_previous, formData) {
     });
     const result = await response.json().catch(() => null);
     if (!response.ok || !result?.success) return { error: result?.error || `수집 서버 요청 실패 (${response.status})` };
+
+    // 서울 서버는 항상 한국 IP로만 접속하므로 한국 스토어에 없는(지역락) 게임은
+    // krw_store_available이 true가 안 되고 가격도 못 가져온다. 이때만 Vercel의
+    // 미국 IP로 한 번 더 조회해서 USD 가격을 보완한다 — 실패해도 등록 자체는
+    // 이미 끝난 상태라 무시하고 넘어간다(프론트는 "가격 확인"으로 표시됨).
+    if (result.krw_store_available !== true) {
+      try {
+        const usd = await inspectMetaStoreUrl(metaStoreUrl);
+        if (Number.isFinite(usd.currentPrice)) {
+          await adminRest(`games?id=eq.${result.game_id}`, {
+            method: "PATCH",
+            headers: { Prefer: "return=minimal" },
+            body: JSON.stringify({
+              current_price: usd.currentPrice,
+              original_price: usd.originalPrice,
+              currency: usd.currency,
+              usd_price: usd.currency === "USD" ? usd.currentPrice : null,
+              pricing_type: usd.currentPrice === 0 ? "free" : "paid",
+              updated_at: new Date().toISOString(),
+            }),
+          });
+        }
+      } catch {}
+    }
 
     revalidatePath("/");
     revalidatePath("/games");

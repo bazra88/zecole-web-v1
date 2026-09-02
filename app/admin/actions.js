@@ -115,6 +115,76 @@ export async function updateAffiliateUrlAction(_previousState, formData) {
   }
 }
 
+// youtube.com/watch?v=, youtu.be/, youtube.com/shorts/, youtube.com/embed/ 전부 지원.
+function parseYoutubeVideoId(rawUrl) {
+  let parsed;
+  try { parsed = new URL(rawUrl); } catch { return null; }
+  if (!/(^|\.)youtube\.com$/.test(parsed.hostname) && parsed.hostname !== "youtu.be") return null;
+  if (parsed.hostname === "youtu.be") return parsed.pathname.slice(1).split("/")[0] || null;
+  if (parsed.searchParams.get("v")) return parsed.searchParams.get("v");
+  const match = parsed.pathname.match(/\/(shorts|embed)\/([^/?]+)/);
+  return match ? match[2] : null;
+}
+
+export async function addYoutubeVideoAction(_previousState, formData) {
+  try {
+    await requireAdmin();
+    const id = String(formData.get("id") || "");
+    const slug = String(formData.get("slug") || "");
+    const rawUrl = String(formData.get("youtube_url") || "").trim();
+    if (!/^[0-9a-f-]{36}$/i.test(id)) return { error: "게임 ID가 올바르지 않습니다." };
+    if (!rawUrl) return { error: "유튜브 링크를 입력해 주세요." };
+    const videoId = parseYoutubeVideoId(rawUrl);
+    if (!videoId) return { error: "올바른 유튜브 링크가 아닙니다." };
+
+    let title = null;
+    let thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    try {
+      const oembedResponse = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(`https://www.youtube.com/watch?v=${videoId}`)}&format=json`, { signal: AbortSignal.timeout(8000) });
+      if (oembedResponse.ok) {
+        const oembed = await oembedResponse.json();
+        title = oembed.title || null;
+        thumbnailUrl = oembed.thumbnail_url || thumbnailUrl;
+      }
+    } catch {}
+
+    const inserted = await adminRest("game_videos?on_conflict=game_id,youtube_video_id", {
+      method: "POST",
+      headers: { Prefer: "resolution=merge-duplicates,return=representation" },
+      body: JSON.stringify({
+        game_id: id,
+        youtube_video_id: videoId,
+        youtube_url: `https://www.youtube.com/watch?v=${videoId}`,
+        title,
+        thumbnail_url: thumbnailUrl,
+        video_type: "play",
+        active: true,
+        updated_at: new Date().toISOString(),
+      }),
+    });
+    if (!inserted?.length) return { error: "유튜브 영상을 저장하지 못했습니다." };
+    revalidatePath("/");
+    revalidatePath("/games");
+    if (slug) revalidatePath(`/games/${slug}`);
+    revalidatePath("/admin");
+    return { success: "유튜브 영상을 추가했습니다." };
+  } catch (error) {
+    return { error: error.message || "유튜브 영상 추가에 실패했습니다." };
+  }
+}
+
+export async function deleteYoutubeVideoAction(formData) {
+  await requireAdmin();
+  const videoRowId = String(formData.get("video_id") || "");
+  const slug = String(formData.get("slug") || "");
+  if (!/^[0-9a-f-]{36}$/i.test(videoRowId)) throw new Error("영상 ID가 올바르지 않습니다.");
+  await adminRest(`game_videos?id=eq.${videoRowId}`, { method: "DELETE", headers: { Prefer: "return=minimal" } });
+  revalidatePath("/");
+  revalidatePath("/games");
+  if (slug) revalidatePath(`/games/${slug}`);
+  revalidatePath("/admin");
+}
+
 export async function setGameNewReleasePinnedAction(formData) {
   await requireAdmin();
   const id = String(formData.get("id") || "");

@@ -12,5 +12,6 @@ node_modules
 .next-dev-error.log
 data/horizon-plus/*.json
 data/meta-recent/*.json
+data/youtube/*.json
 
 .vercel

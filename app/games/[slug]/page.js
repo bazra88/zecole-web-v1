@@ -1,13 +1,81 @@
 import { notFound } from "next/navigation";
 import BackButton from "@/components/BackButton";
+import GameMediaGallery from "@/components/GameMediaGallery";
 import { discountedPriceLabel, effectiveAffiliateDiscount, formatGamePrice, isFreeGame } from "@/lib/game-format";
-import { gameImageUrl, getGameBySlug, getGameGenres, getGameVideos } from "@/lib/supabase";
+import { gameImageUrl, getGameBySlug, getGameGenres, getGameMedia, getGameReviews, getGameVideos } from "@/lib/supabase";
 
 export const revalidate = 300;
 
 function dateLabel(value) {
   if (!value) return null;
   return new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric" }).format(new Date(`${value}T00:00:00`));
+}
+
+function dateTimeLabel(value) {
+  if (!value) return null;
+  return new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric" }).format(new Date(value));
+}
+
+const MOTION_SICKNESS_LABELS = { 1: "아주 적음", 2: "적음", 3: "보통", 4: "약간 많음", 5: "많음" };
+
+// 볼드(**text**)만 인라인으로 처리하고, 나머지는 텍스트 그대로 React가 이스케이프하도록 둔다.
+function renderInline(text, keyPrefix) {
+  return text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean).map((part, index) =>
+    part.startsWith("**") && part.endsWith("**")
+      ? <strong key={`${keyPrefix}-${index}`}>{part.slice(2, -2)}</strong>
+      : <span key={`${keyPrefix}-${index}`}>{part}</span>
+  );
+}
+
+// 메타 원문/번역 설명은 마크다운 헤더(#, ##)와 볼드(**)만 섞여있는 단순한 텍스트라
+// 별도 마크다운 라이브러리 없이 문단/제목/볼드만 가볍게 처리한다.
+// 헤더 줄 바로 다음에 빈 줄 없이 본문이 이어지는 경우가 있어서(예: "# 제목\n본문...")
+// 문단 단위가 아니라 줄 단위로 훑으면서 헤더 줄만 따로 떼어낸다.
+function LongDescription({ text }) {
+  const blocks = [];
+  let buffer = [];
+  const flush = () => {
+    const content = buffer.join(" ").trim();
+    if (content) blocks.push({ type: "p", content });
+    buffer = [];
+  };
+  for (const rawLine of text.split("\n")) {
+    const line = rawLine.trim();
+    const heading = line.match(/^#{1,3}\s+(.*)$/);
+    // 개발자가 설명 안에 직접 넣은 이미지/영상: ![{"type":"image"|"video",...}](url)
+    const media = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (media) {
+      flush();
+      let meta = {};
+      try { meta = JSON.parse(media[1]); } catch {}
+      blocks.push({ type: "media", url: media[2], mediaType: meta.type === "video" ? "video" : "image" });
+    } else if (heading) {
+      flush();
+      blocks.push({ type: "h", content: heading[1].replace(/\*\*/g, "").trim() });
+    } else if (!line) {
+      flush();
+    } else {
+      buffer.push(line);
+    }
+  }
+  flush();
+  return blocks.map((block, index) => {
+    if (block.type === "media") {
+      return block.mediaType === "video" ? (
+        <video key={index} className="detail-inline-media" autoPlay loop muted playsInline src={block.url} />
+      ) : (
+        <img key={index} className="detail-inline-media" src={block.url} alt="" loading="lazy" />
+      );
+    }
+    return block.type === "h"
+      ? <h3 key={index}>{renderInline(block.content, `h${index}`)}</h3>
+      : <p key={index}>{renderInline(block.content, `p${index}`)}</p>;
+  });
+}
+
+function reviewStars(rating) {
+  if (!Number.isFinite(rating)) return null;
+  return "★".repeat(rating) + "☆".repeat(Math.max(0, 5 - rating));
 }
 
 function supportLabels(game) {
@@ -37,10 +105,15 @@ export default async function GameDetailPage({ params }) {
   const game = await getGameBySlug(slug).catch(() => null);
   if (!game) notFound();
 
-  const [videos, genres] = await Promise.all([
+  const [videos, genres, media, reviews] = await Promise.all([
     getGameVideos(game.id).catch(() => []),
     getGameGenres(game.id).catch(() => []),
+    getGameMedia(game.id).catch(() => []),
+    getGameReviews(game.id).catch(() => []),
   ]);
+  const trailer = media.find((item) => item.media_type === "trailer");
+  const screenshots = media.filter((item) => item.media_type === "screenshot");
+  const longDescription = game.description_long_ko || game.description_long;
   const image = gameImageUrl(game.image_path || game.source_image_url);
   const price = formatGamePrice(game);
   const free = isFreeGame(game);
@@ -56,9 +129,9 @@ export default async function GameDetailPage({ params }) {
     ["개발사", game.developer || null],
     ["퍼블리셔", game.publisher || null],
     ["지원 기기", supports.join(" · ") || null],
-    ["한국어", game.supports_korean === true ? "지원" : game.supports_korean === false ? "미지원" : null],
+    ["지원 언어", game.supported_languages?.length ? game.supported_languages.join(" · ") : null],
     ["플레이 방식", playStyles.join(" · ") || null],
-    ["멀미 난이도", game.motion_sickness_level ? `${game.motion_sickness_level}/5` : null],
+    ["멀미유발요소", MOTION_SICKNESS_LABELS[game.motion_sickness_level] || null],
   ].filter(([, value]) => value);
 
   return (
@@ -66,9 +139,7 @@ export default async function GameDetailPage({ params }) {
       <BackButton />
 
       <section className="detail-hero">
-        <div className="detail-image">
-          {image ? <img src={image} alt={game.name} /> : <div className="no-image">NO IMAGE</div>}
-        </div>
+        <GameMediaGallery trailer={trailer} screenshots={screenshots} image={image} gameName={game.name} />
 
         <div className="detail-info">
           <p className="eyebrow">META QUEST GAME</p>
@@ -140,7 +211,16 @@ export default async function GameDetailPage({ params }) {
         <div className="detail-description">
           <p className="eyebrow">ABOUT THIS GAME</p>
           <h2>게임 정보</h2>
-          <p>{game.description || "공식 게임 소개를 준비하고 있습니다. Meta Store 원본 페이지에서 최신 정보를 먼저 확인할 수 있습니다."}</p>
+          {longDescription ? (
+            <div className="detail-long-description">
+              <LongDescription text={longDescription} />
+              {!game.description_long_ko ? (
+                <p className="detail-description-note">※ 번역이 아직 준비되지 않아 원문(영어)으로 표시됩니다.</p>
+              ) : null}
+            </div>
+          ) : (
+            <p>{game.description || "공식 게임 소개를 준비하고 있습니다. Meta Store 원본 페이지에서 최신 정보를 먼저 확인할 수 있습니다."}</p>
+          )}
         </div>
         <aside className="detail-facts">
           {facts.map(([label, value]) => (
@@ -149,15 +229,15 @@ export default async function GameDetailPage({ params }) {
         </aside>
       </section>
 
-      <section className="detail-section">
-        <div className="section-header">
-          <div>
-            <p className="eyebrow">ZECOLE VIDEO</p>
-            <h2>플레이 영상</h2>
+      {videos.length ? (
+        <section className="detail-section">
+          <div className="section-header">
+            <div>
+              <p className="eyebrow">ZECOLE VIDEO</p>
+              <h2>플레이 영상</h2>
+            </div>
           </div>
-        </div>
 
-        {videos.length ? (
           <div className="video-grid">
             {videos.map((video) => (
               <a
@@ -167,21 +247,45 @@ export default async function GameDetailPage({ params }) {
                 rel="noopener noreferrer"
               >
                 {video.thumbnail_url ? <img src={video.thumbnail_url} alt="" /> : null}
-                <strong>{video.title || "ZECOLE 플레이 영상"}</strong>
-                <span>YouTube에서 보기 →</span>
+                <div className="video-grid-text">
+                  <strong>{video.title || "ZECOLE 플레이 영상"}</strong>
+                  <span>YouTube에서 보기 →</span>
+                </div>
               </a>
             ))}
           </div>
-        ) : (
-          <div className="empty-panel">
-            <div className="empty-dot" />
+        </section>
+      ) : null}
+
+      {reviews.length ? (
+        <section className="detail-section">
+          <div className="section-header">
             <div>
-              <strong>아직 연결된 ZECOLE 영상이 없습니다.</strong>
-              <p>나중에 게임별 YouTube 영상을 연결하면 여기에 자동으로 표시됩니다.</p>
+              <p className="eyebrow">META STORE REVIEWS</p>
+              <h2>이용자 리뷰</h2>
             </div>
           </div>
-        )}
-      </section>
+
+          <div className="review-list">
+            {reviews.map((review) => (
+              <div className="review-card" key={review.id}>
+                <div className="review-card-head">
+                  <strong>{review.reviewer_label}</strong>
+                  {review.rating ? <span className="review-stars" aria-label={`평점 ${review.rating}점`}>{reviewStars(review.rating)}</span> : null}
+                </div>
+                {review.title_ko || review.title_original ? (
+                  <p className="review-title">{review.title_ko || review.title_original}</p>
+                ) : null}
+                <p className="review-body">{review.body_ko || review.body_original}</p>
+                <div className="review-meta">
+                  {dateTimeLabel(review.reviewed_at) ? <span>{dateTimeLabel(review.reviewed_at)}</span> : null}
+                  {review.helpful_count ? <span>도움됨 {review.helpful_count}</span> : null}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }

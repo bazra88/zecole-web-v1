@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { deleteGameAction, importGameAction, setGameNewReleasePinnedAction, setGameRecommendationAction, setGameVisibilityAction, updateAffiliateUrlAction } from "./actions";
+import { addYoutubeVideoAction, deleteGameAction, deleteYoutubeVideoAction, importGameAction, setGameNewReleasePinnedAction, setGameRecommendationAction, setGameVisibilityAction, updateAffiliateUrlAction } from "./actions";
 
 function AffiliateEditor({ game }) {
   const [editing, setEditing] = useState(false);
@@ -36,6 +36,55 @@ function AffiliateEditor({ game }) {
   );
 }
 
+function YoutubeVideoEditor({ game }) {
+  const [editing, setEditing] = useState(false);
+  const [state, action, pending] = useActionState(addYoutubeVideoAction, null);
+  const videos = game.game_videos || [];
+
+  if (!editing) {
+    return (
+      <button className={videos.length ? "admin-affiliate-edit" : "admin-affiliate-add"} type="button" onClick={() => setEditing(true)}>
+        {videos.length ? `유튜브 영상 관리 (${videos.length})` : "유튜브 영상 추가"}
+      </button>
+    );
+  }
+
+  return (
+    <div className="admin-youtube-panel">
+      {videos.length ? (
+        <ul className="admin-youtube-list">
+          {videos.map((video) => (
+            <li key={video.id}>
+              <a href={video.youtube_url} target="_blank" rel="noopener noreferrer">{video.title || video.youtube_url}</a>
+              <form action={deleteYoutubeVideoAction}>
+                <input type="hidden" name="video_id" value={video.id} />
+                <input type="hidden" name="slug" value={game.slug} />
+                <button className="admin-cancel" type="submit">삭제</button>
+              </form>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      <form action={action} className="admin-affiliate-form">
+        <input type="hidden" name="id" value={game.id} />
+        <input type="hidden" name="slug" value={game.slug} />
+        <input
+          aria-label={`${game.name} 유튜브 링크`}
+          name="youtube_url"
+          type="url"
+          inputMode="url"
+          placeholder="https://www.youtube.com/watch?v=..."
+          autoFocus
+        />
+        <button className="admin-affiliate-save" type="submit" disabled={pending}>{pending ? "저장 중" : "추가"}</button>
+        <button className="admin-cancel" type="button" onClick={() => setEditing(false)}>닫기</button>
+        {state?.error ? <span className="admin-affiliate-message error">{state.error}</span> : null}
+        {state?.success ? <span className="admin-affiliate-message success">{state.success}</span> : null}
+      </form>
+    </div>
+  );
+}
+
 function RefreshDetails({ game }) {
   const [state, action, pending] = useActionState(importGameAction, null);
   return <form action={action} className="admin-refresh-form">
@@ -52,6 +101,7 @@ export default function AdminGameControls({ game }) {
   return (
     <div className="admin-game-controls">
       <AffiliateEditor game={game} />
+      <YoutubeVideoEditor game={game} />
       {game.meta_store_url ? <RefreshDetails game={game} /> : null}
 
       <div className="admin-recommendation-controls" aria-label={`${game.name} 추천 단계`}>

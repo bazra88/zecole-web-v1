@@ -82,9 +82,14 @@ async function handleImport({ meta_store_url, game_id }) {
   if (!relayApp(html, metaId)) throw new Error("메타스토어 응답에서 게임 데이터를 찾지 못했습니다. 주소를 확인해 주세요.");
 
   let existingReviewIds = new Set();
+  let hasExistingMedia = false;
   if (existingGame) {
-    const rows = await rest(`game_reviews?game_id=eq.${existingGame.id}&select=meta_review_id`);
-    existingReviewIds = new Set((rows || []).map((r) => r.meta_review_id));
+    const [reviewRows, mediaRows] = await Promise.all([
+      rest(`game_reviews?game_id=eq.${existingGame.id}&select=meta_review_id`),
+      rest(`game_media?game_id=eq.${existingGame.id}&select=id&limit=1`),
+    ]);
+    existingReviewIds = new Set((reviewRows || []).map((r) => r.meta_review_id));
+    hasExistingMedia = Boolean(mediaRows?.length);
   }
 
   const collected = await collectGameData({
@@ -93,6 +98,7 @@ async function handleImport({ meta_store_url, game_id }) {
     existingGame,
     skipDescriptionTranslation: Boolean(existingGame?.description_long),
     existingReviewIds,
+    hasExistingMedia,
   });
   if (!collected.resolved) throw new Error("메타스토어에서 게임 정보를 확인하지 못했습니다.");
 

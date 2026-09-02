@@ -297,12 +297,47 @@ if (inspectId) {
 
 await mkdir(reportDir, { recursive: true });
 const statusFilter = scope === "all" ? "" : "&source_status=like.official_meta_recent_overseas:*";
-const candidates = await rest(
-  `games?select=id,name,slug,meta_product_id,krw_price,krw_store_available,source_status,active,release_date,description_long,developer,motion_sickness_level,supported_languages` +
-  `${statusFilter}` +
-  `&or=(krw_price.is.null,krw_store_available.is.null,release_date.is.null,description_long.is.null,developer.is.null,motion_sickness_level.is.null,supported_languages.is.null)` +
-  `&order=release_date.desc.nullslast,created_at.desc&limit=${limit}`
-);
+
+// 처리 우선순위(사용자 지정, 2026-09-02): 기본 정렬은 리뷰 많은 순. 그 순서로 900개씩
+// 끊어서 그룹을 만들고, 그룹 안에서는 별점 높은 순으로 다시 정렬해서 그 그룹을 전부
+// 처리한 뒤에야 다음 그룹으로 넘어간다. 리뷰/별점이 없는 게임은 각각 최하위로 밀린다.
+// 매 실행마다 남은 후보로 다시 계산하므로(완료된 게임은 후보에서 빠짐), 그룹 경계가
+// 자연스럽게 당겨지지만 "리뷰 많은 그룹부터 다 끝내고 다음 그룹" 순서는 그대로 유지된다.
+// PostgREST의 order= 파라미터는 이런 그룹핑을 못 해서, 전체 후보를 다 받아온 뒤
+// 자바스크립트에서 정렬하고 그중 --limit개만 골라 처리한다.
+const GROUP_SIZE = 900;
+function sortCandidatesByReviewGroupThenRating(list) {
+  const byReviews = [...list].sort((a, b) => (b.review_count ?? -1) - (a.review_count ?? -1));
+  byReviews.forEach((game, index) => { game._group = Math.floor(index / GROUP_SIZE); });
+  return byReviews.sort((a, b) => (a._group !== b._group ? a._group - b._group : (b.rating ?? -1) - (a.rating ?? -1)));
+}
+
+async function fetchAllCandidates() {
+  const pageSize = 1000;
+  const all = [];
+  for (let offset = 0; ; offset += pageSize) {
+    const page = await rest(
+      `games?select=id,name,slug,meta_product_id,krw_price,krw_store_available,source_status,active,release_date,description_long,developer,motion_sickness_level,supported_languages,rating,review_count` +
+      `${statusFilter}` +
+      // motion_sickness_level과 krw_price는 후보 조건에서 뺀다 — 둘 다 "정상적으로
+      // 확인했지만 값 자체가 없는 게 맞는" 경우가 있어서(comfort_rating이 NOT_RATED인
+      // 게임, 한국 스토어에 없어서 krw_store_available=false로 확정된 게임) 조건에 넣으면
+      // 이미 다 처리된 게임도 매번 다시 후보에 잡혀 무한 재처리된다(2026-09-02 실전에서
+      // 둘 다 발견). krw_store_available과 developer/supported_languages가 이미 채워져
+      // 있으면 각각 가격 확인·기기정보 추출을 이미 시도했다고 본다.
+      `&or=(krw_store_available.is.null,release_date.is.null,description_long.is.null,developer.is.null,supported_languages.is.null)` +
+      `&order=id.asc&limit=${pageSize}&offset=${offset}`
+    );
+    if (!page?.length) break;
+    all.push(...page);
+    if (page.length < pageSize) break;
+  }
+  return all;
+}
+
+const allCandidates = sortCandidatesByReviewGroupThenRating(await fetchAllCandidates());
+const candidates = allCandidates.slice(0, limit);
+console.log(`전체 후보 ${allCandidates.length}개 중 우선순위 상위 ${candidates.length}개를 처리합니다. (현재 그룹: ${candidates[0]?._group ?? "-"}, 리뷰 ${candidates[0]?.review_count ?? "-"}~${candidates.at(-1)?.review_count ?? "-"})`);
 
 // 메타 CDN URL은 매번 요청할 때마다 서명 토큰이 바뀌어서 (game_id, url) 유니크 제약이
 // 재수집을 걸러내지 못한다 — 이미 미디어가 있는 게임은 재요청해도 다시 넣지 않는다.
@@ -315,7 +350,58 @@ const gamesWithMedia = new Set((existingMedia || []).map((row) => row.game_id));
 const existingReviews = await rest(`game_reviews?select=game_id,meta_review_id`);
 const savedReviewKeys = new Set((existingReviews || []).map((row) => `${row.game_id}:${row.meta_review_id}`));
 
+// 게임 하나를 처리할 때마다(전체 배치가 끝나길 기다리지 않고) 바로 DB에 반영한다.
+// 예전엔 전부 모았다가 배치 끝에 한꺼번에 썼는데, 그러면 중간에 스크립트를 멈췄을 때
+// 이미 처리된 게임들까지 전부 유실됐다(2026-09-02 실전에서 발생 — 중단 시 아무것도
+// 저장 안 된 채 처음부터 다시 해야 했음). 즉시 반영하면 중단해도 그때까지 처리된
+// 건 안전하게 남는다.
+async function applyRow(row) {
+  const payload = { source_status: row.source_status, active: row.active, price_checked_at: new Date().toISOString(), updated_at: new Date().toISOString() };
+  if (row.release_date) payload.release_date = row.release_date;
+  if (row.krw_store_available != null) {
+    payload.krw_price = row.krw_price;
+    payload.krw_store_available = row.krw_store_available;
+    payload.region_restricted = row.region_restricted;
+  }
+  if (row.description_long) {
+    payload.description_long = row.description_long;
+    payload.description_long_ko = row.description_long_ko;
+  }
+  if (row.device_info?.developer) Object.assign(payload, row.device_info);
+  const patched = await rest(`games?id=eq.${row.id}`, { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify(payload) });
+  const delta = { updated: patched?.length || 0, mediaInserted: 0, reviewsInserted: 0 };
+
+  if (row._media?.length) {
+    const mediaPayload = row._media.map((m) => ({ game_id: row.id, media_type: m.media_type, url: m.url, thumbnail_url: m.thumbnail_url, sort_order: m.sort_order, source: "meta_store" }));
+    const mediaResult = await rest(`game_media?on_conflict=game_id,url`, {
+      method: "POST",
+      headers: { Prefer: "resolution=ignore-duplicates,return=representation" },
+      body: JSON.stringify(mediaPayload),
+    });
+    delta.mediaInserted = mediaResult?.length || 0;
+  }
+
+  if (row._reviews?.length) {
+    const reviewPayload = row._reviews.map((r) => ({
+      game_id: row.id, meta_review_id: r.meta_review_id, reviewer_label: r.reviewer_label,
+      rating: r.rating, title_original: r.title_original, body_original: r.body_original,
+      title_ko: r.title_ko, body_ko: r.body_ko, helpful_count: r.helpful_count,
+      reviewed_at: r.reviewed_at, source: "meta_store",
+    }));
+    const reviewResult = await rest(`game_reviews?on_conflict=game_id,meta_review_id`, {
+      method: "POST",
+      headers: { Prefer: "resolution=ignore-duplicates,return=representation" },
+      body: JSON.stringify(reviewPayload),
+    });
+    delta.reviewsInserted = reviewResult?.length || 0;
+  }
+  return delta;
+}
+
 const rows = [];
+let updated = 0;
+let mediaInserted = 0;
+let reviewsInserted = 0;
 let consecutiveBlocked = 0;
 for (const game of candidates || []) {
   if (!game.slug || !game.meta_product_id) { rows.push({ id: game.id, name: game.name, status: "missing_slug_or_id" }); continue; }
@@ -343,7 +429,7 @@ for (const game of candidates || []) {
       const longDescription = game.description_long || extractLongDescription(relay);
       const needsTranslation = !game.description_long && longDescription;
       const descriptionLongKo = needsTranslation ? await translateLongDescription(longDescription) : null;
-      const deviceInfo = (game.developer && game.motion_sickness_level != null && game.supported_languages) ? {} : extractDeviceInfo(relay);
+      const deviceInfo = (game.developer && game.supported_languages) ? {} : extractDeviceInfo(relay);
       reviews = extractReviews(relay).filter((review) => !savedReviewKeys.has(`${game.id}:${review.meta_review_id}`));
       for (const review of reviews) {
         review.title_ko = review.title_original ? await translateText(review.title_original) : null;
@@ -372,57 +458,17 @@ for (const game of candidates || []) {
   }
   result._media = media;
   result._reviews = reviews;
+  if (apply && result.resolved) {
+    const delta = await applyRow(result);
+    updated += delta.updated;
+    mediaInserted += delta.mediaInserted;
+    reviewsInserted += delta.reviewsInserted;
+  }
   rows.push(result);
   if (consecutiveBlocked >= 2) { console.log("연속 2회 차단(403/429) 감지 — 이번 배치를 여기서 중단합니다."); break; }
 }
 
 const actionable = rows.filter((row) => row.resolved);
-let updated = 0;
-let mediaInserted = 0;
-let reviewsInserted = 0;
-if (apply) {
-  for (const row of actionable) {
-    const payload = { source_status: row.source_status, active: row.active, price_checked_at: new Date().toISOString(), updated_at: new Date().toISOString() };
-    if (row.release_date) payload.release_date = row.release_date;
-    if (row.krw_store_available != null) {
-      payload.krw_price = row.krw_price;
-      payload.krw_store_available = row.krw_store_available;
-      payload.region_restricted = row.region_restricted;
-    }
-    if (row.description_long) {
-      payload.description_long = row.description_long;
-      payload.description_long_ko = row.description_long_ko;
-    }
-    if (row.device_info?.developer) Object.assign(payload, row.device_info);
-    const result = await rest(`games?id=eq.${row.id}`, { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify(payload) });
-    updated += result?.length || 0;
-
-    if (row._media?.length) {
-      const mediaPayload = row._media.map((m) => ({ game_id: row.id, media_type: m.media_type, url: m.url, thumbnail_url: m.thumbnail_url, sort_order: m.sort_order, source: "meta_store" }));
-      const mediaResult = await rest(`game_media?on_conflict=game_id,url`, {
-        method: "POST",
-        headers: { Prefer: "resolution=ignore-duplicates,return=representation" },
-        body: JSON.stringify(mediaPayload),
-      });
-      mediaInserted += mediaResult?.length || 0;
-    }
-
-    if (row._reviews?.length) {
-      const reviewPayload = row._reviews.map((r) => ({
-        game_id: row.id, meta_review_id: r.meta_review_id, reviewer_label: r.reviewer_label,
-        rating: r.rating, title_original: r.title_original, body_original: r.body_original,
-        title_ko: r.title_ko, body_ko: r.body_ko, helpful_count: r.helpful_count,
-        reviewed_at: r.reviewed_at, source: "meta_store",
-      }));
-      const reviewResult = await rest(`game_reviews?on_conflict=game_id,meta_review_id`, {
-        method: "POST",
-        headers: { Prefer: "resolution=ignore-duplicates,return=representation" },
-        body: JSON.stringify(reviewPayload),
-      });
-      reviewsInserted += reviewResult?.length || 0;
-    }
-  }
-}
 
 const report = {
   generated_at: new Date().toISOString(), mode: apply ? "apply" : "dry_run", scope,

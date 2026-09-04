@@ -128,7 +128,17 @@ function relayApp(html, metaId) {
   }
   return found ? merged : null;
 }
+// relay.pre_order_bundles는 예약구매 특전 번들을 가리키는 필드라서, 게임이 정식
+// 출시된 뒤에도 계속 남아있다(특전 자체는 출시 후에도 유효하니까) — "아직 예약구매
+// 중"이라는 뜻이 아니다. live_release_channel이 LIVE면 이미 정식 출시된 것이니 그걸
+// 우선한다 (2026-09-04, Knights of Fiona가 출시 다음날인데도 계속 preorder로
+// 비활성화되는 버그를 보고 발견함. lib/meta-collect.mjs에도 동일하게 반영).
+function isLiveReleased(relay) {
+  if (relay?.live_release_channel?.channel_name === "LIVE") return true;
+  return Array.isArray(relay?.release_channels?.nodes) && relay.release_channels.nodes.some((node) => node?.channel_name === "LIVE");
+}
 function parseKrw(html, metaId, relay) {
+  const releasedLive = isLiveReleased(relay);
   for (const match of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     try {
       const parsed = JSON.parse(match[1].trim());
@@ -142,7 +152,7 @@ function parseKrw(html, metaId, relay) {
         currency: offer?.priceCurrency || null,
         price: offer?.price == null ? null : Number(offer.price),
         available: /InStock|PreOrder/i.test(offer?.availability || "") || offer?.price != null,
-        preorder: /PreOrder/i.test(availability || "") || (relay?.pre_order_bundles?.length || 0) > 0,
+        preorder: !releasedLive && (/PreOrder/i.test(availability || "") || (relay?.pre_order_bundles?.length || 0) > 0),
         release_date: normalizedDate(app?.datePublished || app?.releaseDate || relay?.release_info?.display_date),
       };
     } catch {}
@@ -152,7 +162,7 @@ function parseKrw(html, metaId, relay) {
   const price = Number.isFinite(amount) ? amount / 100 : null;
   return {
     found: Boolean(relay), currency, price, available: Boolean(relay?.current_offer),
-    preorder: (relay?.pre_order_bundles?.length || 0) > 0,
+    preorder: !releasedLive && (relay?.pre_order_bundles?.length || 0) > 0,
     release_date: normalizedDate(relay?.release_info?.display_date),
   };
 }

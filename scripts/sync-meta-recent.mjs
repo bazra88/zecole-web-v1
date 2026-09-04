@@ -114,7 +114,12 @@ function parseDetail(html, product) {
   const price = app && offer.price != null ? Number(offer.price) : money(storeOffer.price);
   const availability = offer.availability || null;
   const releaseDate = normalizedDate(app?.datePublished || app?.releaseDate || relay?.release_info?.display_date);
-  const listingStatus = /PreOrder/i.test(availability || "") || (relay?.pre_order_bundles?.length || 0) > 0 ? "preorder" : product.listing_status;
+  // relay.pre_order_bundles는 예약구매 특전 번들 참조라서 출시 후에도 남아있다 — 정식
+  // 출시 여부는 live_release_channel/release_channels의 LIVE 채널로 우선 판단한다
+  // (2026-09-04, 이미 출시된 게임이 계속 preorder로 오판되는 버그를 보고 발견).
+  const releasedLive = relay?.live_release_channel?.channel_name === "LIVE" ||
+    (Array.isArray(relay?.release_channels?.nodes) && relay.release_channels.nodes.some((node) => node?.channel_name === "LIVE"));
+  const listingStatus = !releasedLive && (/PreOrder/i.test(availability || "") || (relay?.pre_order_bundles?.length || 0) > 0) ? "preorder" : product.listing_status;
   return {
     ...product,
     listing_status: listingStatus,

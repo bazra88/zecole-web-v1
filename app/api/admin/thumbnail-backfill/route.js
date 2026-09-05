@@ -42,8 +42,13 @@ export async function POST(request) {
 
   const candidates = await adminRest(`games?select=id,name,meta_product_id,meta_store_url&${OLD_ICON_FILTER}&order=id&limit=${batchSize}`);
 
+  // Vercel의 함수 실행시간 제한(FUNCTION_INVOCATION_TIMEOUT)에 강제로 끊기면 마지막 게임의
+  // 처리 결과를 응답에 담지 못한다 — 20초 여유를 두고 미리 멈춰서 항상 깔끔한 JSON을
+  // 반환한다 (2026-09-05, batchSize=25에서 실제로 타임아웃 발생 후 발견).
+  const deadline = Date.now() + (maxDuration - 20) * 1000;
   const results = [];
   for (const game of candidates || []) {
+    if (Date.now() > deadline) break;
     try {
       const metaId = metaUrlId(game.meta_product_id);
       const response = await fetch(game.meta_store_url, {

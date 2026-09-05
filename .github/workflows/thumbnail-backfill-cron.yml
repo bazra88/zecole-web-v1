@@ -32,7 +32,7 @@ jobs:
           RESPONSE=$(curl -s --max-time 290 -X POST "https://zecole.store/api/admin/thumbnail-backfill" \
             -H "Authorization: Bearer ${{ secrets.IMPORT_API_SECRET }}" \
             -H "Content-Type: application/json" \
-            -d '{"batchSize":25,"delayMs":8000}')
+            -d '{"batchSize":15,"delayMs":8000}')
           echo "$RESPONSE"
           REMAINING=$(node -e "
             try { const j = JSON.parse(process.argv[1]); console.log(j.remaining_exists); }

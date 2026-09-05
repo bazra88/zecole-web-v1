@@ -1,0 +1,47 @@
+name: Thumbnail backfill (Vercel trigger)
+
+# 5분마다 Vercel의 /api/admin/thumbnail-backfill을 한 번씩 호출하는 방아쇠 역할만 한다.
+# 실제 메타스토어 요청은 Vercel 함수 안에서 나가므로 이 러너의 IP와는 무관하다 —
+# GitHub 러너 IP가 예전에 429를 맞았던 문제(scripts/backfill-legacy-thumbnails.mjs)를
+# 이렇게 우회한다. 더 처리할 게임이 없어지면 이 워크플로 스스로를 비활성화한다.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+concurrency:
+  group: thumbnail-backfill-cron
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Call Vercel backfill endpoint
+        id: call
+        run: |
+          RESPONSE=$(curl -s -X POST "https://zecole.store/api/admin/thumbnail-backfill" \
+            -H "Authorization: Bearer ${{ secrets.IMPORT_API_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"batchSize":5,"delayMs":5000}')
+          echo "$RESPONSE"
+          REMAINING=$(node -e "
+            try { const j = JSON.parse(process.argv[1]); console.log(j.remaining_exists); }
+            catch { console.log('true'); }
+          " "$RESPONSE")
+          echo "remaining=$REMAINING" >> "$GITHUB_OUTPUT"
+
+      - name: Disable this schedule once nothing is left
+        if: steps.call.outputs.remaining == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -X PUT \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/thumbnail-backfill-cron.yml/disable"

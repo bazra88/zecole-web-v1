@@ -16,11 +16,13 @@
 import { readFile } from "node:fs/promises";
 import { relayApp, extractBaseInfo, uploadImageToStorage, metaUrlId } from "../lib/meta-collect.mjs";
 
-const SUPABASE_URL = (process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/\/+$/, "");
+// 이 저장소의 GitHub Actions 시크릿에는 NEXT_PUBLIC_SUPABASE_URL이 이미 "/rest/v1"까지
+// 포함해서 등록돼있다(로컬 .env.local과 다름) — 안 벗겨내면 경로가 두 번 붙어서
+// PGRST125(Invalid path)가 난다 (2026-09-05, import-api-server.mjs와 동일하게 방어).
+const SUPABASE_URL = (process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim().replace(/\/+$/, "").replace(/\/rest\/v1$/i, "");
 const SECRET_KEY = process.env.SUPABASE_SECRET_KEY;
 const BUCKET = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || "game-images";
 if (!SUPABASE_URL || !SECRET_KEY) throw new Error("NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SECRET_KEY 환경변수가 필요합니다.");
-console.log(`[디버그] SUPABASE_URL=${SUPABASE_URL} SECRET_KEY 길이=${SECRET_KEY.length} 끝4자=${SECRET_KEY.slice(-4)}`);
 
 const restHeaders = { apikey: SECRET_KEY, Authorization: `Bearer ${SECRET_KEY}`, "Content-Type": "application/json" };
 async function rest(path, options = {}) {

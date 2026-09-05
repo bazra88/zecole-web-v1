@@ -1,0 +1,52 @@
+name: Backfill legacy thumbnails
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type BACKFILL_THUMBNAILS
+        required: true
+        type: string
+      start:
+        description: data/legacy-icon-backfill-ids.json에서 시작할 인덱스 (기본 0)
+        required: false
+        type: string
+        default: "0"
+      limit:
+        description: 이번 실행에서 처리할 개수 (기본 전체)
+        required: false
+        type: string
+      delay:
+        description: 게임 사이 대기시간(ms, 기본 3000)
+        required: false
+        type: string
+        default: "3000"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backfill-legacy-thumbnails
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    if: ${{ inputs.confirmation == 'BACKFILL_THUMBNAILS' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Replace legacy square icons with the real store thumbnail
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: |
+          node scripts/backfill-legacy-thumbnails.mjs \
+            --start=${{ inputs.start }} \
+            ${{ inputs.limit && format('--limit={0}', inputs.limit) || '' }} \
+            --delay=${{ inputs.delay }}

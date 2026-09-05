@@ -16,7 +16,7 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import {
-  metaUrlId, relayApp, parseMetaStoreUrl, collectGameData,
+  metaUrlId, relayApp, parseMetaStoreUrl, collectGameData, uploadImageToStorage,
 } from "../lib/meta-collect.mjs";
 
 const root = process.cwd();
@@ -32,6 +32,7 @@ const env = (key) => process.env[key] || localEnv[key];
 
 const rawUrl = env("NEXT_PUBLIC_SUPABASE_URL");
 const secretKey = env("SUPABASE_SECRET_KEY");
+const storageBucket = env("NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET") || "game-images";
 const PORT = Number(env("IMPORT_API_PORT") || 4001);
 const API_SECRET = env("IMPORT_API_SECRET");
 if (!rawUrl || !secretKey) throw new Error("Supabase 환경변수(NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SECRET_KEY)가 필요합니다.");
@@ -101,6 +102,23 @@ async function handleImport({ meta_store_url, game_id }) {
     hasExistingMedia,
   });
   if (!collected.resolved) throw new Error("메타스토어에서 게임 정보를 확인하지 못했습니다.");
+
+  // image_path(우리 Storage 사본)가 없는 게임은 이번에 받은 정확한 썸네일을 다운로드해서
+  // 영구 저장한다 — source_image_url(메타 CDN 원본 링크)만 있으면 서명 토큰이 1~2일 안에
+  // 만료돼서 썸네일이 깨진다 (2026-09-05 발견). 실패해도 등록/갱신 자체는 계속 진행한다.
+  if (!existingGame?.image_path && collected.baseInfo?.imageUrl) {
+    const imagePath = await uploadImageToStorage({
+      imageUrl: collected.baseInfo.imageUrl,
+      path: `images/${metaId}.webp`,
+      supabaseUrl,
+      supabaseSecretKey: secretKey,
+      bucket: storageBucket,
+    });
+    if (imagePath) {
+      collected.gamesPayload.image_path = imagePath;
+      collected.gamesPayload.source_image_url = collected.baseInfo.imageUrl;
+    }
+  }
 
   let gameId = existingGame?.id;
   if (existingGame) {
@@ -177,6 +195,7 @@ async function handleImport({ meta_store_url, game_id }) {
     krw_store_available: collected.gamesPayload.krw_store_available ?? existingGame?.krw_store_available ?? null,
     media_inserted: mediaInserted,
     reviews_inserted: reviewsInserted,
+    image_path: collected.gamesPayload.image_path ?? existingGame?.image_path ?? null,
   };
 }
 

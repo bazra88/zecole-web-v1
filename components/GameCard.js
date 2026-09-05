@@ -7,6 +7,7 @@ import {
   effectiveAffiliateDiscount,
   formatGamePrice,
   isFreeGame,
+  motionSicknessLabel,
   reviewLabel,
 } from "@/lib/game-format";
 
@@ -79,8 +80,8 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
             </span>
           ) : null}
           {reviews ? <span className="game-reviews">{reviews}</span> : null}
-          {game.motion_sickness_level ? (
-            <span>멀미 {game.motion_sickness_level}/5</span>
+          {motionSicknessLabel(game.motion_sickness_level) ? (
+            <span>멀미 {motionSicknessLabel(game.motion_sickness_level)}</span>
           ) : null}
         </div>
 

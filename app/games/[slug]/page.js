@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import BackButton from "@/components/BackButton";
 import GameMediaGallery from "@/components/GameMediaGallery";
-import { discountedPriceLabel, effectiveAffiliateDiscount, formatGamePrice, isFreeGame } from "@/lib/game-format";
+import { discountedPriceLabel, effectiveAffiliateDiscount, formatGamePrice, isFreeGame, motionSicknessLabel } from "@/lib/game-format";
 import { gameImageUrl, getGameBySlug, getGameGenres, getGameMedia, getGameReviews, getGameVideos } from "@/lib/supabase";
 
 export const revalidate = 300;
@@ -15,8 +15,6 @@ function dateTimeLabel(value) {
   if (!value) return null;
   return new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric" }).format(new Date(value));
 }
-
-const MOTION_SICKNESS_LABELS = { 1: "아주 적음", 2: "적음", 3: "보통", 4: "약간 많음", 5: "많음" };
 
 // 볼드(**text**)만 인라인으로 처리하고, 나머지는 텍스트 그대로 React가 이스케이프하도록 둔다.
 function renderInline(text, keyPrefix) {
@@ -131,7 +129,7 @@ export default async function GameDetailPage({ params }) {
     ["지원 기기", supports.join(" · ") || null],
     ["지원 언어", game.supported_languages?.length ? game.supported_languages.join(" · ") : null],
     ["플레이 방식", playStyles.join(" · ") || null],
-    ["멀미유발요소", MOTION_SICKNESS_LABELS[game.motion_sickness_level] || null],
+    ["멀미유발요소", motionSicknessLabel(game.motion_sickness_level)],
   ].filter(([, value]) => value);
 
   return (

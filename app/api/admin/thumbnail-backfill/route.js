@@ -18,7 +18,9 @@ import { NextResponse } from "next/server";
 import { adminRest } from "@/lib/admin-supabase";
 import { relayApp, extractBaseInfo, uploadImageToStorage, metaUrlId, sleep } from "@/lib/meta-collect.mjs";
 
-export const maxDuration = 60;
+// GitHub Actions의 "5분마다" 스케줄이 실제로는 훨씬 뜸하게(수 시간 간격으로) 도는 것으로
+// 확인돼서(2026-09-05), 한 번 호출될 때 최대한 많이 처리하도록 duration/배치 상한을 늘렸다.
+export const maxDuration = 280;
 export const dynamic = "force-dynamic";
 
 const OLD_ICON_FILTER =
@@ -35,7 +37,7 @@ export async function POST(request) {
   }
 
   const body = await request.json().catch(() => ({}));
-  const batchSize = Math.min(Math.max(Number(body.batchSize) || 5, 1), 10);
+  const batchSize = Math.min(Math.max(Number(body.batchSize) || 5, 1), 50);
   const delayMs = Math.max(Number(body.delayMs) || 5000, 1000);
 
   const candidates = await adminRest(`games?select=id,name,meta_product_id,meta_store_url&${OLD_ICON_FILTER}&order=id&limit=${batchSize}`);

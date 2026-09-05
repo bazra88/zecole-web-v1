@@ -4,6 +4,10 @@ name: Thumbnail backfill (Vercel trigger)
 # 실제 메타스토어 요청은 Vercel 함수 안에서 나가므로 이 러너의 IP와는 무관하다 —
 # GitHub 러너 IP가 예전에 429를 맞았던 문제(scripts/backfill-legacy-thumbnails.mjs)를
 # 이렇게 우회한다. 더 처리할 게임이 없어지면 이 워크플로 스스로를 비활성화한다.
+#
+# 참고(2026-09-05): GitHub의 "*/5 * * * *"는 실제로는 훨씬 뜸하게(수 시간 간격) 돈다 —
+# 무료 크론의 알려진 한계. 그래서 한 번 호출될 때 최대한 많이(batchSize=25) 처리해서
+# 실제 스케줄 빈도와 무관하게 진행 속도를 확보한다.
 
 on:
   schedule:
@@ -20,15 +24,15 @@ concurrency:
 jobs:
   tick:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - name: Call Vercel backfill endpoint
         id: call
         run: |
-          RESPONSE=$(curl -s -X POST "https://zecole.store/api/admin/thumbnail-backfill" \
+          RESPONSE=$(curl -s --max-time 290 -X POST "https://zecole.store/api/admin/thumbnail-backfill" \
             -H "Authorization: Bearer ${{ secrets.IMPORT_API_SECRET }}" \
             -H "Content-Type: application/json" \
-            -d '{"batchSize":5,"delayMs":5000}')
+            -d '{"batchSize":25,"delayMs":8000}')
           echo "$RESPONSE"
           REMAINING=$(node -e "
             try { const j = JSON.parse(process.argv[1]); console.log(j.remaining_exists); }

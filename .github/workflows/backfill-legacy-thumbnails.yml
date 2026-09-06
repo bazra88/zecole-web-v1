@@ -1,6 +1,14 @@
 name: Backfill legacy thumbnails
 
+# workflow_dispatch로 수동 실행도 가능하지만, 기본은 5시간마다 스케줄로 자기 자신을
+# 계속 재시작한다 — 한 번 실행이 timeout-minutes(300분) 예산을 다 쓰고 멈추면, 사람이
+# 다시 눌러줄 때까지 그냥 놀고 있었다(2026-09-06, 재트리거를 깜빡해서 3시간 40분
+# 공백이 생긴 걸 보고 발견). concurrency 그룹 덕분에 스케줄이 겹쳐 와도 이미 도는 실행이
+# 끝난 뒤에 큐잉되어 바로 이어지므로 겹쳐 돌지는 않는다.
+
 on:
+  schedule:
+    - cron: "0 */5 * * *"
   workflow_dispatch:
     inputs:
       confirmation:
@@ -17,13 +25,14 @@ on:
         required: false
         type: string
       delay:
-        description: 게임 사이 대기시간(ms, 기본 3000)
+        description: 게임 사이 대기시간(ms, 기본 20000)
         required: false
         type: string
-        default: "3000"
+        default: "20000"
 
 permissions:
   contents: read
+  actions: write
 
 concurrency:
   group: backfill-legacy-thumbnails
@@ -31,7 +40,7 @@ concurrency:
 
 jobs:
   backfill:
-    if: ${{ inputs.confirmation == 'BACKFILL_THUMBNAILS' }}
+    if: ${{ github.event_name == 'schedule' || inputs.confirmation == 'BACKFILL_THUMBNAILS' }}
     runs-on: ubuntu-latest
     timeout-minutes: 300
     steps:
@@ -47,6 +56,21 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: |
           node scripts/backfill-legacy-thumbnails.mjs \
-            --start=${{ inputs.start }} \
+            --start=${{ inputs.start || '0' }} \
             ${{ inputs.limit && format('--limit={0}', inputs.limit) || '' }} \
-            --delay=${{ inputs.delay }}
+            --delay=${{ inputs.delay || '20000' }}
+
+      - name: Disable the schedule once nothing is left
+        if: always()
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COUNT=$(curl -s "${NEXT_PUBLIC_SUPABASE_URL}/rest/v1/games?select=id&image_path=like.images%2Fproduct_35505_*&krw_store_available=not.is.null&release_date=not.is.null&description_long=not.is.null&developer=not.is.null&supported_languages=not.is.null&limit=1" \
+            -H "apikey: $SUPABASE_SECRET_KEY" -H "Authorization: Bearer $SUPABASE_SECRET_KEY" | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{try{console.log(JSON.parse(d).length)}catch{console.log(1)}});")
+          echo "remaining_probe=$COUNT"
+          if [ "$COUNT" = "0" ]; then
+            curl -s -X PUT -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/actions/workflows/backfill-legacy-thumbnails.yml/disable"
+          fi

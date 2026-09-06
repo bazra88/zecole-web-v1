@@ -287,6 +287,62 @@ function extractReviews(relay) {
   }).filter((review) => review.meta_review_id && (review.title_original || review.body_original));
 }
 
+// image_path가 없거나 예전 정사각형 아이콘(images/product_35505_ 접두어)인 게임만
+// 여기서 썸네일을 같이 고친다 — 이미 이 게임 페이지를 통째로 받아둔 상태라 메타에
+// 추가 요청 없이 jsonLd에서 필드 하나만 더 뽑으면 된다(2026-09-06, KRW 배치를 거친
+// 게임은 이후로 절대 이 문제가 안 생기게 하려고 추가 — app/api/admin/thumbnail-backfill/
+// route.js와 scripts/backfill-legacy-thumbnails.mjs가 처리하는 "이미 생긴 적체"와는
+// 별개로, 여기서는 "새로 적체가 안 생기게" 막는 역할).
+function jsonLdApp(html) {
+  for (const match of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      const parsed = JSON.parse(match[1].trim());
+      const graph = Array.isArray(parsed?.["@graph"]) ? parsed["@graph"] : [parsed];
+      const app = graph.find((item) => [item?.["@type"]].flat().includes("SoftwareApplication"));
+      if (app) return app;
+    } catch {}
+  }
+  return null;
+}
+function metaContent(html, property) {
+  for (const tag of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const attrs = tag[0];
+    const key = attrs.match(/(?:property|name)=["']([^"']+)["']/i)?.[1];
+    if (key?.toLowerCase() !== property.toLowerCase()) continue;
+    return attrs.match(/content=["']([^"']+)["']/i)?.[1]?.replaceAll("&amp;", "&") || null;
+  }
+  return null;
+}
+// jsonLd 이미지 배열 항목은 {"@id": "..."} 형태다("url"이 아니라 "@id") — 여기서 안
+// 뽑으면 스토어의 실제 썸네일이 아니라 relay.hero_image(광각 배너, 다른 이미지)로
+// 잘못 대체된다(2026-09-05, lib/meta-collect.mjs에서 먼저 발견/수정한 것과 동일 버그).
+function extractStoreImageUrl(html, relay) {
+  const app = jsonLdApp(html);
+  const first = (value) => Array.isArray(value) ? value[0] : value;
+  const image = first(app?.image || app?.thumbnailUrl);
+  return (typeof image === "string" ? image : image?.["@id"] || image?.url) || relay?.hero_image?.uri || metaContent(html, "og:image") || null;
+}
+async function uploadImageToStorage(imageUrl, path) {
+  if (!imageUrl) return null;
+  try {
+    const imageResponse = await fetch(imageUrl, { signal: AbortSignal.timeout(20_000) });
+    if (!imageResponse.ok) return null;
+    const buffer = Buffer.from(await imageResponse.arrayBuffer());
+    const contentType = imageResponse.headers.get("content-type") || "image/webp";
+    const bucket = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || localEnv.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || "game-images";
+    const uploadResponse = await fetch(`${supabaseUrl}/storage/v1/object/${bucket}/${path}`, {
+      method: "POST",
+      // Storage API는 REST(PostgREST)와 달리 apikey 헤더가 같이 없으면 거부한다.
+      headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": contentType, "x-upsert": "true" },
+      body: buffer,
+      signal: AbortSignal.timeout(20_000),
+    });
+    return uploadResponse.ok ? path : null;
+  } catch {
+    return null;
+  }
+}
+
 await assertKoreanIp();
 
 // --inspect 모드: 게임 하나만 실제로 요청해서 relay 객체 키 이름을 출력하고 종료
@@ -327,7 +383,7 @@ async function fetchAllCandidates() {
   const all = [];
   for (let offset = 0; ; offset += pageSize) {
     const page = await rest(
-      `games?select=id,name,slug,meta_product_id,krw_price,krw_store_available,source_status,active,release_date,description_long,developer,motion_sickness_level,supported_languages,rating,review_count` +
+      `games?select=id,name,slug,meta_product_id,krw_price,krw_store_available,source_status,active,release_date,description_long,developer,motion_sickness_level,supported_languages,rating,review_count,image_path` +
       `${statusFilter}` +
       // motion_sickness_level과 krw_price는 후보 조건에서 뺀다 — 둘 다 "정상적으로
       // 확인했지만 값 자체가 없는 게 맞는" 경우가 있어서(comfort_rating이 NOT_RATED인
@@ -378,6 +434,10 @@ async function applyRow(row) {
     payload.description_long_ko = row.description_long_ko;
   }
   if (row.device_info?.developer) Object.assign(payload, row.device_info);
+  if (row.image_path) {
+    payload.image_path = row.image_path;
+    payload.source_image_url = row.source_image_url;
+  }
   const patched = await rest(`games?id=eq.${row.id}`, { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify(payload) });
   const delta = { updated: patched?.length || 0, mediaInserted: 0, reviewsInserted: 0 };
 
@@ -440,6 +500,15 @@ for (const game of candidates || []) {
       const needsTranslation = !game.description_long && longDescription;
       const descriptionLongKo = needsTranslation ? await translateLongDescription(longDescription) : null;
       const deviceInfo = (game.developer && game.supported_languages) ? {} : extractDeviceInfo(relay);
+      const needsImageFix = !game.image_path || game.image_path.startsWith("images/product_35505_");
+      let imagePath = null;
+      let sourceImageUrl = null;
+      if (needsImageFix) {
+        sourceImageUrl = extractStoreImageUrl(html, relay);
+        // dry-run(미리보기)에서는 실제 업로드를 하지 않는다 — publicKey로는 Storage 쓰기
+        // 권한이 없어서 어차피 실패하기도 하고, dry-run은 원래 아무것도 쓰지 않아야 한다.
+        if (apply && sourceImageUrl) imagePath = await uploadImageToStorage(sourceImageUrl, `images/${metaId}.webp`);
+      }
       reviews = extractReviews(relay).filter((review) => !savedReviewKeys.has(`${game.id}:${review.meta_review_id}`));
       for (const review of reviews) {
         review.title_ko = review.title_original ? await translateText(review.title_original) : null;
@@ -461,6 +530,8 @@ for (const game of candidates || []) {
         description_long_ko: descriptionLongKo,
         device_info: deviceInfo,
         review_count: reviews.length,
+        image_path: imagePath,
+        source_image_url: sourceImageUrl,
       };
       consecutiveBlocked = 0;
       break;

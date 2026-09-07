@@ -49,6 +49,12 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: npm run data:horizon-plus:sync -- --apply --confirm=SYNC_HORIZON_PLUS
+      - name: Bake the new month's homepage collage images
+        if: steps.pacific.outputs.run == 'true'
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run data:horizon-plus:collages -- --apply
       - name: Upload sync report
         if: always() && steps.pacific.outputs.run == 'true'
         uses: actions/upload-artifact@v6

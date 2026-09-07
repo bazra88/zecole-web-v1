@@ -22,6 +22,7 @@
     "data:recent:sync": "node scripts/sync-meta-recent.mjs",
     "data:recent:krw": "node scripts/sync-meta-recent-krw.mjs",
     "data:horizon-plus:sync": "node scripts/sync-horizon-plus.mjs",
+    "data:horizon-plus:collages": "node scripts/generate-horizon-collages.mjs",
     "data:youtube:sync": "node scripts/sync-youtube-videos.mjs",
     "import-api:start": "node scripts/import-api-server.mjs",
     "data:free:prepare-inserts": "node scripts/prepare-meta-free-inserts.mjs",

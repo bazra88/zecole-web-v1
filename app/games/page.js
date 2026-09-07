@@ -6,7 +6,7 @@ import { getGames, getGenres } from "@/lib/supabase";
 
 export const revalidate = 300;
 
-const PAGE_SIZES = [24, 48, 100];
+const PAGE_SIZES = [25, 50, 100];
 
 const SORTS = {
   name: "name.asc",
@@ -62,8 +62,8 @@ export default async function GamesPage({ searchParams }) {
   const minReviews = Math.max(0, Number(params.min_reviews || 0) || 0);
   const genre = params.genre || "";
   const search = (params.q || "").trim();
-  const requestedPageSize = Number(params.page_size || 24);
-  const pageSize = PAGE_SIZES.includes(requestedPageSize) ? requestedPageSize : 24;
+  const requestedPageSize = Number(params.page_size || 25);
+  const pageSize = PAGE_SIZES.includes(requestedPageSize) ? requestedPageSize : 25;
 
   let result = { data: [], count: 0 };
   const [genres, usdKrwRate] = await Promise.all([getGenres(), getUsdKrwRate()]);

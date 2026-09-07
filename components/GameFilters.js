@@ -53,8 +53,8 @@ export default function GameFilters({ search, pricing, priceRange, recommendatio
       </select>
 
       <select name="page_size" defaultValue={String(pageSize)} aria-label="페이지당 게임 수" onChange={applySelectedFilter}>
-        <option value="24">24개씩</option>
-        <option value="48">48개씩</option>
+        <option value="25">25개씩</option>
+        <option value="50">50개씩</option>
         <option value="100">100개씩</option>
       </select>
     </form>

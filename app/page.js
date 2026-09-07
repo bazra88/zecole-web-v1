@@ -1,6 +1,7 @@
 import Link from "next/link";
 import GameCard from "@/components/GameCard";
 import EmptyPanel from "@/components/EmptyPanel";
+import HomeHero from "@/components/HomeHero";
 import SectionHeader from "@/components/SectionHeader";
 import { getUsdKrwRate } from "@/lib/exchange-rate";
 import { gameImageUrl, getContent, getGames, getHorizonPlus } from "@/lib/supabase";
@@ -32,40 +33,19 @@ async function safeHorizonPlus() {
   }
 }
 
-function HorizonTile({ href, number, title, description, games, monthly = false }) {
-  const availableGames = games
-    .map((row) => row.game)
-    .filter((game) => game?.image_path || game?.source_image_url);
-  const collageColumns = monthly
-    ? 2
-    : Math.max(1, Math.ceil(Math.sqrt(availableGames.length * 1.5)));
-  const collageRows = monthly
-    ? 1
-    : Math.max(1, Math.ceil(availableGames.length / collageColumns));
-  const collageSize = monthly ? 2 : collageColumns * collageRows;
-  const collage = availableGames.length
-    ? Array.from(
-        { length: monthly ? Math.min(2, availableGames.length) : collageSize },
-        (_, index) => availableGames[index % availableGames.length]
-      )
-    : [];
-
+function HorizonTile({ href, number, title, description, collageSrc }) {
+  // 예전엔 게임 50개 이상을 매 요청마다 <img> 태그로 라이브 그리드 렌더링했다(원본
+  // 고해상도 썸네일을 통째로 받아서 40~70px로 줄여 보여주는 낭비 + DOM/레이아웃 부담).
+  // scripts/generate-horizon-collages.mjs가 매달 카탈로그가 갱신될 때 미리 합성해서
+  // Storage에 구워두는 이미지 한 장으로 대체했다(2026-09-07) — 요청 1개, 용량도
+  // 1/20 이하. 아직 그 달 콜라주가 안 구워졌으면(collageSrc 없음) 그냥 타일 자체의
+  // 그라데이션 배경만 보인다 — background-image라 깨진 이미지 아이콘도 안 뜬다.
   return (
-    <Link href={href} className="horizon-tile">
-      <div
-        className={`horizon-collage ${monthly ? "monthly" : "mosaic"}`}
-        style={monthly ? undefined : { "--collage-columns": collageColumns, "--collage-rows": collageRows }}
-        aria-hidden="true"
-      >
-        {collage.map((game, index) => (
-          <img key={`${game.id}-${index}`} src={gameImageUrl(game.image_path || game.source_image_url)} alt="" />
-        ))}
-      </div>
-      {monthly ? (
-        <div className="monthly-game-names">
-          {collage.map((game, index) => <b key={`${game.id}-${index}`}>{game.name}</b>)}
-        </div>
-      ) : null}
+    <Link
+      href={href}
+      className="horizon-tile"
+      style={collageSrc ? { backgroundImage: `url(${collageSrc})` } : undefined}
+    >
       <div className="horizon-tile-shade" />
       <div className="horizon-tile-copy">
         <span>{number}</span>
@@ -73,6 +53,27 @@ function HorizonTile({ href, number, title, description, games, monthly = false 
         <p>{description}</p>
       </div>
     </Link>
+  );
+}
+
+function HorizonMonthlyTile({ href, number, title, description, games, usdKrwRate, horizonPlusGameIds }) {
+  const availableGames = games.map((row) => row.game).filter(Boolean).slice(0, 2);
+
+  return (
+    <div className="horizon-tile horizon-tile-monthly">
+      <div className="horizon-monthly-cards">
+        {availableGames.map((game) => (
+          <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} horizonPlusGameIds={horizonPlusGameIds} />
+        ))}
+      </div>
+      <Link href={href} className="horizon-tile-monthly-caption">
+        <span>{number}</span>
+        <strong>
+          {title} <span className="horizon-tile-monthly-badge">구독유지중에는 영구소장</span>
+        </strong>
+        <p>{description}</p>
+      </Link>
+    </div>
   );
 }
 
@@ -90,17 +91,17 @@ export default async function Home() {
     usdKrwRate,
   ] = await Promise.all([
     safeGames({
-      limit: 12,
+      limit: 15,
       releasedOnly: true,
       order: "release_date.desc.nullslast,name.asc",
     }),
     safeGames({
-      limit: 12,
+      limit: 15,
       newReleasePinned: true,
       order: "created_at.desc,name.asc",
     }),
     safeGames({
-      limit: 12,
+      limit: 15,
       order: "created_at.desc,name.asc",
     }),
     safeGames({
@@ -109,7 +110,7 @@ export default async function Home() {
       order: "popularity_score.desc.nullslast,review_count.desc.nullslast,name.asc",
     }),
     safeGames({
-      limit: 12,
+      limit: 15,
       pricing: "free",
       order: "review_count.desc.nullslast,name.asc",
     }),
@@ -126,18 +127,24 @@ export default async function Home() {
   const featuredNewReleases = [
     ...pinnedNewReleaseGames,
     ...automaticNewReleases.filter((game) => !pinnedNewReleaseIds.has(game.id)),
-  ].slice(0, 12);
-  const featuredPopularPaid = popularPaidGames.slice(0, 12);
+  ].slice(0, 15);
+  const featuredPopularPaid = popularPaidGames.slice(0, 15);
   const latestHorizonMonth = [...new Set(horizonPlus.map((row) => row.month).filter(Boolean))].sort().at(-1);
   const latestHorizon = latestHorizonMonth
     ? horizonPlus.filter((row) => row.month === latestHorizonMonth)
     : horizonPlus;
   const monthlyHorizon = latestHorizon.filter((row) => row.category === "monthly_games");
-  const horizonCatalog = latestHorizon.filter((row) => row.category === "horizon_catalog");
-  const indieCatalog = latestHorizon.filter((row) => row.category === "indie_catalog");
+  const horizonPlusGameIds = new Set(latestHorizon.map((row) => row.game?.id).filter(Boolean));
+  // scripts/generate-horizon-collages.mjs가 매달 구워두는 콜라주 이미지 경로 — 카테고리별
+  // 게임 목록으로 매번 그리드를 라이브 렌더링하는 대신 이 한 장을 배경으로 쓴다.
+  const monthTag = latestHorizonMonth?.slice(0, 7);
+  const horizonCollageSrc = monthTag ? gameImageUrl(`collages/horizon_catalog-${monthTag}.webp`) : null;
+  const indieCollageSrc = monthTag ? gameImageUrl(`collages/indie_catalog-${monthTag}.webp`) : null;
 
   return (
     <main>
+      <HomeHero />
+
       <section className="horizon-section">
         <div className="container section">
           <SectionHeader
@@ -147,27 +154,28 @@ export default async function Home() {
             href="/horizon-plus"
           />
           <div className="horizon-grid">
-            <HorizonTile
+            <HorizonMonthlyTile
               href="/horizon-plus#monthly"
               number="01"
               title="월간 게임 2종"
-              description="이번 달 별도 제공되는 두 게임"
+              description="구독 유지 중에는 영구 소장 됩니다"
               games={monthlyHorizon}
-              monthly
+              usdKrwRate={usdKrwRate}
+              horizonPlusGameIds={horizonPlusGameIds}
             />
             <HorizonTile
               href="/horizon-plus#catalog"
               number="02"
               title="Horizon 카탈로그"
               description="메인 구독 카탈로그 추가·제외 게임"
-              games={horizonCatalog}
+              collageSrc={horizonCollageSrc}
             />
             <HorizonTile
               href="/horizon-plus#indie"
               number="03"
               title="인디 카탈로그"
               description="인디 중심의 별도 게임 카탈로그"
-              games={indieCatalog}
+              collageSrc={indieCollageSrc}
             />
           </div>
         </div>
@@ -183,7 +191,7 @@ export default async function Home() {
         {featuredNewReleases.length ? (
           <div className="game-grid">
             {featuredNewReleases.map((game) => (
-              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} />
+              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} horizonPlusGameIds={horizonPlusGameIds} />
             ))}
           </div>
         ) : (
@@ -204,7 +212,7 @@ export default async function Home() {
         {featuredPopularPaid.length ? (
           <div className="game-grid">
             {featuredPopularPaid.map((game) => (
-              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} />
+              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} horizonPlusGameIds={horizonPlusGameIds} />
             ))}
           </div>
         ) : (
@@ -225,7 +233,7 @@ export default async function Home() {
         {popularFreeGames.length ? (
           <div className="game-grid">
             {popularFreeGames.map((game) => (
-              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} />
+              <GameCard key={game.id} game={game} usdKrwRate={usdKrwRate} horizonPlusGameIds={horizonPlusGameIds} />
             ))}
           </div>
         ) : (
@@ -312,13 +320,13 @@ export default async function Home() {
         <div className="container business-inner">
           <div>
             <p className="eyebrow">BUSINESS</p>
-            <h2>광고 · 리뷰 · 협업 제안</h2>
+            <h2>사이트 및 비즈니스 문의</h2>
             <p>
-              VR 게임/제품 리뷰, 스폰서십, 브랜드 협업 및 취재 문의를 받습니다.
+              컨텐츠의 오류 수정요청이나 누락된 게임의 추가요청, 그리고 비즈니스 관련 협업/광고 문의가 있다면 언제든 이용해 주세요.
             </p>
           </div>
           <Link href="/business" className="primary-button">
-            비즈니스 문의하기
+            문의하기
           </Link>
         </div>
       </section>

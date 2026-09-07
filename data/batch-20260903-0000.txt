@@ -1,0 +1,153 @@
+00시 자동 배치 처리 게임 목록 (2026-09-03 00:00~01:24 KST, 리뷰 많은 순)
+총 150건
+
+1. Beat Saber (slug: beat-saber) — 별점 4.5, 리뷰 55,685, 가격 ₩30,800
+2. Job Simulator (slug: job-simulator) — 별점 4.5, 리뷰 21,232, 가격 ₩23,501
+3. Scary Free (slug: scary-free) — 별점 4.5, 리뷰 13,146, 가격 ₩0
+4. Sail (slug: sail) — 별점 4.5, 리뷰 10,802, 가격 ₩0
+5. Noclip VR (slug: noclip-vr) — 별점 4.5, 리뷰 8,896, 가격 ₩0
+6. Real VR Fishing (slug: real-vr-fishing) — 별점 4.5, 리뷰 8,723, 가격 ₩23,501
+7. Breachers (slug: breachers) — 별점 4.5, 리뷰 6,820, 가격 지역락
+8. LES MILLS BODYCOMBAT: Fitness workouts (slug: les-mills-bodycombat-fitness-workouts) — 별점 4.5, 리뷰 5,297, 가격 ₩36,000
+9. Vacation Simulator (slug: vacation-simulator) — 별점 4.5, 리뷰 4,956, 가격 ₩22,100
+10. Battle Talent Demo (slug: battle-talent-demo) — 별점 4.5, 리뷰 4,365, 가격 ₩0
+11. Robo Recall: Unplugged (slug: robo-recall-unplugged) — 별점 4.5, 리뷰 4,304, 가격 지역락
+12. Tower of Monkey (slug: tower-of-monkey) — 별점 4.5, 리뷰 4,135, 가격 ₩0
+13. Hyper Dash (slug: hyper-dash) — 별점 4.5, 리뷰 3,689, 가격 ₩0
+14. Warplanes: WW1 Fighters (slug: warplanes-ww1-fighters) — 별점 4.5, 리뷰 3,655, 가격 ₩23,501
+15. I Am Hamster - Simulator (slug: i-am-hamster-simulator) — 별점 4.5, 리뷰 3,307, 가격 ₩20,500
+16. Drop Dead: The Cabin (slug: drop-dead-the-cabin) — 별점 4.5, 리뷰 3,103, 가격 ₩34,000
+17. A Fisherman's Tale (slug: a-fisherman-s-tale) — 별점 4.5, 리뷰 2,417, 가격 ₩11,200
+18. Tetris® Effect: Connected (slug: tetris-effect-connected) — 별점 4.5, 리뷰 2,080, 가격 ₩36,000
+19. Journey of the Gods (slug: journey-of-the-gods) — 별점 4.5, 리뷰 1,930, 가격 ₩36,000
+20. Sairento VR : Untethered (slug: sairento-vr-untethered) — 별점 4.5, 리뷰 1,901, 가격 지역락
+21. Moon VR Video Player (slug: moon-vr-video-player) — 별점 4.5, 리뷰 1,853, 가격 ₩12,000
+22. Metro Awakening (slug: metro-awakening) — 별점 4.5, 리뷰 1,776, 가격 지역락
+23. Audio Trip (slug: audio-trip) — 별점 4.5, 리뷰 1,722, 가격 ₩22,100
+24. Grill on Wheels (slug: grill-on-wheels) — 별점 4.5, 리뷰 1,718, 가격 ₩12,300
+25. Angry Birds VR: Isle of Pigs (slug: angry-birds-vr-isle-of-pigs) — 별점 4.5, 리뷰 1,706, 가격 ₩23,501
+26. Marvel's Deadpool VR (slug: marvel-s-deadpool-vr) — 별점 4.5, 리뷰 1,590, 가격 지역락
+27. MiRacle Pool (slug: miracle-pool) — 별점 4.5, 리뷰 1,492, 가격 ₩27,400
+28. Pixel Ripped 1995 (slug: pixel-ripped-1995) — 별점 4.5, 리뷰 1,445, 가격 ₩23,501
+29. Painting VR (slug: painting-vr) — 별점 4.5, 리뷰 1,426, 가격 ₩20,500
+30. BRINK Traveler (slug: brink-traveler) — 별점 4.5, 리뷰 1,370, 가격 ₩20,500
+31. Viral Descent: Together (slug: viral-descent-together) — 별점 4.5, 리뷰 1,325, 가격 ₩7,000
+32. Ghosts of Tabor: LEGACY (slug: ghosts-of-tabor-legacy) — 별점 4.5, 리뷰 1,314, 가격 ₩20,500
+33. GORN 2 (slug: gorn-2) — 별점 4.5, 리뷰 1,198, 가격 지역락
+34. Fluid Browser + Video Player (slug: fluid-browser-video-player) — 별점 4.5, 리뷰 1,147, 가격 ₩27,400
+35. Crashland (slug: crashland) — 별점 4.5, 리뷰 1,131, 가격 지역락
+36. PowerBeatsVR (slug: powerbeatsvr) — 별점 4.5, 리뷰 1,083, 가격 ₩27,600
+37. Superfly (slug: superfly) — 별점 4.5, 리뷰 1,002, 가격 ₩18,000
+38. STARVAULT (slug: starvault) — 별점 4.5, 리뷰 963, 가격 ₩20,500
+39. Dreadhalls (slug: dreadhalls) — 별점 4.5, 리뷰 946, 가격 ₩12,000
+40. Cosmodread (slug: cosmodread) — 별점 4.5, 리뷰 884, 가격 지역락
+41. The Break-In (slug: the-break-in) — 별점 4.5, 리뷰 834, 가격 지역락
+42. Frost Survival VR (slug: frost-survival-vr) — 별점 4.5, 리뷰 791, 가격 ₩20,500
+43. Little Cities (slug: little-cities) — 별점 4.5, 리뷰 772, 가격 ₩23,501
+44. Iron Rebellion (slug: iron-rebellion) — 별점 4.5, 리뷰 747, 가격 ₩18,000
+45. Crime Shop Simulator: A Prison Boss Game (slug: crime-shop-simulator-a-prison-boss-game) — 별점 4.5, 리뷰 706, 가격 ₩27,400
+46. Song in the Smoke (slug: song-in-the-smoke) — 별점 4.5, 리뷰 669, 가격 ₩36,000
+47. Ninja Legends (slug: ninja-legends) — 별점 4.5, 리뷰 651, 가격 지역락
+48. Propagation: Paradise Hotel (slug: propagation-paradise-hotel) — 별점 4.5, 리뷰 610, 가격 지역락
+49. Keep Talking and Nobody Explodes (slug: keep-talking-and-nobody-explodes) — 별점 4.5, 리뷰 591, 가격 ₩18,000
+50. Pickleball One (slug: pickleball-one) — 별점 4.5, 리뷰 522, 가격 ₩34,200
+51. Undead Citadel (slug: undead-citadel) — 별점 4.5, 리뷰 511, 가격 지역락
+52. Startenders: Intergalactic Bartending (slug: startenders-intergalactic-bartending) — 별점 4.5, 리뷰 493, 가격 ₩18,000
+53. Eternal Starlight (slug: eternal-starlight) — 별점 4.5, 리뷰 455, 가격 ₩18,000
+54. Crazy Kung Fu (slug: crazy-kung-fu) — 별점 4.5, 리뷰 451, 가격 ₩18,000
+55. Thumper (slug: thumper) — 별점 4.5, 리뷰 418, 가격 ₩23,501
+56. Surviving Mars: Pioneer (slug: surviving-mars-pioneer) — 별점 4.5, 리뷰 418, 가격 ₩34,200
+57. Raider Legends (slug: raider-legends) — 별점 4.5, 리뷰 391, 가격 ₩0
+58. Sushi Ben (slug: sushi-ben) — 별점 4.5, 리뷰 375, 가격 ₩13,500
+59. Hide The Corpse (slug: hide-the-corpse) — 별점 4.5, 리뷰 360, 가격 ₩20,500
+60. Infinite Inside (slug: infinite-inside) — 별점 4.5, 리뷰 355, 가격 ₩15,600
+61. Virtual Skate (slug: virtual-skate) — 별점 4.5, 리뷰 353, 가격 ₩27,400
+62. Spacefolk City (slug: spacefolk-city) — 별점 4.5, 리뷰 334, 가격 ₩23,501
+63. Operation Serpens (slug: operation-serpens) — 별점 4.5, 리뷰 331, 가격 ₩13,807
+64. SoulDrive (slug: souldrive) — 별점 4.5, 리뷰 325, 가격 ₩5,500
+65. The Line (slug: the-line) — 별점 4.5, 리뷰 312, 가격 ₩6,000
+66. Maskmaker (slug: maskmaker) — 별점 4.5, 리뷰 290, 가격 ₩11,200
+67. Rez Infinite (slug: rez-infinite) — 별점 4.5, 리뷰 259, 가격 ₩23,501
+68. Hitstream (slug: hitstream) — 별점 4.5, 리뷰 221, 가격 ₩23,501
+69. Make It Stable - Kids & Family Fun! (slug: make-it-stable-kids-family-fun) — 별점 4.5, 리뷰 183, 가격 ₩5,500
+70. Rogue Ascent VR (slug: rogue-ascent-vr) — 별점 4.5, 리뷰 183, 가격 ₩12,000
+71. Captain ToonHead vs The Punks from Outer Space (slug: captain-toonhead-vs-the-punks-from-outer-space) — 별점 4.5, 리뷰 178, 가격 ₩23,501
+72. WHAT THE BAT? (slug: what-the-bat) — 별점 4.5, 리뷰 169, 가격 ₩20,500
+73. Sky Runner: Drone Hero (slug: sky-runner-drone-hero) — 별점 4.5, 리뷰 160, 가격 ₩27,400
+74. BATTLESCAR: Punk Was Invented By Girls (slug: battlescar-punk-was-invented-by-girls) — 별점 4.5, 리뷰 157, 가격 ₩7,200
+75. Laser Limbo - AR Party Battles (slug: laser-limbo-ar-party-battles) — 별점 4.5, 리뷰 151, 가격 ₩14,800
+76. Lucent VR - Relax and Explore (slug: lucent-vr-relax-and-explore) — 별점 4.5, 리뷰 148, 가격 ₩14,800
+77. Interstellar Strike Team (slug: interstellar-strike-team) — 별점 4.5, 리뷰 146, 가격 ₩11,000
+78. MASTERS OF LIGHT (slug: masters-of-light) — 별점 4.5, 리뷰 139, 가격 ₩26,800
+79. Tea For God (slug: tea-for-god) — 별점 4.7, 리뷰 138, 가격 ₩23,501
+80. Little Witch Academia: VR Broom Racing (slug: little-witch-academia-vr-broom-racing) — 별점 4.5, 리뷰 125, 가격 ₩36,000
+81. Game Night (slug: game-night) — 별점 4.5, 리뷰 119, 가격 ₩20,500
+82. Goalienator (slug: goalienator) — 별점 4.5, 리뷰 115, 가격 ₩4,200
+83. BattleGroupVR (slug: battlegroupvr) — 별점 4.6, 리뷰 114, 가격 ₩34,000
+84. Besiege VR (slug: besiege-vr) — 별점 4.6, 리뷰 113, 가격 지역락
+85. Virtual Duck Hunt (slug: virtual-duck-hunt) — 별점 4.5, 리뷰 108, 가격 ₩5,500
+86. Cooking Simulator - Pizza Shop (slug: cooking-simulator-pizza-shop) — 별점 4.5, 리뷰 105, 가격 ₩14,800
+87. DAVID (slug: david) — 별점 4.5, 리뷰 100, 가격 ₩12,000
+88. Scared By Squares (slug: scared-by-squares) — 별점 4.6, 리뷰 98, 가격 ₩9,600
+89. Pencil - Learn to Draw (slug: pencil-learn-to-draw) — 별점 4.5, 리뷰 98, 가격 ₩17,800
+90. The Amusement (slug: the-amusement) — 별점 4.6, 리뷰 92, 가격 ₩30,100
+91. Salmon Man (slug: salmon-man) — 별점 4.6, 리뷰 88, 가격 ₩9,600
+92. Conscious Existence - A Journey Within (slug: conscious-existence-a-journey-within) — 별점 4.6, 리뷰 88, 가격 ₩6,000
+93. Drone Simulator VR (slug: drone-simulator-vr) — 별점 4.6, 리뷰 87, 가격 ₩19,100
+94. Among Giants (slug: among-giants) — 별점 4.6, 리뷰 86, 가격 ₩26,000
+95. Airspace Defender (slug: airspace-defender) — 별점 4.6, 리뷰 84, 가격 ₩14,800
+96. Hidden Pictures: Agent Q (slug: hidden-pictures-agent-q) — 별점 4.6, 리뷰 83, 가격 ₩27,400
+97. Taiko Frenzy (slug: taiko-frenzy) — 별점 4.6, 리뷰 83, 가격 ₩15,600
+98. Riddlewood Manor (slug: riddlewood-manor) — 별점 4.6, 리뷰 82, 가격 ₩14,800
+99. Fight Fit VR (slug: fight-fit-vr) — 별점 4.6, 리뷰 72, 가격 ₩14,800
+100. ZOMVIRUS – Zombie Survival Action (slug: zomvirus-zombie-survival-action) — 별점 4.6, 리뷰 71, 가격 ₩20,500
+101. Escape Room Exit Condition One HD (slug: escape-room-exit-condition-one-hd) — 별점 4.6, 리뷰 64, 가격 ₩16,500
+102. Retronika (slug: retronika) — 별점 4.6, 리뷰 63, 가격 ₩11,000
+103. Marble Pop Paradise (slug: marble-pop-paradise) — 별점 4.6, 리뷰 62, 가격 ₩14,800
+104. Pipe Dream Co. (slug: pipe-dream-co) — 별점 4.6, 리뷰 61, 가격 ₩6,000
+105. CPR Simulator (slug: cpr-simulator) — 별점 4.6, 리뷰 57, 가격 ₩12,000
+106. Camping (slug: camping) — 별점 4.6, 리뷰 54, 가격 ₩12,000
+107. Battlenauts (slug: battlenauts) — 별점 4.7, 리뷰 50, 가격 ₩7,000
+108. Bionic Hunter : The Ancient Sword (slug: bionic-hunter-the-ancient-sword) — 별점 4.6, 리뷰 49, 가격 지역락
+109. Harpagun (slug: harpagun) — 별점 4.8, 리뷰 48, 가격 지역락
+110. BoomBox Remastered (slug: boombox-remastered) — 별점 4.8, 리뷰 46, 가격 ₩14,800
+111. ZOMBIE SURVIVAL VR (slug: zombie-survival-vr) — 별점 4.8, 리뷰 45, 가격 ₩20,500
+112. Brain Candy (slug: brain-candy) — 별점 4.6, 리뷰 45, 가격 ₩11,000
+113. Football: Goal Poacher (Soccer) (slug: football-goal-poacher-soccer) — 별점 4.6, 리뷰 45, 가격 ₩10,900
+114. Teleport Iceland (slug: teleport-iceland) — 별점 4.9, 리뷰 45, 가격 ₩12,000
+115. I Am Octopus (slug: i-am-octopus) — 별점 4.7, 리뷰 44, 가격 ₩16,400
+116. Recharge: Mindful Moves XR (slug: recharge-mindful-moves-xr) — 별점 4.6, 리뷰 44, 가격 ₩22,100
+117. XR Replay (slug: xr-replay) — 별점 4.7, 리뷰 43, 가격 ₩5,500
+118. GUNS (slug: guns) — 별점 4.7, 리뷰 42, 가격 ₩8,400
+119. Insomnia (slug: insomnia-777739) — 별점 4.6, 리뷰 42, 가격 ₩4,400
+120. SKY LEGENDS (slug: sky-legends) — 별점 4.8, 리뷰 41, 가격 ₩34,200
+121. Space Elevator (slug: space-elevator) — 별점 4.6, 리뷰 41, 가격 ₩20,500
+122. Warchasm (slug: warchasm) — 별점 4.9, 리뷰 41, 가격 ₩15,600
+123. Escape Jack O Maze (slug: escape-jack-o-maze) — 별점 4.9, 리뷰 41, 가격 ₩7,000
+124. Space Slurpies (slug: space-slurpies) — 별점 4.7, 리뷰 41, 가격 ₩6,000
+125. Meteoric VR (slug: meteoric-vr) — 별점 4.6, 리뷰 40, 가격 ₩20,500
+126. Color Connect - VR Puzzle Game (slug: color-connect-vr-puzzle-game) — 별점 4.9, 리뷰 40, 가격 ₩12,000
+127. Hyperstacks (slug: hyperstacks) — 별점 4.7, 리뷰 40, 가격 ₩30,100
+128. AR Planes (slug: ar-planes) — 별점 4.8, 리뷰 40, 가격 ₩14,800
+129. Sucker Punch VR (slug: sucker-punch-vr) — 별점 4.7, 리뷰 39, 가격 ₩23,501
+130. HAX (slug: hax) — 별점 4.8, 리뷰 38, 가격 ₩19,000
+131. PathCraft (slug: pathcraft) — 별점 4.6, 리뷰 37, 가격 ₩5,600
+132. Call the Wizards (slug: call-the-wizards) — 별점 4.7, 리뷰 37, 가격 ₩7,000
+133. Mega Fireball - Mixed Reality (slug: mega-fireball-mixed-reality) — 별점 4.7, 리뷰 35, 가격 ₩27,400
+134. Oldest Golden Treasure (slug: oldest-golden-treasure) — 별점 4.6, 리뷰 34, 가격 ₩20,500
+135. Visit Madeira (slug: visit-madeira) — 별점 4.7, 리뷰 34, 가격 ₩10,800
+136. Boxing Drills VR (slug: boxing-drills-vr) — 별점 4.8, 리뷰 33, 가격 ₩13,700
+137. BOX to the BEAT VR (slug: box-to-the-beat-vr) — 별점 4.7, 리뷰 32, 가격 ₩23,501
+138. AVO: Echoes of the Void (slug: avo-echoes-of-the-void) — 별점 4.8, 리뷰 32, 가격 ₩17,800
+139. Sword Battle (slug: sword-battle) — 별점 4.6, 리뷰 32, 가격 ₩12,000
+140. Beat the Beats (slug: beat-the-beats) — 별점 4.6, 리뷰 31, 가격 ₩17,800
+141. Visionarium (slug: visionarium) — 별점 4.7, 리뷰 30, 가격 ₩10,800
+142. AR Choppers (slug: ar-choppers) — 별점 5.0, 리뷰 30, 가격 ₩10,900
+143. Vault of Stars (slug: vault-of-stars) — 별점 4.6, 리뷰 30, 가격 ₩12,000
+144. Hexapuss (slug: hexapuss) — 별점 4.7, 리뷰 29, 가격 ₩15,000
+145. MazeBall (slug: mazeball) — 별점 4.8, 리뷰 29, 가격 ₩7,000
+146. Cookie Gardening (slug: cookie-gardening) — 별점 4.9, 리뷰 29, 가격 ₩15,600
+147. REFLEX UNIT 2 (slug: reflex-unit-2) — 별점 4.6, 리뷰 29, 가격 ₩12,000
+148. Strike Command (slug: strike-command) — 별점 5.0, 리뷰 29, 가격 ₩14,800
+149. CloserLook VR: Oldways (slug: closerlook-vr-oldways) — 별점 4.6, 리뷰 29, 가격 ₩20,500
+150. Beers and Boomerangs (slug: beers-and-boomerangs) — 별점 5.0, 리뷰 28, 가격 지역락

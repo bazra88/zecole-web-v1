@@ -1,6 +1,22 @@
+import FloatingDock from "@/components/FloatingDock";
 import Header from "@/components/Header";
 import { Analytics } from "@vercel/analytics/next";
+import { Manrope, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
+
+const notoSansKr = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata = {
   title: {
@@ -14,8 +30,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body>
+      <body className={`${notoSansKr.variable} ${manrope.variable}`}>
         <Header />
+        <FloatingDock />
         {children}
         <footer className="footer">
           <div className="container footer-grid">

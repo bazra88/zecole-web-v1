@@ -15,7 +15,7 @@ function genreHue(name) {
   return [...name].reduce((hash, character) => ((hash * 31) + character.charCodeAt(0)) % 360, 210);
 }
 
-export default function GameCard({ game, usdKrwRate = null, catalogStatus = null }) {
+export default function GameCard({ game, usdKrwRate = null, catalogStatus = null, horizonPlusGameIds = null }) {
   const image = gameImageUrl(game.image_path || game.source_image_url);
   const free = isFreeGame(game);
   const discount = effectiveAffiliateDiscount(game);
@@ -33,6 +33,18 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
       .map((link) => link.genres?.name)
       .filter(Boolean)
   )];
+  const MAX_VISIBLE_GENRES = 2;
+  const visibleGenres = genres.slice(0, MAX_VISIBLE_GENRES);
+  const hiddenGenreCount = genres.length - visibleGenres.length;
+  const motionLabel = motionSicknessLabel(game.motion_sickness_level);
+  const curationTag = game.zecole_recommended
+    ? "제콜추천"
+    : game.beginner_recommended
+    ? "초보자"
+    : game.advanced_recommended
+    ? "숙련자"
+    : null;
+  const isHorizonPlus = horizonPlusGameIds?.has(game.id);
   const timedStoreOffer = game.meta_store_show_timer && game.meta_store_offer_ends_at;
   const titleLength = [...game.name].length;
   const titleSizeClass = titleLength > 38
@@ -45,7 +57,10 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
     <article className="game-card">
       <Link href={`/games/${game.slug}`} className="game-thumb">
         {image ? (
-          <img src={image} alt={`${game.name} 게임 이미지`} loading="lazy" />
+          <>
+            <img src={image} alt="" aria-hidden="true" loading="lazy" className="game-thumb-bg" />
+            <img src={image} alt={`${game.name} 게임 이미지`} loading="lazy" className="game-thumb-fg" />
+          </>
         ) : (
           <div className="no-image">NO IMAGE</div>
         )}
@@ -53,19 +68,16 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
         <div className="badges">
           {catalogStatus === "added" ? <span className="badge catalog-added">이번 달 추가</span> : null}
           {catalogStatus === "removed" ? <span className="badge catalog-removed">이번 달 제외</span> : null}
-          {false && free ? <span className="badge free">무료</span> : null}
-          {false && !free && affiliateDiscount > 0 ? (
-            <span className={`badge ${discount.promotional ? "promo" : "sale"}`}>
-              {discount.promotional ? "기간한정 " : ""}
-              {affiliateDiscount}% 할인
-            </span>
-          ) : null}
           {free && Number(game.first_iap_discount_percent || 0) > 0 ? (
             <span className="badge iap">
               첫 IAP {Number(game.first_iap_discount_percent)}% 할인
             </span>
           ) : null}
         </div>
+
+        {curationTag ? <span className="badge-curation-ribbon">{curationTag}</span> : null}
+        {isHorizonPlus ? <span className="badge-horizon-ribbon">Horizon +</span> : null}
+        {affiliateDiscount > 0 ? <span className="badge-discount-ribbon">-{affiliateDiscount}%</span> : null}
       </Link>
 
       <div className="game-card-body">
@@ -73,48 +85,54 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
           {game.name}
         </Link>
 
-        <div className="game-meta">
-          {game.rating ? (
-            <span className="game-rating">
-              <b aria-hidden="true">★</b> {Number(game.rating).toFixed(1)}
-            </span>
-          ) : null}
-          {reviews ? <span className="game-reviews">{reviews}</span> : null}
-          {motionSicknessLabel(game.motion_sickness_level) ? (
-            <span>멀미 {motionSicknessLabel(game.motion_sickness_level)}</span>
-          ) : null}
-        </div>
-
-        <div className="game-genres" aria-label={genres.length ? "장르" : undefined}>
-          {genres.map((genre) => (
-            <span key={genre} style={{ "--genre-hue": genreHue(genre) }}>{genre}</span>
-          ))}
-        </div>
-
-        <div className="game-price">
-          {discountedPrice ? (
-            <div className="game-card-prices">
-              <span>{price.primary}</span>
-              <strong>{discountedPrice}</strong>
-              {affiliateDiscount > 0 ? <em className="game-discount-savings">-{affiliateDiscount}% 할인</em> : null}
+        <div className="game-tags-wrap" tabIndex={hiddenGenreCount > 0 ? 0 : undefined}>
+          <div className="game-tags" aria-label={genres.length ? "장르" : undefined}>
+            {visibleGenres.map((genre) => (
+              <span key={genre} className="game-genre" style={{ "--genre-hue": genreHue(genre) }}>{genre}</span>
+            ))}
+            {motionLabel ? <span className="tag-motion">멀미 {motionLabel}</span> : null}
+            {hiddenGenreCount > 0 ? <span className="tag-more">+{hiddenGenreCount}</span> : null}
+          </div>
+          {hiddenGenreCount > 0 ? (
+            <div className="game-tags-overlay">
+              {genres.map((genre) => (
+                <span key={genre} className="game-genre" style={{ "--genre-hue": genreHue(genre) }}>{genre}</span>
+              ))}
+              {motionLabel ? <span className="tag-motion">멀미 {motionLabel}</span> : null}
             </div>
-          ) : (
-            <div>
-              <strong>{price.primary}</strong>
-            </div>
-          )}
+          ) : null}
         </div>
 
-        <div className={`region-note${timedStoreOffer || price.regional ? "" : " is-empty"}`} aria-hidden={!timedStoreOffer && !price.regional}>
-          {timedStoreOffer ? (
-            <SaleCountdown endsAt={game.meta_store_offer_ends_at} />
-          ) : price.regional ? (
-            "한국 스토어 미판매"
-          ) : (
-            "가격 지역 안내 없음"
-          )}
-        </div>
+        {timedStoreOffer || price.regional ? (
+          <div className="game-note-row">
+            {timedStoreOffer ? <SaleCountdown endsAt={game.meta_store_offer_ends_at} /> : null}
+            {price.regional ? <span className="game-price-region">한국 스토어 미판매</span> : null}
+          </div>
+        ) : null}
 
+        <div className="game-price-row">
+          <div className="game-meta">
+            {game.rating ? (
+              <span className="game-rating">
+                <b aria-hidden="true">★</b> {Number(game.rating).toFixed(1)}
+              </span>
+            ) : null}
+            {reviews ? <span className="game-reviews">{game.rating ? `· ${reviews}` : reviews}</span> : null}
+          </div>
+
+          <div className="game-price">
+            {discountedPrice ? (
+              <div className="game-card-prices">
+                <span>{price.primary}</span>
+                <strong>{discountedPrice}</strong>
+              </div>
+            ) : (
+              <div>
+                <strong>{price.primary}</strong>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </article>
   );

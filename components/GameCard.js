@@ -66,7 +66,6 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
         )}
 
         <div className="badges">
-          {catalogStatus === "added" ? <span className="badge catalog-added">이번 달 추가</span> : null}
           {catalogStatus === "removed" ? <span className="badge catalog-removed">이번 달 제외</span> : null}
           {free && Number(game.first_iap_discount_percent || 0) > 0 ? (
             <span className="badge iap">
@@ -78,6 +77,7 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
         {curationTag ? <span className="badge-curation-ribbon">{curationTag}</span> : null}
         {isHorizonPlus ? <span className="badge-horizon-ribbon">Horizon +</span> : null}
         {affiliateDiscount > 0 ? <span className="badge-discount-ribbon">-{affiliateDiscount}%</span> : null}
+        {catalogStatus === "added" ? <span className="badge-new-ribbon">신규</span> : null}
       </Link>
 
       <div className="game-card-body">

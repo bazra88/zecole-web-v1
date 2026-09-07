@@ -498,7 +498,8 @@ main:has(.horizon-section) > .hero-band { order: 0; }
 .badges { position: absolute; top: 11px; left: 11px; right: 11px; display: flex; gap: 6px; flex-wrap: wrap; }
 .badge-horizon-ribbon,
 .badge-curation-ribbon,
-.badge-discount-ribbon {
+.badge-discount-ribbon,
+.badge-new-ribbon {
   position: absolute;
   padding: 3px 7px;
   font-family: var(--font-display), "Noto Sans KR", sans-serif;
@@ -524,6 +525,12 @@ main:has(.horizon-section) > .hero-band { order: 0; }
   right: 0;
   color: #fff;
   background: linear-gradient(135deg, #e67600, #d81348);
+}
+.badge-new-ribbon {
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  background: linear-gradient(135deg, #3ddc84, #067a3f);
 }
 .badge {
   display: inline-flex;
@@ -2500,11 +2507,6 @@ video.detail-inline-media { aspect-ratio: 16/9; }
 
 .catalog-removed-section .catalog-section {
   margin-top: 1.5rem;
-}
-
-.badge.catalog-added {
-  background: #16a34a;
-  color: #ecfdf5;
 }
 
 .badge.catalog-removed {

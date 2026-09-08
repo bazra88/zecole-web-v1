@@ -2702,9 +2702,9 @@ main:has(.horizon-section) > .business-band { order: 7; }
 .quest-customs-note { margin: 20px 0; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--muted); font-size: 12px; line-height: 1.6; }
 .quest-customs-note b { color: var(--text); }
 .quest-buy-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
-.quest-buy-btn { flex: 1; min-width: 220px; display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); font-weight: 800; font-size: 13.5px; transition: border-color .18s ease; }
-.quest-buy-btn:hover { border-color: rgba(230,169,110,.4); }
-.quest-buy-btn .quest-arrow { color: var(--blue); font-weight: 900; }
+.quest-buy-btn { flex: 1; min-width: 220px; display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; border-radius: 10px; background: linear-gradient(135deg, rgba(230,169,110,.16) 0%, var(--panel) 58%); border: 1.5px solid rgba(230,169,110,.55); font-weight: 800; font-size: 13.5px; transition: border-color .18s ease; }
+.quest-buy-btn:hover { border-color: rgba(230,169,110,.85); }
+.quest-buy-btn .quest-arrow { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: #131316; font-weight: 900; }
 .quest-buy-btn .quest-buy-btn-price { display: block; margin-top: 3px; color: var(--muted); font-size: 11.5px; font-weight: 600; }
 .quest-buy-notes { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
 .quest-buy-note { color: var(--muted); font-size: 11.5px; line-height: 1.6; margin: 0; }
@@ -2767,6 +2767,7 @@ main:has(.horizon-section) > .business-band { order: 7; }
   .quest-buy-buttons { flex-direction: column; }
   .quest-buy-btn { min-width: 0; padding: 15px 16px; font-size: 13px; }
   .quest-buy-btn .quest-buy-btn-price { font-size: 10.5px; }
+  .quest-buy-btn .quest-arrow { width: 24px; height: 24px; }
   .quest-buy-notes { margin-top: 12px; gap: 7px; }
   .quest-buy-note, .quest-buy-note-highlight { font-size: 10.5px; }
 

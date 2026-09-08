@@ -1653,6 +1653,14 @@ video.detail-inline-media { aspect-ratio: 16/9; }
     width: min(var(--max), calc(100% - 48px));
   }
 
+  /* .hero-bleed-row/.hero-text-col의 padding은 100vw 기준 계산식인데,
+     이 미디어쿼리에서 main 자체가 이미 1920px로 제한/중앙정렬되어 있어서
+     그 위에 또 100vw 기준 여백을 얹으면 이중으로 눌린다(2026-09-07,
+     2560px 초광폭에서 히어로가 좁은 칼럼으로 깨지는 버그로 발견). main의
+     실제 여백(.container 기준 190px)에 맞춰 고정값으로 대체한다. */
+  .hero-bleed-row { padding-right: 190px; }
+  .hero-text-col { padding-left: 214px; }
+
   .footer {
     border-left: 1px solid rgba(255,255,255,.05);
     border-right: 1px solid rgba(255,255,255,.05);

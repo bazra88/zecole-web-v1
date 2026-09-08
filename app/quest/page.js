@@ -303,6 +303,7 @@ export default function Page() {
             </div>
             <p className="quest-faq-a">
               결제만으로는 지급되지 않아요. 기기를 배송받아 전원을 켠 뒤 휴대폰 Meta Horizon 앱에 페어링을 완료하면,
+              <br />
               그 시점에 계정 지갑으로 캐시가 지급돼요.
             </p>
           </div>
@@ -312,6 +313,7 @@ export default function Page() {
             </div>
             <p className="quest-faq-a">
               구매 후 30일 이내라면 공식홈페이지에서 반품신청이 가능하고, 사용하던 제품도 무료로 반품할 수 있어요.
+              <br />
               배송비도 전부 메타에서 부담합니다. 다만 기기에 심각한 훼손이 있는 경우는 제외될 수 있어요.
             </p>
           </div>
@@ -320,8 +322,9 @@ export default function Page() {
               <span className="quest-q-mark">Q.</span>배송은 얼마나 걸리나요?
             </div>
             <p className="quest-faq-a">
-              해외에서 직접 배송되는 직구 방식이라 개인통관고유부호가 필요할 수 있고, 약 1주일 정도 소요돼요. 정확한
-              도착일은 주문 시 안내되는 예상 배송일을 확인해 주세요.
+              해외에서 직접 배송되는 직구 방식이라 개인통관고유부호가 필요할 수 있고, 약 1주일 정도 소요돼요.
+              <br />
+              정확한 도착일은 주문 시 안내되는 예상 배송일을 확인해 주세요.
             </p>
           </div>
         </div>

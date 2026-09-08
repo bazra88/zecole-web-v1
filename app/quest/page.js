@@ -273,7 +273,7 @@ export default function Page() {
           </p>
           <p className="quest-buy-note-highlight">
             * 제휴링크로 구매 하시면 판매금의 일부가 제콜스토어에 후원되요. 후원금은 전액 메타에서 부담하니 걱정하지
-            않으셔도 되요. 감사합니다.
+            마세요. 감사합니다.
           </p>
           <p className="quest-buy-note">
             * 공식 홈페이지에서 구매 시 카드사에서 별도의 수수료를 추가할 수 있음을 알려드려요. 자세한 수수료는

@@ -11,7 +11,7 @@ export default function SectionHeader({
 }) {
   return (
     <>
-      <div className="section-header">
+      <div className={`section-header${promoStrip ? " section-header-tight" : ""}`}>
         <div>
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h2>

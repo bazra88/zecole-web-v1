@@ -428,6 +428,9 @@ main:has(.horizon-section) > .hero-band { order: 0; }
   margin-top: 15px;
   background: var(--line);
 }
+.section-header-tight::after {
+  margin-top: 7px;
+}
 .section-header h2 { margin: 0; font-family: var(--font-display), "Noto Sans KR", sans-serif; font-size: 33px; letter-spacing: -.03em; }
 .section-title-link { transition: color .18s ease; }
 .section-title-link:hover { color: var(--blue-bright); }

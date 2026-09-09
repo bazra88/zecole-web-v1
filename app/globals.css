@@ -441,6 +441,18 @@ main:has(.horizon-section) > .hero-band { order: 0; }
 }
 .section-more:hover { color: var(--blue); }
 
+.section-promo-strip {
+  margin: -12px 0 24px;
+  padding: 10px 14px;
+  border: 1px solid rgba(230, 169, 110, .3);
+  border-radius: 8px;
+  background: rgba(230, 169, 110, .06);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.section-promo-strip b { color: var(--blue); font-weight: 900; }
+
 .game-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));

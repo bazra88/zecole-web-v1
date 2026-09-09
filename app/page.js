@@ -187,6 +187,7 @@ export default async function Home() {
           title="신규출시 VR 게임"
           description="새롭게 등록된 Meta Quest VR 게임을 확인하세요."
           href="/games?sort=release_desc"
+          promoStrip
         />
         {featuredNewReleases.length ? (
           <div className="game-grid">
@@ -208,6 +209,7 @@ export default async function Home() {
           title="인기 유료 VR 게임"
           description="리뷰 수를 기준으로 인기작과 제휴 구매 혜택을 함께 보여줍니다."
           href="/games?pricing=paid&sort=reviews"
+          promoStrip
         />
         {featuredPopularPaid.length ? (
           <div className="game-grid">

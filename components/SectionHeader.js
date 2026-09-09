@@ -7,6 +7,7 @@ export default function SectionHeader({
   description,
   href,
   linkText = "전체보기",
+  promoNote = false,
 }) {
   return (
     <div className="section-header">
@@ -19,10 +20,20 @@ export default function SectionHeader({
         </h2>
         {description ? <p className="section-description">{description}</p> : null}
       </div>
-      {href ? (
-        <Link href={href} className="section-more">
-          {linkText} →
-        </Link>
+      {href || promoNote ? (
+        <div className="section-header-right">
+          {promoNote ? (
+            <div className="section-promo-note">
+              <span className="quest-promo-code"><b>ZECOLE</b><span>프로모션 코드</span></span>
+              <span className="section-promo-text">사용 시 10% 할인</span>
+            </div>
+          ) : null}
+          {href ? (
+            <Link href={href} className="section-more">
+              {linkText} →
+            </Link>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );

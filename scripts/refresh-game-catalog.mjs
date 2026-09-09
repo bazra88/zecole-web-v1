@@ -36,6 +36,7 @@ import {
   translateLongDescription, uploadImageToStorage, resizeStoredImageIfNeeded,
   extractOfferPricing, stripQuery, metaUrlId, sleep,
 } from "../lib/meta-collect.mjs";
+import { sendKakaoNotification } from "../lib/kakao-notify.mjs";
 
 const root = process.cwd();
 const arg = (name, fallback) => {
@@ -196,6 +197,15 @@ async function refreshOneGame(game) {
 await assertKoreanIp();
 console.log(`게임 카탈로그 상시 갱신 워커 시작 (딜레이 ${delayMs / 1000}초, 세션당 ${sessionLimit}개 처리 후 ${cooldownMs / 60_000}분 휴식)`);
 
+// 429 감지 외에 정말 예상 못 한 오류(uncaught exception 등)로 죽는 경우도 조용히
+// 넘어가지 않도록 알림을 보낸다 — systemd가 Restart=on-failure로 재시작은 하지만,
+// 계속 재시작만 반복하며 조용히 실패하는 상황을 사람이 놓치지 않게 하기 위함.
+process.on("uncaughtException", async (error) => {
+  console.log(`[치명적 오류] ${error.message}`);
+  await sendKakaoNotification(`[zecole 알림] media-refresh 워커가 예상치 못한 오류로 종료됐어요.\n${error.message}`);
+  process.exit(1);
+});
+
 let processed = 0;
 let failed = 0;
 let sessionRequests = 0;
@@ -218,6 +228,11 @@ for (;;) {
       // 정상 종료(exit 0)해야 systemd의 Restart=on-failure가 곧바로 재시작해서 같은
       // 차단에 다시 부딪히는 걸 막는다 — 재개는 사람이 `systemctl start media-refresh`로.
       console.log(`[중지] ${game.name} 처리 중 ${error.message} — 워커를 즉시 정지합니다. (지금까지 성공 ${processed}, 실패 ${failed})`);
+      await sendKakaoNotification(
+        `[zecole 알림] media-refresh 워커가 IP 차단(${error.message})으로 정지했어요.\n` +
+        `${game.name} 처리 중 발생, 이번 세션 성공 ${processed}건.\n` +
+        `재개하려면 서버에서 systemctl start media-refresh`
+      );
       process.exit(0);
     }
     failed += 1;

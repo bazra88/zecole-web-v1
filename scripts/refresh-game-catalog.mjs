@@ -95,6 +95,11 @@ async function refreshOneGame(game) {
     headers: { Accept: "text/html,application/xhtml+xml", "Accept-Language": "ko-KR,ko;q=0.9,en;q=0.6", "User-Agent": "Mozilla/5.0 ZECOLECatalogRefresh/1.0" },
     signal: AbortSignal.timeout(45_000),
   });
+  if (response.status === 429 || response.status === 403) {
+    const blockedError = new Error(`IP 차단 의심 (HTTP ${response.status})`);
+    blockedError.blocked = true;
+    throw blockedError;
+  }
   if (!response.ok) throw new Error(`페이지 요청 실패 (${response.status})`);
   const html = await response.text();
   const relay = relayApp(html, metaId);
@@ -196,6 +201,14 @@ for (;;) {
     processed += 1;
     console.log(`[${processed}] OK ${game.name} -> ${summary.join(", ") || "변경 없음"}`);
   } catch (error) {
+    if (error.blocked) {
+      // IP 차단 의심(429/403) — 더 두드리면 상황만 악화되니 즉시 멈춘다. 이 게임의
+      // price_checked_at은 건드리지 않아서, 재개했을 때 바로 이 게임부터 다시 시도된다.
+      // 정상 종료(exit 0)해야 systemd의 Restart=on-failure가 곧바로 재시작해서 같은
+      // 차단에 다시 부딪히는 걸 막는다 — 재개는 사람이 `systemctl start media-refresh`로.
+      console.log(`[중지] ${game.name} 처리 중 ${error.message} — 워커를 즉시 정지합니다. (지금까지 성공 ${processed}, 실패 ${failed})`);
+      process.exit(0);
+    }
     failed += 1;
     console.log(`[실패 ${failed}] ${game.name} -> ${error.message}`);
     // Supabase 요청 자체가 계속 실패하는 상황(자격증명/네트워크 등)이면 무한 루프로

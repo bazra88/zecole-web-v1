@@ -28,6 +28,11 @@ async function refreshOneGame(game) {
     headers: { Accept: "text/html,application/xhtml+xml", "Accept-Language": "ko-KR,ko;q=0.9,en;q=0.6", "User-Agent": "Mozilla/5.0 ZECOLECatalogRefresh/1.0" },
     signal: AbortSignal.timeout(20_000),
   });
+  if (response.status === 429 || response.status === 403) {
+    const blockedError = new Error(`IP 차단 의심 (HTTP ${response.status})`);
+    blockedError.blocked = true;
+    throw blockedError;
+  }
   if (!response.ok) throw new Error(`페이지 요청 실패 (${response.status})`);
   const html = await response.text();
   const relay = relayApp(html, metaId);
@@ -118,6 +123,7 @@ export async function POST(request) {
 
   const deadline = Date.now() + (maxDuration - 20) * 1000;
   const results = [];
+  let blocked = false;
   for (const game of candidates || []) {
     if (Date.now() > deadline) break;
     try {
@@ -125,11 +131,14 @@ export async function POST(request) {
       results.push({ id: game.id, name: game.name, ok: true, summary });
     } catch (error) {
       results.push({ id: game.id, name: game.name, ok: false, error: error.message });
+      // IP 차단 의심(429/403)이면 같은 배치 안에서 남은 게임을 더 두드리지 않고 바로
+      // 멈춘다 — 다음 크론 실행 때 상황이 나아졌으면 자연히 이어서 처리된다.
+      if (error.blocked) { blocked = true; break; }
     }
     await sleep(delayMs);
   }
 
   const remaining = await adminRest("games?select=id&region_restricted=eq.true&limit=1");
 
-  return NextResponse.json({ processed: results.length, results, remaining_exists: Boolean(remaining?.length) });
+  return NextResponse.json({ processed: results.length, results, blocked, remaining_exists: Boolean(remaining?.length) });
 }

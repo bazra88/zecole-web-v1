@@ -1,0 +1,14 @@
+[Unit]
+Description=ZECOLE game catalog media/price refresh worker
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/zecole-web-v1
+ExecStart=/usr/bin/node scripts/refresh-game-catalog.mjs --delay-ms=60000
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

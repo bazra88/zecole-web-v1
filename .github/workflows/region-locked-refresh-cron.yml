@@ -1,0 +1,31 @@
+name: Region-locked game refresh (Vercel trigger)
+
+# region_restricted=true 게임(한국 스토어에 없는 게임)은 서울 VPS 워커
+# (scripts/refresh-game-catalog.mjs) 대상이 아니라서, thumbnail-backfill-cron.yml과
+# 같은 패턴으로 Vercel의 /api/admin/refresh-region-locked를 몇 분마다 두드려서
+# 조금씩 진행시킨다. 실제 메타스토어 요청은 Vercel 함수 안에서 나가므로 한국 IP가
+# 필요 없다(이 게임들은 애초에 한국에서 안 팔리므로 KRW를 볼 필요도 없음).
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+concurrency:
+  group: region-locked-refresh-cron
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Call Vercel refresh endpoint
+        run: |
+          curl -s --max-time 290 -X POST "https://zecole.store/api/admin/refresh-region-locked" \
+            -H "Authorization: Bearer ${{ secrets.IMPORT_API_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"batchSize":10,"delayMs":5000}'

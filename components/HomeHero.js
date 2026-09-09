@@ -26,6 +26,14 @@ export default function HomeHero() {
             </div>
           </div>
 
+          <div className="quest-promo-row hero-promo-row">
+            <span className="quest-promo-code">
+              <b>ZECOLE</b>
+              <span>프로모션 코드</span>
+            </span>
+            <span className="hero-promo-note">게임 구매 시 함께 입력해 주세요 (대소문자 구분 없음)</span>
+          </div>
+
           <Link href="/quest" className="hero-cta">
             Meta Quest 3 / 3S 살펴보기 →
           </Link>

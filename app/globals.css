@@ -212,6 +212,8 @@ button, input, select, textarea { font: inherit; }
   color: var(--blue);
 }
 .hero-benefit-label { color: var(--muted); font-size: 11.5px; line-height: 1.5; }
+.hero-promo-row { flex-wrap: wrap; margin: 0 0 22px; }
+.hero-promo-note { color: var(--muted); font-size: 12px; }
 .hero-cta {
   display: inline-flex;
   align-items: center;

@@ -7,13 +7,14 @@
 // backfill-legacy-thumbnails 초기 버전 — 3초 딜레이로 42분간 약 340건 요청 후 차단,
 // IP를 새로 받아도 재발). 그래서 그 이후 썸네일 백필은 Vercel IP를 경유하도록 바꿨다
 // (app/api/admin/thumbnail-backfill/route.js 참고). 이 스크립트는 그 결정을 재검토하려고
-// 만든 실험용이다 — 20초 딜레이로 30개 테스트는 무차단으로 통과했고(2026-09-09),
-// 서울 VPS의 실제 상시 워커와 같은 페이스(기본 60초)로 한 단계 더 보수적으로 맞췄다.
+// 만든 실험용이다 — 20초 딜레이 30개 테스트는 무차단으로 통과했고(2026-09-09), 이어서
+// 60초 딜레이로 전체 290개를 돌려본 것도 지금까지(진행 중 기준) 차단 없이 안정적이라,
+// 안정성을 확인해가며 딜레이를 조금씩 줄이는 단계 — 지금은 50초.
 // 차단 신호(429/403)가 보이면 즉시 멈춘다 — 배치를 억지로 끝까지 밀어붙이지 않는다.
 //
 // 한국 IP가 필요 없다(지역락 게임은 애초에 KRW가 없으므로 어느 지역 통화든 참고용).
 //
-// 사용법: node scripts/refresh-region-locked.mjs [--limit=290] [--delay-ms=60000]
+// 사용법: node scripts/refresh-region-locked.mjs [--limit=290] [--delay-ms=50000]
 
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -28,7 +29,7 @@ const arg = (name, fallback) => {
   const value = process.argv.find((item) => item.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
   return value == null ? fallback : value;
 };
-const delayMs = Math.max(5_000, Number(arg("delay-ms", 60_000)));
+const delayMs = Math.max(5_000, Number(arg("delay-ms", 50_000)));
 const limit = Math.max(1, Number(arg("limit", 290)));
 
 const parseEnv = (source) => Object.fromEntries(source.split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#") && line.includes("=")).map((line) => {

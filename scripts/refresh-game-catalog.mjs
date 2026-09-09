@@ -20,7 +20,14 @@
 // 게임은 애초에 한국 스토어에 없어서 이 워커의 대상에서 제외하고, 대신
 // app/api/admin/refresh-region-locked/route.js가 Vercel에서 별도로 처리한다.
 //
-// 사용법: node scripts/refresh-game-catalog.mjs [--delay-ms=60000] [--skip-ip-check] [--once]
+// ⚠️ 차단 문턱값은 딜레이 속도가 아니라 "한 세션의 누적 요청 수"로 보인다(2026-09-09,
+// 40초 딜레이 로컬 IP는 222개에서, 60초 딜레이 이 워커는 242개에서 각각 차단 —
+// 소요시간은 2.5시간 vs 4시간으로 전혀 다른데 요청 수는 둘 다 220~245 부근). 그래서
+// 무한정 계속 도는 대신, SESSION_LIMIT개(기본 200)를 처리할 때마다 COOLDOWN_MS(기본
+// 4시간) 쉬었다가 스스로 재개한다 — 그동안 몇 달을 무차단으로 버틴 KRW 배치 크론
+// (한 번에 최대 150개, 6시간 간격)과 같은 원리. 그래도 429/403이 보이면 즉시 멈춘다.
+//
+// 사용법: node scripts/refresh-game-catalog.mjs [--delay-ms=30000] [--session-limit=200] [--cooldown-ms=14400000] [--skip-ip-check] [--once]
 
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -35,7 +42,9 @@ const arg = (name, fallback) => {
   const value = process.argv.find((item) => item.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
   return value == null ? fallback : value;
 };
-const delayMs = Math.max(10_000, Number(arg("delay-ms", 60_000)));
+const delayMs = Math.max(10_000, Number(arg("delay-ms", 30_000)));
+const sessionLimit = Math.max(1, Number(arg("session-limit", 200)));
+const cooldownMs = Math.max(60_000, Number(arg("cooldown-ms", 4 * 60 * 60 * 1000)));
 const runOnce = process.argv.includes("--once");
 
 // --- IP 국가 확인 (parseKrw는 반드시 한국 IP에서만 정확함) ---
@@ -185,10 +194,11 @@ async function refreshOneGame(game) {
 }
 
 await assertKoreanIp();
-console.log(`게임 카탈로그 상시 갱신 워커 시작 (딜레이 ${delayMs / 1000}초)`);
+console.log(`게임 카탈로그 상시 갱신 워커 시작 (딜레이 ${delayMs / 1000}초, 세션당 ${sessionLimit}개 처리 후 ${cooldownMs / 60_000}분 휴식)`);
 
 let processed = 0;
 let failed = 0;
+let sessionRequests = 0;
 for (;;) {
   const game = await pickNextGame();
   if (!game) {
@@ -196,6 +206,7 @@ for (;;) {
     await sleep(60_000);
     continue;
   }
+  sessionRequests += 1;
   try {
     const summary = await refreshOneGame(game);
     processed += 1;
@@ -219,5 +230,11 @@ for (;;) {
     } catch { /* 이것마저 실패하면 다음 루프에서 같은 게임을 다시 시도하게 된다 */ }
   }
   if (runOnce) break;
+  if (sessionRequests >= sessionLimit) {
+    console.log(`이번 세션에서 ${sessionRequests}개 요청했습니다. 차단 예방을 위해 ${cooldownMs / 60_000}분 쉬었다가 재개합니다.`);
+    sessionRequests = 0;
+    await sleep(cooldownMs);
+    continue;
+  }
   await sleep(delayMs);
 }

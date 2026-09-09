@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=/home/ubuntu/zecole-web-v1
-ExecStart=/usr/bin/node scripts/refresh-game-catalog.mjs --delay-ms=60000
+ExecStart=/usr/bin/node scripts/refresh-game-catalog.mjs --delay-ms=30000 --session-limit=200 --cooldown-ms=14400000
 Restart=on-failure
 RestartSec=15
 

@@ -5,13 +5,13 @@ name: Thumbnail backfill (Vercel trigger)
 # GitHub 러너 IP가 예전에 429를 맞았던 문제(scripts/backfill-legacy-thumbnails.mjs)를
 # 이렇게 우회한다. 더 처리할 게임이 없어지면 이 워크플로 스스로를 비활성화한다.
 #
-# 참고(2026-09-05): GitHub의 "*/5 * * * *"는 실제로는 훨씬 뜸하게(수 시간 간격) 돈다 —
-# 무료 크론의 알려진 한계. 그래서 한 번 호출될 때 최대한 많이(batchSize=25) 처리해서
-# 실제 스케줄 빈도와 무관하게 진행 속도를 확보한다.
+# 이미 남은 게임이 없어서 GitHub이 자체적으로 이 워크플로를 disabled 상태로 꺼놨다
+# (route.js의 remaining_exists=false 자동 disable 로직). 스케줄도 같이 빼뒀다
+# (2026-09-09, 사용자 요청) — 다시 켜서 자동으로 돌리고 싶으면 위 on: 아래에
+# `schedule: - cron: "*/5 * * * *"`를 되살리고 GitHub Actions 탭에서 워크플로를
+# 재활성화(Enable workflow)할 것.
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:

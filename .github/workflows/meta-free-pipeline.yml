@@ -1,9 +1,10 @@
 name: Refresh and sync Meta free games
 
+# 스케줄은 꺼뒀다(2026-09-09, 사용자 요청 — 자동 반복 대신 필요할 때만 수동 실행).
+# 다시 자동으로 돌리고 싶으면 아래에 `schedule: - cron: '0 18 * * 0'`를 되살릴 것.
+
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 18 * * 0'
 
 permissions:
   contents: read

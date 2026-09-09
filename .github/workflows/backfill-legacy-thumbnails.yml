@@ -1,14 +1,10 @@
 name: Backfill legacy thumbnails
 
-# workflow_dispatch로 수동 실행도 가능하지만, 기본은 5시간마다 스케줄로 자기 자신을
-# 계속 재시작한다 — 한 번 실행이 timeout-minutes(300분) 예산을 다 쓰고 멈추면, 사람이
-# 다시 눌러줄 때까지 그냥 놀고 있었다(2026-09-06, 재트리거를 깜빡해서 3시간 40분
-# 공백이 생긴 걸 보고 발견). concurrency 그룹 덕분에 스케줄이 겹쳐 와도 이미 도는 실행이
-# 끝난 뒤에 큐잉되어 바로 이어지므로 겹쳐 돌지는 않는다.
+# workflow_dispatch로 수동 실행. 남은 레거시 아이콘이 이미 0개라 더 처리할 게 없어서
+# (2026-09-09) 스케줄은 꺼뒀다 — 사용자 요청, 자동 반복 대신 필요할 때만 수동 실행.
+# 다시 자동으로 돌리고 싶으면 위 on: 아래에 `schedule: - cron: "0 */5 * * *"`를 되살릴 것.
 
 on:
-  schedule:
-    - cron: "0 */5 * * *"
   workflow_dispatch:
     inputs:
       confirmation:

@@ -1,14 +1,13 @@
 name: Region-locked game refresh (Vercel trigger)
 
-# region_restricted=true 게임(한국 스토어에 없는 게임)은 서울 VPS 워커
-# (scripts/refresh-game-catalog.mjs) 대상이 아니라서, thumbnail-backfill-cron.yml과
-# 같은 패턴으로 Vercel의 /api/admin/refresh-region-locked를 몇 분마다 두드려서
-# 조금씩 진행시킨다. 실제 메타스토어 요청은 Vercel 함수 안에서 나가므로 한국 IP가
-# 필요 없다(이 게임들은 애초에 한국에서 안 팔리므로 KRW를 볼 필요도 없음).
+# region_restricted=true 게임(한국 스토어에 없는 게임) 갱신 — 원래 이 방식(GH 크론이
+# Vercel의 /api/admin/refresh-region-locked를 두드리는 구조)이었는데, 스케줄 트리거가
+# 4시간 넘게 한 번도 안 도는 문제가 있어서 region-locked-refresh-runner.yml(GH 러너에서
+# 20초 딜레이로 직접 처리, 서울 VPS와 같은 페이스로 검증 중)로 옮겼다. 그쪽이 차단
+# 없이 잘 도는지 확인될 때까지 이 workflow는 schedule 없이 수동 실행(workflow_dispatch)만
+# 남겨둔다 — 필요하면 언제든 폴백으로 다시 스케줄을 켤 수 있다.
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:

@@ -1,3 +1,7 @@
+# 2026-09-12부로 비활성화(stopped+disabled) — 상시 루프+내부 쿨다운 방식이 1,065개에서
+# 차단당한 뒤, crontab 고정 스케줄(00/06/12/18시) 방식으로 바꿔서 원인(세션 크기 vs
+# 쿨다운 길이)을 분리 검증하는 중이다. deploy/run-media-refresh-batch.sh + crontab 참고.
+# 이 유닛은 실험이 끝나고 상시 루프 방식으로 되돌리기로 하면 다시 쓸 수 있게 남겨둔다.
 [Unit]
 Description=ZECOLE game catalog media/price refresh worker
 After=network.target

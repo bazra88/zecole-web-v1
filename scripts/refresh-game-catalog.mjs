@@ -20,14 +20,16 @@
 // 게임은 애초에 한국 스토어에 없어서 이 워커의 대상에서 제외하고, 대신
 // app/api/admin/refresh-region-locked/route.js가 Vercel에서 별도로 처리한다.
 //
-// ⚠️ 차단 문턱값은 딜레이 속도가 아니라 "한 세션의 누적 요청 수"로 보인다(2026-09-09,
-// 40초 딜레이 로컬 IP는 222개에서, 60초 딜레이 이 워커는 242개에서 각각 차단 —
-// 소요시간은 2.5시간 vs 4시간으로 전혀 다른데 요청 수는 둘 다 220~245 부근). 그래서
-// 무한정 계속 도는 대신, SESSION_LIMIT개(기본 200)를 처리할 때마다 COOLDOWN_MS(기본
-// 4시간) 쉬었다가 스스로 재개한다 — 그동안 몇 달을 무차단으로 버틴 KRW 배치 크론
-// (한 번에 최대 150개, 6시간 간격)과 같은 원리. 그래도 429/403이 보이면 즉시 멈춘다.
+// ⚠️ 차단 문턱값 실험 중(2026-09-12): 상시 루프+내부 쿨다운(세션 200개마다 4시간
+// setTimeout으로 스스로 재개) 방식으로 1,065개 성공 후 차단됨(31시간 22분 소요,
+// 시간당 약 34개꼴). 같은 시점에 "세션 200개"와 "쿨다운 4시간" 두 변수를 동시에
+// KRW 배치 크론의 검증된 조합(150개/6시간 간격)에서 바꿨던 터라 어느 쪽이 원인인지
+// 분리가 안 된다. 그래서 이 스크립트를 KRW 배치와 같은 구조(상시 루프가 아니라
+// crontab이 고정 시각마다 한 번씩 깨워서 --limit개만 처리하고 종료)로 바꾸고,
+// crontab에서 00/06/12/18시 4번 고정 스케줄로 돌리면서 세션 크기(200)만 먼저
+// 검증한다 — deploy/run-media-refresh-batch.sh, crontab 항목 참고.
 //
-// 사용법: node scripts/refresh-game-catalog.mjs [--delay-ms=30000] [--session-limit=200] [--cooldown-ms=14400000] [--skip-ip-check] [--once]
+// 사용법: node scripts/refresh-game-catalog.mjs --limit=200 [--delay-ms=30000] [--skip-ip-check]
 
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -44,9 +46,7 @@ const arg = (name, fallback) => {
   return value == null ? fallback : value;
 };
 const delayMs = Math.max(10_000, Number(arg("delay-ms", 30_000)));
-const sessionLimit = Math.max(1, Number(arg("session-limit", 200)));
-const cooldownMs = Math.max(60_000, Number(arg("cooldown-ms", 4 * 60 * 60 * 1000)));
-const runOnce = process.argv.includes("--once");
+const limit = Math.max(1, Number(arg("limit", 200)));
 
 // --- IP 국가 확인 (parseKrw는 반드시 한국 IP에서만 정확함) ---
 async function assertKoreanIp() {
@@ -195,61 +195,50 @@ async function refreshOneGame(game) {
 }
 
 await assertKoreanIp();
-console.log(`게임 카탈로그 상시 갱신 워커 시작 (딜레이 ${delayMs / 1000}초, 세션당 ${sessionLimit}개 처리 후 ${cooldownMs / 60_000}분 휴식)`);
+console.log(`게임 카탈로그 배치 갱신 시작 (딜레이 ${delayMs / 1000}초, 최대 ${limit}개, 이번 실행 후 종료 — 다음 스케줄은 crontab이 담당)`);
 
 // 429 감지 외에 정말 예상 못 한 오류(uncaught exception 등)로 죽는 경우도 조용히
-// 넘어가지 않도록 알림을 보낸다 — systemd가 Restart=on-failure로 재시작은 하지만,
-// 계속 재시작만 반복하며 조용히 실패하는 상황을 사람이 놓치지 않게 하기 위함.
+// 넘어가지 않도록 알림을 보낸다.
 process.on("uncaughtException", async (error) => {
   console.log(`[치명적 오류] ${error.message}`);
-  await sendKakaoNotification(`[zecole 알림] media-refresh 워커가 예상치 못한 오류로 종료됐어요.\n${error.message}`);
+  await sendKakaoNotification(`[zecole 알림] media-refresh 배치가 예상치 못한 오류로 종료됐어요.\n${error.message}`);
   process.exit(1);
 });
 
 let processed = 0;
 let failed = 0;
-let sessionRequests = 0;
-for (;;) {
+for (let i = 0; i < limit; i++) {
   const game = await pickNextGame();
   if (!game) {
-    console.log("갱신 대상 게임이 없습니다. 60초 후 다시 확인합니다.");
-    await sleep(60_000);
-    continue;
+    console.log("갱신 대상 게임이 없습니다. 종료합니다.");
+    break;
   }
-  sessionRequests += 1;
   try {
     const summary = await refreshOneGame(game);
     processed += 1;
     console.log(`[${processed}] OK ${game.name} -> ${summary.join(", ") || "변경 없음"}`);
   } catch (error) {
     if (error.blocked) {
-      // IP 차단 의심(429/403) — 더 두드리면 상황만 악화되니 즉시 멈춘다. 이 게임의
-      // price_checked_at은 건드리지 않아서, 재개했을 때 바로 이 게임부터 다시 시도된다.
-      // 정상 종료(exit 0)해야 systemd의 Restart=on-failure가 곧바로 재시작해서 같은
-      // 차단에 다시 부딪히는 걸 막는다 — 재개는 사람이 `systemctl start media-refresh`로.
-      console.log(`[중지] ${game.name} 처리 중 ${error.message} — 워커를 즉시 정지합니다. (지금까지 성공 ${processed}, 실패 ${failed})`);
+      // IP 차단 의심(429/403) — 더 두드리면 상황만 악화되니 즉시 멈추고 이번 실행을
+      // 끝낸다. 이 게임의 price_checked_at은 건드리지 않아서, 다음 crontab 실행 때
+      // 바로 이 게임부터 다시 시도된다.
+      console.log(`[중지] ${game.name} 처리 중 ${error.message} — 이번 실행을 여기서 끝냅니다. (성공 ${processed}, 실패 ${failed})`);
       await sendKakaoNotification(
-        `[zecole 알림] media-refresh 워커가 IP 차단(${error.message})으로 정지했어요.\n` +
-        `${game.name} 처리 중 발생, 이번 세션 성공 ${processed}건.\n` +
-        `재개하려면 서버에서 systemctl start media-refresh`
+        `[zecole 알림] media-refresh 배치가 IP 차단(${error.message})으로 중단됐어요.\n` +
+        `${game.name} 처리 중 발생, 이번 실행 성공 ${processed}건.\n` +
+        `다음 crontab 스케줄(00/06/12/18시)에 자동으로 재시도됩니다.`
       );
-      process.exit(0);
+      break;
     }
     failed += 1;
     console.log(`[실패 ${failed}] ${game.name} -> ${error.message}`);
-    // Supabase 요청 자체가 계속 실패하는 상황(자격증명/네트워크 등)이면 무한 루프로
-    // 로그만 채우지 않도록, 같은 게임을 건드리기 전에 price_checked_at만이라도 갱신해서
-    // 다음 순번으로 넘긴다.
+    // Supabase 요청 자체가 계속 실패하는 상황(자격증명/네트워크 등)이면 같은 게임을
+    // 계속 붙잡지 않도록, 다음 시도 전에 price_checked_at만이라도 갱신해서 다음
+    // 순번으로 넘긴다.
     try {
       await rest(`games?id=eq.${game.id}`, { method: "PATCH", headers: { Prefer: "return=minimal" }, body: JSON.stringify({ price_checked_at: new Date().toISOString() }) });
-    } catch { /* 이것마저 실패하면 다음 루프에서 같은 게임을 다시 시도하게 된다 */ }
+    } catch { /* 이것마저 실패하면 다음 실행에서 같은 게임을 다시 시도하게 된다 */ }
   }
-  if (runOnce) break;
-  if (sessionRequests >= sessionLimit) {
-    console.log(`이번 세션에서 ${sessionRequests}개 요청했습니다. 차단 예방을 위해 ${cooldownMs / 60_000}분 쉬었다가 재개합니다.`);
-    sessionRequests = 0;
-    await sleep(cooldownMs);
-    continue;
-  }
-  await sleep(delayMs);
+  if (i < limit - 1) await sleep(delayMs);
 }
+console.log(`=== 완료: 성공 ${processed} / 실패 ${failed} ===`);

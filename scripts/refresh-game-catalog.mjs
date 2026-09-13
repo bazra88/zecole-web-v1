@@ -81,11 +81,32 @@ const BUCKET = env("NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET") || "game-images";
 if (!SUPABASE_URL || !SECRET_KEY) throw new Error("NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SECRET_KEY 환경변수가 필요합니다.");
 
 const restHeaders = { apikey: SECRET_KEY, Authorization: `Bearer ${SECRET_KEY}`, "Content-Type": "application/json" };
+// Supabase 쪽 일시적 오류(5xx, 네트워크 끊김/타임아웃)만 짧게 재시도한다 — 4xx는 재시도해도
+// 똑같이 실패할 요청 자체의 문제라 바로 포기한다. 이 재시도가 없으면 순간적인 504 하나가
+// (특히 게임별 try/catch 바깥에 있는 pickNextGame 호출에서 나면) 배치 전체를 중단시킨다
+// (2026-09-13, 하루에 두 번 이렇게 배치가 통째로 날아가는 걸 보고 추가).
+const RETRYABLE_DELAYS_MS = [2000, 5000];
 async function rest(path, options = {}) {
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, { ...options, headers: { ...restHeaders, ...options.headers } });
-  if (!response.ok) throw new Error(`Supabase 요청 실패 (${response.status}): ${(await response.text()).slice(0, 500)}`);
-  const text = await response.text();
-  return text ? JSON.parse(text) : null;
+  let lastError;
+  for (let attempt = 0; attempt <= RETRYABLE_DELAYS_MS.length; attempt++) {
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, { ...options, headers: { ...restHeaders, ...options.headers } });
+      if (response.ok) {
+        const text = await response.text();
+        return text ? JSON.parse(text) : null;
+      }
+      const bodyText = (await response.text()).slice(0, 500);
+      if (response.status < 500) throw new Error(`Supabase 요청 실패 (${response.status}): ${bodyText}`);
+      lastError = new Error(`Supabase 요청 실패 (${response.status}): ${bodyText}`);
+    } catch (error) {
+      lastError = error;
+    }
+    if (attempt < RETRYABLE_DELAYS_MS.length) {
+      console.log(`[재시도 ${attempt + 1}/${RETRYABLE_DELAYS_MS.length}] Supabase 요청 실패, ${RETRYABLE_DELAYS_MS[attempt] / 1000}초 후 재시도: ${lastError.message}`);
+      await sleep(RETRYABLE_DELAYS_MS[attempt]);
+    }
+  }
+  throw lastError;
 }
 
 async function pickNextGame() {
@@ -208,7 +229,16 @@ process.on("uncaughtException", async (error) => {
 let processed = 0;
 let failed = 0;
 for (let i = 0; i < limit; i++) {
-  const game = await pickNextGame();
+  let game;
+  try {
+    game = await pickNextGame();
+  } catch (error) {
+    // rest()가 이미 재시도까지 다 해본 뒤라, 여기서 또 실패했다는 건 좀 더 오래가는
+    // 문제라는 뜻이다 — 그래도 배치 전체를 죽이는 대신 이번 실행은 여기서 조용히
+    // 끝낸다(다음 crontab 스케줄에 이어서 시도됨).
+    console.log(`[중단] 다음 게임을 고르는 중 오류 -> ${error.message}`);
+    break;
+  }
   if (!game) {
     console.log("갱신 대상 게임이 없습니다. 종료합니다.");
     break;

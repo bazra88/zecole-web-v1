@@ -1,7 +1,8 @@
 // scripts/refresh-game-catalog.mjs
 //
-// 상시 구동 워커: KR 스토어에 정상 노출되는(region_restricted != true) 게임들을 하나씩
-// 다시 방문해서 아래 다섯 가지를 갱신한다.
+// crontab이 고정 시각마다 한 번씩 깨워서 실행하는 배치(상시 루프 아님) — KR 스토어에
+// 정상 노출되는(region_restricted != true) 게임을 최대 --limit개까지 하나씩 다시
+// 방문해서 아래 다섯 가지를 갱신하고 종료한다.
 //   1) 썸네일 원본이 바뀌었는지 확인(경로 비교, 쿼리스트링 제외) → 바뀌었으면 재수집
 //   2) 우리 Storage에 이미 저장된 썸네일이 필요 이상으로 크면 축소해서 같은 경로에 재저장
 //      (메타에 다시 요청하지 않음 — Storage 사본만 내려받아 처리)
@@ -20,16 +21,15 @@
 // 게임은 애초에 한국 스토어에 없어서 이 워커의 대상에서 제외하고, 대신
 // app/api/admin/refresh-region-locked/route.js가 Vercel에서 별도로 처리한다.
 //
-// ⚠️ 차단 문턱값 실험 중(2026-09-12): 상시 루프+내부 쿨다운(세션 200개마다 4시간
-// setTimeout으로 스스로 재개) 방식으로 1,065개 성공 후 차단됨(31시간 22분 소요,
-// 시간당 약 34개꼴). 같은 시점에 "세션 200개"와 "쿨다운 4시간" 두 변수를 동시에
-// KRW 배치 크론의 검증된 조합(150개/6시간 간격)에서 바꿨던 터라 어느 쪽이 원인인지
-// 분리가 안 된다. 그래서 이 스크립트를 KRW 배치와 같은 구조(상시 루프가 아니라
-// crontab이 고정 시각마다 한 번씩 깨워서 --limit개만 처리하고 종료)로 바꾸고,
-// crontab에서 00/06/12/18시 4번 고정 스케줄로 돌리면서 세션 크기(200)만 먼저
-// 검증한다 — deploy/run-media-refresh-batch.sh, crontab 항목 참고.
+// ⚠️ 차단 문턱값 실험 결과(2026-09-12~14): 상시 루프+내부 쿨다운(세션 200개마다 4시간
+// setTimeout 재개) 방식은 1,065개/31h22m에서 차단. crontab 고정 스케줄(00/06/12/18시,
+// 세션 200개)로 바꿔도 1,130개/37h11m에서 또 차단 — 시간당 처리량은 오히려 더
+// 낮았는데도 비슷한 총량에서 막혀서, "세션 크기"나 "쿨다운/간격 길이"보다는 어떤
+// 기간(하루~하루반) 동안의 누적 요청 총량 자체가 문턱값(대략 1,000~1,100개대)에
+// 가까워 보인다. 그래서 몇 달간 무차단으로 검증됐던 KRW 배치 크론의 원래 조합
+// (150개/6시간 간격)으로 되돌렸다 — deploy/run-media-refresh-batch.sh 참고.
 //
-// 사용법: node scripts/refresh-game-catalog.mjs --limit=200 [--delay-ms=30000] [--skip-ip-check]
+// 사용법: node scripts/refresh-game-catalog.mjs --limit=150 [--delay-ms=30000] [--skip-ip-check]
 
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -46,7 +46,7 @@ const arg = (name, fallback) => {
   return value == null ? fallback : value;
 };
 const delayMs = Math.max(10_000, Number(arg("delay-ms", 30_000)));
-const limit = Math.max(1, Number(arg("limit", 200)));
+const limit = Math.max(1, Number(arg("limit", 150)));
 
 // --- IP 국가 확인 (parseKrw는 반드시 한국 IP에서만 정확함) ---
 async function assertKoreanIp() {

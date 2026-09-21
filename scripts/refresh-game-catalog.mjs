@@ -29,7 +29,7 @@
 // 가까워 보인다. 그래서 몇 달간 무차단으로 검증됐던 KRW 배치 크론의 원래 조합
 // (150개/6시간 간격)으로 되돌렸다 — deploy/run-media-refresh-batch.sh 참고.
 //
-// 사용법: node scripts/refresh-game-catalog.mjs --limit=150 [--delay-ms=30000] [--skip-ip-check]
+// 사용법: node scripts/refresh-game-catalog.mjs --limit=150 [--delay-ms=20000] [--jitter-ms=10000] [--skip-ip-check]
 
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -45,8 +45,13 @@ const arg = (name, fallback) => {
   const value = process.argv.find((item) => item.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
   return value == null ? fallback : value;
 };
-const delayMs = Math.max(10_000, Number(arg("delay-ms", 30_000)));
+const delayMs = Math.max(10_000, Number(arg("delay-ms", 20_000)));
+const jitterMs = Math.max(0, Number(arg("jitter-ms", 10_000)));
 const limit = Math.max(1, Number(arg("limit", 150)));
+// KRW 배치 크론(20초 기본 + 0~4초 랜덤)이 몇 달간 무차단으로 버텼던 걸 감안해서, 일정한
+// 간격 대신 매번 조금씩 다른 딜레이를 준다(2026-09-21, 사용자 요청 — 고정 간격 자체가
+// 봇처럼 보였을 가능성 검증).
+const nextDelay = () => delayMs + Math.floor(Math.random() * jitterMs);
 
 // --- IP 국가 확인 (parseKrw는 반드시 한국 IP에서만 정확함) ---
 async function assertKoreanIp() {
@@ -216,7 +221,7 @@ async function refreshOneGame(game) {
 }
 
 await assertKoreanIp();
-console.log(`게임 카탈로그 배치 갱신 시작 (딜레이 ${delayMs / 1000}초, 최대 ${limit}개, 이번 실행 후 종료 — 다음 스케줄은 crontab이 담당)`);
+console.log(`게임 카탈로그 배치 갱신 시작 (딜레이 ${delayMs / 1000}~${(delayMs + jitterMs) / 1000}초 랜덤, 최대 ${limit}개, 이번 실행 후 종료 — 다음 스케줄은 crontab이 담당)`);
 
 // 429 감지 외에 정말 예상 못 한 오류(uncaught exception 등)로 죽는 경우도 조용히
 // 넘어가지 않도록 알림을 보낸다.
@@ -269,6 +274,6 @@ for (let i = 0; i < limit; i++) {
       await rest(`games?id=eq.${game.id}`, { method: "PATCH", headers: { Prefer: "return=minimal" }, body: JSON.stringify({ price_checked_at: new Date().toISOString() }) });
     } catch { /* 이것마저 실패하면 다음 실행에서 같은 게임을 다시 시도하게 된다 */ }
   }
-  if (i < limit - 1) await sleep(delayMs);
+  if (i < limit - 1) await sleep(nextDelay());
 }
 console.log(`=== 완료: 성공 ${processed} / 실패 ${failed} ===`);

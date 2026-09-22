@@ -19,6 +19,7 @@ export default function GameVisitRefresh({ gameId }) {
         const result = await response.json();
         if (!active) return;
         setFailed(!response.ok || Boolean(result.failed));
+        window.dispatchEvent(new CustomEvent('game-visit-complete',{detail:gameId}));
         if (result.changed) startTransition(() => router.refresh());
       })
       .catch(() => { if (active) setFailed(true); })

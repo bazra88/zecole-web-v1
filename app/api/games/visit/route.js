@@ -1,7 +1,9 @@
 import { refreshGameOnVisit } from '@/lib/game-visit-refresh';
 import { revalidatePath } from 'next/cache';
+import { after } from 'next/server';
+import { refreshReviewTranslations } from '@/lib/game-review-refresh';
 
-export const maxDuration = 60;
+export const maxDuration = 120;
 export async function POST(request) {
   const origin = request.headers.get('origin');
   if (!origin || origin !== new URL(request.url).origin) return Response.json({error:'forbidden'},{status:403});
@@ -10,7 +12,13 @@ export async function POST(request) {
     return Response.json({error:'invalid_game'},{status:400});
   }
   try {
-    const result = await refreshGameOnVisit(gameId);
+    const {reviews = [], ...result} = await refreshGameOnVisit(gameId);
+    after(async () => {
+      try {
+        await refreshReviewTranslations(gameId,reviews);
+        revalidatePath('/games/[slug]','page');
+      } catch (error) { console.error('[review-refresh]',error.message); }
+    });
     if (result.changed) {
       revalidatePath('/');
       revalidatePath('/games');

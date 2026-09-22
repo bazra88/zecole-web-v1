@@ -14,7 +14,7 @@ import { NextResponse } from "next/server";
 import { adminRest } from "@/lib/admin-supabase";
 import {
   relayApp, parseKrw, extractBaseInfo, extractMedia, extractLongDescription,
-  translateLongDescription, uploadImageToStorage, resizeStoredImageIfNeeded,
+  translateLongDescription, uploadImageToStorage, resizeStoredImageIfNeeded, persistMedia,
   extractOfferPricing, stripQuery, metaUrlId, sleep,
 } from "@/lib/meta-collect.mjs";
 
@@ -66,7 +66,11 @@ async function refreshOneGame(game) {
   if (baseInfo.rating != null) gamesPayload.rating = baseInfo.rating;
   if (baseInfo.reviewCount != null) gamesPayload.review_count = baseInfo.reviewCount;
 
-  const media = extractMedia(relay);
+  const rawMedia = extractMedia(relay);
+  const media = await persistMedia(rawMedia, {
+    metaId, supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL, supabaseSecretKey: process.env.SUPABASE_SECRET_KEY,
+    bucket: process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || "game-images",
+  });
   await adminRest(`game_media?game_id=eq.${game.id}`, { method: "DELETE" });
   if (media.length) {
     const mediaPayload = media.map((m) => ({ game_id: game.id, media_type: m.media_type, url: m.url, thumbnail_url: m.thumbnail_url, sort_order: m.sort_order, source: "meta_store" }));

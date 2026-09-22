@@ -8,7 +8,12 @@
 //      (메타에 다시 요청하지 않음 — Storage 사본만 내려받아 처리)
 //   3) 별점/리뷰 수 갱신 (리뷰 본문 자체는 다시 수집하지 않음)
 //   4) 스크린샷/트레일러(game_media) + 게임 설명 인라인 미디어(description_long) 갱신
-//      — 메타 CDN 링크는 ~1주일 뒤 서명이 만료되므로 링크 자체를 최신으로 유지하는 목적
+//      — 메타 CDN 서명 링크는 실측 결과 4~5일이면 만료된다(2026-09-23, 7일이라던 이전
+//      가정이 틀렸음을 확인). 그래서 스크린샷은 썸네일처럼 자체 Storage에 다운로드해
+//      영구 저장하고(persistMedia), 트레일러(평균 ~12MB, 전부 저장하면 수십 GB)는 포스터
+//      이미지만 저장한 뒤 재생 시점에 app/api/media/trailer/route.js가 온디맨드로 최신
+//      링크를 다시 조회한다 — 이 방식은 반복 배치로 전체를 도는 게 아니라 실제 클릭에만
+//      비례해서 메타에 요청하므로 대신 아주 가볍다.
 //   5) 가격을 확인해서 price_history에 (게임, 그 시점 가격, 확인 시각) 기록 남김
 //
 // 대상 선정은 games.price_checked_at이 가장 오래된(=한 번도 안 됐거나 가장 늦게 갱신된)
@@ -35,7 +40,7 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import {
   relayApp, parseKrw, extractBaseInfo, extractMedia, extractLongDescription,
-  translateLongDescription, uploadImageToStorage, resizeStoredImageIfNeeded,
+  translateLongDescription, uploadImageToStorage, resizeStoredImageIfNeeded, persistMedia,
   extractOfferPricing, stripQuery, metaUrlId, sleep,
 } from "../lib/meta-collect.mjs";
 import { sendKakaoNotification } from "../lib/kakao-notify.mjs";
@@ -169,8 +174,11 @@ async function refreshOneGame(game) {
   if (baseInfo.rating != null) gamesPayload.rating = baseInfo.rating;
   if (baseInfo.reviewCount != null) gamesPayload.review_count = baseInfo.reviewCount;
 
-  // 4) 스크린샷/트레일러 + 설명 인라인 미디어 — 링크가 만료되기 전에 최신 링크로 교체
-  const media = extractMedia(relay);
+  // 4) 스크린샷/트레일러 + 설명 인라인 미디어 — 스크린샷은 썸네일처럼 자체 Storage에
+  // 다운로드해서 영구 저장(persistMedia)하고, 트레일러는 용량 문제로 포스터만 저장한 뒤
+  // 원본 링크는 그대로 둔다(실제 재생은 app/api/media/trailer/route.js가 온디맨드로 처리).
+  const rawMedia = extractMedia(relay);
+  const media = await persistMedia(rawMedia, { metaId, supabaseUrl: SUPABASE_URL, supabaseSecretKey: SECRET_KEY, bucket: BUCKET });
   await rest(`game_media?game_id=eq.${game.id}`, { method: "DELETE" });
   if (media.length) {
     const mediaPayload = media.map((m) => ({ game_id: game.id, media_type: m.media_type, url: m.url, thumbnail_url: m.thumbnail_url, sort_order: m.sort_order, source: "meta_store" }));

@@ -3,6 +3,7 @@ import BackButton from "@/components/BackButton";
 import GameMediaGallery from "@/components/GameMediaGallery";
 import { discountedPriceLabel, effectiveAffiliateDiscount, formatGamePrice, isFreeGame, motionSicknessLabel } from "@/lib/game-format";
 import { gameImageUrl, getGameBySlug, getGameGenres, getGameMedia, getGameReviews, getGameVideos } from "@/lib/supabase";
+import { ensureGameMediaCached } from "@/lib/game-media-backfill";
 
 export const revalidate = 300;
 
@@ -103,12 +104,13 @@ export default async function GameDetailPage({ params }) {
   const game = await getGameBySlug(slug).catch(() => null);
   if (!game) notFound();
 
-  const [videos, genres, media, reviews] = await Promise.all([
+  const [videos, genres, rawMedia, reviews] = await Promise.all([
     getGameVideos(game.id).catch(() => []),
     getGameGenres(game.id).catch(() => []),
     getGameMedia(game.id).catch(() => []),
     getGameReviews(game.id).catch(() => []),
   ]);
+  const media = await ensureGameMediaCached(game, rawMedia).catch(() => rawMedia);
   const trailer = media.find((item) => item.media_type === "trailer");
   const screenshots = media.filter((item) => item.media_type === "screenshot");
   const longDescription = game.description_long_ko || game.description_long;
@@ -137,7 +139,14 @@ export default async function GameDetailPage({ params }) {
       <BackButton />
 
       <section className="detail-hero">
-        <GameMediaGallery trailer={trailer} screenshots={screenshots} image={image} gameName={game.name} />
+        <GameMediaGallery
+          gameId={game.id}
+          metaStoreUrl={game.meta_store_url}
+          trailer={trailer}
+          screenshots={screenshots}
+          image={image}
+          gameName={game.name}
+        />
 
         <div className="detail-info">
           <p className="eyebrow">META QUEST GAME</p>

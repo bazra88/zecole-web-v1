@@ -12,4 +12,5 @@ assert.equal(effectiveAffiliateDiscount({ ...usd, meta_store_original_price: nul
 assert.equal(storeDiscountInfo({ ...usd, meta_store_original_price: 11.99 }), null);
 assert.equal(formatGamePrice({ pricing_type: 'paid', krw_price: null, usd_price: null, current_price: null, currency: 'USD' }).primary, '가격 확인');
 assert.equal(formatGamePrice({ ...usd, usd_price: 0, current_price: 0 }).primary, '$0.00');
+assert.equal(formatGamePrice({ ...krw, krw_price: 0 }).primary, '￦0');
 console.log('Sale pricing: KRW/USD, no stacked discount, normal affiliate, null/zero checks passed');

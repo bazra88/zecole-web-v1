@@ -9,6 +9,7 @@ import {
   isFreeGame,
   motionSicknessLabel,
   reviewLabel,
+  storeDiscountInfo,
 } from "@/lib/game-format";
 
 function genreHue(name) {
@@ -19,6 +20,7 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
   const image = gameImageUrl(game.image_path || game.source_image_url);
   const free = isFreeGame(game);
   const discount = effectiveAffiliateDiscount(game);
+  const storeSale = storeDiscountInfo(game);
   const affiliateDiscount = discount.storeDiscounted
     ? 0
     : !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
@@ -78,7 +80,7 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
 
         {curationTag ? <span className="badge-curation-ribbon">{curationTag}</span> : null}
         {isHorizonPlus ? <span className="badge-horizon-ribbon">Horizon +</span> : null}
-        {affiliateDiscount > 0 ? <span className="badge-discount-ribbon">-{affiliateDiscount}%</span> : null}
+        {storeSale ? <span className="badge-discount-ribbon" title="Meta 스토어 자체 할인">Meta -{storeSale.percent}%</span> : affiliateDiscount > 0 ? <span className="badge-discount-ribbon">-{affiliateDiscount}%</span> : null}
         {catalogStatus === "added" ? <span className="badge-new-ribbon">신규</span> : null}
       </Link>
 
@@ -123,7 +125,12 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
           </div>
 
           <div className="game-price">
-            {discountedPrice ? (
+            {storeSale ? (
+              <div className="game-card-prices">
+                <span>{storeSale.originalLabel}</span>
+                <strong>{price.primary}</strong>
+              </div>
+            ) : discountedPrice ? (
               <div className="game-card-prices">
                 <span>{price.primary}</span>
                 <strong>{discountedPrice}</strong>

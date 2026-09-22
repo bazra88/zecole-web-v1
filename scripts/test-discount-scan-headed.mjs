@@ -27,26 +27,23 @@ async function scrollAndExtract(page) {
 
   await page.mouse.move(640, 400);
 
+  // document.body.scrollHeight/window.scrollY가 이 사이트에서는 항상 0으로 읽혀서("바닥
+  // 도달"을 오판) 예전 버전은 겨우 10번 시도하고 30초 만에 포기했다(2026-09-23, GitHub
+  // Actions 진단에서 headless/headed 둘 다 scrollHeight:0으로 확인) — 그 측정값을 믿지 않고
+  // "타일 개수 증가 없음"만으로 충분히 오래 재시도한다.
   let lastCount = await countTiles();
   let stall = 0;
-  let giveUpStreak = 0;
-  for (let i = 0; i < 260; i++) {
+  for (let i = 0; i < 150; i++) {
     if (stall > 0 && stall % 3 === 0) {
       await page.mouse.wheel(0, -400);
       await page.waitForTimeout(800);
     }
     await page.mouse.wheel(0, 600);
-    await page.waitForTimeout(2200);
+    await page.waitForTimeout(1500);
     const count = await countTiles();
-    const atBottom = await page.evaluate(() => window.scrollY + window.innerHeight >= document.body.scrollHeight - 5);
-    if (count > lastCount) { stall = 0; giveUpStreak = 0; lastCount = count; continue; }
+    if (count > lastCount) { stall = 0; lastCount = count; continue; }
     stall += 1;
-    if (atBottom) {
-      giveUpStreak += 1;
-      if (giveUpStreak >= 10) break;
-    } else {
-      giveUpStreak = 0;
-    }
+    if (stall >= 15) break; // 15번 연속 증가 없으면 진짜 끝으로 판단
   }
 
   const debugState = await page.evaluate(() => ({

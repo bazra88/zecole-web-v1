@@ -28,4 +28,5 @@ store URL. Normal affiliate pricing resumes when a subsequent verified price
 observation clears the store-sale original price. A missing game in a later sale
 section does not prove its sale ended: do not restore a guessed regular price.
 
-No recurring schedule is enabled by this one-time collection workflow.
+The workflow is manual-only. No push trigger or recurring schedule is enabled.
+Only existing catalog games are updated; unmatched games remain excluded.

@@ -1,9 +1,6 @@
 name: Collect complete Meta sale USD list
 on:
   workflow_dispatch:
-  push:
-    branches: [codex/meta-sale-sync]
-    paths: [.github/workflows/meta-sale-collect.yml, scripts/collect-meta-sale.mjs]
 permissions:
   contents: read
 jobs:

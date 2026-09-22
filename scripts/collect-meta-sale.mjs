@@ -73,8 +73,9 @@ try {
   if (!complete) throw new Error('Scroll limit reached before verified end');
 } catch (e) { error = e.message; }
 const items = [...rows.values()];
-const invalid = items.filter(r => r.currency !== expected || r.current_price == null || !r.thumbnail_url);
-const summary = { url, expected_currency: expected, started_at: startedAt, finished_at: new Date().toISOString(), count: items.length, complete, invalid_count: invalid.length, error, progress };
+const missingPrices = items.filter(r => r.current_price == null);
+const invalid = items.filter(r => (r.current_price != null && r.currency !== expected) || !r.thumbnail_url);
+const summary = { url, expected_currency: expected, started_at: startedAt, finished_at: new Date().toISOString(), count: items.length, complete, invalid_count: invalid.length, missing_price_count: missingPrices.length, error, progress };
 await writeFile(`${output}/games.json`, JSON.stringify(items, null, 2));
 await writeFile(`${output}/summary.json`, JSON.stringify(summary, null, 2));
 await page.screenshot({ path: `${output}/final.png` }).catch(() => {});

@@ -25,6 +25,12 @@ try {
   await page.mouse.move(640, 500);
   let lastGrowth = Date.now();
   for (let step = 0; step < 140; step++) {
+    const languageCancel = page.getByRole('button', { name: '취소', exact: true });
+    if (await languageCancel.isVisible().catch(() => false)) {
+      await languageCancel.click();
+      await page.waitForTimeout(1000);
+      console.log('Dismissed automatic language confirmation');
+    }
     const snapshot = await page.evaluate(() => {
       const cards = Array.from(document.querySelectorAll('a[href]')).flatMap(a => {
         const path = new URL(a.href, location.href).pathname;

@@ -15,6 +15,7 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { metaProductUrl, visitCurrency } from "../lib/game-visit-policy.mjs";
 import {
   metaUrlId, relayApp, parseMetaStoreUrl, collectGameData, uploadImageToStorage,
 } from "../lib/meta-collect.mjs";
@@ -199,13 +200,30 @@ async function handleImport({ meta_store_url, game_id }) {
   };
 }
 
+async function handleVisitSnapshot({ game_id, attempted_at }) {
+  if (!/^[0-9a-f-]{36}$/i.test(game_id || '') || !Number.isFinite(Date.parse(attempted_at))) throw new Error('invalid_visit');
+  const [gameRows, claims] = await Promise.all([
+    rest(`games?id=eq.${game_id}&active=eq.true&admin_hidden=eq.false&select=*`),
+    rest(`game_visit_refresh?game_id=eq.${game_id}&select=attempted_at,completed_at`),
+  ]);
+  const game=gameRows?.[0], claim=claims?.[0];
+  if (!game || visitCurrency(game)!=='KRW' || !claim || claim.completed_at
+    || Date.parse(claim.attempted_at)!==Date.parse(attempted_at)
+    || Date.now()-Date.parse(attempted_at)>120000) throw new Error('invalid_claim');
+  const {url}=metaProductUrl(game);
+  const response=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(20000),
+    headers:{Accept:'text/html','Accept-Language':'ko-KR,ko;q=0.9','User-Agent':'Mozilla/5.0 ZECOLEVisitKR/1.0'}});
+  if (!response.ok) throw new Error(`meta_${response.status}`);
+  return {html:await response.text()};
+}
+
 const server = createServer(async (req, res) => {
   if (req.method === "GET" && req.url === "/health") {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ ok: true }));
     return;
   }
-  if (req.method !== "POST" || req.url !== "/import-game") {
+  if (req.method !== "POST" || !["/import-game", "/visit-snapshot"].includes(req.url)) {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ error: "not found" }));
     return;
@@ -219,7 +237,7 @@ const server = createServer(async (req, res) => {
   for await (const chunk of req) body += chunk;
   try {
     const input = body ? JSON.parse(body) : {};
-    const result = await handleImport(input);
+    const result = req.url === '/visit-snapshot' ? await handleVisitSnapshot(input) : await handleImport(input);
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(result));
   } catch (error) {

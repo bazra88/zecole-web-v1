@@ -1,4 +1,4 @@
-import Link from "next/link";
+import GameDetailLink from "@/components/GameDetailLink";
 import SaleCountdown from "@/components/SaleCountdown";
 import { gameImageUrl } from "@/lib/supabase";
 import {
@@ -59,7 +59,7 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
 
   return (
     <article className="game-card">
-      <Link href={`/games/${game.slug}`} className="game-thumb">
+      <GameDetailLink href={`/games/${game.slug}`} className="game-thumb">
         {image ? (
           <>
             <img src={image} alt="" aria-hidden="true" loading="lazy" className="game-thumb-bg" />
@@ -82,12 +82,12 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
         {isHorizonPlus ? <span className="badge-horizon-ribbon">Horizon +</span> : null}
         {storeSale ? <span className="badge-discount-ribbon" title="Meta 스토어 자체 할인">Meta -{storeSale.percent}%</span> : affiliateDiscount > 0 ? <span className="badge-discount-ribbon">-{affiliateDiscount}%</span> : null}
         {catalogStatus === "added" ? <span className="badge-new-ribbon">신규</span> : null}
-      </Link>
+      </GameDetailLink>
 
       <div className="game-card-body">
-        <Link href={`/games/${game.slug}`} className={`game-title${titleSizeClass}`}>
+        <GameDetailLink href={`/games/${game.slug}`} className={`game-title${titleSizeClass}`}>
           {game.name}
-        </Link>
+        </GameDetailLink>
 
         <div className="game-tags-wrap" tabIndex={hiddenGenreCount > 0 ? 0 : undefined}>
           <div className="game-tags" aria-label={genres.length ? "장르" : undefined}>

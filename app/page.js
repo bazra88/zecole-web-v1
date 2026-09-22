@@ -98,7 +98,7 @@ export default async function Home() {
     safeGames({
       limit: 15,
       newReleasePinned: true,
-      order: "created_at.desc,name.asc",
+      order: "release_date.desc.nullslast,name.asc",
     }),
     safeGames({
       limit: 15,
@@ -127,7 +127,12 @@ export default async function Home() {
   const featuredNewReleases = [
     ...pinnedNewReleaseGames,
     ...automaticNewReleases.filter((game) => !pinnedNewReleaseIds.has(game.id)),
-  ].slice(0, 15);
+  ].slice(0, 15).sort((a, b) => {
+    // Pinning reserves a place in the section, not a position above newer games.
+    const dateA = Date.parse(a.release_date) || 0;
+    const dateB = Date.parse(b.release_date) || 0;
+    return dateB - dateA || a.name.localeCompare(b.name, "ko");
+  });
   const featuredPopularPaid = popularPaidGames.slice(0, 15);
   const latestHorizonMonth = [...new Set(horizonPlus.map((row) => row.month).filter(Boolean))].sort().at(-1);
   const latestHorizon = latestHorizonMonth
@@ -185,7 +190,7 @@ export default async function Home() {
         <SectionHeader
           eyebrow="NEW RELEASES"
           title="신규출시 VR 게임"
-          description="새롭게 등록된 Meta Quest VR 게임을 확인하세요."
+          description="Meta Quest VR 게임을 출시일 최신순으로 확인하세요."
           href="/games?sort=release_desc"
           promoStrip
         />

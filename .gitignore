@@ -8,6 +8,7 @@ node_modules
 .npm-cache
 .meta-cache
 .tools/
+supabase/.temp/
 .next-dev.log
 .next-dev-error.log
 data/horizon-plus/*.json

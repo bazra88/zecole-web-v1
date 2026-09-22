@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {visitCurrency,metaProductUrl,mediaUrlExpired,refreshInlineMedia,hasExpiredInlineMedia} from '../lib/game-visit-policy.mjs';
+assert.equal(visitCurrency({krw_price:0,usd_price:10,region_restricted:true}),'KRW');
+assert.equal(visitCurrency({krw_price:null,usd_price:10}),'USD');
+assert.equal(visitCurrency({}),'KRW');
+assert.throws(()=>metaProductUrl({meta_product_id:'https://evil.test/'}));
+assert.equal(metaProductUrl({meta_product_id:'https://www.meta.com/experiences/game/123456789/'}).url,'https://www.meta.com/ko-kr/experiences/123456789/');
+const now=Date.parse('2026-09-23T00:00:00Z');
+const expired=`https://cdn.example/a.mp4?oe=${Math.floor((now-1000)/1000).toString(16)}`;
+const fresh=`https://other.example/a.mp4?oe=${Math.floor((now+86400000)/1000).toString(16)}`;
+const oldText=`한국어 설명\n![{"type":"video"}](${expired})`;
+assert.equal(mediaUrlExpired(expired,now),true);
+assert.equal(hasExpiredInlineMedia(oldText,now),true);
+assert.equal(refreshInlineMedia(oldText,`English\n![{}](${fresh})`,now),oldText.replace(expired,fresh));
+assert.equal(refreshInlineMedia(oldText,'English without matching media',now),oldText);
+assert.equal(refreshInlineMedia(`![{}](${fresh})`,`![{}](${expired})`,now),`![{}](${fresh})`);
+assert.equal(mediaUrlExpired('https://storage.example/a.webp',now),false);
+console.log('Visit policy: regional currency, zero price, safe URL, expired media and translation preservation passed');

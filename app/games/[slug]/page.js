@@ -3,11 +3,10 @@ import BackButton from "@/components/BackButton";
 import GameMediaGallery from "@/components/GameMediaGallery";
 import { discountedPriceLabel, effectiveAffiliateDiscount, formatGamePrice, isFreeGame, motionSicknessLabel, storeDiscountInfo } from "@/lib/game-format";
 import { gameImageUrl, getGameBySlug, getGameGenres, getGameMedia, getGameReviews, getGameVideos } from "@/lib/supabase";
-import { ensureGameDetailCached } from "@/lib/game-media-backfill";
+import GameVisitRefresh from "@/components/GameVisitRefresh";
 
 export const revalidate = 300;
-// 첫 방문자가 스크린샷 백필 + 설명/리뷰 번역까지 한 번에 기다릴 수 있어서 기본 타임아웃보다
-// 여유를 둔다(2026-09-23).
+// External refresh runs only after the detail component mounts, through POST /api/games/visit.
 export const maxDuration = 60;
 
 function dateLabel(value) {
@@ -113,8 +112,7 @@ export default async function GameDetailPage({ params }) {
     getGameMedia(game.id).catch(() => []),
     getGameReviews(game.id).catch(() => []),
   ]);
-  const { media, gamesPatch } = await ensureGameDetailCached(game, rawMedia).catch(() => ({ media: rawMedia, gamesPatch: {} }));
-  Object.assign(game, gamesPatch);
+  const media = rawMedia;
   const trailer = media.find((item) => item.media_type === "trailer");
   const screenshots = media.filter((item) => item.media_type === "screenshot");
   const longDescription = game.description_long_ko || game.description_long;
@@ -143,6 +141,7 @@ export default async function GameDetailPage({ params }) {
 
   return (
     <main className="container detail-page">
+      <GameVisitRefresh key={game.id} gameId={game.id} />
       <BackButton />
 
       <section className="detail-hero">

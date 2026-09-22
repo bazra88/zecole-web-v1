@@ -1,0 +1,37 @@
+name: Test discount scan (headed vs headless)
+
+# 일회성 진단용 — GitHub Actions 러너의 IP/지역과, headed(Xvfb) 방식이 Vercel/로컬에서
+# 막혔던 메타 할인 목록 무한스크롤을 뚫는지 확인한다. DB에는 아무것도 쓰지 않는다
+# (2026-09-23, scripts/test-discount-scan-headed.mjs 참고).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium + system deps
+        run: npx playwright install --with-deps chromium
+
+      - name: Install Xvfb
+        run: sudo apt-get update && sudo apt-get install -y xvfb
+
+      - name: Run headed-vs-headless scan test
+        run: xvfb-run -a node scripts/test-discount-scan-headed.mjs

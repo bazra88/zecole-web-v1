@@ -39,8 +39,9 @@ try {
         return [{ meta_id: m[2], name, current_price: prices.length ? amount(prices[0]) : null, original_price: original ? amount(original) : null, currency: prices[0]?.includes('₩') ? 'KRW' : prices[0]?.includes('$') ? 'USD' : null, thumbnail_url: img?.currentSrc || img?.src || null, url: a.href, raw_text: text }];
       });
       const scroll = document.getElementById('scrollview') || document.scrollingElement;
-      const pending = [...document.querySelectorAll('[role="progressbar"]')].filter(e => e.getClientRects().length).length;
-      return { cards, pending, top: scroll.scrollTop, height: scroll.scrollHeight, viewport: scroll.clientHeight, bottom: scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 8 };
+      const placeholders = [...document.querySelectorAll('[role="progressbar"]')].filter(e => e.getClientRects().length);
+      const pending = placeholders.length;
+      return { cards, pending, pending_y: placeholders[0]?.getBoundingClientRect().top ?? null, top: scroll.scrollTop, height: scroll.scrollHeight, viewport: scroll.clientHeight, bottom: scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 8 };
     });
     const old = rows.size;
     for (const row of state.cards) if (row.name) rows.set(row.meta_id, { ...row, checked_at: new Date().toISOString() });
@@ -50,14 +51,23 @@ try {
     if (rows.size > old || step % 10 === 0) console.log(JSON.stringify(progress.at(-1)));
     if (state.bottom && state.pending === 0 && rows.size > 0) {
       bottomSince ??= Date.now();
-      if (Date.now() - bottomSince > 25000 && Date.now() - lastGrowth > 25000) { complete = true; break; }
+      if (Date.now() - lastGrowth > 30000 && progress.filter(p => p.count === rows.size && p.bottom && !p.pending).length >= 6) { complete = true; break; }
     } else if (!state.bottom && step % 12 !== 1) { bottomSince = null; }
     if (Date.now() - lastGrowth > 110000) throw new Error('Stalled before verified end of section');
-    if (state.bottom && step % 4 === 0) {
+    if (state.pending && state.pending_y < 150) {
+      // Layout shifts can jump past the grid into the tall footer. Return to the
+      // FIRST unloaded card; a small bottom nudge never brings it back on screen.
+      await page.mouse.wheel(0, state.pending_y - 350);
+    } else if (state.pending && state.pending_y < 800) {
+      // Keep the unloaded row visible until the lazy loader completes.
+      if (step % 8 === 0) await page.mouse.wheel(0, -80);
+    } else if (state.bottom && step % 4 === 0) {
       await page.mouse.wheel(0, -350);
       await page.waitForTimeout(1500);
+      await page.mouse.wheel(0, 620);
+    } else {
+      await page.mouse.wheel(0, 620);
     }
-    await page.mouse.wheel(0, 620);
     await page.waitForTimeout(2500);
   }
   if (!complete) throw new Error('Scroll limit reached before verified end');

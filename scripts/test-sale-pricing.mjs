@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { effectiveAffiliateDiscount, formatGamePrice, storeDiscountInfo } from '../lib/game-format.js';
+const krw = { pricing_type: 'paid', krw_price: 16400, usd_price: 19.99, meta_store_original_price: 27400, affiliate_discount_percent: 10 };
+assert.equal(effectiveAffiliateDiscount(krw).percent, 0);
+assert.equal(storeDiscountInfo(krw).originalLabel, '￦27,400');
+assert.equal(formatGamePrice(krw).primary, '￦16,400');
+const usd = { pricing_type: 'paid', krw_price: null, usd_price: 11.99, current_price: 11.99, currency: 'USD', meta_store_original_price: 19.99, region_restricted: true, affiliate_discount_percent: 10 };
+assert.equal(effectiveAffiliateDiscount(usd).percent, 0);
+assert.equal(formatGamePrice(usd).primary, '$11.99');
+assert.equal(storeDiscountInfo(usd).originalLabel, '$19.99');
+assert.equal(effectiveAffiliateDiscount({ ...usd, meta_store_original_price: null }).percent, 10);
+assert.equal(storeDiscountInfo({ ...usd, meta_store_original_price: 11.99 }), null);
+assert.equal(formatGamePrice({ pricing_type: 'paid', krw_price: null, usd_price: null, current_price: null, currency: 'USD' }).primary, '가격 확인');
+assert.equal(formatGamePrice({ ...usd, usd_price: 0, current_price: 0 }).primary, '$0.00');
+assert.equal(formatGamePrice({ ...krw, krw_price: 0 }).primary, '￦0');
+console.log('Sale pricing: KRW/USD, no stacked discount, normal affiliate, null/zero checks passed');

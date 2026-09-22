@@ -1,3 +1,4 @@
+import GameReviews from '@/components/GameReviews';
 import { notFound } from "next/navigation";
 import BackButton from "@/components/BackButton";
 import GameMediaGallery from "@/components/GameMediaGallery";
@@ -14,10 +15,6 @@ function dateLabel(value) {
   return new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric" }).format(new Date(`${value}T00:00:00`));
 }
 
-function dateTimeLabel(value) {
-  if (!value) return null;
-  return new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric" }).format(new Date(value));
-}
 
 // 볼드(**text**)만 인라인으로 처리하고, 나머지는 텍스트 그대로 React가 이스케이프하도록 둔다.
 function renderInline(text, keyPrefix) {
@@ -74,10 +71,6 @@ function LongDescription({ text }) {
   });
 }
 
-function reviewStars(rating) {
-  if (!Number.isFinite(rating)) return null;
-  return "★".repeat(rating) + "☆".repeat(Math.max(0, 5 - rating));
-}
 
 function supportLabels(game) {
   return [game.supports_quest_3s && "Quest 3S", game.supports_quest_3 && "Quest 3", game.supports_quest_2 && "Quest 2"].filter(Boolean);
@@ -110,7 +103,7 @@ export default async function GameDetailPage({ params }) {
     getGameVideos(game.id).catch(() => []),
     getGameGenres(game.id).catch(() => []),
     getGameMedia(game.id).catch(() => []),
-    getGameReviews(game.id).catch(() => []),
+    getGameReviews(game.id).catch(() => ({data:[],count:0,page:1})),
   ]);
   const media = rawMedia;
   const trailer = media.find((item) => item.media_type === "trailer");
@@ -277,35 +270,8 @@ export default async function GameDetailPage({ params }) {
         </section>
       ) : null}
 
-      {reviews.length ? (
-        <section className="detail-section">
-          <div className="section-header">
-            <div>
-              <p className="eyebrow">META STORE REVIEWS</p>
-              <h2>이용자 리뷰</h2>
-            </div>
-          </div>
+      <GameReviews key={game.id} gameId={game.id} initial={reviews} />
 
-          <div className="review-list">
-            {reviews.map((review) => (
-              <div className="review-card" key={review.id}>
-                <div className="review-card-head">
-                  <strong>{review.reviewer_label}</strong>
-                  {review.rating ? <span className="review-stars" aria-label={`평점 ${review.rating}점`}>{reviewStars(review.rating)}</span> : null}
-                </div>
-                {review.title_ko || review.title_original ? (
-                  <p className="review-title">{review.title_ko || review.title_original}</p>
-                ) : null}
-                <p className="review-body">{review.body_ko || review.body_original}</p>
-                <div className="review-meta">
-                  {dateTimeLabel(review.reviewed_at) ? <span>{dateTimeLabel(review.reviewed_at)}</span> : null}
-                  {review.helpful_count ? <span>도움됨 {review.helpful_count}</span> : null}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      ) : null}
     </main>
   );
 }

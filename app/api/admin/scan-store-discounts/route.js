@@ -29,11 +29,17 @@ const DEFAULT_URL = "https://www.meta.com/ko-kr/experiences/view/718616904483213
 const metaUrlId = (value) => String(value).split("_").pop();
 
 async function scrollAndExtract(page) {
-  // "할인" 탭 첫 화면에 있는 프로모션 섹션(예: Meta Connect 할인)의 "모두 보기"로 들어간다.
-  const seeAllLink = page.locator('a:has-text("모두 보기")').first();
-  if (await seeAllLink.count().catch(() => 0)) {
-    await seeAllLink.click().catch(() => {});
-    await page.waitForTimeout(1500);
+  // "할인" 탭(view/...) 첫 화면에는 여러 프로모션 섹션이 각자 "모두 보기" 링크를 갖고 있어서,
+  // 이미 특정 섹션(section/<id>/) 딥링크로 들어온 경우엔 절대 클릭하면 안 된다 — 페이지 안
+  // 다른 위젯의 "모두 보기"를 잘못 눌러서 엉뚱한 목록으로 이동해버린 적이 있었다
+  // (2026-09-23, Vercel 실측에서 스크롤 없이 24개만 나오고 scrollHeight도 0으로 깨졌던
+  // 원인으로 추정).
+  if (!/\/experiences\/section\//.test(page.url())) {
+    const seeAllLink = page.locator('a:has-text("모두 보기")').first();
+    if (await seeAllLink.count().catch(() => 0)) {
+      await seeAllLink.click().catch(() => {});
+      await page.waitForTimeout(1500);
+    }
   }
 
   const countTiles = () => page.evaluate(() => new Set(
@@ -50,16 +56,20 @@ async function scrollAndExtract(page) {
   // 스크롤이 이미 현재 로딩된 콘텐츠의 맨 아래에 닿아있으면 "아래로 스크롤"을 계속 보내도
   // 실제 스크롤 위치가 전혀 안 바뀌어서 다음 배치 로딩이 트리거되지 않는다 — 위로 살짝
   // 올렸다가 다시 내리는 "넛지"가 필요하다(2026-09-23, 수동 테스트로 확인한 동작).
+  //
+  // 사용자가 직접 확인함: 한 화면(4x4=16개)이 로딩되면 그게 화면에 "보이는 채로" 몇 초
+  // 머물러야 다음 배치가 로딩되고, 급하게 계속 스크롤만 내리면 로딩 자체가 안 된다 —
+  // 그래서 한 번에 조금씩만 내리고(한 화면 분량 정도) 매번 충분히 대기한다(2026-09-23).
   let lastCount = await countTiles();
   let stall = 0;
   let giveUpStreak = 0;
-  for (let i = 0; i < 220; i++) {
+  for (let i = 0; i < 260; i++) {
     if (stall > 0 && stall % 3 === 0) {
-      await page.mouse.wheel(0, -600);
-      await page.waitForTimeout(500);
+      await page.mouse.wheel(0, -400);
+      await page.waitForTimeout(800);
     }
-    await page.mouse.wheel(0, 900);
-    await page.waitForTimeout(1200);
+    await page.mouse.wheel(0, 600);
+    await page.waitForTimeout(2200);
     const count = await countTiles();
     const atBottom = await page.evaluate(() => window.scrollY + window.innerHeight >= document.body.scrollHeight - 5);
     if (count > lastCount) { stall = 0; giveUpStreak = 0; lastCount = count; continue; }
@@ -125,6 +135,12 @@ export async function POST(request) {
       Object.defineProperty(navigator, "plugins", { get: () => [1, 2, 3, 4, 5] });
       Object.defineProperty(navigator, "languages", { get: () => ["ko-KR", "ko", "en-US", "en"] });
       window.chrome = { runtime: {} };
+      // 사용자가 직접 확인함: 탭이 실제로 "보이는" 상태로 몇 초 머물러야 다음 배치가 로딩되고,
+      // 그냥 스크롤만 빠르게 내리면 로딩이 안 된다 — Page Visibility API 기반으로 백그라운드/
+      // 헤드리스 탭의 로딩을 죽이는 것으로 보여서, 항상 "보이는 탭"으로 위장한다(2026-09-23).
+      Object.defineProperty(document, "hidden", { get: () => false });
+      Object.defineProperty(document, "visibilityState", { get: () => "visible" });
+      document.hasFocus = () => true;
     });
     await page.goto(targetUrl, { waitUntil: "domcontentloaded", timeout: 45_000 });
     await page.waitForTimeout(1500);

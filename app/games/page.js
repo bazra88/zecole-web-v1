@@ -14,8 +14,7 @@ const SORTS = {
   price_desc: "krw_price.desc.nullslast,current_price.desc.nullslast,name.asc",
   release_desc: "release_date.desc.nullslast,name.asc",
   release_asc: "release_date.asc.nullslast,name.asc",
-  discount:
-    "promo_affiliate_discount_percent.desc.nullslast,base_affiliate_discount_percent.desc.nullslast,name.asc",
+  discount: "name.asc",
   reviews: "review_count.desc.nullslast,name.asc",
   rating: "rating.desc.nullslast,review_count.desc.nullslast,name.asc",
 };
@@ -74,6 +73,7 @@ export default async function GamesPage({ searchParams }) {
       limit: pageSize,
       offset: (page - 1) * pageSize,
       order: SORTS[sort] || SORTS.name,
+      sortDiscount: sort === "discount",
       search,
       pricing,
       priceRange,

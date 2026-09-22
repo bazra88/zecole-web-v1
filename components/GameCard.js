@@ -19,7 +19,9 @@ export default function GameCard({ game, usdKrwRate = null, catalogStatus = null
   const image = gameImageUrl(game.image_path || game.source_image_url);
   const free = isFreeGame(game);
   const discount = effectiveAffiliateDiscount(game);
-  const affiliateDiscount = !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
+  const affiliateDiscount = discount.storeDiscounted
+    ? 0
+    : !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
   const price = formatGamePrice(game, usdKrwRate, affiliateDiscount);
   const discountedPrice = affiliateDiscount > 0
     ? discountedPriceLabel(game, affiliateDiscount)

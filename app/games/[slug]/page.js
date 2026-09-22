@@ -122,7 +122,9 @@ export default async function GameDetailPage({ params }) {
   const price = formatGamePrice(game);
   const free = isFreeGame(game);
   const discount = effectiveAffiliateDiscount(game);
-  const affiliateDiscount = !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
+  const affiliateDiscount = discount.storeDiscounted
+    ? 0
+    : !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
   const discountedPrice = affiliateDiscount > 0 ? discountedPriceLabel(game, affiliateDiscount) : null;
   const supports = supportLabels(game);
   const playStyles = [game.seated_supported && "좌식", game.standing_supported && "입식"].filter(Boolean);

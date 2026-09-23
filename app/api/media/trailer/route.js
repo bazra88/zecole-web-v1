@@ -1,60 +1,43 @@
-// app/api/media/trailer/route.js
-//
-// 트레일러(mp4, 평균 ~12MB)는 자체 Storage에 저장하지 않는다 — 전부 다운로드하면 용량이
-// 수십 GB 단위로 불어나서(2026-09-23 실측), 방문자가 실제로 재생 버튼을 누른 순간에만
-// 그 게임의 메타 스토어 페이지를 즉석에서 다시 조회해 그 시점 유효한 링크를 돌려준다.
-// 가격(parseKrw)과 달리 미디어 추출은 IP 국가와 무관하다고 검증됐으므로(lib/meta-collect.mjs
-// 상단 주석 참고) 서울 VPS를 거칠 필요 없이 Vercel에서 바로 처리한다. 배치처럼 전체를
-// 주기적으로 도는 게 아니라 실제 클릭에 비례해서만 메타에 요청이 가므로 훨씬 가볍다.
-
 import { NextResponse } from "next/server";
-import { restSelect } from "@/lib/supabase";
-import { relayApp, extractMedia, metaUrlId } from "@/lib/meta-collect.mjs";
+import { adminRest } from "@/lib/admin-supabase";
+import { relayApp, extractMedia } from "@/lib/meta-collect.mjs";
+import { metaProductUrl } from "@/lib/game-visit-policy.mjs";
+import { reusableTrailer } from "@/lib/meta-fetch-policy.mjs";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 30;
+const reply = (url) => NextResponse.json({url},{headers:{'Cache-Control':'private, no-store'}});
 
 export async function GET(request) {
-  const gameId = new URL(request.url).searchParams.get("gameId");
-  if (!/^[0-9a-f-]{36}$/i.test(gameId || "")) {
-    return NextResponse.json({ error: "게임 ID가 올바르지 않습니다." }, { status: 400 });
+  const gameId = new URL(request.url).searchParams.get('gameId');
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(gameId || '')) {
+    return NextResponse.json({error:'게임 ID가 올바르지 않습니다.'},{status:400});
   }
-
-  const { data } = await restSelect(
-    "games",
-    { select: "id,meta_product_id,meta_store_url", id: `eq.${gameId}`, limit: 1 },
-    { revalidate: 300 }
-  );
-  const game = data?.[0];
-  if (!game?.meta_store_url) {
-    return NextResponse.json({ error: "게임을 찾지 못했습니다." }, { status: 404 });
-  }
-
+  let token;
+  let success = false;
   try {
-    const metaId = metaUrlId(game.meta_product_id);
-    const response = await fetch(game.meta_store_url, {
-      redirect: "follow",
-      cache: "no-store",
-      headers: {
-        Accept: "text/html,application/xhtml+xml",
-        "Accept-Language": "ko-KR,ko;q=0.9,en;q=0.6",
-        "User-Agent": "Mozilla/5.0 ZECOLETrailerResolve/1.0",
-      },
-      signal: AbortSignal.timeout(15_000),
-    });
-    if (!response.ok) {
-      return NextResponse.json({ error: `메타 스토어 요청 실패 (${response.status})` }, { status: 502 });
-    }
-    const html = await response.text();
-    const relay = relayApp(html, metaId);
-    const trailer = extractMedia(relay).find((item) => item.media_type === "trailer");
-    if (!trailer?.url) {
-      return NextResponse.json({ error: "트레일러를 찾지 못했습니다." }, { status: 404 });
-    }
-    return NextResponse.json(
-      { url: trailer.url },
-      { headers: { "Cache-Control": "public, max-age=300, stale-while-revalidate=60" } }
-    );
+    const [game] = await adminRest(`games?id=eq.${gameId}&active=eq.true&admin_hidden=eq.false&select=id,meta_product_id,meta_store_url`);
+    if (!game) return NextResponse.json({error:'게임을 찾지 못했습니다.'},{status:404});
+    const media = await adminRest(`game_media?game_id=eq.${gameId}&media_type=eq.trailer&active=eq.true&select=id,url,updated_at&order=updated_at.desc`);
+    const cached = media.find(item => reusableTrailer(item));
+    if (cached) return reply(cached.url);
+    token = await adminRest('rpc/reserve_meta_fetch',{method:'POST',body:JSON.stringify({p_region:'USD',p_game_id:gameId,p_purpose:'trailer'})});
+    if (!token) return NextResponse.json({error:'영상 갱신을 잠시 쉬고 있습니다. 잠시 후 다시 시도해 주세요.'},{status:429,headers:{'Retry-After':'3600','Cache-Control':'no-store'}});
+    const {id,url} = metaProductUrl(game);
+    const response = await fetch(url,{cache:'no-store',redirect:'follow',signal:AbortSignal.timeout(15000),
+      headers:{Accept:'text/html','Accept-Language':'ko-KR,ko;q=0.9','User-Agent':'Mozilla/5.0 ZECOLETrailerResolve/1.0'}});
+    if (!response.ok) throw new Error(`meta_${response.status}`);
+    const relay = relayApp(await response.text(),id);
+    if (!relay) throw new Error('missing_relay');
+    success = true;
+    const trailer = extractMedia(relay).find(item => item.media_type === 'trailer');
+    if (!trailer?.url) return NextResponse.json({error:'트레일러를 찾지 못했습니다.'},{status:404});
+    if (media[0]) await adminRest(`game_media?id=eq.${media[0].id}`,{method:'PATCH',body:JSON.stringify({url:trailer.url,updated_at:new Date().toISOString()})});
+    return reply(trailer.url);
   } catch (error) {
-    return NextResponse.json({ error: error.message || "트레일러 조회에 실패했습니다." }, { status: 500 });
+    console.error('[trailer-refresh]',error.message);
+    return NextResponse.json({error:'트레일러를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.'},{status:503});
+  } finally {
+    if (token) await adminRest(`meta_fetch_attempts?id=eq.${token}`,{method:'PATCH',body:JSON.stringify({success})}).catch(error=>console.error('[meta-fetch-result]',error.message));
   }
 }

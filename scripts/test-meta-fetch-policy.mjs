@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {reusableTrailer} from '../lib/meta-fetch-policy.mjs';
+const now=Date.now();
+const url=delta=>'https://example.com/video.mp4?oe='+Math.floor((now+delta)/1000).toString(16);
+assert.equal(reusableTrailer({url:url(3600000)},now),true);
+assert.equal(reusableTrailer({url:url(-1)},now),false);
+assert.equal(reusableTrailer({url:url(300000)},now),false);
+assert.equal(reusableTrailer({url:'https://example.com/video.mp4',updated_at:new Date(now-1000).toISOString()},now),true);
+assert.equal(reusableTrailer({url:'https://example.com/video.mp4'},now),false);
+assert.equal(reusableTrailer({url:'bad'},now),false);
+console.log('Trailer cache validity and expiry safety tests passed');

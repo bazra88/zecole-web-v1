@@ -2,12 +2,13 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { saveNewReleaseOrderAction } from "./actions";
+import { saveNewReleaseOrderAction, setGameNewReleasePinnedAction } from "./actions";
 import { compareReleaseDates } from "@/lib/new-release-order.mjs";
 
 export default function PinnedReleaseEditor({ games }) {
   const [items, setItems] = useState(games);
   const [message, setMessage] = useState(null);
+  const [removingId, setRemovingId] = useState(null);
   const [pending, startTransition] = useTransition();
   const router = useRouter();
   const changed = items.some((game, index) => game.id !== games[index]?.id);
@@ -29,14 +30,33 @@ export default function PinnedReleaseEditor({ games }) {
       if (result.success) router.refresh();
     });
   }
+  function unpin(game) {
+    if (pending || changed) return;
+    setRemovingId(game.id);
+    setMessage(null);
+    startTransition(async () => {
+      try {
+        const formData = new FormData();
+        formData.set("id", game.id);
+        formData.set("pinned", "false");
+        await setGameNewReleasePinnedAction(formData);
+        router.refresh();
+      } catch {
+        setMessage({ error: "고정을 해제하지 못했습니다. 새로고침 후 다시 시도해주세요." });
+      } finally {
+        setRemovingId(null);
+      }
+    });
+  }
   let visibleIndex = 0;
   return <div className="admin-pinned-editor" aria-busy={pending}>
     <p className="admin-order-help">위·아래 또는 맨 위로 이동한 뒤 순서를 저장하세요. 저장한 고정 게임이 메인 신작 영역에 먼저 표시되며, 최대 15개까지 노출됩니다. 숨김·비활성 게임은 제외됩니다.</p>
+    <p className="admin-order-help">고정 해제를 누르면 이 목록에서 바로 빠집니다. 게임 정보는 유지되며, 전체 목록에서 다시 고정할 수 있습니다.</p>
     <div className="admin-order-toolbar">
-      <button type="button" className="admin-pinned" onClick={save} disabled={pending || !changed}>{pending ? "저장 중…" : "순서 저장"}</button>
+      <button type="button" className="admin-pinned" onClick={save} disabled={pending || !changed}>{pending && !removingId ? "저장 중…" : "순서 저장"}</button>
       <button type="button" className="admin-secondary" disabled={pending} onClick={() => { setItems([...items].sort(compareReleaseDates)); setMessage(null); }}>출시일 순으로 배치</button>
       <button type="button" className="admin-cancel" disabled={pending || !changed} onClick={() => { setItems(games); setMessage(null); }}>변경 취소</button>
-      <span role="status">{changed ? "저장하지 않은 변경사항이 있습니다." : "현재 저장된 순서입니다."}</span>
+      <span role="status">{changed ? "저장하지 않은 변경사항이 있습니다. 고정 해제 전에 저장하거나 변경 취소를 눌러주세요." : "현재 저장된 순서입니다."}</span>
     </div>
     {message && <p role="status" className={`admin-message ${message.error ? "error" : "success"}`}>{message.error || message.success}</p>}
     <ol className="admin-order-list">
@@ -51,6 +71,7 @@ export default function PinnedReleaseEditor({ games }) {
             <button type="button" className="admin-secondary" aria-label={`${game.name} 맨 위로`} disabled={pending || index === 0} onClick={() => move(index, 0)}>맨 위로</button>
             <button type="button" className="admin-secondary" aria-label={`${game.name} 위로`} disabled={pending || index === 0} onClick={() => move(index, index - 1)}>↑ 위로</button>
             <button type="button" className="admin-secondary" aria-label={`${game.name} 아래로`} disabled={pending || index === items.length - 1} onClick={() => move(index, index + 1)}>↓ 아래로</button>
+            <button type="button" className="admin-danger" aria-label={`${game.name} 고정 해제`} disabled={pending || changed} onClick={() => unpin(game)}>{removingId === game.id ? "해제 중…" : "고정 해제"}</button>
           </div>
         </li>;
       })}

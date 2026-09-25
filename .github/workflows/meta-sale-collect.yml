@@ -1,4 +1,4 @@
-name: Collect complete Meta sale USD list
+name: Test complete Meta catalog USD list
 on:
   workflow_dispatch:
 permissions:
@@ -6,7 +6,7 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 65
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -15,12 +15,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: xvfb-run -a node scripts/collect-meta-sale.mjs
+      - run: xvfb-run -a node scripts/collect-meta-full-list.mjs
         env:
           EXPECTED_CURRENCY: USD
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: meta-sale-usd
-          path: sale-USD/
+          name: meta-full-list-usd
+          path: full-list-USD/
           retention-days: 14

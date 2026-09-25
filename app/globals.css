@@ -2601,7 +2601,7 @@ video.detail-inline-media { aspect-ratio: 16/9; }
 .admin-refresh-message { font-size: 12px; white-space: nowrap; }
 .admin-refresh-message.error { color: #ff8fa3; }
 .admin-refresh-message.success { color: #75e0ac; }
-.admin-secondary, .admin-danger, .admin-restore, .admin-pin, .admin-pinned, .admin-delete-trigger, .admin-delete, .admin-cancel, .admin-affiliate-add, .admin-affiliate-edit, .admin-affiliate-save { min-height: 38px; padding: 0 12px; border-radius: 9px; font-size: 11px; font-weight: 800; cursor: pointer; }
+.admin-recommendation, .admin-secondary, .admin-danger, .admin-restore, .admin-pin, .admin-pinned, .admin-delete-trigger, .admin-delete, .admin-cancel, .admin-affiliate-add, .admin-affiliate-edit, .admin-affiliate-save { min-height: 38px; padding: 0 12px; border-radius: 9px; font-size: 11px; font-weight: 800; cursor: pointer; }
 .admin-secondary { border: 1px solid var(--admin-border); background: var(--panel-2); color: var(--text); }
 .admin-panel { padding: 28px; margin-bottom: 24px; }
 .admin-panel h2 { margin: 0 0 18px; font-size: 22px; }
@@ -2694,6 +2694,8 @@ video.detail-inline-media { aspect-ratio: 16/9; }
 .admin-shell :is(input, select, button, a):focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .admin-shell input::placeholder { color: var(--admin-muted); opacity: 1; }
 .admin-filter select option { background: var(--panel); color: var(--text); }
+.admin-shell button { word-break: keep-all; }
+.admin-game-controls > .admin-affiliate-form { flex-basis: 100%; }
 .admin-shell button:not(:disabled):hover { filter: brightness(1.12); }
 .admin-shell button:disabled { opacity: .55; cursor: wait; }
 .admin-game-main a:hover { color: var(--blue); text-decoration: underline; }

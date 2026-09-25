@@ -19,17 +19,26 @@ telemetry and static asset requests. These are response counts, not a proven
 count of pagination calls. No offer end times were extracted; the JSON reader
 did not decode most ocapi responses, so absence of end times is inconclusive.
 
-Seoul trial reached at least 728 cards, then exhausted available memory on the
+Seoul trial saved 728 cards (201 prices, 51 discounts), then exhausted available memory on the
 1-vCPU/1-GB production collector server. Stop commands became unresponsive.
 This trial must not be marked complete. Do not run it again on that server
 without OS-enforced memory/CPU limits and an external timeout/kill mechanism.
 
-Post-trial changes (not yet run): block image/media/font downloads while
-preserving their DOM URLs, distinguish section vs catalog completion, and
-refuse server mode without the explicit memory-isolation flag. That flag does
-not itself create isolation: the launcher must enforce it with a cgroup.
+Recovered the server through the Gabia stop/start controls. SSH recovered,
+available RAM returned to approximately 599 MiB, `import-api` was active and
+`http://127.0.0.1:4001/health` returned `{"ok":true}`. The public Vercel homepage
+also rendered normally. No test collector process remained after recovery.
 
-Before daily use: recover/verify Seoul service, implement constrained launch,
+Post-trial changes: block image/media/font downloads while preserving their
+DOM URLs, distinguish section vs catalog completion, and require an actual
+cgroup v2 `memory.max` of at most 400 MiB before launching server mode.
+A single constrained retry used systemd MemoryMax=400M, MemorySwapMax=0,
+CPUQuota=50%, RuntimeMaxSec=1200, TimeoutStopSec=5, KillMode=control-group.
+The browser exited during initial navigation (kernel recorded Chromium int3),
+saving zero cards. No kernel OOM entry was observed for this retry. The service
+and available memory remained healthy. No further Meta retries were made.
+
+Before daily use: diagnose the constrained Chromium crash without Meta requests,
 verify Korean collection, establish broader catalog coverage, decode list
 offer metadata, and add a separate validated DB application step. Current
 workflow is manual-only on the test branch; production workflow is unchanged.

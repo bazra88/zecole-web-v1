@@ -1,11 +1,15 @@
 // Read-only, logged-out list collector. Never visits game details or writes to DB.
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { readMetaList } from './meta-list-dom.mjs';
 const url = 'https://www.meta.com/ko-kr/experiences/section/3878844519028756/';
 const expected = process.env.EXPECTED_CURRENCY;
 if (!['KRW','USD'].includes(expected)) throw new Error('Expected currency required');
-if (process.env.SERVER_CHROMIUM === '1' && process.env.LIST_MEMORY_ISOLATED !== '1') {
-  throw new Error('Run only inside a memory-limited cgroup; Seoul first trial exhausted available RAM.');
+if (process.env.SERVER_CHROMIUM === '1') {
+  const membership = await readFile('/proc/self/cgroup','utf8');
+  const group = membership.trim().split('\n').find(l=>l.startsWith('0::'))?.slice(3);
+  if (!group) throw new Error('A cgroup v2 memory limit is required');
+  const limit = Number((await readFile(`/sys/fs/cgroup${group}/memory.max`,'utf8')).trim());
+  if (!Number.isFinite(limit) || limit > 400*1024*1024 || limit <= 0) throw new Error('MemoryMax must be enforced at 400MiB or less');
 }
 const output = process.env.LIST_OUTPUT || `full-list-${expected}`;
 await mkdir(output,{recursive:true});

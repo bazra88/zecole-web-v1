@@ -1,3 +1,6 @@
+import PinnedFilter from "./PinnedFilter";
+import PinnedReleaseEditor from "./PinnedReleaseEditor";
+import { PINNED_RELEASE_ORDER, sortPinnedReleases } from "@/lib/new-release-order.mjs";
 import Link from "next/link";
 import { adminIsConfigured, isAdmin } from "@/lib/admin-auth";
 import { adminRestPage } from "@/lib/admin-supabase";
@@ -11,6 +14,23 @@ import { logoutAction } from "./actions";
 export const dynamic = "force-dynamic";
 
 const PAGE_SIZE = 50;
+
+async function loadPinnedGames() {
+  const rows = [];
+  let total;
+  do {
+    const params = new URLSearchParams({
+      select: "id,name,release_date,active,admin_hidden,admin_new_release_order,image_path,source_image_url",
+      admin_new_release_pinned: "eq.true", order: PINNED_RELEASE_ORDER,
+      limit: "1000", offset: String(rows.length),
+    });
+    const result = await adminRestPage(`games?${params}`);
+    if (!result.data.length) break;
+    rows.push(...result.data);
+    total = result.total;
+  } while (rows.length < total);
+  return sortPinnedReleases(rows).map(game => ({ ...game, thumbnail: gameImageUrl(game.image_path) || game.source_image_url || null }));
+}
 
 async function loadGames(query, visibility, affiliate, recommendation, sort, page) {
   const from = (page - 1) * PAGE_SIZE;
@@ -90,6 +110,8 @@ export default async function AdminPage({ searchParams }) {
 
   const params = await searchParams;
   const analytics = await getVercelAnalyticsSummary();
+  const pinnedOnly = params?.pinned === "1";
+  const pinnedGames = pinnedOnly ? await loadPinnedGames() : [];
   const query = String(params?.q || "").trim();
   const visibility = ["all", "visible", "hidden"].includes(params?.visibility) ? params.visibility : "all";
   const affiliate = ["all", "missing", "present"].includes(params?.affiliate) ? params.affiliate : "all";
@@ -97,9 +119,9 @@ export default async function AdminPage({ searchParams }) {
   const sortOptions = ["newest", "oldest", "reviews_desc", "reviews_asc", "rating_desc", "rating_asc", "release_desc", "release_asc", "price_desc", "price_asc"];
   const sort = sortOptions.includes(params?.sort) ? params.sort : "newest";
   const requestedPage = Math.max(1, Number.parseInt(String(params?.page || "1"), 10) || 1);
-  const initialResult = await loadGames(query, visibility, affiliate, recommendation, sort, requestedPage);
+  const initialResult = pinnedOnly ? { data: [], total: pinnedGames.length } : await loadGames(query, visibility, affiliate, recommendation, sort, requestedPage);
   const totalPages = Math.max(1, Math.ceil(initialResult.total / PAGE_SIZE));
-  const currentPage = Math.min(requestedPage, totalPages);
+  const currentPage = pinnedOnly ? requestedPage : Math.min(requestedPage, totalPages);
   const { data: games, total } = currentPage === requestedPage
     ? initialResult
     : await loadGames(query, visibility, affiliate, recommendation, sort, currentPage);
@@ -140,6 +162,11 @@ export default async function AdminPage({ searchParams }) {
 
       <section className="admin-panel">
         <div className="admin-section-title"><div><h2>등록된 게임</h2><p>숨김은 복구할 수 있으며, DB 삭제는 확인 후 영구적으로 처리됩니다.</p></div><strong>전체 {total.toLocaleString("ko-KR")}개</strong></div>
+        <PinnedFilter checked={pinnedOnly} />
+        {pinnedOnly ? <PinnedReleaseEditor
+          key={JSON.stringify(pinnedGames.map(game => [game.id, game.admin_new_release_order, game.release_date, game.active, game.admin_hidden]))}
+          games={pinnedGames}
+        /> : <>
         <form className="admin-filter" method="get">
           <input name="q" defaultValue={query} placeholder="게임 이름 검색" />
           <select name="visibility" defaultValue={visibility}>
@@ -213,6 +240,7 @@ export default async function AdminPage({ searchParams }) {
             {currentPage < totalPages ? <Link href={hrefForPage(currentPage + 1)}>다음</Link> : <span className="is-disabled">다음</span>}
           </nav>
         ) : null}
+        </>}
       </section>
     </main>
   );

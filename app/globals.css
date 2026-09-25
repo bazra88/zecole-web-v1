@@ -2575,6 +2575,23 @@ video.detail-inline-media { aspect-ratio: 16/9; }
 }
 
 /* Admin */
+.admin-pinned-filter { display: flex; align-items: center; gap: 10px; margin: 22px 0 18px; cursor: pointer; font-weight: 700; }
+.admin-pinned-filter input { width: 20px; height: 20px; accent-color: var(--blue); }
+.admin-order-help, .admin-order-toolbar > span { color: var(--admin-muted); font-size: 13px; }
+.admin-order-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+.admin-order-list { display: grid; gap: 10px; padding: 0; list-style: none; }
+.admin-order-row { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-soft); }
+.admin-order-number { min-width: 24px; color: var(--blue-bright); font-weight: 800; }
+.admin-order-row img { flex: 0 0 80px; object-fit: cover; border-radius: 8px; }
+.admin-order-info { display: grid; gap: 5px; min-width: 0; flex: 1; }
+.admin-order-info strong { overflow-wrap: anywhere; }
+.admin-order-info span { color: var(--admin-muted); font-size: 12px; }
+.admin-order-buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+@media (max-width: 680px) {
+  .admin-order-row { flex-wrap: wrap; }
+  .admin-order-row img { flex-basis: 56px; width: 56px; height: 48px; }
+  .admin-order-buttons { flex: 1 1 100%; justify-content: flex-end; }
+}
 .admin-shell { --admin-border: rgba(255,255,255,.18); --admin-muted: #b5b0a6; color-scheme: dark; width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 54px 0 100px; }
 .admin-login-page { min-height: calc(100vh - 72px); display: grid; place-items: center; }
 .admin-login-card, .admin-panel { border: 1px solid var(--line); border-radius: 22px; background: var(--panel); box-shadow: 0 24px 70px rgba(0,0,0,.28); }

@@ -1,3 +1,4 @@
+import { featuredNewReleases as buildFeaturedNewReleases, PINNED_RELEASE_ORDER } from "@/lib/new-release-order.mjs";
 import Link from "next/link";
 import GameCard from "@/components/GameCard";
 import EmptyPanel from "@/components/EmptyPanel";
@@ -98,7 +99,7 @@ export default async function Home() {
     safeGames({
       limit: 15,
       newReleasePinned: true,
-      order: "release_date.desc.nullslast,name.asc",
+      order: PINNED_RELEASE_ORDER,
     }),
     safeGames({
       limit: 15,
@@ -123,16 +124,7 @@ export default async function Home() {
 
   const hasReleaseDates = newReleaseGames.length > 0;
   const automaticNewReleases = hasReleaseDates ? newReleaseGames : recentlyAddedGames;
-  const pinnedNewReleaseIds = new Set(pinnedNewReleaseGames.map((game) => game.id));
-  const featuredNewReleases = [
-    ...pinnedNewReleaseGames,
-    ...automaticNewReleases.filter((game) => !pinnedNewReleaseIds.has(game.id)),
-  ].slice(0, 15).sort((a, b) => {
-    // Pinning reserves a place in the section, not a position above newer games.
-    const dateA = Date.parse(a.release_date) || 0;
-    const dateB = Date.parse(b.release_date) || 0;
-    return dateB - dateA || a.name.localeCompare(b.name, "ko");
-  });
+  const featuredNewReleases = buildFeaturedNewReleases(pinnedNewReleaseGames, automaticNewReleases);
   const featuredPopularPaid = popularPaidGames.slice(0, 15);
   const latestHorizonMonth = [...new Set(horizonPlus.map((row) => row.month).filter(Boolean))].sort().at(-1);
   const latestHorizon = latestHorizonMonth

@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { featuredNewReleases, sortPinnedReleases } from '../lib/new-release-order.mjs';
+const game = (id, date, rank = null) => ({ id, name: id, release_date: date, admin_new_release_order: rank });
+const old = game('old', '2026-01-01');
+const fresh = game('fresh', '2026-09-01');
+const auto = game('auto', '2026-08-01');
+assert.deepEqual(featuredNewReleases([old, fresh], [auto, fresh]).map(g => g.id), ['fresh','auto','old']);
+const ranked = [{ ...old, admin_new_release_order: 0 }, { ...fresh, admin_new_release_order: 1 }];
+assert.deepEqual(featuredNewReleases(ranked, [auto, fresh]).map(g => g.id), ['old','fresh','auto']);
+assert.deepEqual(sortPinnedReleases([...ranked, game('newPin', '2026-10-01')]).map(g => g.id), ['old','fresh','newPin']);
+assert.equal(featuredNewReleases(Array.from({length:20}, (_,i)=>game(String(i),'2026-01-01',i)), []).length,15);
+assert.deepEqual(sortPinnedReleases([game('unknown', null), fresh]).map(g=>g.id),['fresh','unknown']);
+console.log('New release order: legacy dates, manual order, new pins, deduplication and 15-card limit passed.');

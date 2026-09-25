@@ -197,12 +197,32 @@ export async function setGameNewReleasePinnedAction(formData) {
     headers: { Prefer: "return=minimal" },
     body: JSON.stringify({
       admin_new_release_pinned: pinned,
+      admin_new_release_order: null,
       ...(pinned ? { active: true, admin_hidden: false } : {}),
       updated_at: new Date().toISOString(),
     }),
   });
   revalidatePath("/");
   revalidatePath("/admin");
+}
+
+export async function saveNewReleaseOrderAction(ids, expected) {
+  try {
+    await requireAdmin();
+    if (!Array.isArray(ids) || !ids.length || ids.length > 10000
+      || ids.some(id => typeof id !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id))
+      || new Set(ids).size !== ids.length || !expected || typeof expected !== "object" || Array.isArray(expected)) {
+      return { error: "게임 순서 정보가 올바르지 않습니다. 새로고침 후 다시 시도해주세요." };
+    }
+    await adminRest("rpc/save_new_release_order", {
+      method: "POST", body: JSON.stringify({ p_ids: ids, p_expected: expected }),
+    });
+    revalidatePath("/");
+    revalidatePath("/admin");
+    return { success: "신작 순서를 저장했습니다. 메인페이지에도 반영됩니다." };
+  } catch {
+    return { error: "순서를 저장하지 못했습니다. 다른 창에서 고정 목록이 변경됐거나 로그인이 만료됐을 수 있습니다. 새로고침 후 다시 시도해주세요." };
+  }
 }
 
 export async function setGameRecommendationAction(formData) {

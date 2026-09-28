@@ -1,10 +1,19 @@
-import { refreshGameOnVisit } from '@/lib/game-visit-refresh';
+import { refreshGameOnVisit, getVisitRefreshStatus } from '@/lib/game-visit-refresh';
 import { revalidatePath } from 'next/cache';
 import { after } from 'next/server';
 import { refreshReviewTranslations } from '@/lib/game-review-refresh';
 import { isBotUserAgent } from '@/lib/bot-detect.mjs';
 
 export const maxDuration = 120;
+// Read-only waiters: this path never calls Meta or reserves a fetch budget.
+export async function GET(request) {
+  if (request.headers.get('sec-fetch-site') === 'cross-site') return Response.json({error:'forbidden'},{status:403});
+  if (isBotUserAgent(request.headers.get('user-agent'))) return Response.json({skipped:'bot'},{headers:{'Cache-Control':'no-store'}});
+  const gameId = new URL(request.url).searchParams.get('gameId');
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(gameId||'')) return Response.json({error:'invalid_game'},{status:400});
+  try { return Response.json(await getVisitRefreshStatus(gameId),{headers:{'Cache-Control':'no-store'}}); }
+  catch { return Response.json({failed:true},{status:503,headers:{'Cache-Control':'no-store'}}); }
+}
 export async function POST(request) {
   const origin = request.headers.get('origin');
   if (!origin || origin !== new URL(request.url).origin) return Response.json({error:'forbidden'},{status:403});

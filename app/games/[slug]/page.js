@@ -134,7 +134,7 @@ export default async function GameDetailPage({ params }) {
 
   return (
     <main className="container detail-page">
-      <GameVisitRefresh key={game.id} gameId={game.id} />
+      <GameVisitRefresh key={`visit-${game.id}`} gameId={game.id} />
       <BackButton />
 
       <section className="detail-hero">
@@ -270,7 +270,7 @@ export default async function GameDetailPage({ params }) {
         </section>
       ) : null}
 
-      <GameReviews key={game.id} gameId={game.id} initial={reviews} />
+      <GameReviews key={`reviews-${game.id}`} gameId={game.id} initial={reviews} />
 
     </main>
   );

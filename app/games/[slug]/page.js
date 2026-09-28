@@ -1,3 +1,4 @@
+import RemoteGameMedia from "@/components/RemoteGameMedia";
 import GameReviews from '@/components/GameReviews';
 import { notFound } from "next/navigation";
 import BackButton from "@/components/BackButton";
@@ -60,9 +61,9 @@ function LongDescription({ text }) {
   return blocks.map((block, index) => {
     if (block.type === "media") {
       return block.mediaType === "video" ? (
-        <video key={index} className="detail-inline-media" autoPlay loop muted playsInline src={block.url} />
+        <RemoteGameMedia key={index} className="detail-inline-media" type="video" url={block.url} />
       ) : (
-        <img key={index} className="detail-inline-media" src={block.url} alt="" loading="lazy" />
+        <RemoteGameMedia key={index} className="detail-inline-media" url={block.url} />
       );
     }
     return block.type === "h"
@@ -133,8 +134,8 @@ export default async function GameDetailPage({ params }) {
   ].filter(([, value]) => value);
 
   return (
+    <GameVisitRefresh key={`visit-${game.id}`} gameId={game.id}>
     <main className="container detail-page">
-      <GameVisitRefresh key={`visit-${game.id}`} gameId={game.id} />
       <BackButton />
 
       <section className="detail-hero">
@@ -273,5 +274,6 @@ export default async function GameDetailPage({ params }) {
       <GameReviews key={`reviews-${game.id}`} gameId={game.id} initial={reviews} />
 
     </main>
+    </GameVisitRefresh>
   );
 }

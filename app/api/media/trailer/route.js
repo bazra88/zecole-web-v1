@@ -3,6 +3,7 @@ import { adminRest } from "@/lib/admin-supabase";
 import { relayApp, extractMedia } from "@/lib/meta-collect.mjs";
 import { metaProductUrl } from "@/lib/game-visit-policy.mjs";
 import { reusableTrailer } from "@/lib/meta-fetch-policy.mjs";
+import { isBotUserAgent } from "@/lib/bot-detect.mjs";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
@@ -12,6 +13,9 @@ export async function GET(request) {
   const gameId = new URL(request.url).searchParams.get('gameId');
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(gameId || '')) {
     return NextResponse.json({error:'게임 ID가 올바르지 않습니다.'},{status:400});
+  }
+  if (isBotUserAgent(request.headers.get('user-agent'))) {
+    return NextResponse.json({error:'forbidden'},{status:403,headers:{'Cache-Control':'no-store'}});
   }
   let token;
   let success = false;

@@ -2,11 +2,15 @@ import { refreshGameOnVisit } from '@/lib/game-visit-refresh';
 import { revalidatePath } from 'next/cache';
 import { after } from 'next/server';
 import { refreshReviewTranslations } from '@/lib/game-review-refresh';
+import { isBotUserAgent } from '@/lib/bot-detect.mjs';
 
 export const maxDuration = 120;
 export async function POST(request) {
   const origin = request.headers.get('origin');
   if (!origin || origin !== new URL(request.url).origin) return Response.json({error:'forbidden'},{status:403});
+  if (isBotUserAgent(request.headers.get('user-agent'))) {
+    return Response.json({skipped:'bot'},{headers:{'Cache-Control':'no-store'}});
+  }
   const { gameId } = await request.json().catch(() => ({}));
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(gameId || '')) {
     return Response.json({error:'invalid_game'},{status:400});

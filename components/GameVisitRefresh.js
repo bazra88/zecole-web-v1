@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import GameLoadingOverlay from './GameLoadingOverlay';
+import { isBotUserAgent } from '@/lib/bot-detect.mjs';
 
 export default function GameVisitRefresh({ gameId }) {
   const router = useRouter();
@@ -10,6 +11,10 @@ export default function GameVisitRefresh({ gameId }) {
   const [failed,setFailed] = useState(false);
   const [pending,startTransition] = useTransition();
   useEffect(() => {
+    if (navigator.webdriver || isBotUserAgent(navigator.userAgent)) {
+      setChecking(false);
+      return;
+    }
     let active = true;
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 65000);

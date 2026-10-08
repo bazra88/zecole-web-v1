@@ -8,8 +8,9 @@ export default function BusinessPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const form = event.currentTarget;
     setStatus({ type: "sending", message: "문의를 전송하고 있습니다." });
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
 
     try {
       const response = await fetch("/api/business-inquiry", {
@@ -20,7 +21,7 @@ export default function BusinessPage() {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "문의 전송에 실패했습니다.");
 
-      event.currentTarget.reset();
+      form.reset();
       setStatus({ type: "success", message: "문의가 정상적으로 전송되었습니다." });
     } catch (error) {
       setStatus({ type: "error", message: error.message || "문의 전송에 실패했습니다." });

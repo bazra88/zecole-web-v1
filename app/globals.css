@@ -934,7 +934,8 @@ main:has(.horizon-section) > .hero-band { order: 0; }
   font-size: 14px;
   outline: none;
 }
-.game-toolbar select {
+.game-toolbar select,
+.business-form select {
   color-scheme: dark;
   appearance: none;
   padding-right: 42px;
@@ -942,11 +943,13 @@ main:has(.horizon-section) > .hero-band { order: 0; }
   background-repeat: no-repeat;
   background-position: right 16px center;
 }
-.game-toolbar select option {
+.game-toolbar select option,
+.business-form select option {
   background-color: #232326;
   color: #ece9e2;
 }
-.game-toolbar select:focus-visible {
+.game-toolbar select:focus-visible,
+.business-form select:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 2px;
 }

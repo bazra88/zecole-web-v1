@@ -14,6 +14,7 @@ export default function GameMediaGallery({ gameId, metaStoreUrl, trailer, screen
   const [lightboxOpen, setLightboxOpen] = useState(false);
   // Resolve only expired links; valid media is loaded directly by the browser.
   const refreshStatus = useMediaRefreshStatus();
+  const refreshBusy = refreshStatus === "checking" || refreshStatus === "waiting";
   const [trailerUrl, setTrailerUrl] = useState(null);
   const [trailerLoading, setTrailerLoading] = useState(false);
   const [trailerError, setTrailerError] = useState(false);
@@ -30,7 +31,7 @@ export default function GameMediaGallery({ gameId, metaStoreUrl, trailer, screen
     if (trailerLoading) return;
     if (playableUrl) { setTrailerError(false); return; }
     if (savedTrailer) { setTrailerError(false); setTrailerUrl(savedTrailer); return; }
-    if (refreshStatus === "checking") return;
+    if (refreshBusy) return;
     setTrailerLoading(true);
     setTrailerError(false);
     try {
@@ -62,9 +63,9 @@ export default function GameMediaGallery({ gameId, metaStoreUrl, trailer, screen
             playableUrl && !trailerError ? (
               <video key={playableUrl} controls autoPlay poster={!needsMediaRenewal(active.thumb) ? active.thumb || undefined : undefined} src={playableUrl} onError={() => setTrailerError(true)} />
             ) : (
-              <button type="button" className="detail-video-poster" onClick={loadTrailer} disabled={trailerLoading || (!savedTrailer && refreshStatus === "checking")} aria-label="트레일러 재생">
+              <button type="button" className="detail-video-poster" onClick={loadTrailer} disabled={trailerLoading || (!savedTrailer && refreshBusy)} aria-label="트레일러 재생">
                 {active.thumb && !needsMediaRenewal(active.thumb) ? <img src={active.thumb} alt="" /> : null}
-                {trailerLoading || (!savedTrailer && refreshStatus === "checking") ? (
+                {trailerLoading || (!savedTrailer && refreshBusy) ? (
                   <span className="detail-media-status">불러오는 중…</span>
                 ) : trailerError ? (
                   <span className="detail-media-status">

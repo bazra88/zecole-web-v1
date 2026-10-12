@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {gameMediaNeedsRenewal,needsMediaRenewal,mediaRenewalPatches,refreshIsPending} from '../lib/shared-media-policy.mjs';
 import {visitCurrency,metaProductUrl,refreshInlineMedia,hasExpiredInlineMedia} from '../lib/game-visit-policy.mjs';
+import {visitDeferral} from '../lib/visit-deferral-policy.mjs';
 const now=Date.now();
 const signed=(seconds,path='a.mp4')=>`https://cdn.example/${path}?oe=${Math.floor((now+seconds*1000)/1000).toString(16)}`;
 const old=signed(-60), fresh=signed(86400);
@@ -37,9 +38,10 @@ const adminRest=async(path,options={})=>{
   }
   if(path==='rpc/finish_game_visit_refresh') {state.completed_at=new Date().toISOString();state.outcome=JSON.parse(options.body).p_observation.outcome;return {changed:false};}
   if(path.startsWith('meta_fetch_attempts?'))return null;
+  if(path.startsWith('meta_fetch_control?'))return [];
   throw new Error(`Unexpected DB call ${path}`);
 };
-const deps={adminRest,relayApp:()=>({}),parseKrw:()=>({}),extractBaseInfo:()=>({}),extractOfferPricing:()=>({}),extractLongDescription:()=>'',translateLongDescription:async()=>'',extractReviews:()=>[],extractMedia:()=>raw,visitCurrency,metaProductUrl,refreshInlineMedia,hasExpiredInlineMedia,gameMediaNeedsRenewal,mediaRenewalPatches,refreshIsPending,
+const deps={adminRest,relayApp:()=>({}),parseKrw:()=>({}),extractBaseInfo:()=>({}),extractOfferPricing:()=>({}),extractLongDescription:()=>'',translateLongDescription:async()=>'',extractReviews:()=>[],extractMedia:()=>raw,visitCurrency,metaProductUrl,refreshInlineMedia,hasExpiredInlineMedia,gameMediaNeedsRenewal,mediaRenewalPatches,refreshIsPending,visitDeferral,
   fetch:async()=>{fetchCount++;await networkGate;return {ok:true,text:async()=>'<fixture>'};}};
 const worker=new Function(...Object.keys(deps),`${source};return {refreshGameOnVisit,getVisitRefreshStatus};`)(...Object.values(deps));
 const first=worker.refreshGameOnVisit('game');

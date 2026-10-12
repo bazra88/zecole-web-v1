@@ -2899,3 +2899,14 @@ main:has(.horizon-section) > .business-band { order: 7; }
   text-align: center;
   background: rgba(255,255,255,.035);
 }
+.detail-refresh-status {
+  margin-top: 24px;
+  margin-bottom: 0;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}

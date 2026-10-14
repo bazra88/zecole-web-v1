@@ -1,6 +1,15 @@
 name: Collect complete Meta sale USD list
 on:
   workflow_dispatch:
+    inputs:
+      section_url:
+        description: '이번 행사 목록 URL'
+        required: true
+        type: string
+      campaign_ends_at:
+        description: '확인된 행사 종료 시각 (예: 2026-11-01T16:00:00+09:00). 미확인이면 비워 두기'
+        required: false
+        type: string
 permissions:
   contents: read
 jobs:
@@ -18,6 +27,8 @@ jobs:
       - run: xvfb-run -a node scripts/collect-meta-sale.mjs
         env:
           EXPECTED_CURRENCY: USD
+          META_SECTION_URL: ${{ inputs.section_url }}
+          META_SALE_ENDS_AT: ${{ inputs.campaign_ends_at }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

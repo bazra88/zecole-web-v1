@@ -2,6 +2,10 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 const url = process.env.META_SECTION_URL || 'https://www.meta.com/ko-kr/experiences/section/28128149733502312/';
 const expected = process.env.EXPECTED_CURRENCY;
+const campaignEndInput = process.env.META_SALE_ENDS_AT;
+if (campaignEndInput && (!/(Z|[+-]\d{2}:\d{2})$/i.test(campaignEndInput) || !Number.isFinite(Date.parse(campaignEndInput)))) throw new Error('META_SALE_ENDS_AT requires ISO date/time with timezone');
+const campaignEnd = campaignEndInput ? new Date(campaignEndInput).toISOString() : null;
+if (campaignEnd && Date.parse(campaignEnd) <= Date.now()) throw new Error('Campaign has already ended');
 if (!['KRW', 'USD'].includes(expected)) throw new Error('EXPECTED_CURRENCY must be KRW or USD');
 const output = process.env.SALE_OUTPUT || `sale-${expected}`;
 await mkdir(output, { recursive: true });
@@ -72,7 +76,7 @@ try {
   }
   if (!complete) throw new Error('Scroll limit reached before verified end');
 } catch (e) { error = e.message; }
-const items = [...rows.values()];
+const items = [...rows.values()].map(row => ({ ...row, offer_ends_at: row.original_price > row.current_price ? campaignEnd : null }));
 const missingPrices = items.filter(r => r.current_price == null);
 const invalid = items.filter(r => (r.current_price != null && r.currency !== expected) || !r.thumbnail_url);
 const summary = { url, expected_currency: expected, started_at: startedAt, finished_at: new Date().toISOString(), count: items.length, complete, invalid_count: invalid.length, missing_price_count: missingPrices.length, error, progress };

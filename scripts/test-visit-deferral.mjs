@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {visitDeferral} from '../lib/visit-deferral-policy.mjs';
 import {runVisitRefresh} from '../lib/visit-refresh-client.mjs';
+import {snapshotFailure,metaWasBlocked} from '../lib/meta-fetch-result.mjs';
 
 const now=Date.parse('2026-10-12T10:00:00Z');
 const ago=seconds=>new Date(now-seconds*1000).toISOString();
@@ -13,6 +14,19 @@ const checked={daily_attempted_at:ago(120),attempted_at:ago(120)};
 assert.deepEqual(visitDeferral(checked,false,control,[],now),{});
 assert.equal(visitDeferral(checked,true,control,[],now).retryAfter,3480);
 assert.equal(visitDeferral(null,true,control,[10,70,140].map(t=>({started_at:ago(t),success:false})),now).retryAfter,3600);
+const adaptive={...control,min_interval_seconds:15,media_priority_until:ago(-90)};
+assert.equal(visitDeferral(null,true,adaptive,[{started_at:ago(10),success:true}],now).retryAfter,5);
+assert.equal(visitDeferral(null,true,adaptive,[{started_at:ago(20),success:null}],now).retryAfter,15);
+assert.equal(visitDeferral(null,true,adaptive,[{started_at:ago(121),success:null}],now).retryAfter,1);
+assert.equal(visitDeferral(null,false,adaptive,[],now).retryAfter,90);
+assert.equal(visitDeferral(null,true,adaptive,[],now).retryAfter,1);
+assert.equal(await snapshotFailure(Response.json({error:'meta_429'},{status:400}),'KRW'),'meta_429');
+assert.equal(await snapshotFailure(Response.json({error:'meta_403'},{status:400}),'KRW'),'meta_403');
+assert.equal(await snapshotFailure(Response.json({error:'invalid_claim'},{status:400}),'KRW'),'kr_snapshot_400');
+assert.equal(await snapshotFailure(new Response('not json',{status:502}),'KRW'),'kr_snapshot_502');
+assert.equal(metaWasBlocked(new Error('meta_429')),true);
+assert.equal(metaWasBlocked(new Error('us_snapshot_403')),true);
+assert.equal(metaWasBlocked(new Error('kr_snapshot_400')),false);
 
 async function simulate(bodies,overrides={}) {
   let tick=now;

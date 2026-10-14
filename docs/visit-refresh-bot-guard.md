@@ -1,7 +1,9 @@
 # Visit-refresh bot guard
 
 Visitor-triggered Meta fetches (`/api/games/visit`, `/api/media/trailer`) share the
-`reserve_meta_fetch` budget (per region: 60s interval, 20/hour, 100/day). After the
+`reserve_meta_fetch` budget (per region: 15s interval, one in-flight request,
+20/hour, 100/day; adaptive failure pauses and media priority are described in
+`shared-media-refresh.md`). After the
 9/23 incident (1,883 detail pages in one day, 1,389 failed refreshes), crawlers kept
 consuming it: 9/24–9/27 saw 110–160 distinct games refreshed per day and the KRW
 budget hit exactly 100 every day. The visited games matched the whole catalog's

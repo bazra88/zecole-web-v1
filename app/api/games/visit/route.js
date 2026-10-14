@@ -20,12 +20,16 @@ export async function POST(request) {
   if (isBotUserAgent(request.headers.get('user-agent'))) {
     return Response.json({skipped:'bot'},{headers:{'Cache-Control':'no-store'}});
   }
-  const { gameId } = await request.json().catch(() => ({}));
+  const { gameId, visitId, attempt = 0 } = await request.json().catch(() => ({}));
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(gameId || '')) {
     return Response.json({error:'invalid_game'},{status:400});
   }
+  if ((visitId !== undefined && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(visitId)) ||
+    !Number.isInteger(attempt) || attempt < 0 || attempt > 2) {
+    return Response.json({error:'invalid_visit'},{status:400});
+  }
   try {
-    const {reviews = [], ...result} = await refreshGameOnVisit(gameId);
+    const {reviews = [], ...result} = await refreshGameOnVisit(gameId,{visitId,attempt});
     after(async () => {
       try {
         await refreshReviewTranslations(gameId,reviews);

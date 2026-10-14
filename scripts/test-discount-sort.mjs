@@ -33,3 +33,14 @@ assert.equal(calls.length, 4, 'must traverse server-capped batches before paging
 const second = await getGames({ sortDiscount: true, search: 'sale', limit: 2, offset: 2 });
 assert.deepEqual(second.data.map(row => row.id), ['a', 'b']);
 console.log('Discount sort: currencies, expired promos, free games, capped batches, filters and pagination passed');
+
+rows.push({...base,id:'f',name:'Ended store sale',krw_price:1000,meta_store_original_price:40000,meta_store_offer_ends_at:'2020-01-01T00:00:00Z'});
+const ended = await getGames({sortDiscount:true,search:'sale',limit:10});
+assert.equal(ended.data[0].id,'c');
+assert.ok(calls.some(p=>p.get('select').includes('meta_store_offer_ends_at')));
+const priceSorted = await getGames({order:'krw_price.desc.nullslast,current_price.desc.nullslast,name.asc',search:'sale',limit:10});
+assert.equal(priceSorted.data[0].id,'f');
+const filtered = await getGames({priceRange:'30000_50000',search:'sale',limit:10});
+assert.deepEqual(filtered.data.map(x=>x.id),['f']);
+assert.equal(filtered.count,1);
+console.log('Expired sale price participates in catalog sorting and price-range filtering');

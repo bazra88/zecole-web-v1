@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {gameMediaNeedsRenewal,needsMediaRenewal,mediaRenewalPatches,refreshIsPending} from '../lib/shared-media-policy.mjs';
 import {visitCurrency,metaProductUrl,refreshInlineMedia,hasExpiredInlineMedia} from '../lib/game-visit-policy.mjs';
 import {visitDeferral} from '../lib/visit-deferral-policy.mjs';
+import {snapshotFailure,metaWasBlocked} from '../lib/meta-fetch-result.mjs';
 const now=Date.now();
 const signed=(seconds,path='a.mp4')=>`https://cdn.example/${path}?oe=${Math.floor((now+seconds*1000)/1000).toString(16)}`;
 const old=signed(-60), fresh=signed(86400);
@@ -25,6 +26,8 @@ const source=(await readFile(new URL('../lib/game-visit-refresh.js',import.meta.
   .replace(/^import .*;\r?\n/gm,'').replace(/export /g,'');
 const game={id:'game',meta_product_id:'1234567',usd_price:10,description_long:'',description_long_ko:''};
 let claimCount=0, fetchCount=0, writes=0, state=null, current=structuredClone(rows), release;
+let httpStatus=200;
+const completions=[];
 let networkGate=new Promise(resolve=>{release=resolve;});
 const adminRest=async(path,options={})=>{
   if(path.startsWith('games?')) return [game];
@@ -38,11 +41,12 @@ const adminRest=async(path,options={})=>{
   }
   if(path==='rpc/finish_game_visit_refresh') {state.completed_at=new Date().toISOString();state.outcome=JSON.parse(options.body).p_observation.outcome;return {changed:false};}
   if(path.startsWith('meta_fetch_attempts?'))return null;
+  if(path==='rpc/complete_meta_fetch') {completions.push(JSON.parse(options.body));return true;}
   if(path.startsWith('meta_fetch_control?'))return [];
   throw new Error(`Unexpected DB call ${path}`);
 };
-const deps={adminRest,relayApp:()=>({}),parseKrw:()=>({}),extractBaseInfo:()=>({}),extractOfferPricing:()=>({}),extractLongDescription:()=>'',translateLongDescription:async()=>'',extractReviews:()=>[],extractMedia:()=>raw,visitCurrency,metaProductUrl,refreshInlineMedia,hasExpiredInlineMedia,gameMediaNeedsRenewal,mediaRenewalPatches,refreshIsPending,visitDeferral,
-  fetch:async()=>{fetchCount++;await networkGate;return {ok:true,text:async()=>'<fixture>'};}};
+const deps={adminRest,relayApp:()=>({}),parseKrw:()=>({}),extractBaseInfo:()=>({}),extractOfferPricing:()=>({}),extractLongDescription:()=>'',translateLongDescription:async()=>'',extractReviews:()=>[],extractMedia:()=>raw,visitCurrency,metaProductUrl,refreshInlineMedia,hasExpiredInlineMedia,gameMediaNeedsRenewal,mediaRenewalPatches,refreshIsPending,visitDeferral,snapshotFailure,metaWasBlocked,
+  fetch:async()=>{fetchCount++;await networkGate;return {ok:httpStatus===200,status:httpStatus,text:async()=>'<fixture>'};}};
 const worker=new Function(...Object.keys(deps),`${source};return {refreshGameOnVisit,getVisitRefreshStatus};`)(...Object.values(deps));
 const first=worker.refreshGameOnVisit('game');
 while(!fetchCount) await new Promise(r=>setTimeout(r,0));
@@ -51,6 +55,7 @@ assert.equal(second.pending,true);
 assert.equal(fetchCount,1);
 release();
 assert.equal((await first).changed,true);
+assert.equal(completions.at(-1).p_success,true);
 assert.equal(writes,1);
 assert.equal((await worker.refreshGameOnVisit('game',{mediaOnly:true})).skipped,true);
 assert.equal(fetchCount,1);
@@ -60,9 +65,14 @@ state=null; current=structuredClone(rows); networkGate=Promise.reject(new Error(
 const originalError=console.error; console.error=()=>{};
 try {
   assert.equal((await worker.refreshGameOnVisit('game')).failed,true);
+  assert.equal(completions.at(-1).p_success,false);
   const afterFailure=fetchCount;
   assert.equal((await worker.refreshGameOnVisit('game')).failed,true);
   assert.equal(fetchCount,afterFailure);
+  state=null; networkGate=Promise.resolve(); httpStatus=429;
+  assert.equal((await worker.refreshGameOnVisit('game')).failed,true);
+  assert.equal(completions.at(-1).p_blocked,true);
+  assert.equal(completions.at(-1).p_success,false);
 } finally {console.error=originalError;}
 console.log('Shared media policy and worker tests passed (no external calls)');
 

@@ -35,6 +35,23 @@ thumbnails and screenshots remain in place.
 
 ## Protection and limits
 
+Regional coordination (KRW and USD are independent) now uses a 15-second minimum
+start interval and a single unfinished fetch lease. The lease expires after 120
+seconds if a worker disappears; actual Meta requests have 20/25-second timeouts.
+The existing 20/hour and 100/24-hour budgets are unchanged.
+
+An eligible expired-media visit records 90 seconds of media priority. During that
+window, daily-only price/rating checks defer without spending a fetch token. Media
+fetches still include due daily checks in the same response. Priority expires if
+visitors leave; there is no permanent queue or full-catalog crawler.
+
+`complete_meta_fetch` atomically releases the lease and counts consecutive upstream
+failures: 60 seconds, 300 seconds, then 3600 seconds of regional pause. Upstream
+403/429 immediately pauses for 3600 seconds (including Seoul's wrapped JSON error).
+A success resets the failure streak. Duplicate or late completions cannot undo a
+newer failure or shorten an active pause. Missing price data alone is not counted
+as a failed Meta fetch when the game data and media were returned successfully.
+
 Claude's bot guard remains enabled on the client and server. Cross-site requests are
 rejected. Automation does not bypass the guard to exercise live Meta requests.
 Many *different* expired games can still use the regional budget; this change only
@@ -49,3 +66,7 @@ read-only trailer waiters and server bot rejection using mocked I/O. It makes no
 external requests. Existing bot, visit-price and sale-price regression tests also apply.
 `node scripts/test-visit-deferral.mjs` covers regional limits, paused fetching,
 bounded retries, hidden-tab cancellation, read-only polling and partial price failures.
+`scripts/test-adaptive-meta-fetch.sql` validates the real database functions with
+transactional fixtures that always roll back: single flight, region independence,
+15-second spacing, media priority, expired leases, adaptive backoff, duplicate/late
+results, hard quotas and service-role-only access. It never requests Meta.

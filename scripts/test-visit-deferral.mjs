@@ -32,7 +32,7 @@ async function simulate(bodies,overrides={}) {
   let tick=now;
   const calls=[],waits=[],statuses=[];
   const options={signal:new AbortController().signal,onStatus:s=>statuses.push(s),
-    fetcher:async(url,options)=>{calls.push({url,method:options.method||'GET'});const body=bodies.shift();assert.ok(body,'unexpected extra request');return Response.json(body);},
+    fetcher:async(url,options)=>{calls.push({url,method:options.method||'GET',body:options.body&&JSON.parse(options.body)});const body=bodies.shift();assert.ok(body,'unexpected extra request');return Response.json(body);},
     wait:async ms=>{waits.push(ms);tick+=ms;},visible:()=>true,now:()=>tick,random:()=>0,...overrides};
   const result=await runVisitRefresh('game',options);
   return {result,calls,waits,statuses};
@@ -43,6 +43,9 @@ assert.equal(recovered.calls.length,2);
 assert.equal(recovered.waits[0],50500);
 assert.ok(recovered.statuses.includes('waiting'));
 assert.equal(recovered.result.shouldRefresh,true);
+assert.match(recovered.calls[0].body.visitId,/^[0-9a-f-]{36}$/);
+assert.equal(recovered.calls[0].body.visitId,recovered.calls[1].body.visitId);
+assert.deepEqual(recovered.calls.map(c=>c.body.attempt),[0,1]);
 // A concurrent visitor joins using GET only; no extra Meta claim.
 const joined=await simulate([{pending:true},{pending:false,completedAt:ago(-5),priceUnavailable:true}]);
 assert.deepEqual(joined.calls.map(c=>c.method),['POST','GET']);
@@ -55,6 +58,8 @@ assert.equal((await simulate([{deferred:true,retryAfter:30}],{visible:()=>false}
 const contention=await simulate(Array.from({length:3},()=>({deferred:true,retryAfter:1})));
 assert.equal(contention.calls.length,3);
 assert.equal(contention.result.deferred,true);
+assert.deepEqual(contention.calls.map(c=>c.body.attempt),[0,1,2]);
+assert.notEqual(contention.calls[0].body.visitId,recovered.calls[0].body.visitId);
 await assert.rejects(()=>simulate([],{fetcher:async()=>Response.json({}, {status:503})}),/visit_failed/);
 // Leaving the page aborts the waiting timer and prevents a second claim.
 const controller=new AbortController();

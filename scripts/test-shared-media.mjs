@@ -28,13 +28,15 @@ const game={id:'game',meta_product_id:'1234567',usd_price:10,description_long:''
 let claimCount=0, fetchCount=0, writes=0, state=null, current=structuredClone(rows), release;
 let httpStatus=200;
 const completions=[];
+const observedClaims=[];
 let networkGate=new Promise(resolve=>{release=resolve;});
 const adminRest=async(path,options={})=>{
   if(path.startsWith('games?')) return [game];
   if(path.startsWith('game_visit_refresh?')) return state?[state]:[];
   if(path.startsWith('game_media?')&&options.method==='PATCH') {writes++;const patch=JSON.parse(options.body);Object.assign(current[0],patch);return null;}
   if(path.startsWith('game_media?')) return current;
-  if(path==='rpc/claim_game_visit_refresh') {
+  if(path==='rpc/claim_game_visit_refresh' || path==='rpc/claim_game_visit_refresh_observed') {
+    if(path.endsWith('_observed')) observedClaims.push(JSON.parse(options.body));
     claimCount++;if(state)return null;
     state={attempted_at:new Date().toISOString(),completed_at:null};
     return {...state,refresh_daily:false,fetch_token:'token'};
@@ -48,11 +50,12 @@ const adminRest=async(path,options={})=>{
 const deps={adminRest,relayApp:()=>({}),parseKrw:()=>({}),extractBaseInfo:()=>({}),extractOfferPricing:()=>({}),extractLongDescription:()=>'',translateLongDescription:async()=>'',extractReviews:()=>[],extractMedia:()=>raw,visitCurrency,metaProductUrl,refreshInlineMedia,hasExpiredInlineMedia,gameMediaNeedsRenewal,mediaRenewalPatches,refreshIsPending,visitDeferral,snapshotFailure,metaWasBlocked,
   fetch:async()=>{fetchCount++;await networkGate;return {ok:httpStatus===200,status:httpStatus,text:async()=>'<fixture>'};}};
 const worker=new Function(...Object.keys(deps),`${source};return {refreshGameOnVisit,getVisitRefreshStatus};`)(...Object.values(deps));
-const first=worker.refreshGameOnVisit('game');
+const first=worker.refreshGameOnVisit('game',{visitId:'00000000-0000-4000-8000-000000000001',attempt:1});
 while(!fetchCount) await new Promise(r=>setTimeout(r,0));
 const second=await worker.refreshGameOnVisit('game');
 assert.equal(second.pending,true);
 assert.equal(fetchCount,1);
+assert.deepEqual(observedClaims,[{p_game_id:'game',p_media_expired:true,p_visit_id:'00000000-0000-4000-8000-000000000001',p_attempt:1}]);
 release();
 assert.equal((await first).changed,true);
 assert.equal(completions.at(-1).p_success,true);

@@ -1,0 +1,330 @@
+{
+  "baseline": "supabase/baselines/public-20261022.sql",
+  "after": "20261014081123",
+  "tables": {
+    "business_inquiries": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "content_games": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "content_items": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "content_products": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "game_genres": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "game_media": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "game_reviews": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "game_videos": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "game_visit_refresh": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "games": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "genres": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "horizon_plus_entries": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "meta_fetch_attempts": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "meta_fetch_control": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "price_history": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "products": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "visit_refresh_decisions": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "SELECT",
+        "INSERT",
+        "UPDATE",
+        "DELETE"
+      ]
+    }
+  },
+  "views": {
+    "games_storefront": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT"
+      ]
+    },
+    "games_current_offer": {
+      "anon": [
+        "SELECT"
+      ],
+      "authenticated": [
+        "SELECT"
+      ],
+      "service_role": [
+        "SELECT"
+      ]
+    }
+  },
+  "sequences": {
+    "horizon_plus_entries_id_seq": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "USAGE",
+        "SELECT"
+      ]
+    },
+    "price_history_id_seq": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "USAGE",
+        "SELECT"
+      ]
+    },
+    "genres_id_seq": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "USAGE",
+        "SELECT"
+      ]
+    }
+  },
+  "functions": {
+    "claim_game_visit_refresh(uuid,boolean)": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "EXECUTE"
+      ]
+    },
+    "claim_game_visit_refresh_observed(uuid,boolean,uuid,integer)": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "EXECUTE"
+      ]
+    },
+    "claim_game_visit_refresh_unmetered(uuid,boolean)": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": []
+    },
+    "claim_review_translations(uuid)": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "EXECUTE"
+      ]
+    },
+    "complete_meta_fetch(uuid,boolean,boolean)": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "EXECUTE"
+      ]
+    },
+    "finish_game_visit_refresh(uuid,timestamp with time zone,jsonb)": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "EXECUTE"
+      ]
+    },
+    "reserve_meta_fetch(text,uuid,text)": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "EXECUTE"
+      ]
+    },
+    "save_new_release_order(uuid[],jsonb)": {
+      "anon": [],
+      "authenticated": [],
+      "service_role": [
+        "EXECUTE"
+      ]
+    }
+  }
+}

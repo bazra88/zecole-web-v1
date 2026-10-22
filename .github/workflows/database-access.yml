@@ -1,0 +1,62 @@
+name: Database API access
+on:
+  pull_request:
+    paths:
+      - 'supabase/**'
+      - 'scripts/check-db-access.mjs'
+      - '.github/workflows/database-access.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'supabase/**'
+      - 'scripts/check-db-access.mjs'
+      - '.github/workflows/database-access.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  explicit-grants:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local-test-only
+          POSTGRES_DB: zecole_access_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres -d zecole_access_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: '5432'
+      PGUSER: postgres
+      PGPASSWORD: local-test-only
+      PGDATABASE: zecole_access_test
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Require forward migrations
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { execFileSync } from 'node:child_process';
+          import { readFileSync } from 'node:fs';
+          const { after } = JSON.parse(readFileSync('supabase/api-access-contract.json','utf8'));
+          const paths = execFileSync('git',['diff','--name-only',process.env.BASE_SHA,process.env.HEAD_SHA,'--','supabase/migrations'],{encoding:'utf8'}).trim().split('\n');
+          const historical = paths.filter(p => /^\d{14}_/.test(p.split('/').pop()) && p.split('/').pop().slice(0,14) <= after);
+          if (historical.length) throw new Error('Add forward migrations; baseline already represents: '+historical.join(', '));
+          NODE
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Install SQL client
+        run: sudo apt-get update -qq && sudo apt-get install -y postgresql-client
+      - name: Restore empty schema and test without automatic grants
+        run: node scripts/check-db-access.mjs

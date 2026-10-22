@@ -64,3 +64,13 @@ PGHOST=127.0.0.1 PGPORT=5432 PGDATABASE=zecole_access_test PGUSER=postgres node 
 ```
 
 테스트는 실제 PostgREST/GraphQL 서버, Auth 로그인, Storage 또는 배포 전체 흐름을 대신하지 않습니다. 운영 적용 후에는 권한 검사와 공개 API의 읽기 응답을 별도로 확인합니다.
+
+## 2026-10-22 적용 결과
+
+- CLI로 생성한 신규 마이그레이션을 운영에 적용한 뒤 파일 버전을 실제 운영 이력 `20261022095737_explicit_data_api_grants`와 맞췄습니다.
+- 로컬 PGlite 0.5.11과 GitHub PostgreSQL 17에서 위 격리 테스트를 통과했습니다.
+- 운영 DB에서도 전체 접근 기준 SQL 검증을 통과했습니다.
+- 실제 PostgREST에서 공개 테이블 12개와 뷰 2개의 읽기 응답은 모두 200이었습니다. 게임→장르 관계 조회도 200으로 확인했습니다.
+- 비공개 테이블 5개는 공개 키로 접근 시 모두 401 / PostgreSQL 42501로 차단되었습니다. 응답 데이터는 수집하지 않았습니다.
+- 보안 Advisor에는 기존 서버 전용 테이블 5개의 RLS 정책 없음 정보 알림만 남아 있습니다. 이 테이블은 anon/authenticated 권한이 없고 BYPASSRLS 서버 역할만 접근하므로 공개 정책을 추가하지 않습니다.
+- 운영 테이블 데이터, 가격, RLS 정책, 수집 주기, default privileges와 API 노출 스키마 설정은 변경하지 않았습니다. 권한만 명시적으로 정리했습니다.

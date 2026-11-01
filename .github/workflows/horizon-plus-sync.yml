@@ -2,8 +2,9 @@ name: Sync Meta Horizon Plus catalog
 
 on:
   schedule:
-    # Pacific midnight is 07:00 UTC during PDT and 08:00 UTC during PST.
-    - cron: "0 7,8 1 * *"
+    # 09:17 UTC is after Pacific midnight in both PDT and PST.
+    # Run once monthly, away from the busiest top-of-hour scheduling window.
+    - cron: "17 9 1 * *"
   workflow_dispatch:
     inputs:
       confirmation:
@@ -31,14 +32,16 @@ jobs:
       - run: npm ci
       - name: Install browser
         run: npx playwright install --with-deps chromium
-      - name: Check Pacific schedule
+      - name: Validate sync trigger
         id: pacific
         shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             [[ "${{ inputs.confirmation }}" == "SYNC_HORIZON_PLUS" ]] || exit 1
             echo "run=true" >> "$GITHUB_OUTPUT"
-          elif [[ "$(TZ=America/Los_Angeles date +%d-%H)" == "01-00" ]]; then
+          # Scheduled jobs can start hours late. Do not reject a valid trigger
+          # based on the runner's wall-clock hour (November 2026 was skipped).
+          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"

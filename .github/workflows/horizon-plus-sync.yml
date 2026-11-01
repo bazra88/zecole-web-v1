@@ -11,6 +11,11 @@ on:
         description: Type SYNC_HORIZON_PLUS
         required: true
         type: string
+      collages_only:
+        description: Rebuild homepage collages from the existing DB without collecting Meta
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -47,7 +52,7 @@ jobs:
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Collect and apply official catalogs
-        if: steps.pacific.outputs.run == 'true'
+        if: steps.pacific.outputs.run == 'true' && inputs.collages_only != true
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
@@ -59,7 +64,7 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: npm run data:horizon-plus:collages -- --apply
       - name: Upload sync report
-        if: always() && steps.pacific.outputs.run == 'true'
+        if: always() && steps.pacific.outputs.run == 'true' && inputs.collages_only != true
         uses: actions/upload-artifact@v6
         with:
           name: horizon-plus-sync-${{ github.run_id }}

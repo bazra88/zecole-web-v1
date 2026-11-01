@@ -22,6 +22,8 @@ function Category({ id, title, description, rows, usdKrwRate }) {
               <article key={row.id} className="game-card horizon-missing-card">
                 <div className="game-thumb">
                   <div className="no-image">NO IMAGE</div>
+                  {row.status === "added" ? <span className="badge-new-ribbon">신규</span> : null}
+                  {row.status === "removed" ? <div className="badges"><span className="badge catalog-removed">이번 달 제외</span></div> : null}
                 </div>
                 <div className="game-card-body">
                   <strong className="game-title">

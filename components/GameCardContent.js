@@ -4,14 +4,9 @@ import GameDetailLink from "@/components/GameDetailLink";
 import SaleCountdown from "@/components/SaleCountdown";
 import { useSaleClock } from "@/components/useSaleClock";
 import {
-  discountedPriceLabel,
-  discountSavingsLabel,
-  effectiveAffiliateDiscount,
-  formatGamePrice,
-  isFreeGame,
+  cardPriceDisplay,
   motionSicknessLabel,
   reviewLabel,
-  storeDiscountInfo,
 } from "@/lib/game-format";
 
 function genreHue(name) {
@@ -20,19 +15,7 @@ function genreHue(name) {
 
 export default function GameCardContent({ game, image, usdKrwRate = null, catalogStatus = null, isHorizonPlus = false, renderedAt }) {
   const now = useSaleClock(game.meta_store_offer_ends_at, renderedAt);
-  const free = isFreeGame(game);
-  const discount = effectiveAffiliateDiscount(game, now);
-  const storeSale = storeDiscountInfo(game, now);
-  const affiliateDiscount = discount.storeDiscounted
-    ? 0
-    : !free && game.affiliate_url ? discount.percent || 10 : discount.percent;
-  const price = formatGamePrice(game, usdKrwRate, affiliateDiscount, now);
-  const discountedPrice = affiliateDiscount > 0
-    ? discountedPriceLabel(game, affiliateDiscount, now)
-    : null;
-  const discountSavings = affiliateDiscount > 0
-    ? discountSavingsLabel(game, affiliateDiscount, now)
-    : null;
+  const { free, storeSale, affiliateDiscount, price, discountedPrice } = cardPriceDisplay(game, usdKrwRate, now);
   const reviews = reviewLabel(game.review_count);
   const genres = [...new Set(
     (game.game_genres || [])

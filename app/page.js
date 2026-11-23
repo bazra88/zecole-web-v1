@@ -1,10 +1,10 @@
-import { featuredNewReleases as buildFeaturedNewReleases, PINNED_RELEASE_ORDER } from "@/lib/new-release-order.mjs";
 import Link from "next/link";
 import GameCard from "@/components/GameCard";
 import EmptyPanel from "@/components/EmptyPanel";
 import HomeHero from "@/components/HomeHero";
 import SectionHeader from "@/components/SectionHeader";
 import { getUsdKrwRate } from "@/lib/exchange-rate";
+import { loadFeaturedNewReleases } from "@/lib/new-releases";
 import { gameImageUrl, getContent, getGames, getHorizonPlus } from "@/lib/supabase";
 
 export const revalidate = 300;
@@ -80,9 +80,7 @@ function HorizonMonthlyTile({ href, number, title, description, games, usdKrwRat
 
 export default async function Home() {
   const [
-    newReleaseGames,
-    pinnedNewReleaseGames,
-    recentlyAddedGames,
+    featuredNewReleases,
     popularPaidGames,
     popularFreeGames,
     news,
@@ -91,20 +89,8 @@ export default async function Home() {
     horizonPlus,
     usdKrwRate,
   ] = await Promise.all([
-    safeGames({
-      limit: 15,
-      releasedOnly: true,
-      order: "release_date.desc.nullslast,name.asc",
-    }),
-    safeGames({
-      limit: 15,
-      newReleasePinned: true,
-      order: PINNED_RELEASE_ORDER,
-    }),
-    safeGames({
-      limit: 15,
-      order: "created_at.desc,name.asc",
-    }),
+    // 런처용 공개 주소(/api/launcher/new-games)와 같은 목록 규칙을 쓴다.
+    loadFeaturedNewReleases().catch(() => []),
     safeGames({
       limit: 30,
       pricing: "paid",
@@ -122,9 +108,6 @@ export default async function Home() {
     getUsdKrwRate(),
   ]);
 
-  const hasReleaseDates = newReleaseGames.length > 0;
-  const automaticNewReleases = hasReleaseDates ? newReleaseGames : recentlyAddedGames;
-  const featuredNewReleases = buildFeaturedNewReleases(pinnedNewReleaseGames, automaticNewReleases);
   const featuredPopularPaid = popularPaidGames.slice(0, 15);
   const latestHorizonMonth = [...new Set(horizonPlus.map((row) => row.month).filter(Boolean))].sort().at(-1);
   const latestHorizon = latestHorizonMonth

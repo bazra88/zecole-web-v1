@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { cardPriceDisplay, displayedDiscountPercent, effectiveAffiliateDiscount, priceChangeTimes, storeCouponInfo } from '../lib/game-format.js';
 import { launcherPrice } from '../lib/launcher-feed.mjs';
-import { attachStoreCoupon, attachStoreCoupons } from '../lib/store-coupons.js';
+import { activeStoreCouponFilter, attachStoreCoupon, attachStoreCoupons } from '../lib/store-coupons.js';
 import bf2026 from '../lib/store-coupon-data/bf2026.js';
 
 const now = new Date('2026-11-25T03:00:00Z');
@@ -86,5 +86,9 @@ assert.equal(attachStoreCoupon({ id: bf2026.game_ids_by_currency.USD[0] }, now).
 assert.equal(attachStoreCoupon({ id: '00000000-0000-0000-0000-000000000000' }, now).store_coupon, undefined);
 assert.equal(attachStoreCoupon({ id: target }, after).store_coupon, undefined, '종료 뒤에는 붙이지 않음');
 assert.equal(attachStoreCoupons([{ id: target }, { name: 'id 없음' }], now)[1].store_coupon, undefined);
+
+// 전체 VR 게임 "가격" 필터의 블프 할인 항목: 행사 중에만 보임
+assert.deepEqual(activeStoreCouponFilter(now), { value: 'coupon', label: '블프 할인' });
+assert.equal(activeStoreCouponFilter(after), null);
 
 console.log('쿠폰 표시 검사 통과');

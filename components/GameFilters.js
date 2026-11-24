@@ -1,6 +1,6 @@
 "use client";
 
-export default function GameFilters({ search, pricing, priceRange, recommendation, genre, genres, sort, pageSize }) {
+export default function GameFilters({ search, pricing, priceRange, recommendation, genre, genres, sort, pageSize, couponFilter = null }) {
   function applySelectedFilter(event) {
     event.currentTarget.form?.requestSubmit();
   }
@@ -19,6 +19,7 @@ export default function GameFilters({ search, pricing, priceRange, recommendatio
         <option value="">전체 가격</option>
         <option value="paid">유료 게임</option>
         <option value="free">무료 게임</option>
+        {couponFilter ? <option value={couponFilter.value}>{couponFilter.label}</option> : null}
       </select>
 
       <select name="price_range" defaultValue={priceRange} aria-label="가격대" onChange={applySelectedFilter}>

@@ -3,6 +3,7 @@ import GameFilters from "@/components/GameFilters";
 import SectionHeader from "@/components/SectionHeader";
 import { getUsdKrwRate } from "@/lib/exchange-rate";
 import { getGames, getGenres } from "@/lib/supabase";
+import { activeStoreCouponFilter } from "@/lib/store-coupons";
 
 export const revalidate = 300;
 
@@ -108,6 +109,7 @@ export default async function GamesPage({ searchParams }) {
         genres={genres}
         sort={sort}
         pageSize={pageSize}
+        couponFilter={activeStoreCouponFilter()}
       />
 
       {error ? (

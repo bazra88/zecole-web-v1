@@ -2910,3 +2910,15 @@ main:has(.horizon-section) > .business-band { order: 7; }
   font-size: 14px;
   line-height: 1.6;
 }
+
+/* Meta 스토어 쿠폰 행사(예: BF2026 코드 40%) 표시 */
+.badge-coupon-ribbon { background: linear-gradient(135deg, #1a1a1d, #3a2a18); color: var(--blue-bright); border-left: 2px solid var(--blue); }
+.game-coupon-note { color: var(--blue-bright); font-size: 10px; line-height: 10px; font-weight: 600; white-space: nowrap; }
+.game-coupon-note b { font-weight: 800; letter-spacing: .03em; }
+.coupon-note { max-width: 520px; margin-top: 14px; padding: 12px 14px; border: 1px solid rgba(230,169,110,.35); border-radius: 10px; background: rgba(230,169,110,.07); }
+.coupon-note > p:first-child { margin: 0 0 9px; color: var(--text); font-size: 12px; line-height: 1.6; }
+.coupon-note .affiliate-note { margin-top: 9px; }
+.coupon-code-button { display: inline-flex; align-items: center; gap: 10px; padding: 7px 10px 7px 12px; border: 1px dashed var(--blue); border-radius: 8px; color: var(--text); background: var(--panel-2); cursor: pointer; font: inherit; }
+.coupon-code-button code { font-family: var(--font-display), ui-monospace, monospace; font-size: 15px; font-weight: 800; letter-spacing: .08em; color: var(--blue-bright); }
+.coupon-code-button span { color: var(--muted); font-size: 11px; }
+.coupon-code-button:hover span, .coupon-code-button:focus-visible span { color: var(--blue-bright); }

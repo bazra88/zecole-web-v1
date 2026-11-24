@@ -6,6 +6,7 @@ import { useSaleClock } from "@/components/useSaleClock";
 import {
   cardPriceDisplay,
   motionSicknessLabel,
+  priceChangeTimes,
   reviewLabel,
 } from "@/lib/game-format";
 
@@ -14,8 +15,8 @@ function genreHue(name) {
 }
 
 export default function GameCardContent({ game, image, usdKrwRate = null, catalogStatus = null, isHorizonPlus = false, renderedAt }) {
-  const now = useSaleClock(game.meta_store_offer_ends_at, renderedAt);
-  const { free, storeSale, affiliateDiscount, price, discountedPrice } = cardPriceDisplay(game, usdKrwRate, now);
+  const now = useSaleClock(priceChangeTimes(game), renderedAt);
+  const { free, storeSale, coupon, couponPrice, affiliateDiscount, price, discountedPrice } = cardPriceDisplay(game, usdKrwRate, now);
   const reviews = reviewLabel(game.review_count);
   const genres = [...new Set(
     (game.game_genres || [])
@@ -64,7 +65,7 @@ export default function GameCardContent({ game, image, usdKrwRate = null, catalo
 
         {curationTag ? <span className="badge-curation-ribbon">{curationTag}</span> : null}
         {isHorizonPlus ? <span className="badge-horizon-ribbon">Horizon +</span> : null}
-        {storeSale ? <span className="badge-discount-ribbon" title="Meta 스토어 자체 할인">Meta -{storeSale.percent}%</span> : affiliateDiscount > 0 ? <span className="badge-discount-ribbon">-{affiliateDiscount}%</span> : null}
+        {storeSale ? <span className="badge-discount-ribbon" title="Meta 스토어 자체 할인">Meta -{storeSale.percent}%</span> : coupon ? <span className="badge-discount-ribbon badge-coupon-ribbon" title={`결제 시 ${coupon.code} 코드 입력`}>{coupon.code} -{coupon.percent}%</span> : affiliateDiscount > 0 ? <span className="badge-discount-ribbon">-{affiliateDiscount}%</span> : null}
         {catalogStatus === "added" ? <span className="badge-new-ribbon">신규</span> : null}
       </GameDetailLink>
 
@@ -91,9 +92,10 @@ export default function GameCardContent({ game, image, usdKrwRate = null, catalo
           ) : null}
         </div>
 
-        {timedStoreOffer || price.regional ? (
+        {timedStoreOffer || coupon || price.regional ? (
           <div className="game-note-row">
             {timedStoreOffer ? <SaleCountdown endsAt={game.meta_store_offer_ends_at} /> : null}
+            {coupon ? <span className="game-coupon-note">결제 시 코드 <b>{coupon.code}</b></span> : null}
             {price.regional ? <span className="game-price-region">한국 스토어 미판매</span> : null}
           </div>
         ) : null}
@@ -113,6 +115,11 @@ export default function GameCardContent({ game, image, usdKrwRate = null, catalo
               <div className="game-card-prices">
                 <span>{storeSale.originalLabel}</span>
                 <strong>{price.primary}</strong>
+              </div>
+            ) : couponPrice ? (
+              <div className="game-card-prices">
+                <span>{price.primary}</span>
+                <strong>{couponPrice}</strong>
               </div>
             ) : discountedPrice ? (
               <div className="game-card-prices">

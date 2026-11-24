@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   scan-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Playwright가 ubuntu-26.04(현재 latest)를 지원하지 않아 고정
     timeout-minutes: 15
     steps:
       - name: Checkout

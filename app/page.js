@@ -2,6 +2,7 @@ import Link from "next/link";
 import GameCard from "@/components/GameCard";
 import EmptyPanel from "@/components/EmptyPanel";
 import HomeHero from "@/components/HomeHero";
+import HomeStoreBenefits from "@/components/HomeStoreBenefits";
 import SectionHeader from "@/components/SectionHeader";
 import { getUsdKrwRate } from "@/lib/exchange-rate";
 import { loadFeaturedNewReleases } from "@/lib/new-releases";
@@ -124,6 +125,7 @@ export default async function Home() {
   return (
     <main>
       <HomeHero />
+      <HomeStoreBenefits />
 
       <section className="horizon-section">
         <div className="container section">

@@ -6,14 +6,15 @@ export const revalidate = 300;
 
 // 제휴 링크: 받으면 여기에만 넣는다. 비어 있으면 공식 제품 페이지로 연결된다.
 // DEFAULT 하나만 넣으면 모든 구매 버튼에 쓰이고, 모델별 값이 있으면 그 값이 먼저다.
+// 2026-11-25 입력: 모델별 링크 6개가 모두 해당 모델의 공식 상품 페이지로 연결됨을 확인함.
 const AFFILIATE_LINKS = {
-  DEFAULT: null,
-  wayfarer2: null,
-  skyler2: null,
-  headliner2: null,
-  wayfarer3: null,
-  zena3: null,
-  aviator3: null,
+  DEFAULT: "https://www.meta.com/kr/ai-glasses/meta-glasses/",
+  wayfarer2: "https://metacreator.pxf.io/k4NeBx",
+  skyler2: "https://metacreator.pxf.io/JkP9Aq",
+  headliner2: "https://metacreator.pxf.io/0G52v3",
+  wayfarer3: "https://metacreator.pxf.io/YVe30O",
+  zena3: "https://metacreator.pxf.io/qWMXon",
+  aviator3: "https://metacreator.pxf.io/9Vkaqe",
 };
 
 // 블랙프라이데이 할인: 공식 안내는 "할인은 11월 30일"(시각 미공지) → 한국 시간 11월 30일 끝까지 표시.
